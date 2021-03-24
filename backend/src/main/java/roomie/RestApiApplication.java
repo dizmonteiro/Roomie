@@ -1,4 +1,4 @@
-package com.roomie.restapi;
+package roomie;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
