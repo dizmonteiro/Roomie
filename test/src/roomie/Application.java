@@ -1,13 +1,10 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
+ * 
+ * This is an automatic generated file. It will be regenerated every time 
  * you generate persistence class.
- * <p>
+ * 
  * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
  */
 
 /**
@@ -17,28 +14,28 @@
 package roomie;
 
 import java.io.Serializable;
-
 public class Application implements Serializable {
-	private roomie.Tenant tenant;
-	private int tenantId;
-	private roomie.House house;
-	private int houseId;
-	private boolean toBeAssessed;
-	private boolean accepted;
-	
 	public Application() {
 	}
 	
 	public boolean equals(Object aObj) {
-		if (aObj == this) return true;
-		if (!(aObj instanceof Application)) return false;
-		Application application = (Application) aObj;
+		if (aObj == this)
+			return true;
+		if (!(aObj instanceof Application))
+			return false;
+		Application application = (Application)aObj;
 		if (getTenant() == null) {
-			if (application.getTenant() != null) return false;
-		} else if (!getTenant().equals(application.getTenant())) return false;
+			if (application.getTenant() != null)
+				return false;
+		}
+		else if (!getTenant().equals(application.getTenant()))
+			return false;
 		if (getHouse() == null) {
-			if (application.getHouse() != null) return false;
-		} else if (!getHouse().equals(application.getHouse())) return false;
+			if (application.getHouse() != null)
+				return false;
+		}
+		else if (!getHouse().equals(application.getHouse()))
+			return false;
 		return true;
 	}
 	
@@ -53,48 +50,64 @@ public class Application implements Serializable {
 		return hashcode;
 	}
 	
+	private roomie.Tenant tenant;
+	
+	private int tenantId;
+	
+	private void setTenantId(int value) {
+		this.tenantId = value;
+	}
+	
 	public int getTenantId() {
 		return tenantId;
 	}
 	
-	private void setTenantId(int value) {
-		this.tenantId = value;
+	private roomie.House house;
+	
+	private int houseId;
+	
+	private void setHouseId(int value) {
+		this.houseId = value;
 	}
 	
 	public int getHouseId() {
 		return houseId;
 	}
 	
-	private void setHouseId(int value) {
-		this.houseId = value;
+	private boolean toBeAssessed;
+	
+	private boolean accepted;
+	
+	public void setToBeAssessed(boolean value) {
+		this.toBeAssessed = value;
 	}
 	
 	public boolean getToBeAssessed() {
 		return toBeAssessed;
 	}
 	
-	public void setToBeAssessed(boolean value) {
-		this.toBeAssessed = value;
+	public void setAccepted(boolean value) {
+		this.accepted = value;
 	}
 	
 	public boolean getAccepted() {
 		return accepted;
 	}
 	
-	public roomie.House getHouse() {
-		return house;
-	}
-	
 	public void setHouse(roomie.House value) {
 		this.house = value;
 	}
 	
-	public roomie.Tenant getTenant() {
-		return tenant;
+	public roomie.House getHouse() {
+		return house;
 	}
 	
 	public void setTenant(roomie.Tenant value) {
 		this.tenant = value;
+	}
+	
+	public roomie.Tenant getTenant() {
+		return tenant;
 	}
 	
 	public boolean hasBeenAssessed() {
@@ -105,10 +118,6 @@ public class Application implements Serializable {
 	public boolean isAccepted() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
-	}
-	
-	public void setAccepted(boolean value) {
-		this.accepted = value;
 	}
 	
 	public String toString() {

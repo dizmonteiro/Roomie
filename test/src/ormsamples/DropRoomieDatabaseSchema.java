@@ -4,8 +4,7 @@
  */
 package ormsamples;
 
-import org.orm.ORMDatabaseInitiator;
-
+import org.orm.*;
 public class DropRoomieDatabaseSchema {
 	public static void main(String[] args) {
 		try {
@@ -16,7 +15,8 @@ public class DropRoomieDatabaseSchema {
 				roomie.RoomiePersistentManager.instance().disposePersistentManager();
 			}
 			
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

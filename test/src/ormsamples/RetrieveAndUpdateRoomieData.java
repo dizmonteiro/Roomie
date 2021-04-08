@@ -4,24 +4,8 @@
  */
 package ormsamples;
 
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
-
+import org.orm.*;
 public class RetrieveAndUpdateRoomieData {
-	public static void main(String[] args) {
-		try {
-			RetrieveAndUpdateRoomieData retrieveAndUpdateRoomieData = new RetrieveAndUpdateRoomieData();
-			try {
-				retrieveAndUpdateRoomieData.retrieveAndUpdateTestData();
-				//retrieveAndUpdateRoomieData.retrieveByCriteria();
-			} finally {
-				roomie.RoomiePersistentManager.instance().disposePersistentManager();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void retrieveAndUpdateTestData() throws PersistentException {
 		PersistentTransaction t = roomie.RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
@@ -53,7 +37,8 @@ public class RetrieveAndUpdateRoomieData {
 			// Update the properties of the persistent object
 			roomie.AvatarDAO.save(lroomieAvatar);
 			t.commit();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			t.rollback();
 		}
 		
@@ -118,5 +103,22 @@ public class RetrieveAndUpdateRoomieData {
 		//lroomieAvatarCriteria.ID.eq();
 		System.out.println(lroomieAvatarCriteria.uniqueAvatar());
 		
+	}
+	
+	
+	public static void main(String[] args) {
+		try {
+			RetrieveAndUpdateRoomieData retrieveAndUpdateRoomieData = new RetrieveAndUpdateRoomieData();
+			try {
+				retrieveAndUpdateRoomieData.retrieveAndUpdateTestData();
+				//retrieveAndUpdateRoomieData.retrieveByCriteria();
+			}
+			finally {
+				roomie.RoomiePersistentManager.instance().disposePersistentManager();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

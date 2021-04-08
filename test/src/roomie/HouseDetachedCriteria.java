@@ -1,13 +1,10 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
+ * 
+ * This is an automatic generated file. It will be regenerated every time 
  * you generate persistence class.
- * <p>
+ * 
  * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
  */
 
 /**
@@ -16,11 +13,10 @@
  */
 package roomie;
 
+import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
-
-import java.util.List;
 
 public class HouseDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression id;
@@ -29,7 +25,8 @@ public class HouseDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression rooms;
 	public final IntegerExpression availableRooms;
 	public final IntegerExpression bathRooms;
-	public final DoubleExpression price;
+	public final DoubleExpression minPrice;
+	public final DoubleExpression maxPrice;
 	public final StringExpression description;
 	public final StringExpression features;
 	public final CollectionExpression photos;
@@ -42,7 +39,8 @@ public class HouseDetachedCriteria extends AbstractORMDetachedCriteria {
 		rooms = new IntegerExpression("rooms", this.getDetachedCriteria());
 		availableRooms = new IntegerExpression("availableRooms", this.getDetachedCriteria());
 		bathRooms = new IntegerExpression("bathRooms", this.getDetachedCriteria());
-		price = new DoubleExpression("price", this.getDetachedCriteria());
+		minPrice = new DoubleExpression("minPrice", this.getDetachedCriteria());
+		maxPrice = new DoubleExpression("maxPrice", this.getDetachedCriteria());
 		description = new StringExpression("description", this.getDetachedCriteria());
 		features = new StringExpression("features", this.getDetachedCriteria());
 		photos = new CollectionExpression("ORM_Photos", this.getDetachedCriteria());
@@ -56,7 +54,8 @@ public class HouseDetachedCriteria extends AbstractORMDetachedCriteria {
 		rooms = new IntegerExpression("rooms", this.getDetachedCriteria());
 		availableRooms = new IntegerExpression("availableRooms", this.getDetachedCriteria());
 		bathRooms = new IntegerExpression("bathRooms", this.getDetachedCriteria());
-		price = new DoubleExpression("price", this.getDetachedCriteria());
+		minPrice = new DoubleExpression("minPrice", this.getDetachedCriteria());
+		maxPrice = new DoubleExpression("maxPrice", this.getDetachedCriteria());
 		description = new StringExpression("description", this.getDetachedCriteria());
 		features = new StringExpression("features", this.getDetachedCriteria());
 		photos = new CollectionExpression("ORM_Photos", this.getDetachedCriteria());

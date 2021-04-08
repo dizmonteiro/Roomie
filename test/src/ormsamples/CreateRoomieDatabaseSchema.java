@@ -4,14 +4,14 @@
  */
 package ormsamples;
 
-import org.orm.ORMDatabaseInitiator;
-
+import org.orm.*;
 public class CreateRoomieDatabaseSchema {
 	public static void main(String[] args) {
 		try {
 			ORMDatabaseInitiator.createSchema(roomie.RoomiePersistentManager.instance());
 			roomie.RoomiePersistentManager.instance().disposePersistentManager();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

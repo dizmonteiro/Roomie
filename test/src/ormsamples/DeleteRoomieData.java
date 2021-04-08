@@ -4,23 +4,8 @@
  */
 package ormsamples;
 
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
-
+import org.orm.*;
 public class DeleteRoomieData {
-	public static void main(String[] args) {
-		try {
-			DeleteRoomieData deleteRoomieData = new DeleteRoomieData();
-			try {
-				deleteRoomieData.deleteTestData();
-			} finally {
-				roomie.RoomiePersistentManager.instance().disposePersistentManager();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void deleteTestData() throws PersistentException {
 		PersistentTransaction t = roomie.RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
@@ -52,9 +37,25 @@ public class DeleteRoomieData {
 			// Delete the persistent object
 			roomie.AvatarDAO.delete(lroomieAvatar);
 			t.commit();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			t.rollback();
 		}
 		
+	}
+	
+	public static void main(String[] args) {
+		try {
+			DeleteRoomieData deleteRoomieData = new DeleteRoomieData();
+			try {
+				deleteRoomieData.deleteTestData();
+			}
+			finally {
+				roomie.RoomiePersistentManager.instance().disposePersistentManager();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

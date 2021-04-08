@@ -1,13 +1,10 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
+ * 
+ * This is an automatic generated file. It will be regenerated every time 
  * you generate persistence class.
- * <p>
+ * 
  * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
  */
 
 /**
@@ -16,14 +13,10 @@
  */
 package roomie;
 
+import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
-import org.orm.criteria.AbstractORMDetachedCriteria;
-import org.orm.criteria.AssociationExpression;
-import org.orm.criteria.DateExpression;
-import org.orm.criteria.IntegerExpression;
-
-import java.util.List;
+import org.orm.criteria.*;
 
 public class RentHistoryDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression houseId;

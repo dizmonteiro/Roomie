@@ -1,13 +1,10 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
+ * 
+ * This is an automatic generated file. It will be regenerated every time 
  * you generate persistence class.
- * <p>
+ * 
  * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
  */
 
 /**
@@ -16,38 +13,43 @@
  */
 package roomie;
 
+import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
-import java.util.List;
-
 public class TenantEvaluationDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final StringExpression comment;
 	public final IntegerExpression evaluatorTenantId;
 	public final AssociationExpression evaluatorTenant;
 	public final IntegerExpression evaluatedTenantId;
 	public final AssociationExpression evaluatedTenant;
-	public final DoubleExpression rating;
+	public final DoubleExpression tidiness;
+	public final DoubleExpression cleanliness;
+	public final DoubleExpression privacy;
+	public final DoubleExpression friendliness;
 	
 	public TenantEvaluationDetachedCriteria() {
 		super(roomie.TenantEvaluation.class, roomie.TenantEvaluationCriteria.class);
-		comment = new StringExpression("comment", this.getDetachedCriteria());
 		evaluatorTenantId = new IntegerExpression("evaluatorTenant.id", this.getDetachedCriteria());
 		evaluatorTenant = new AssociationExpression("evaluatorTenant", this.getDetachedCriteria());
 		evaluatedTenantId = new IntegerExpression("evaluatedTenant.id", this.getDetachedCriteria());
 		evaluatedTenant = new AssociationExpression("evaluatedTenant", this.getDetachedCriteria());
-		rating = new DoubleExpression("rating", this.getDetachedCriteria());
+		tidiness = new DoubleExpression("tidiness", this.getDetachedCriteria());
+		cleanliness = new DoubleExpression("cleanliness", this.getDetachedCriteria());
+		privacy = new DoubleExpression("privacy", this.getDetachedCriteria());
+		friendliness = new DoubleExpression("friendliness", this.getDetachedCriteria());
 	}
 	
 	public TenantEvaluationDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, roomie.TenantEvaluationCriteria.class);
-		comment = new StringExpression("comment", this.getDetachedCriteria());
 		evaluatorTenantId = new IntegerExpression("evaluatorTenant.id", this.getDetachedCriteria());
 		evaluatorTenant = new AssociationExpression("evaluatorTenant", this.getDetachedCriteria());
 		evaluatedTenantId = new IntegerExpression("evaluatedTenant.id", this.getDetachedCriteria());
 		evaluatedTenant = new AssociationExpression("evaluatedTenant", this.getDetachedCriteria());
-		rating = new DoubleExpression("rating", this.getDetachedCriteria());
+		tidiness = new DoubleExpression("tidiness", this.getDetachedCriteria());
+		cleanliness = new DoubleExpression("cleanliness", this.getDetachedCriteria());
+		privacy = new DoubleExpression("privacy", this.getDetachedCriteria());
+		friendliness = new DoubleExpression("friendliness", this.getDetachedCriteria());
 	}
 	
 	public TenantDetachedCriteria createEvaluatorTenantCriteria() {

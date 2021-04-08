@@ -1,13 +1,10 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
+ * 
+ * This is an automatic generated file. It will be regenerated every time 
  * you generate persistence class.
- * <p>
+ * 
  * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
  */
 
 /**
@@ -16,8 +13,7 @@
  */
 package roomie;
 
-import org.orm.PersistentException;
-import org.orm.PersistentManager;
+import org.orm.*;
 
 public class PhotoListCollection extends org.orm.util.ORMList {
 	public PhotoListCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
@@ -29,9 +25,9 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	}
 	
 	/**
-	 * Return an iterator over the persistent objects
-	 * @return The persistent objects iterator
-	 */
+	* Return an iterator over the persistent objects
+	* @return The persistent objects iterator
+	*/
 	public java.util.Iterator getIterator() {
 		return super.getIterator(_ownerAdapter);
 	}

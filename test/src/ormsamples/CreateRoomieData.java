@@ -4,23 +4,8 @@
  */
 package ormsamples;
 
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
-
+import org.orm.*;
 public class CreateRoomieData {
-	public static void main(String[] args) {
-		try {
-			CreateRoomieData createRoomieData = new CreateRoomieData();
-			try {
-				createRoomieData.createTestData();
-			} finally {
-				roomie.RoomiePersistentManager.instance().disposePersistentManager();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void createTestData() throws PersistentException {
 		PersistentTransaction t = roomie.RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
@@ -28,7 +13,7 @@ public class CreateRoomieData {
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : avatar
 			roomie.TenantDAO.save(lroomieTenant);
 			roomie.House lroomieHouse = roomie.HouseDAO.createHouse();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : photos, price, bathRooms, availableRooms, rooms
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : photos, maxPrice, minPrice, bathRooms, availableRooms, rooms
 			roomie.HouseDAO.save(lroomieHouse);
 			roomie.Photo lroomiePhoto = roomie.PhotoDAO.createPhoto();
 			// Initialize the properties of the persistent object here
@@ -43,18 +28,34 @@ public class CreateRoomieData {
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : accepted, toBeAssessed
 			roomie.ApplicationDAO.save(lroomieApplication);
 			roomie.LandlordEvaluation lroomieLandlordEvaluation = roomie.LandlordEvaluationDAO.createLandlordEvaluation();
-			// Initialize the properties of the persistent object here
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : care, payment, cleanliness
 			roomie.LandlordEvaluationDAO.save(lroomieLandlordEvaluation);
 			roomie.TenantEvaluation lroomieTenantEvaluation = roomie.TenantEvaluationDAO.createTenantEvaluation();
-			// Initialize the properties of the persistent object here
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : friendliness, privacy, cleanliness, tidiness
 			roomie.TenantEvaluationDAO.save(lroomieTenantEvaluation);
 			roomie.Avatar lroomieAvatar = roomie.AvatarDAO.createAvatar();
 			// Initialize the properties of the persistent object here
 			roomie.AvatarDAO.save(lroomieAvatar);
 			t.commit();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			t.rollback();
 		}
 		
+	}
+	
+	public static void main(String[] args) {
+		try {
+			CreateRoomieData createRoomieData = new CreateRoomieData();
+			try {
+				createRoomieData.createTestData();
+			}
+			finally {
+				roomie.RoomiePersistentManager.instance().disposePersistentManager();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

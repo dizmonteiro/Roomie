@@ -1,13 +1,10 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
+ * 
+ * This is an automatic generated file. It will be regenerated every time 
  * you generate persistence class.
- * <p>
+ * 
  * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
  */
 
 /**
@@ -26,8 +23,9 @@ public class LandlordEvaluationCriteria extends AbstractORMCriteria {
 	public final AssociationExpression landlord;
 	public final IntegerExpression tenantId;
 	public final AssociationExpression tenant;
-	public final StringExpression comment;
-	public final DoubleExpression rating;
+	public final DoubleExpression cleanliness;
+	public final DoubleExpression payment;
+	public final DoubleExpression care;
 	
 	public LandlordEvaluationCriteria(Criteria criteria) {
 		super(criteria);
@@ -35,8 +33,9 @@ public class LandlordEvaluationCriteria extends AbstractORMCriteria {
 		landlord = new AssociationExpression("landlord", this);
 		tenantId = new IntegerExpression("tenant.id", this);
 		tenant = new AssociationExpression("tenant", this);
-		comment = new StringExpression("comment", this);
-		rating = new DoubleExpression("rating", this);
+		cleanliness = new DoubleExpression("cleanliness", this);
+		payment = new DoubleExpression("payment", this);
+		care = new DoubleExpression("care", this);
 	}
 	
 	public LandlordEvaluationCriteria(PersistentSession session) {

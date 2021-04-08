@@ -3,17 +3,17 @@
 Licensee: vr(Universidade do Minho)
 License Type: Academic
 -->
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="roomie.LandlordEvaluation" table="LandlordEvaluation" lazy="false">
-        <composite-id>
-            <key-many-to-one name="landlord" column="LandlordID" class="roomie.Landlord">
-            </key-many-to-one>
-            <key-many-to-one name="tenant" column="TenantID" class="roomie.Tenant">
-            </key-many-to-one>
-        </composite-id>
-        <property name="comment" column="Comment" type="string" length="255" not-null="false" lazy="false"/>
-        <property name="rating" column="Rating" type="double" not-null="false" lazy="false"/>
-    </class>
+	<class name="roomie.LandlordEvaluation" table="LandlordEvaluation" lazy="false">
+		<composite-id>
+			<key-many-to-one name="landlord" column="LandlordID" class="roomie.Landlord">
+			</key-many-to-one>
+			<key-many-to-one name="tenant" column="TenantID" class="roomie.Tenant">
+			</key-many-to-one>
+		</composite-id>
+		<property name="cleanliness" column="Cleanliness" type="double" not-null="true" lazy="false"/>
+		<property name="payment" column="Payment" type="double" not-null="true" lazy="false"/>
+		<property name="care" column="Care" type="double" not-null="true" lazy="false"/>
+	</class>
 </hibernate-mapping>
