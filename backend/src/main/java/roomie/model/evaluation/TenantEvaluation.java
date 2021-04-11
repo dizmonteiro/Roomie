@@ -1,10 +1,13 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
+ * <p>
+ * This is an automatic generated file. It will be regenerated every time
  * you generate persistence class.
- * 
+ * <p>
  * Modifying its content may cause the program not work, or your work may lost.
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -16,28 +19,30 @@ package roomie.model.evaluation;
 import roomie.model.tenant.Tenant;
 
 import java.io.Serializable;
+
 public class TenantEvaluation implements Serializable {
+	private Tenant evaluatorTenant;
+	private int evaluatorTenantId;
+	private Tenant evaluatedTenant;
+	private int evaluatedTenantId;
+	private double tidiness;
+	private double cleanliness;
+	private double privacy;
+	private double friendliness;
+	
 	public TenantEvaluation() {
 	}
 	
 	public boolean equals(Object aObj) {
-		if (aObj == this)
-			return true;
-		if (!(aObj instanceof TenantEvaluation))
-			return false;
-		TenantEvaluation tenantevaluation = (TenantEvaluation)aObj;
+		if (aObj == this) return true;
+		if (!(aObj instanceof TenantEvaluation)) return false;
+		TenantEvaluation tenantevaluation = (TenantEvaluation) aObj;
 		if (getEvaluatorTenant() == null) {
-			if (tenantevaluation.getEvaluatorTenant() != null)
-				return false;
-		}
-		else if (!getEvaluatorTenant().equals(tenantevaluation.getEvaluatorTenant()))
-			return false;
+			if (tenantevaluation.getEvaluatorTenant() != null) return false;
+		} else if (!getEvaluatorTenant().equals(tenantevaluation.getEvaluatorTenant())) return false;
 		if (getEvaluatedTenant() == null) {
-			if (tenantevaluation.getEvaluatedTenant() != null)
-				return false;
-		}
-		else if (!getEvaluatedTenant().equals(tenantevaluation.getEvaluatedTenant()))
-			return false;
+			if (tenantevaluation.getEvaluatedTenant() != null) return false;
+		} else if (!getEvaluatedTenant().equals(tenantevaluation.getEvaluatedTenant())) return false;
 		return true;
 	}
 	
@@ -52,84 +57,68 @@ public class TenantEvaluation implements Serializable {
 		return hashcode;
 	}
 	
-	private Tenant evaluatorTenant;
-	
-	private int evaluatorTenantId;
-	
-	private void setEvaluatorTenantId(int value) {
-		this.evaluatorTenantId = value;
-	}
-	
 	public int getEvaluatorTenantId() {
 		return evaluatorTenantId;
 	}
 	
-	private Tenant evaluatedTenant;
-	
-	private int evaluatedTenantId;
-	
-	private void setEvaluatedTenantId(int value) {
-		this.evaluatedTenantId = value;
+	private void setEvaluatorTenantId(int value) {
+		this.evaluatorTenantId = value;
 	}
 	
 	public int getEvaluatedTenantId() {
 		return evaluatedTenantId;
 	}
 	
-	private double tidiness;
-	
-	private double cleanliness;
-	
-	private double privacy;
-	
-	private double friendliness;
-	
-	public void setTidiness(double value) {
-		this.tidiness = value;
+	private void setEvaluatedTenantId(int value) {
+		this.evaluatedTenantId = value;
 	}
 	
 	public double getTidiness() {
 		return tidiness;
 	}
 	
-	public void setCleanliness(double value) {
-		this.cleanliness = value;
+	public void setTidiness(double value) {
+		this.tidiness = value;
 	}
 	
 	public double getCleanliness() {
 		return cleanliness;
 	}
 	
-	public void setPrivacy(double value) {
-		this.privacy = value;
+	public void setCleanliness(double value) {
+		this.cleanliness = value;
 	}
 	
 	public double getPrivacy() {
 		return privacy;
 	}
 	
-	public void setFriendliness(double value) {
-		this.friendliness = value;
+	public void setPrivacy(double value) {
+		this.privacy = value;
 	}
 	
 	public double getFriendliness() {
 		return friendliness;
 	}
 	
-	public void setEvaluatedTenant(Tenant value) {
-		this.evaluatedTenant = value;
+	public void setFriendliness(double value) {
+		this.friendliness = value;
 	}
 	
 	public Tenant getEvaluatedTenant() {
 		return evaluatedTenant;
 	}
 	
-	public void setEvaluatorTenant(Tenant value) {
-		this.evaluatorTenant = value;
+	public void setEvaluatedTenant(Tenant value) {
+		this.evaluatedTenant = value;
 	}
 	
 	public Tenant getEvaluatorTenant() {
 		return evaluatorTenant;
+	}
+	
+	public void setEvaluatorTenant(Tenant value) {
+		this.evaluatorTenant = value;
 	}
 	
 	public String toString() {

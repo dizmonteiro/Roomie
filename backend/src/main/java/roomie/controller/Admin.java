@@ -6,9 +6,9 @@ import org.orm.PersistentTransaction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import roomie.model.RoomiePersistentManager;
 import roomie.model.avatar.Avatar;
 import roomie.model.avatar.AvatarDAO;
-import roomie.model.RoomiePersistentManager;
 
 /**
  * @author: Vasco Ramos
@@ -23,6 +23,17 @@ public class Admin {
 	public String createDB() {
 		try {
 			ORMDatabaseInitiator.createSchema(RoomiePersistentManager.instance());
+			RoomiePersistentManager.instance().disposePersistentManager();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "Done";
+	}
+	
+	@GetMapping("/drop-db")
+	public String dropDB() {
+		try {
+			ORMDatabaseInitiator.dropSchema(RoomiePersistentManager.instance());
 			RoomiePersistentManager.instance().disposePersistentManager();
 		} catch (Exception e) {
 			e.printStackTrace();

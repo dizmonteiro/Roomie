@@ -1,10 +1,13 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
+ * <p>
+ * This is an automatic generated file. It will be regenerated every time
  * you generate persistence class.
- * 
+ * <p>
  * Modifying its content may cause the program not work, or your work may lost.
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -17,28 +20,29 @@ import roomie.model.landlord.Landlord;
 import roomie.model.tenant.Tenant;
 
 import java.io.Serializable;
+
 public class LandlordEvaluation implements Serializable {
+	private Landlord landlord;
+	private int landlordId;
+	private Tenant tenant;
+	private int tenantId;
+	private double cleanliness;
+	private double payment;
+	private double care;
+	
 	public LandlordEvaluation() {
 	}
 	
 	public boolean equals(Object aObj) {
-		if (aObj == this)
-			return true;
-		if (!(aObj instanceof LandlordEvaluation))
-			return false;
-		LandlordEvaluation landlordevaluation = (LandlordEvaluation)aObj;
+		if (aObj == this) return true;
+		if (!(aObj instanceof LandlordEvaluation)) return false;
+		LandlordEvaluation landlordevaluation = (LandlordEvaluation) aObj;
 		if (getLandlord() == null) {
-			if (landlordevaluation.getLandlord() != null)
-				return false;
-		}
-		else if (!getLandlord().equals(landlordevaluation.getLandlord()))
-			return false;
+			if (landlordevaluation.getLandlord() != null) return false;
+		} else if (!getLandlord().equals(landlordevaluation.getLandlord())) return false;
 		if (getTenant() == null) {
-			if (landlordevaluation.getTenant() != null)
-				return false;
-		}
-		else if (!getTenant().equals(landlordevaluation.getTenant()))
-			return false;
+			if (landlordevaluation.getTenant() != null) return false;
+		} else if (!getTenant().equals(landlordevaluation.getTenant())) return false;
 		return true;
 	}
 	
@@ -53,74 +57,60 @@ public class LandlordEvaluation implements Serializable {
 		return hashcode;
 	}
 	
-	private Landlord landlord;
-	
-	private int landlordId;
-	
-	private void setLandlordId(int value) {
-		this.landlordId = value;
-	}
-	
 	public int getLandlordId() {
 		return landlordId;
 	}
 	
-	private Tenant tenant;
-	
-	private int tenantId;
-	
-	private void setTenantId(int value) {
-		this.tenantId = value;
+	private void setLandlordId(int value) {
+		this.landlordId = value;
 	}
 	
 	public int getTenantId() {
 		return tenantId;
 	}
 	
-	private double cleanliness;
-	
-	private double payment;
-	
-	private double care;
-	
-	public void setCleanliness(double value) {
-		this.cleanliness = value;
+	private void setTenantId(int value) {
+		this.tenantId = value;
 	}
 	
 	public double getCleanliness() {
 		return cleanliness;
 	}
 	
-	public void setPayment(double value) {
-		this.payment = value;
+	public void setCleanliness(double value) {
+		this.cleanliness = value;
 	}
 	
 	public double getPayment() {
 		return payment;
 	}
 	
-	public void setCare(double value) {
-		this.care = value;
+	public void setPayment(double value) {
+		this.payment = value;
 	}
 	
 	public double getCare() {
 		return care;
 	}
 	
-	public void setLandlord(Landlord value) {
-		this.landlord = value;
+	public void setCare(double value) {
+		this.care = value;
 	}
 	
 	public Landlord getLandlord() {
 		return landlord;
 	}
 	
-	public void setTenant(Tenant value) {
-		this.tenant = value;
+	public void setLandlord(Landlord value) {
+		this.landlord = value;
 	}
 	
 	public Tenant getTenant() {
 		return tenant;
+	}
+	
+	public void setTenant(Tenant value) {
+		this.tenant = value;
 	}
 	
 	public String toString() {

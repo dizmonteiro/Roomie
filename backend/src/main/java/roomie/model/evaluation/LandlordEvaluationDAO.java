@@ -1,10 +1,13 @@
 /**
  * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
+ * <p>
+ * This is an automatic generated file. It will be regenerated every time
  * you generate persistence class.
- * 
+ * <p>
  * Modifying its content may cause the program not work, or your work may lost.
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -13,11 +16,11 @@
  */
 package roomie.model.evaluation;
 
-import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
-import roomie.model.landlord.Landlord;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
 import roomie.model.RoomiePersistentManager;
+import roomie.model.landlord.Landlord;
 import roomie.model.tenant.Tenant;
 import roomie.repository.evaluation.LandlordEvaluationCriteria;
 
@@ -28,8 +31,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return loadLandlordEvaluationByORMID(session, landlord, tenant);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -39,8 +41,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return getLandlordEvaluationByORMID(session, landlord, tenant);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -50,8 +51,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return loadLandlordEvaluationByORMID(session, landlord, tenant, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -61,8 +61,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return getLandlordEvaluationByORMID(session, landlord, tenant, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -75,8 +74,7 @@ public class LandlordEvaluationDAO {
 			landlordevaluation.setTenant(tenant);
 			
 			return (LandlordEvaluation) session.load(LandlordEvaluation.class, landlordevaluation);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -89,8 +87,7 @@ public class LandlordEvaluationDAO {
 			landlordevaluation.setTenant(tenant);
 			
 			return (LandlordEvaluation) session.get(LandlordEvaluation.class, landlordevaluation);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -103,8 +100,7 @@ public class LandlordEvaluationDAO {
 			landlordevaluation.setTenant(tenant);
 			
 			return (LandlordEvaluation) session.load(LandlordEvaluation.class, landlordevaluation, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -117,8 +113,7 @@ public class LandlordEvaluationDAO {
 			landlordevaluation.setTenant(tenant);
 			
 			return (LandlordEvaluation) session.get(LandlordEvaluation.class, landlordevaluation, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -128,8 +123,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return queryLandlordEvaluation(session, condition, orderBy);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -139,8 +133,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return queryLandlordEvaluation(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -150,8 +143,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return listLandlordEvaluationByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -161,8 +153,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return listLandlordEvaluationByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -170,15 +161,12 @@ public class LandlordEvaluationDAO {
 	
 	public static List queryLandlordEvaluation(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.LandlordEvaluation as LandlordEvaluation");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			return query.list();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -186,16 +174,13 @@ public class LandlordEvaluationDAO {
 	
 	public static List queryLandlordEvaluation(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.LandlordEvaluation as LandlordEvaluation");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			query.setLockMode("LandlordEvaluation", lockMode);
 			return query.list();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -205,8 +190,7 @@ public class LandlordEvaluationDAO {
 		try {
 			List list = queryLandlordEvaluation(session, condition, orderBy);
 			return (LandlordEvaluation[]) list.toArray(new LandlordEvaluation[list.size()]);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -216,8 +200,7 @@ public class LandlordEvaluationDAO {
 		try {
 			List list = queryLandlordEvaluation(session, condition, orderBy, lockMode);
 			return (LandlordEvaluation[]) list.toArray(new LandlordEvaluation[list.size()]);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -227,8 +210,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return loadLandlordEvaluationByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -238,8 +220,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return loadLandlordEvaluationByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -247,26 +228,21 @@ public class LandlordEvaluationDAO {
 	
 	public static LandlordEvaluation loadLandlordEvaluationByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		LandlordEvaluation[] landlordEvaluations = listLandlordEvaluationByQuery(session, condition, orderBy);
-		if (landlordEvaluations != null && landlordEvaluations.length > 0)
-			return landlordEvaluations[0];
-		else
-			return null;
+		if (landlordEvaluations != null && landlordEvaluations.length > 0) return landlordEvaluations[0];
+		else return null;
 	}
 	
 	public static LandlordEvaluation loadLandlordEvaluationByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		LandlordEvaluation[] landlordEvaluations = listLandlordEvaluationByQuery(session, condition, orderBy, lockMode);
-		if (landlordEvaluations != null && landlordEvaluations.length > 0)
-			return landlordEvaluations[0];
-		else
-			return null;
+		if (landlordEvaluations != null && landlordEvaluations.length > 0) return landlordEvaluations[0];
+		else return null;
 	}
 	
 	public static java.util.Iterator iterateLandlordEvaluationByQuery(String condition, String orderBy) throws PersistentException {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return iterateLandlordEvaluationByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -276,8 +252,7 @@ public class LandlordEvaluationDAO {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return iterateLandlordEvaluationByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -285,15 +260,12 @@ public class LandlordEvaluationDAO {
 	
 	public static java.util.Iterator iterateLandlordEvaluationByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.LandlordEvaluation as LandlordEvaluation");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			return query.iterate();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -301,16 +273,13 @@ public class LandlordEvaluationDAO {
 	
 	public static java.util.Iterator iterateLandlordEvaluationByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.LandlordEvaluation as LandlordEvaluation");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			query.setLockMode("LandlordEvaluation", lockMode);
 			return query.iterate();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -324,8 +293,7 @@ public class LandlordEvaluationDAO {
 		try {
 			RoomiePersistentManager.instance().saveObject(landlordEvaluation);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -335,8 +303,7 @@ public class LandlordEvaluationDAO {
 		try {
 			RoomiePersistentManager.instance().deleteObject(landlordEvaluation);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -346,8 +313,7 @@ public class LandlordEvaluationDAO {
 		try {
 			RoomiePersistentManager.instance().getSession().refresh(landlordEvaluation);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -357,8 +323,7 @@ public class LandlordEvaluationDAO {
 		try {
 			RoomiePersistentManager.instance().getSession().evict(landlordEvaluation);
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
@@ -366,7 +331,7 @@ public class LandlordEvaluationDAO {
 	
 	public static LandlordEvaluation loadLandlordEvaluationByCriteria(LandlordEvaluationCriteria landlordEvaluationCriteria) {
 		LandlordEvaluation[] landlordEvaluations = listLandlordEvaluationByCriteria(landlordEvaluationCriteria);
-		if(landlordEvaluations == null || landlordEvaluations.length == 0) {
+		if (landlordEvaluations == null || landlordEvaluations.length == 0) {
 			return null;
 		}
 		return landlordEvaluations[0];
