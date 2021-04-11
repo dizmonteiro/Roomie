@@ -24,10 +24,10 @@ public class Admin {
 		try {
 			ORMDatabaseInitiator.createSchema(RoomiePersistentManager.instance());
 			RoomiePersistentManager.instance().disposePersistentManager();
+			return "Success!";
 		} catch (Exception e) {
-			e.printStackTrace();
+			return e.toString();
 		}
-		return "Done";
 	}
 	
 	@GetMapping("/drop-db")
@@ -35,38 +35,24 @@ public class Admin {
 		try {
 			ORMDatabaseInitiator.dropSchema(RoomiePersistentManager.instance());
 			RoomiePersistentManager.instance().disposePersistentManager();
+			return "Success!";
 		} catch (Exception e) {
-			e.printStackTrace();
+			return e.toString();
 		}
-		return "Done";
 	}
 	
 	@GetMapping("/populate")
-	public String populateDB() {
-		try {
-			try {
-				createTestData();
-			} finally {
-				RoomiePersistentManager.instance().disposePersistentManager();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "Done";
-	}
-	
-	private void createTestData() throws PersistentException {
+	public String populateDB() throws PersistentException {
 		PersistentTransaction t = RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
-			Avatar lroomieAvatar = AvatarDAO.createAvatar();
-			// Initialize the properties of the persistent object here
-			AvatarDAO.save(lroomieAvatar);
+			Avatar avatar = AvatarDAO.createAvatar();
+			AvatarDAO.save(avatar);
 			t.commit();
+			return "Success!";
 		}
 		catch (Exception e) {
 			t.rollback();
+			return e.toString();
 		}
-		
 	}
-	
 }
