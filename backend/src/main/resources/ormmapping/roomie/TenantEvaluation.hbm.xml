@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: vr(Universidade do Minho)
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="roomie.model.evaluation.TenantEvaluation" table="TenantEvaluation" lazy="false">
+		<composite-id>
+			<key-many-to-one name="evaluatorTenant" column="EvaluatorID" class="roomie.model.tenant.Tenant">
+			</key-many-to-one>
+			<key-many-to-one name="evaluatedTenant" column="EvaluatedID" class="roomie.model.tenant.Tenant">
+			</key-many-to-one>
+		</composite-id>
+		<property name="tidiness" column="Tidiness" type="double" not-null="true" lazy="false"/>
+		<property name="cleanliness" column="Cleanliness" type="double" not-null="true" lazy="false"/>
+		<property name="privacy" column="Privacy" type="double" not-null="true" lazy="false"/>
+		<property name="friendliness" column="Friendliness" type="double" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>
