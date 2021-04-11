@@ -8,6 +8,9 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -142,7 +145,7 @@ public class AvatarDAO {
 	}
 	
 	public static List queryAvatar(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.avatar.Avatar as Avatar");
+		StringBuffer sb = new StringBuffer("From roomie.Avatar as Avatar");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -155,7 +158,7 @@ public class AvatarDAO {
 	}
 	
 	public static List queryAvatar(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.avatar.Avatar as Avatar");
+		StringBuffer sb = new StringBuffer("From roomie.Avatar as Avatar");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -241,7 +244,7 @@ public class AvatarDAO {
 	}
 	
 	public static java.util.Iterator iterateAvatarByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.avatar.Avatar as Avatar");
+		StringBuffer sb = new StringBuffer("From roomie.Avatar as Avatar");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -254,7 +257,7 @@ public class AvatarDAO {
 	}
 	
 	public static java.util.Iterator iterateAvatarByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.avatar.Avatar as Avatar");
+		StringBuffer sb = new StringBuffer("From roomie.Avatar as Avatar");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
