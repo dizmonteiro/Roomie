@@ -11,8 +11,8 @@ public class DropRoomieDatabaseSchema {
 			System.out.println("Are you sure to drop table(s)? (Y/N)");
 			java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
 			if (reader.readLine().trim().toUpperCase().equals("Y")) {
-				ORMDatabaseInitiator.dropSchema(roomie.RoomiePersistentManager.instance());
-				roomie.RoomiePersistentManager.instance().disposePersistentManager();
+				ORMDatabaseInitiator.dropSchema(roomie.entities.RoomiePersistentManager.instance());
+				roomie.entities.RoomiePersistentManager.instance().disposePersistentManager();
 			}
 			
 		}

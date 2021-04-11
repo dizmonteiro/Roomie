@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: vr(Universidade do Minho)
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="roomie.entities.RentHistory" table="RentHistory" lazy="false">
+		<composite-id>
+			<key-many-to-one name="house" column="HouseID" class="roomie.entities.House">
+			</key-many-to-one>
+			<key-many-to-one name="tenant" column="TenantID" class="roomie.entities.Tenant">
+			</key-many-to-one>
+		</composite-id>
+		<property name="bDate" column="BDate" type="date" not-null="true" lazy="false"/>
+		<property name="eDate" column="EDate" type="date" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>

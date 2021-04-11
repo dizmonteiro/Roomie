@@ -1,4 +1,5 @@
 # Read Me First
+
 The following was discovered as part of building this project:
 
 * The original package name 'com.roomie.rest-api' is invalid and this project uses 'com.roomie.restapi' instead.
@@ -6,6 +7,7 @@ The following was discovered as part of building this project:
 # Getting Started
 
 ### Reference Documentation
+
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
@@ -16,6 +18,7 @@ For further reference, please consider the following sections:
 * [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.4.3/reference/htmlsingle/#boot-features-jpa-and-spring-data)
 
 ### Guides
+
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)

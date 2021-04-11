@@ -7,35 +7,35 @@ package ormsamples;
 import org.orm.*;
 public class DeleteRoomieData {
 	public void deleteTestData() throws PersistentException {
-		PersistentTransaction t = roomie.RoomiePersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = roomie.entities.RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
-			roomie.Tenant lroomieTenant = roomie.TenantDAO.loadTenantByQuery(null, null);
+			roomie.entities.Tenant lroomieentitiesTenant = roomie.entities.TenantDAO.loadTenantByQuery(null, null);
 			// Delete the persistent object
-			roomie.TenantDAO.delete(lroomieTenant);
-			roomie.House lroomieHouse = roomie.HouseDAO.loadHouseByQuery(null, null);
+			roomie.entities.TenantDAO.delete(lroomieentitiesTenant);
+			roomie.entities.House lroomieentitiesHouse = roomie.entities.HouseDAO.loadHouseByQuery(null, null);
 			// Delete the persistent object
-			roomie.HouseDAO.delete(lroomieHouse);
-			roomie.Photo lroomiePhoto = roomie.PhotoDAO.loadPhotoByQuery(null, null);
+			roomie.entities.HouseDAO.delete(lroomieentitiesHouse);
+			roomie.entities.Photo lroomieentitiesPhoto = roomie.entities.PhotoDAO.loadPhotoByQuery(null, null);
 			// Delete the persistent object
-			roomie.PhotoDAO.delete(lroomiePhoto);
-			roomie.Landlord lroomieLandlord = roomie.LandlordDAO.loadLandlordByQuery(null, null);
+			roomie.entities.PhotoDAO.delete(lroomieentitiesPhoto);
+			roomie.entities.Landlord lroomieentitiesLandlord = roomie.entities.LandlordDAO.loadLandlordByQuery(null, null);
 			// Delete the persistent object
-			roomie.LandlordDAO.delete(lroomieLandlord);
-			roomie.RentHistory lroomieRentHistory = roomie.RentHistoryDAO.loadRentHistoryByQuery(null, null);
+			roomie.entities.LandlordDAO.delete(lroomieentitiesLandlord);
+			roomie.entities.RentHistory lroomieentitiesRentHistory = roomie.entities.RentHistoryDAO.loadRentHistoryByQuery(null, null);
 			// Delete the persistent object
-			roomie.RentHistoryDAO.delete(lroomieRentHistory);
-			roomie.Application lroomieApplication = roomie.ApplicationDAO.loadApplicationByQuery(null, null);
+			roomie.entities.RentHistoryDAO.delete(lroomieentitiesRentHistory);
+			roomie.entities.Application lroomieentitiesApplication = roomie.entities.ApplicationDAO.loadApplicationByQuery(null, null);
 			// Delete the persistent object
-			roomie.ApplicationDAO.delete(lroomieApplication);
-			roomie.LandlordEvaluation lroomieLandlordEvaluation = roomie.LandlordEvaluationDAO.loadLandlordEvaluationByQuery(null, null);
+			roomie.entities.ApplicationDAO.delete(lroomieentitiesApplication);
+			roomie.entities.LandlordEvaluation lroomieentitiesLandlordEvaluation = roomie.entities.LandlordEvaluationDAO.loadLandlordEvaluationByQuery(null, null);
 			// Delete the persistent object
-			roomie.LandlordEvaluationDAO.delete(lroomieLandlordEvaluation);
-			roomie.TenantEvaluation lroomieTenantEvaluation = roomie.TenantEvaluationDAO.loadTenantEvaluationByQuery(null, null);
+			roomie.entities.LandlordEvaluationDAO.delete(lroomieentitiesLandlordEvaluation);
+			roomie.entities.TenantEvaluation lroomieentitiesTenantEvaluation = roomie.entities.TenantEvaluationDAO.loadTenantEvaluationByQuery(null, null);
 			// Delete the persistent object
-			roomie.TenantEvaluationDAO.delete(lroomieTenantEvaluation);
-			roomie.Avatar lroomieAvatar = roomie.AvatarDAO.loadAvatarByQuery(null, null);
+			roomie.entities.TenantEvaluationDAO.delete(lroomieentitiesTenantEvaluation);
+			roomie.entities.Avatar lroomieentitiesAvatar = roomie.entities.AvatarDAO.loadAvatarByQuery(null, null);
 			// Delete the persistent object
-			roomie.AvatarDAO.delete(lroomieAvatar);
+			roomie.entities.AvatarDAO.delete(lroomieentitiesAvatar);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -51,7 +51,7 @@ public class DeleteRoomieData {
 				deleteRoomieData.deleteTestData();
 			}
 			finally {
-				roomie.RoomiePersistentManager.instance().disposePersistentManager();
+				roomie.entities.RoomiePersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

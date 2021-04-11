@@ -7,35 +7,35 @@ package ormsamples;
 import org.orm.*;
 public class CreateRoomieData {
 	public void createTestData() throws PersistentException {
-		PersistentTransaction t = roomie.RoomiePersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = roomie.entities.RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
-			roomie.Tenant lroomieTenant = roomie.TenantDAO.createTenant();
+			roomie.entities.Tenant lroomieentitiesTenant = roomie.entities.TenantDAO.createTenant();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : avatar
-			roomie.TenantDAO.save(lroomieTenant);
-			roomie.House lroomieHouse = roomie.HouseDAO.createHouse();
+			roomie.entities.TenantDAO.save(lroomieentitiesTenant);
+			roomie.entities.House lroomieentitiesHouse = roomie.entities.HouseDAO.createHouse();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : photos, maxPrice, minPrice, bathRooms, availableRooms, rooms
-			roomie.HouseDAO.save(lroomieHouse);
-			roomie.Photo lroomiePhoto = roomie.PhotoDAO.createPhoto();
+			roomie.entities.HouseDAO.save(lroomieentitiesHouse);
+			roomie.entities.Photo lroomieentitiesPhoto = roomie.entities.PhotoDAO.createPhoto();
 			// Initialize the properties of the persistent object here
-			roomie.PhotoDAO.save(lroomiePhoto);
-			roomie.Landlord lroomieLandlord = roomie.LandlordDAO.createLandlord();
+			roomie.entities.PhotoDAO.save(lroomieentitiesPhoto);
+			roomie.entities.Landlord lroomieentitiesLandlord = roomie.entities.LandlordDAO.createLandlord();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : houses, avatar
-			roomie.LandlordDAO.save(lroomieLandlord);
-			roomie.RentHistory lroomieRentHistory = roomie.RentHistoryDAO.createRentHistory();
+			roomie.entities.LandlordDAO.save(lroomieentitiesLandlord);
+			roomie.entities.RentHistory lroomieentitiesRentHistory = roomie.entities.RentHistoryDAO.createRentHistory();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : eDate, bDate
-			roomie.RentHistoryDAO.save(lroomieRentHistory);
-			roomie.Application lroomieApplication = roomie.ApplicationDAO.createApplication();
+			roomie.entities.RentHistoryDAO.save(lroomieentitiesRentHistory);
+			roomie.entities.Application lroomieentitiesApplication = roomie.entities.ApplicationDAO.createApplication();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : accepted, toBeAssessed
-			roomie.ApplicationDAO.save(lroomieApplication);
-			roomie.LandlordEvaluation lroomieLandlordEvaluation = roomie.LandlordEvaluationDAO.createLandlordEvaluation();
+			roomie.entities.ApplicationDAO.save(lroomieentitiesApplication);
+			roomie.entities.LandlordEvaluation lroomieentitiesLandlordEvaluation = roomie.entities.LandlordEvaluationDAO.createLandlordEvaluation();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : care, payment, cleanliness
-			roomie.LandlordEvaluationDAO.save(lroomieLandlordEvaluation);
-			roomie.TenantEvaluation lroomieTenantEvaluation = roomie.TenantEvaluationDAO.createTenantEvaluation();
+			roomie.entities.LandlordEvaluationDAO.save(lroomieentitiesLandlordEvaluation);
+			roomie.entities.TenantEvaluation lroomieentitiesTenantEvaluation = roomie.entities.TenantEvaluationDAO.createTenantEvaluation();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : friendliness, privacy, cleanliness, tidiness
-			roomie.TenantEvaluationDAO.save(lroomieTenantEvaluation);
-			roomie.Avatar lroomieAvatar = roomie.AvatarDAO.createAvatar();
+			roomie.entities.TenantEvaluationDAO.save(lroomieentitiesTenantEvaluation);
+			roomie.entities.Avatar lroomieentitiesAvatar = roomie.entities.AvatarDAO.createAvatar();
 			// Initialize the properties of the persistent object here
-			roomie.AvatarDAO.save(lroomieAvatar);
+			roomie.entities.AvatarDAO.save(lroomieentitiesAvatar);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -51,7 +51,7 @@ public class CreateRoomieData {
 				createRoomieData.createTestData();
 			}
 			finally {
-				roomie.RoomiePersistentManager.instance().disposePersistentManager();
+				roomie.entities.RoomiePersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

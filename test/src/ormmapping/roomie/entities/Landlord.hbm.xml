@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: vr(Universidade do Minho)
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="roomie.entities.Landlord" table="Landlord" lazy="false">
+		<id name="id" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="avatar" column="AvatarID" class="roomie.entities.Avatar" cascade="save-update,lock,delete" unique="true" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
+		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="email" column="Email" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="username" column="Username" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="birthDate" column="BirthDate" type="date" not-null="false" lazy="false"/>
+		<property name="sex" column="Sex" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="nif" column="Nif" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="address" column="Address" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="password" column="Password" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="phone" column="Phone" type="string" length="255" not-null="false" lazy="false"/>
+		<list name="ORM_Houses" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="LandlordID" not-null="true"/>
+			<index column="LandlordIndex" type="integer"/>
+			<one-to-many class="roomie.entities.House"/>
+		</list>
+	</class>
+</hibernate-mapping>
