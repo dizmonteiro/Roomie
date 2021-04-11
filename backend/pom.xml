@@ -60,6 +60,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.orm</groupId>
+            <artifactId>orm</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/orm.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>
