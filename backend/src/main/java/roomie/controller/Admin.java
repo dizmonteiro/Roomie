@@ -4,6 +4,7 @@ import org.orm.ORMDatabaseInitiator;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import roomie.model.RoomiePersistentManager;
@@ -43,6 +44,21 @@ public class Admin {
 	
 	@GetMapping("/populate")
 	public String populateDB() throws PersistentException {
+		PersistentTransaction t = RoomiePersistentManager.instance().getSession().beginTransaction();
+		try {
+			Avatar avatar = AvatarDAO.createAvatar();
+			AvatarDAO.save(avatar);
+			t.commit();
+			return "Success!";
+		}
+		catch (Exception e) {
+			t.rollback();
+			return e.toString();
+		}
+	}
+	
+	@PostMapping("/populate")
+	public String populateDB2() throws PersistentException {
 		PersistentTransaction t = RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
 			Avatar avatar = AvatarDAO.createAvatar();
