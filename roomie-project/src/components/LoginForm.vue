@@ -1,9 +1,12 @@
 <template>
     <div class="grid-container">
       <h1>Welcome!</h1>
-      <FillInfo definicao="Username" :tipo="'text'"/>
-      <FillInfo definicao="Password" :tipo="'password'"/>
-      <button class="button">Login</button>
+      <FillInfo ref="user" definicao="Username" :tipo="'text'"/>
+      <FillInfo ref="pass" definicao="Password" :tipo="'password'"/>
+      <div></div>
+      <div></div>
+      <div></div>
+      <button @click="showInfo" class="button">Login</button>
     </div>
 </template>
 
@@ -13,6 +16,12 @@ export default {
   components: {FillInfo},
   data(){
     return {
+    }
+  },
+  methods: {
+    showInfo(){
+
+      console.log("Username="+this.$refs.user.valor+" Password="+this.$refs.pass.valor)
     }
   }
 };
@@ -30,7 +39,7 @@ body{
   width: 60%;
   height: 60vh;
   min-height: 400px;
-  row-gap: 10%;
+  row-gap: 5%;
   align-content: center;
   grid-template-columns: auto;
   text-align:center;
@@ -41,6 +50,10 @@ body{
   padding: 0%;
   font-size: 150%;
   margin: 0 auto;
+}
+h1{
+  margin: 0;
+  padding: 0;
 }
 
 </style>

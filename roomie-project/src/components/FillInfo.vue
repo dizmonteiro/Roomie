@@ -4,7 +4,7 @@
       <div class="input_name">
         <label class="p">{{ definicao }}</label>
       </div>
-      <input class="l" :type=tipo required />
+      <input class="l" :type=tipo required v-model="valor"/>
     </div>
   </form>
 </template>
@@ -12,6 +12,11 @@
 <script>
 export default {
   props: ['definicao', 'tipo'],
+  data(){
+    return{
+      valor:''
+    }
+  }
 };
 </script>
 
