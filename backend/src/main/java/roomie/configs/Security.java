@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,6 +23,7 @@ import roomie.services.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyUserDetailsService userDetailsService;
@@ -47,8 +49,8 @@ public class Security extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/auth/login", "/admin/**").permitAll().anyRequest()
-		            .authenticated().and().exceptionHandling().and().sessionManagement()
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/auth/login", "/admin/**").permitAll()
+		            .anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
 		            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.cors();
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
