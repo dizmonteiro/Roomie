@@ -6,11 +6,11 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="roomie.model.evaluation.LandlordEvaluation" table="LandlordEvaluation" lazy="false">
+    <class name="roomie.models.evaluation.LandlordEvaluation" table="LandlordEvaluation" lazy="false">
         <composite-id>
-            <key-many-to-one name="landlord" column="LandlordID" class="roomie.model.landlord.Landlord">
+            <key-many-to-one name="landlord" column="LandlordID" class="roomie.models.landlord.Landlord">
             </key-many-to-one>
-            <key-many-to-one name="tenant" column="TenantID" class="roomie.model.tenant.Tenant">
+            <key-many-to-one name="tenant" column="TenantID" class="roomie.models.tenant.Tenant">
             </key-many-to-one>
         </composite-id>
         <property name="cleanliness" column="Cleanliness" type="double" not-null="true" lazy="false"/>

@@ -6,12 +6,12 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="roomie.model.landlord.Landlord" table="Landlord" lazy="false">
+    <class name="roomie.models.landlord.Landlord" table="Landlord" lazy="false">
         <id name="id" column="ID" type="integer" unsaved-value="0">
             <generator class="native">
             </generator>
         </id>
-        <many-to-one name="avatar" column="AvatarID" class="roomie.model.avatar.Avatar"
+        <many-to-one name="avatar" column="AvatarID" class="roomie.models.avatar.Avatar"
                      cascade="save-update,lock,delete" unique="true" not-null="true" lazy="proxy" access="field">
         </many-to-one>
         <property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
@@ -26,7 +26,7 @@ License Type: Academic
         <list name="ORM_Houses" lazy="true" cascade="save-update,lock" inverse="false">
             <key column="LandlordID" not-null="true"/>
             <index column="LandlordIndex" type="integer"/>
-            <one-to-many class="roomie.model.house.House"/>
+            <one-to-many class="roomie.models.house.House"/>
         </list>
     </class>
 </hibernate-mapping>

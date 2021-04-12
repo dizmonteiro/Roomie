@@ -6,7 +6,7 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="roomie.model.house.House" table="House" lazy="false">
+    <class name="roomie.models.house.House" table="House" lazy="false">
         <id name="id" column="ID" type="integer" unsaved-value="0">
             <generator class="native">
             </generator>
@@ -24,7 +24,7 @@ License Type: Academic
         <list name="ORM_Photos" lazy="true" cascade="all-delete-orphan" inverse="false">
             <key column="HouseID" not-null="true"/>
             <index column="HouseIndex" type="integer"/>
-            <one-to-many class="roomie.model.photo.Photo"/>
+            <one-to-many class="roomie.models.photo.Photo"/>
         </list>
     </class>
 </hibernate-mapping>
