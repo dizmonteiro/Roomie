@@ -1,40 +1,17 @@
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
- * you generate persistence class.
- * <p>
- * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- */
-
-/**
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- */
 package roomie.models.house;
 
+/**
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ */
+
 import roomie.models.ORMConstants;
+import roomie.models.photo.Photo;
 import roomie.models.photo.PhotoListCollection;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class House implements Serializable {
 	private int id;
@@ -47,9 +24,9 @@ public class House implements Serializable {
 	private double maxPrice;
 	private String description;
 	private String features;
-	private java.util.List ORM_photos = new java.util.ArrayList();
+	private List<Photo> ORM_photos = new ArrayList<>();
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public java.util.List getList(int key) {
+		public List getList(int key) {
 			return this_getList(key);
 		}
 		
@@ -59,7 +36,7 @@ public class House implements Serializable {
 	public House() {
 	}
 	
-	private java.util.List this_getList(int key) {
+	private List this_getList(int key) {
 		if (key == ORMConstants.KEY_HOUSE_PHOTOS) {
 			return ORM_photos;
 		}
@@ -151,11 +128,11 @@ public class House implements Serializable {
 		this.features = value;
 	}
 	
-	private java.util.List getORM_Photos() {
+	private List<Photo> getORM_Photos() {
 		return ORM_photos;
 	}
 	
-	private void setORM_Photos(java.util.List value) {
+	private void setORM_Photos(List<Photo> value) {
 		this.ORM_photos = value;
 	}
 	

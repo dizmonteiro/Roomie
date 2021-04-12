@@ -1,35 +1,9 @@
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
- * you generate persistence class.
- * <p>
- * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- */
+package roomie.models.tenant;
 
 /**
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
  */
-package roomie.models.tenant;
 
 import org.hibernate.Query;
 import org.orm.PersistentException;
@@ -82,7 +56,7 @@ public class TenantDAO {
 	
 	public static Tenant loadTenantByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (Tenant) session.load(Tenant.class, new Integer(id));
+			return (Tenant) session.load(Tenant.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -91,7 +65,7 @@ public class TenantDAO {
 	
 	public static Tenant getTenantByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (Tenant) session.get(Tenant.class, new Integer(id));
+			return (Tenant) session.get(Tenant.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -100,7 +74,7 @@ public class TenantDAO {
 	
 	public static Tenant loadTenantByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Tenant) session.load(Tenant.class, new Integer(id), lockMode);
+			return (Tenant) session.load(Tenant.class, id, lockMode);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -109,7 +83,7 @@ public class TenantDAO {
 	
 	public static Tenant getTenantByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (Tenant) session.get(Tenant.class, new Integer(id), lockMode);
+			return (Tenant) session.get(Tenant.class, id, lockMode);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);

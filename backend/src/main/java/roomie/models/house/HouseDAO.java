@@ -1,35 +1,9 @@
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
- * you generate persistence class.
- * <p>
- * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- */
+package roomie.models.house;
 
 /**
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
  */
-package roomie.models.house;
 
 import org.hibernate.Query;
 import org.orm.PersistentException;
@@ -82,7 +56,7 @@ public class HouseDAO {
 	
 	public static House loadHouseByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (House) session.load(House.class, new Integer(id));
+			return (House) session.load(House.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -91,7 +65,7 @@ public class HouseDAO {
 	
 	public static House getHouseByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (House) session.get(House.class, new Integer(id));
+			return (House) session.get(House.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -100,7 +74,7 @@ public class HouseDAO {
 	
 	public static House loadHouseByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (House) session.load(House.class, new Integer(id), lockMode);
+			return (House) session.load(House.class, id, lockMode);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -109,7 +83,7 @@ public class HouseDAO {
 	
 	public static House getHouseByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			return (House) session.get(House.class, new Integer(id), lockMode);
+			return (House) session.get(House.class, id, lockMode);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -157,7 +131,7 @@ public class HouseDAO {
 	}
 	
 	public static List queryHouse(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
+		StringBuilder sb = new StringBuilder("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {

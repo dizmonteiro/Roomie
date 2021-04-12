@@ -1,32 +1,9 @@
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
- * you generate persistence class.
- * <p>
- * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- * <p>
- * Licensee: vr(Universidade do Minho)
- * License Type: Academic
- */
+package roomie.repositories.landlord;
 
 /**
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
  */
-package roomie.repositories.landlord;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
