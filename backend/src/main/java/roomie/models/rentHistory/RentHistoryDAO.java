@@ -11,6 +11,12 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -163,7 +169,7 @@ public class RentHistoryDAO {
 	}
 	
 	public static List queryRentHistory(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.rentHistory.RentHistory as RentHistory");
+		StringBuffer sb = new StringBuffer("From roomie.models.rentHistory.RentHistory as RentHistory");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -176,7 +182,7 @@ public class RentHistoryDAO {
 	}
 	
 	public static List queryRentHistory(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.rentHistory.RentHistory as RentHistory");
+		StringBuffer sb = new StringBuffer("From roomie.models.rentHistory.RentHistory as RentHistory");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -262,7 +268,7 @@ public class RentHistoryDAO {
 	}
 	
 	public static java.util.Iterator iterateRentHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.rentHistory.RentHistory as RentHistory");
+		StringBuffer sb = new StringBuffer("From roomie.models.rentHistory.RentHistory as RentHistory");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -275,7 +281,7 @@ public class RentHistoryDAO {
 	}
 	
 	public static java.util.Iterator iterateRentHistoryByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.rentHistory.RentHistory as RentHistory");
+		StringBuffer sb = new StringBuffer("From roomie.models.rentHistory.RentHistory as RentHistory");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {

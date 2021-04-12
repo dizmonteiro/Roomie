@@ -11,6 +11,15 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -145,7 +154,7 @@ public class HouseDAO {
 	}
 	
 	public static List queryHouse(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.house.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -158,7 +167,7 @@ public class HouseDAO {
 	}
 	
 	public static List queryHouse(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.house.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -244,7 +253,7 @@ public class HouseDAO {
 	}
 	
 	public static java.util.Iterator iterateHouseByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.house.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -257,7 +266,7 @@ public class HouseDAO {
 	}
 	
 	public static java.util.Iterator iterateHouseByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.house.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {

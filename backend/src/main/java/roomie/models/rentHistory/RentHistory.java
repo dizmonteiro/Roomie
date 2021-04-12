@@ -11,6 +11,12 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -113,7 +119,9 @@ public class RentHistory implements Serializable {
 	}
 	
 	public String toString() {
-		return String.valueOf(((getHouse() == null) ? "" : String.valueOf(getHouse().getORMID())) + " " + ((getTenant() == null) ? "" : String.valueOf(getTenant().getORMID())));
+		return String.valueOf(((getHouse() == null) ? "" : String
+				.valueOf(getHouse().getORMID())) + " " + ((getTenant() == null) ? "" : String
+				.valueOf(getTenant().getORMID())));
 	}
 	
 }

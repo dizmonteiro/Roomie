@@ -11,6 +11,15 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -117,7 +126,9 @@ public class LandlordEvaluation implements Serializable {
 	}
 	
 	public String toString() {
-		return String.valueOf(((getLandlord() == null) ? "" : String.valueOf(getLandlord().getORMID())) + " " + ((getTenant() == null) ? "" : String.valueOf(getTenant().getORMID())));
+		return String.valueOf(((getLandlord() == null) ? "" : String
+				.valueOf(getLandlord().getORMID())) + " " + ((getTenant() == null) ? "" : String
+				.valueOf(getTenant().getORMID())));
 	}
 	
 }

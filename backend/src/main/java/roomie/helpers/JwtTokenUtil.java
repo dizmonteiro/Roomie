@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +19,10 @@ import java.util.function.Function;
  */
 
 @Component
-public class JwtTokenUtil {
+public class JwtTokenUtil implements Serializable {
+	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 	@Value("${jwt.secret}")
 	private String JWT_TOKEN_SECRET;
-	
-	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 	
 	public String getUsernameFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
@@ -36,7 +36,7 @@ public class JwtTokenUtil {
 		final Claims claims = getAllClaimsFromToken(token);
 		return claimsResolver.apply(claims);
 	}
-
+	
 	private Claims getAllClaimsFromToken(String token) {
 		return Jwts.parser().setSigningKey(JWT_TOKEN_SECRET).parseClaimsJws(token).getBody();
 	}

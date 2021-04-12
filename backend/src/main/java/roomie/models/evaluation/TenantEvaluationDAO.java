@@ -11,6 +11,15 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -162,7 +171,7 @@ public class TenantEvaluationDAO {
 	}
 	
 	public static List queryTenantEvaluation(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.TenantEvaluation as TenantEvaluation");
+		StringBuffer sb = new StringBuffer("From roomie.models.evaluation.TenantEvaluation as TenantEvaluation");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -175,7 +184,7 @@ public class TenantEvaluationDAO {
 	}
 	
 	public static List queryTenantEvaluation(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.TenantEvaluation as TenantEvaluation");
+		StringBuffer sb = new StringBuffer("From roomie.models.evaluation.TenantEvaluation as TenantEvaluation");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -261,7 +270,7 @@ public class TenantEvaluationDAO {
 	}
 	
 	public static java.util.Iterator iterateTenantEvaluationByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.TenantEvaluation as TenantEvaluation");
+		StringBuffer sb = new StringBuffer("From roomie.models.evaluation.TenantEvaluation as TenantEvaluation");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -274,7 +283,7 @@ public class TenantEvaluationDAO {
 	}
 	
 	public static java.util.Iterator iterateTenantEvaluationByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.evaluation.TenantEvaluation as TenantEvaluation");
+		StringBuffer sb = new StringBuffer("From roomie.models.evaluation.TenantEvaluation as TenantEvaluation");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {

@@ -11,6 +11,15 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -145,7 +154,7 @@ public class LandlordDAO {
 	}
 	
 	public static List queryLandlord(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.landlord.Landlord as Landlord");
+		StringBuffer sb = new StringBuffer("From roomie.models.landlord.Landlord as Landlord");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -158,7 +167,7 @@ public class LandlordDAO {
 	}
 	
 	public static List queryLandlord(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.landlord.Landlord as Landlord");
+		StringBuffer sb = new StringBuffer("From roomie.models.landlord.Landlord as Landlord");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -244,7 +253,7 @@ public class LandlordDAO {
 	}
 	
 	public static java.util.Iterator iterateLandlordByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.landlord.Landlord as Landlord");
+		StringBuffer sb = new StringBuffer("From roomie.models.landlord.Landlord as Landlord");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -257,7 +266,7 @@ public class LandlordDAO {
 	}
 	
 	public static java.util.Iterator iterateLandlordByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.landlord.Landlord as Landlord");
+		StringBuffer sb = new StringBuffer("From roomie.models.landlord.Landlord as Landlord");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {

@@ -11,6 +11,15 @@
  * <p>
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
+ * <p>
+ * Licensee: vr(Universidade do Minho)
+ * License Type: Academic
  */
 
 /**
@@ -145,7 +154,7 @@ public class TenantDAO {
 	}
 	
 	public static List queryTenant(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.tenant.Tenant as Tenant");
+		StringBuffer sb = new StringBuffer("From roomie.models.tenant.Tenant as Tenant");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -158,7 +167,7 @@ public class TenantDAO {
 	}
 	
 	public static List queryTenant(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.tenant.Tenant as Tenant");
+		StringBuffer sb = new StringBuffer("From roomie.models.tenant.Tenant as Tenant");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -244,7 +253,7 @@ public class TenantDAO {
 	}
 	
 	public static java.util.Iterator iterateTenantByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.tenant.Tenant as Tenant");
+		StringBuffer sb = new StringBuffer("From roomie.models.tenant.Tenant as Tenant");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -257,7 +266,7 @@ public class TenantDAO {
 	}
 	
 	public static java.util.Iterator iterateTenantByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.model.tenant.Tenant as Tenant");
+		StringBuffer sb = new StringBuffer("From roomie.models.tenant.Tenant as Tenant");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {

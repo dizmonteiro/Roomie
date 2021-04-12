@@ -17,10 +17,10 @@ import org.springframework.context.annotation.Configuration;
 public class Swagger {
 	@Bean
 	public OpenAPI customOpenAPI(@Value("${springdoc.description}") String appDescription, @Value("${springdoc.version}") String appVersion) {
-		return new OpenAPI()
-				.components(new Components())
-				.info(new Info().title(appDescription).version(appVersion).description(appDescription)
-				                .license(new License().name("MIT").url("https://github.com/DxMonteiro/EAPRO/blob/main/LICENSE")));
+		return new OpenAPI().components(new Components())
+		                    .info(new Info().title(appDescription).version(appVersion).description(appDescription)
+		                                    .license(new License().name("MIT")
+		                                                          .url("https://github.com/DxMonteiro/EAPRO/blob/main/LICENSE")));
 	}
 }
 
