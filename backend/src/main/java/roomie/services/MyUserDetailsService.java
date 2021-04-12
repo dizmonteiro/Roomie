@@ -13,7 +13,6 @@ import roomie.models.landlord.LandlordDAO;
 import roomie.models.tenant.Tenant;
 import roomie.models.tenant.TenantDAO;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +28,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		try {
 			Set<GrantedAuthority> authorities = new HashSet<>();
-			Tenant[] tenants = TenantDAO.listTenantByQuery(null, null);
+			Tenant[] tenants = TenantDAO.listTenantByQuery("Email='" + email + "'", null);
 			if (tenants.length > 0) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_TENANT"));
 				return new User(tenants[0].getEmail(), tenants[0].getPassword(), authorities);
@@ -43,6 +42,6 @@ public class MyUserDetailsService implements UserDetailsService {
 		} catch (PersistentException e) {
 			e.printStackTrace();
 		}
-		return new User(null, null, new ArrayList<>());
+		return null;
 	}
 }

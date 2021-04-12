@@ -8,23 +8,23 @@ import java.io.Serializable;
  */
 
 public class JwtRequest implements Serializable {
-	private String username;
+	private String email;
 	private String password;
 	
 	public JwtRequest() {
 	}
 	
 	public JwtRequest(String username, String password) {
-		this.setUsername(username);
+		this.setEmail(username);
 		this.setPassword(password);
 	}
 	
-	public String getUsername() {
-		return this.username;
+	public String getEmail() {
+		return this.email;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String username) {
+		this.email = username;
 	}
 	
 	public String getPassword() {

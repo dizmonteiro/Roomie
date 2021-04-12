@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import roomie.models.RoomiePersistentManager;
 import roomie.models.avatar.Avatar;
 import roomie.models.avatar.AvatarDAO;
+import roomie.models.landlord.Landlord;
+import roomie.models.landlord.LandlordDAO;
 import roomie.models.tenant.Tenant;
 import roomie.models.tenant.TenantDAO;
 
@@ -20,7 +22,7 @@ import roomie.models.tenant.TenantDAO;
 
 @RestController
 @RequestMapping("/admin")
-public class Admin {
+public class AdminController {
 	
 	@GetMapping("/create-db")
 	public String createDB() {
@@ -48,16 +50,26 @@ public class Admin {
 	public String populateDB() throws PersistentException {
 		PersistentTransaction t = RoomiePersistentManager.instance().getSession().beginTransaction();
 		try {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			
 			Avatar avatar = AvatarDAO.createAvatar();
 			AvatarDAO.save(avatar);
+			
 			Tenant tenant = TenantDAO.createTenant();
-			tenant.setEmail("vr@roomie.com");
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			tenant.setPassword(passwordEncoder.encode("vr"));
-			tenant.setUsername("vr");
+			tenant.setEmail("tt@roomie.com");
+			tenant.setPassword(passwordEncoder.encode("tt"));
+			tenant.setUsername("tt");
 			tenant.setName("Vasco Ramos");
 			tenant.setAvatar(avatar);
 			TenantDAO.save(tenant);
+			
+			Landlord landlord = LandlordDAO.createLandlord();
+			landlord.setEmail("ld@roomie.com");
+			landlord.setPassword(passwordEncoder.encode("ld"));
+			landlord.setUsername("ld");
+			landlord.setName("Vasco Ramos");
+			landlord.setAvatar(avatar);
+			LandlordDAO.save(landlord);
 			t.commit();
 			return "Success!";
 		} catch (Exception e) {

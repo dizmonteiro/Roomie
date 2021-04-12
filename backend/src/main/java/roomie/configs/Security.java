@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import roomie.helpers.JwtAuthenticationEntryPoint;
 import roomie.helpers.JwtRequestFilter;
 import roomie.services.MyUserDetailsService;
 
@@ -25,6 +26,9 @@ import roomie.services.MyUserDetailsService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
+	@Autowired
+	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	
 	@Autowired
 	private MyUserDetailsService userDetailsService;
 	
@@ -49,9 +53,10 @@ public class Security extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/auth/login", "/admin/**").permitAll()
-		            .anyRequest().authenticated().and().exceptionHandling().and().sessionManagement()
-		            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		httpSecurity.csrf().disable().authorizeRequests()
+		            .antMatchers("/auth/login", "/admin/**", "/docs/**", "/swagger-ui/**").permitAll().anyRequest()
+		            .authenticated().and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+		            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.cors();
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}

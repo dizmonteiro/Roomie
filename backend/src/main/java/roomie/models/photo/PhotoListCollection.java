@@ -20,6 +20,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Return an iterator over the persistent objects
+	 *
 	 * @return The persistent objects iterator
 	 */
 	public java.util.Iterator getIterator() {
@@ -28,6 +29,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Add the specified persistent object to ORMList
+	 *
 	 * @param value the persistent object
 	 */
 	public void add(Photo value) {
@@ -38,6 +40,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Remove the specified persistent object from ORMList
+	 *
 	 * @param value the persistent object
 	 */
 	public void remove(Photo value) {
@@ -46,6 +49,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Return true if ORMList contains the specified persistent object
+	 *
 	 * @param value the persistent object
 	 * @return True if this contains the specified persistent object
 	 */
@@ -55,6 +59,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Return an array containing all of the persistent objects in ORMList
+	 *
 	 * @return The persistent objects array
 	 */
 	public Photo[] toArray() {
@@ -63,10 +68,11 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Return an sorted array containing all of the persistent objects in ORMList
+	 *
 	 * @param propertyName Name of the property for sorting:<ul>
-	 * <li>ID</li>
-	 * <li>path</li>
-	 * </ul>
+	 *                     <li>ID</li>
+	 *                     <li>path</li>
+	 *                     </ul>
 	 * @return The persistent objects sorted array
 	 */
 	public Photo[] toArray(String propertyName) {
@@ -75,11 +81,12 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Return an sorted array containing all of the persistent objects in ORMList
+	 *
 	 * @param propertyName Name of the property for sorting:<ul>
-	 * <li>ID</li>
-	 * <li>path</li>
-	 * </ul>
-	 * @param ascending true for ascending, false for descending
+	 *                     <li>ID</li>
+	 *                     <li>path</li>
+	 *                     </ul>
+	 * @param ascending    true for ascending, false for descending
 	 * @return The persistent objects sorted array
 	 */
 	public Photo[] toArray(String propertyName, boolean ascending) {
@@ -88,6 +95,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Return the persistent object at the specified position in ORMList.
+	 *
 	 * @param index - The specified position
 	 * @return - The persistent object
 	 */
@@ -97,6 +105,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Remove the persistent object at the specified position in ORMList.
+	 *
 	 * @param index The specified position
 	 * @return Removed persistent object
 	 */
@@ -110,6 +119,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Insert the specified persistent object at the specified position in ORMList.
+	 *
 	 * @param index The specified position
 	 * @param value The specified persistent object
 	 */
@@ -121,6 +131,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Find the specified position of specified persistent object ORMList.
+	 *
 	 * @param value The persistent object
 	 */
 	public int indexOf(Photo value) {
@@ -129,6 +140,7 @@ public class PhotoListCollection extends org.orm.util.ORMList {
 	
 	/**
 	 * Replace the persistent object at the specified position in ORMList with the specified persistent object.
+	 *
 	 * @param index The specified position
 	 * @param value The persistent object
 	 * @return Return replaced object
