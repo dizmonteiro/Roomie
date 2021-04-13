@@ -1,5 +1,6 @@
 package roomie.models.auth;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -8,7 +9,9 @@ import java.io.Serializable;
  */
 
 public class JwtRequest implements Serializable {
+	@NotNull
 	private String email;
+	@NotNull
 	private String password;
 	
 	public JwtRequest() {

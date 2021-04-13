@@ -3,6 +3,8 @@ package roomie.controllers;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +17,8 @@ import roomie.models.auth.JwtRequest;
 import roomie.models.auth.JwtResponse;
 import roomie.services.MyUserDetailsService;
 
+import javax.validation.Valid;
+
 /**
  * @author: Vasco Ramos
  * @created: 12/04/2021 - 11:14
@@ -23,6 +27,8 @@ import roomie.services.MyUserDetailsService;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+	private final Log logger = LogFactory.getLog(this.getClass());
+	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
@@ -34,13 +40,14 @@ public class AuthController {
 	
 	@PostMapping("/login")
 	@ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = JwtResponse.class)))
-	public ResponseEntity<?> login(@RequestBody JwtRequest authenticationRequest) throws ErrorDetails {
+	public ResponseEntity<?> login(@Valid @RequestBody JwtRequest authenticationRequest) throws ErrorDetails {
 		try {
 			authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
 			final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 			final String token = jwtTokenUtil.generateToken(userDetails);
 			return ResponseEntity.ok(new JwtResponse(token));
 		} catch (Exception e) {
+			logger.info(e);
 			throw new ErrorDetails("Invalid Credentials");
 		}
 	}
