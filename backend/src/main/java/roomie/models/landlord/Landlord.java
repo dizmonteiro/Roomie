@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.format.annotation.DateTimeFormat;
 import roomie.models.ORMConstants;
 import roomie.models.avatar.Avatar;
 import roomie.models.house.HouseListCollection;
@@ -29,6 +30,7 @@ public class Landlord implements Serializable {
 	private String username;
 	@NotNull
 	@JsonFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date birthDate;
 	@NotNull
 	private String sex;
