@@ -5,22 +5,43 @@ package roomie.models.tenant;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.format.annotation.DateTimeFormat;
 import roomie.models.avatar.Avatar;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class Tenant implements Serializable {
+	@Schema(hidden = true)
 	private int id;
+	@JsonIgnore
 	private Avatar avatar;
+	@NotNull
 	private String name;
+	@NotNull
 	private String email;
+	@NotNull
 	private String username;
+	@NotNull
 	private String phone;
+	@NotNull
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date birthDate;
+	@NotNull
 	private String sex;
+	@NotNull
 	private String nif;
+	@NotNull
 	private String nationality;
+	@NotNull
 	private String occupation;
+	@NotNull
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	
 	public Tenant() {
@@ -34,6 +55,7 @@ public class Tenant implements Serializable {
 		this.id = value;
 	}
 	
+	@JsonIgnore
 	public int getORMID() {
 		return getId();
 	}
