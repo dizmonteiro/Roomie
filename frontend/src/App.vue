@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div id="app" class="is-flex is-flex-direction-column">
+    <div class="is-flex-grow-1">
+      <router-view/>
+    </div>
     <Footer />
   </div>
 </template>
@@ -18,4 +20,9 @@ export default {
 
 <style>
   @import './assets/styles/bulma.css';
+  @import './assets/styles/custom.css';
+
+  #app {
+    min-height: 93vh;
+  }
 </style>
