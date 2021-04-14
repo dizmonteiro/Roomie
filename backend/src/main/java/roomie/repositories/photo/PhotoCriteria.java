@@ -11,8 +11,8 @@ import org.orm.PersistentSession;
 import org.orm.criteria.AbstractORMCriteria;
 import org.orm.criteria.IntegerExpression;
 import org.orm.criteria.StringExpression;
+import roomie.models.RoomiePersistentManager;
 import roomie.models.photo.Photo;
-import roomie.repositories.RoomiePersistentManager;
 
 public class PhotoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;

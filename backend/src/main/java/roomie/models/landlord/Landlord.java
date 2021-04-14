@@ -5,23 +5,43 @@ package roomie.models.landlord;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.format.annotation.DateTimeFormat;
 import roomie.models.ORMConstants;
 import roomie.models.avatar.Avatar;
 import roomie.models.house.HouseListCollection;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class Landlord implements Serializable {
+	@Schema(hidden = true)
 	private int id;
+	@JsonIgnore
 	private Avatar avatar;
+	@NotNull
 	private String name;
+	@NotNull
 	private String email;
+	@NotNull
 	private String username;
+	@NotNull
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date birthDate;
+	@NotNull
 	private String sex;
+	@NotNull
 	private String nif;
+	@NotNull
 	private String address;
+	@NotNull
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
+	@NotNull
 	private String phone;
 	private java.util.List ORM_houses = new java.util.ArrayList();
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
@@ -30,6 +50,7 @@ public class Landlord implements Serializable {
 		}
 		
 	};
+	@JsonIgnore
 	public final HouseListCollection houses = new HouseListCollection(this, _ormAdapter, ORMConstants.KEY_LANDLORD_HOUSES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public Landlord() {
@@ -51,6 +72,7 @@ public class Landlord implements Serializable {
 		this.id = value;
 	}
 	
+	@JsonIgnore
 	public int getORMID() {
 		return getId();
 	}
@@ -127,6 +149,7 @@ public class Landlord implements Serializable {
 		this.address = value;
 	}
 	
+	@JsonIgnore
 	private java.util.List getORM_Houses() {
 		return ORM_houses;
 	}

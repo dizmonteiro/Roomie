@@ -7,8 +7,8 @@ package roomie.repositories.photo;
 
 import org.orm.PersistentException;
 import org.orm.PersistentManager;
+import roomie.models.RoomiePersistentManager;
 import roomie.models.photo.Photo;
-import roomie.repositories.RoomiePersistentManager;
 
 public class PhotoListCollection extends org.orm.util.ORMList {
 	public PhotoListCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
