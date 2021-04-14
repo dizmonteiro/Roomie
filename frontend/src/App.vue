@@ -11,5 +11,5 @@ export default {
 </script>
 
 <style>
-  @import './assets/styles/w3.css';
+  @import './assets/styles/bulma.css';
 </style>
