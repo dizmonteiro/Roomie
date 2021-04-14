@@ -33,6 +33,12 @@ public class LandlordController {
 		return landlordService.register(landlord, avatar);
 	}
 	
+	@GetMapping()
+	public String getLandlord() {
+		return"Hi";
+	}
+
+	
 	@GetMapping(value = "/{id}")
 	public Landlord getLandlord(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return landlordService.getById(id);
