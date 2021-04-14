@@ -8,7 +8,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
-import roomie.helpers.JwtTokenUtil;
 import roomie.models.avatar.Avatar;
 import roomie.models.landlord.Landlord;
 import roomie.services.AvatarService;
@@ -51,7 +50,6 @@ public class LandlordController {
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		
 	}
 	
 	@GetMapping(value = "/{id}/avatar", produces = "image/*")
