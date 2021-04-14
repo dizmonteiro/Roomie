@@ -12,8 +12,8 @@ import org.orm.criteria.AbstractORMCriteria;
 import org.orm.criteria.AssociationExpression;
 import org.orm.criteria.BooleanExpression;
 import org.orm.criteria.IntegerExpression;
+import roomie.models.RoomiePersistentManager;
 import roomie.models.application.Application;
-import roomie.repositories.RoomiePersistentManager;
 import roomie.repositories.house.HouseCriteria;
 import roomie.repositories.tenant.TenantCriteria;
 
