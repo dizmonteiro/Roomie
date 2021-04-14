@@ -9,8 +9,8 @@ import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
+import roomie.models.RoomiePersistentManager;
 import roomie.models.landlord.Landlord;
-import roomie.repositories.RoomiePersistentManager;
 import roomie.repositories.avatar.AvatarCriteria;
 import roomie.repositories.house.HouseCriteria;
 

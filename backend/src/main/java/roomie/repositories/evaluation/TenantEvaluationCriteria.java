@@ -12,8 +12,8 @@ import org.orm.criteria.AbstractORMCriteria;
 import org.orm.criteria.AssociationExpression;
 import org.orm.criteria.DoubleExpression;
 import org.orm.criteria.IntegerExpression;
+import roomie.models.RoomiePersistentManager;
 import roomie.models.evaluation.TenantEvaluation;
-import roomie.repositories.RoomiePersistentManager;
 import roomie.repositories.tenant.TenantCriteria;
 
 public class TenantEvaluationCriteria extends AbstractORMCriteria {

@@ -1,7 +1,17 @@
 package roomie.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.orm.PersistentException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import roomie.exception.ResourceNotFoundException;
+import roomie.models.avatar.Avatar;
+import roomie.models.landlord.Landlord;
+import roomie.services.AvatarService;
+import roomie.services.LandlordService;
+
+import javax.validation.Valid;
+import java.io.IOException;
 
 /**
  * @author: Vasco Ramos
@@ -11,4 +21,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/landlords")
 public class LandlordController {
+	@Autowired
+	private LandlordService landlordService;
+	
+	@Autowired
+	private AvatarService avatarService;
+	
+	@PostMapping(consumes = {"multipart/form-data"})
+	public Landlord register(@Valid @ModelAttribute Landlord landlord, @RequestPart("file") MultipartFile file) throws PersistentException {
+		Avatar avatar = avatarService.store(file);
+		return landlordService.register(landlord, avatar);
+	}
+	
+	@GetMapping()
+	public String getLandlord() {
+		return"Hi";
+	}
+
+	
+	@GetMapping(value = "/{id}")
+	public Landlord getLandlord(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		return landlordService.getById(id);
+	}
+	
+	@GetMapping(value = "/{id}/avatar", produces = "image/*")
+	@ResponseBody
+	public byte[] getFile(@PathVariable int id) throws PersistentException, ResourceNotFoundException, IOException {
+		return avatarService.load(landlordService.getById(id).getAvatar());
+	}
+	
 }

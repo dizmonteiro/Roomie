@@ -5,10 +5,13 @@ package roomie.models.avatar;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 public class Avatar implements Serializable {
 	private int ID;
+	@JsonIgnore
 	private String path;
 	
 	public Avatar() {
@@ -22,6 +25,7 @@ public class Avatar implements Serializable {
 		this.ID = value;
 	}
 	
+	@JsonIgnore
 	public int getORMID() {
 		return getID();
 	}
