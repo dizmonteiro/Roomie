@@ -1,14 +1,14 @@
 <template>
-    <DefaultNavbar />
+    <TenantNavbar />
 </template>
 
 <script>
-import DefaultNavbar from '@/components/DefaultNavbar'
+import TenantNavbar from '@/components/TenantNavbar'
 
 export default {
   name: 'Login',
   components: {
-    DefaultNavbar
+    TenantNavbar
   }
 }
 </script>

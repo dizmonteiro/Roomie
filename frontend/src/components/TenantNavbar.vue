@@ -17,10 +17,10 @@
         <div class="navbar-item">
           <div class="buttons">
             <a class="button is-light">
-              Login
+              My Rent History
             </a>
-            <a class="button is-primary">
-              <strong>Register</strong>
+            <a class="button is-light">
+              My Applications
             </a>
           </div>
         </div>
@@ -31,6 +31,6 @@
 
 <script>
 export default {
-  name: 'DefaultNavbar'
+  name: 'TenantNavbar'
 }
 </script>
