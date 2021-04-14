@@ -49,4 +49,12 @@ public class LandlordService {
 		return landlord;
 	}
 	
+	public boolean deleteById(int id) throws PersistentException, ResourceNotFoundException {
+		Landlord landlord = LandlordDAO.getLandlordByORMID(id);
+		if (landlord == null) {
+			throw new ResourceNotFoundException("Landlord not found: id=" + id);
+		}
+		return LandlordDAO.delete(landlord);
+	}
+	
 }
