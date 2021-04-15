@@ -19,30 +19,30 @@ public class Tenant implements Serializable {
 	@Schema(hidden = true)
 	private int id;
 	@JsonIgnore
-	private Avatar avatar;
+	private Avatar avatar; // editable
 	@NotNull
-	private String name;
+	private String name; // editable
 	@NotNull
 	private String email;
 	@NotNull
-	private String username;
+	private String username; // editable
 	@NotNull
-	private String phone;
+	private String phone; // editable
 	@NotNull
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date birthDate;
 	@NotNull
-	private String sex;
+	private String sex; // editable
 	@NotNull
 	private String nif;
 	@NotNull
-	private String nationality;
+	private String nationality; // editable
 	@NotNull
-	private String occupation;
+	private String occupation; // editable
 	@NotNull
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private String password;
+	private String password; // editable
 	
 	public Tenant() {
 	}

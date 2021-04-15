@@ -21,28 +21,28 @@ public class Landlord implements Serializable {
 	@Schema(hidden = true)
 	private int id;
 	@JsonIgnore
-	private Avatar avatar;
+	private Avatar avatar; // editable
 	@NotNull
-	private String name;
+	private String name; // editable
 	@NotNull
 	private String email;
 	@NotNull
-	private String username;
+	private String username; // editable
 	@NotNull
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date birthDate;
 	@NotNull
-	private String sex;
+	private String sex; // editable
 	@NotNull
 	private String nif;
 	@NotNull
-	private String address;
+	private String address; // editable
 	@NotNull
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private String password;
+	private String password; // editable
 	@NotNull
-	private String phone;
+	private String phone; // editable
 	private java.util.List ORM_houses = new java.util.ArrayList();
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
 		public java.util.List getList(int key) {
