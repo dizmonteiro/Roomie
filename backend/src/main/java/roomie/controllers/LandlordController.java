@@ -31,7 +31,7 @@ public class LandlordController {
 	private AvatarService avatarService;
 	
 	@PostMapping(consumes = {"multipart/form-data"})
-	public Landlord register(@Valid Landlord landlord, @RequestPart MultipartFile file) throws PersistentException {
+	public Landlord register(@Valid Landlord landlord, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException {
 		landlordService.exists(landlord);
 		Avatar avatar = avatarService.store(file);
 		return landlordService.register(landlord, avatar);
@@ -40,6 +40,15 @@ public class LandlordController {
 	@GetMapping(value = "/{id}")
 	public Landlord getLandlord(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return landlordService.getById(id);
+	}
+	
+	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
+	@PutMapping(value = "/{id}")
+	public Landlord editLandord(@PathVariable int id, Landlord landlordInfo, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException, ResourceNotFoundException {
+		Landlord landlord = landlordService.getById(id);
+		landlord = landlordService.update(landlord, landlordInfo);
+		avatarService.update(landlord.getAvatar(), file);
+		return landlord;
 	}
 	
 	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")

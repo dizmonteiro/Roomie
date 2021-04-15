@@ -56,4 +56,30 @@ public class LandlordService {
 		return LandlordDAO.delete(landlord);
 	}
 	
+	public Landlord update(Landlord landlord, Landlord landlordInfo) throws PersistentException {
+		if (landlordInfo.getName() != null) {
+			landlord.setName(landlordInfo.getName());
+		}
+		
+		if (landlordInfo.getUsername() != null) {
+			landlord.setUsername(landlordInfo.getUsername());
+		}
+		
+		if (landlordInfo.getPhone() != null) {
+			landlord.setPhone(landlordInfo.getPhone());
+		}
+		
+		if (landlordInfo.getSex() != null) {
+			landlord.setSex(landlordInfo.getSex());
+		}
+		
+		if (landlordInfo.getAddress() != null) {
+			landlord.setAddress(landlordInfo.getAddress());
+		}
+		
+		LandlordDAO.save(landlord);
+		LandlordDAO.refresh(landlord);
+		return landlord;
+	}
+	
 }
