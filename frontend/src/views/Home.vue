@@ -1,42 +1,41 @@
 <template>
-  <div id="filler" class="is-flex is-flex-direction-column">
+  <div>
     <DefaultNavbar />
-      <div class="columns is-centered is-vcentered is-flex-grow-1">
-        <div class="column is-half">
-          <div class="card" id="homecard">
-            <div class="card-content">
-
-                <carousel >
+    <section class="hero is-fullheight-with-navbar">
+      <div class="hero-body">
+        <div id="content">
+          <div class="columns is-centered is-vcentered">
+            <div class="column is-three-fifths">
+              <div class="card" id="homecard">
+                <div class="card-image">
+                  <carousel >
                     <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
                       <img :src="slide" :alt="slide">
                     </carousel-slide>
-                </carousel>
-
-                <div class="box">
-                  <article class="media">
-                    <div class="media-content">
-                      <div class="content">
-                        <p>
-                          A Roomie é uma Plataforma de Procura e Disponibilização de Imobiliário para Arrendamento que procura não só facilitar o processo de encontrar uma habitação como também o processo da escolha do ambiente em que se pretende viver.
-                        </p>
-                      </div>
-                    </div>
-                  </article>
+                  </carousel>
                 </div>
-                
-                <div class="buttons">
-                  <a class="button is-light" href="/login">
-                    Login
-                  </a>
-                  <a class="button is-primary" href="/register">
-                    <strong>Register</strong>
-                  </a>
+                <div class="card-content">
+                  <div class="content has-text-justified">
+                    <p>
+                      A Roomie é uma Plataforma de Procura e Disponibilização de Imobiliário para Arrendamento que procura não só facilitar o processo de encontrar uma habitação como também o processo da escolha do ambiente em que se pretende viver.
+                    </p>
+                  </div>
+                    
+                  <div class="buttons is-centered">
+                    <a class="button is-light" href="/login">
+                       Login
+                    </a>
+                    <a class="button is-primary" href="/register">
+                      <strong>Register</strong>
+                    </a>
+                  </div>
                 </div>
-
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
   </div>
 </template>
 
@@ -71,8 +70,8 @@ export default {
 </script>
 
 <style>
-  #filler {
-    min-height: 67vh;
+  #content {
+    width: 100%;
   }
 
   .home {
@@ -88,9 +87,13 @@ export default {
   .carousel {
     position:relative;
     overflow: hidden;
-    width:703px;
+    max-width:100%;
     height:400px;
     z-index:10;
+  }
+
+  img {
+    object-fit: contain;
   }
   
   .btn {
@@ -126,7 +129,7 @@ export default {
 
   .carousel-slider {
     position:absolute;
-    top:0;
+    top:10;
     left:0;
     bottom:0;
     right:0;
