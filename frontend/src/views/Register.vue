@@ -1,6 +1,7 @@
 <template>
-  <div id="filler" class="is-flex is-flex-direction-column">
+  <div>
     <DefaultNavbar />
+    <section class="hero is-fullheight-with-navbar">
       <div class="columns is-centered is-vcentered is-flex-grow-1">
         <div class="column is-three-quarters">
           <div class="card" id="registercard">
@@ -23,6 +24,7 @@
           </div>
         </div>
       </div>
+    </section>
   </div>
 </template>
 

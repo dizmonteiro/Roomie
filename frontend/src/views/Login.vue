@@ -1,34 +1,38 @@
 <template>
-  <div id="filler" class="is-flex is-flex-direction-column">
+  <div>
     <DefaultNavbar />
-      <div class="columns is-centered is-vcentered is-flex-grow-1">
-        <div class="column is-half">
-          <div class="card" id="logincard">
-            <div class="card-content">
-              <p class="title has-text-centered">Welcome</p>
-              <form class="login">
-                <div class="field">
-                  <label class="label">Email</label>
-                  <div class="control">
-                    <input class="input" type="text" placeholder="email@example.com" required>
+    <section class="hero is-fullheight-with-navbar">
+      <div class="hero-body">
+        <div class="columns is-centered is-vcentered" id="content">
+          <div class="column is-half">
+            <div class="card" id="logincard">
+              <div class="card-content">
+                <p class="title has-text-centered">Welcome</p>
+                <form class="login">
+                  <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="email@example.com" required>
+                    </div>
                   </div>
-                </div>
 
-                <div class="field">
-                  <label class="label">Password</label>
-                  <div class="control">
-                    <input class="input" type="password" placeholder="********" required>
+                  <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                      <input class="input" type="password" placeholder="********" required>
+                    </div>
                   </div>
-                </div>
 
-                <div class="has-text-centered">
-                  <button class="button is-primary ">Sign in</button>
-                </div>
-              </form>
+                  <div class="has-text-centered">
+                    <button class="button is-primary ">Sign in</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
   </div>
 </template>
 
@@ -45,8 +49,8 @@ export default {
 
 
 <style scoped>
-  #filler {
-    min-height: 67vh;
+  #content {
+    width: 100%;
   }
 
   .login {
