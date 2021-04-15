@@ -21,6 +21,7 @@ export default {
 <style>
   @import './assets/styles/bulma.css';
   @import './assets/styles/custom.css';
+  @import './assets/styles/snow.min.css';
 
   #app {
     min-height: 93vh;
