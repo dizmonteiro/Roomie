@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
+import roomie.helpers.UpdatePasswordRequest;
 import roomie.models.avatar.Avatar;
 import roomie.models.landlord.Landlord;
 import roomie.services.AvatarService;
@@ -40,6 +41,18 @@ public class LandlordController {
 	@GetMapping(value = "/{id}")
 	public Landlord getLandlord(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return landlordService.getById(id);
+	}
+	
+	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
+	@PutMapping("/{id}/password")
+	public ResponseEntity<String> updatePassword(@PathVariable int id, @Valid @RequestBody UpdatePasswordRequest body) throws PersistentException, ResourceNotFoundException {
+		Landlord landlord = landlordService.getById(id);
+		boolean res = landlordService.updatePassword(landlord, body);
+		if (res) {
+			return ResponseEntity.ok("Password updated successfully");
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
 	}
 	
 	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
