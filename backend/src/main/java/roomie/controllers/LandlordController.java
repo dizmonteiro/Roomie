@@ -8,7 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
-import roomie.helpers.UpdatePasswordRequest;
+import roomie.models.auth.UpdatePasswordRequest;
 import roomie.models.avatar.Avatar;
 import roomie.models.landlord.Landlord;
 import roomie.services.AvatarService;

@@ -1,4 +1,4 @@
-package roomie.helpers;
+package roomie.models.auth;
 
 import javax.validation.constraints.NotNull;
 

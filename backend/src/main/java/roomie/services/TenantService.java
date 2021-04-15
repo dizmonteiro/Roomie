@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import roomie.exception.ErrorDetails;
 import roomie.exception.ResourceNotFoundException;
-import roomie.helpers.UpdatePasswordRequest;
+import roomie.models.auth.UpdatePasswordRequest;
 import roomie.helpers.UserUtils;
 import roomie.models.avatar.Avatar;
 import roomie.models.avatar.AvatarDAO;
