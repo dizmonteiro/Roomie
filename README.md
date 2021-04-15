@@ -28,7 +28,7 @@ postgres=# grant all privileges on database roomie to roomie;
 ```
 
 #### Run Project
-Execute (in IntelliJ) by running `RestApiApplcation.java` file.
+Execute (in IntelliJ) by running `RestApiApplication.java` file.
 
 #### Create DB Schema
 Execute endpoint http://localhost:8083/api/admin/create-db.
