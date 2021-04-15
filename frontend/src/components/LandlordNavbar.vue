@@ -17,10 +17,16 @@
         <div class="navbar-item">
           <div class="buttons">
             <a class="button is-light">
-              Login
+              Search
+            </a>
+            <a class="button is-light">
+              Check Applications
+            </a>
+            <a class="button is-light">
+              Add New House
             </a>
             <a class="button is-primary">
-              <strong>Register</strong>
+              <strong>My Houses</strong>
             </a>
           </div>
         </div>
