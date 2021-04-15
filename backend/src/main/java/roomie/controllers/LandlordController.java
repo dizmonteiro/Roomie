@@ -32,6 +32,7 @@ public class LandlordController {
 	
 	@PostMapping(consumes = {"multipart/form-data"})
 	public Landlord register(@Valid Landlord landlord, @RequestPart MultipartFile file) throws PersistentException {
+		landlordService.exists(landlord);
 		Avatar avatar = avatarService.store(file);
 		return landlordService.register(landlord, avatar);
 	}

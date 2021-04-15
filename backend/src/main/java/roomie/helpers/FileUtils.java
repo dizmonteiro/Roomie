@@ -21,20 +21,32 @@ import java.util.Date;
 
 @Component
 public class FileUtils {
-	private final Path root = Paths.get("uploads");
+	private final Path uploads = Paths.get("uploads");
+	private final Path defaults = Paths.get("images");
+	
 	
 	public void init() {
 		try {
-			Files.createDirectory(root);
+			Files.createDirectory(uploads);
 		} catch (IOException e) {
 			;
+		}
+	}
+	
+	public String save(String filename) {
+		try {
+			String newFilename = new Date().getTime() + "." + FilenameUtils.getExtension(filename);
+			Files.copy(this.defaults.resolve(filename), this.uploads.resolve(newFilename));
+			return newFilename;
+		} catch (Exception e) {
+			throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
 		}
 	}
 	
 	public String save(MultipartFile file) {
 		try {
 			String fileName = new Date().getTime() + "." + FilenameUtils.getExtension(file.getOriginalFilename());
-			Files.copy(file.getInputStream(), this.root.resolve(fileName));
+			Files.copy(file.getInputStream(), this.uploads.resolve(fileName));
 			return fileName;
 		} catch (Exception e) {
 			throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
@@ -43,7 +55,7 @@ public class FileUtils {
 	
 	public boolean delete(String filename) {
 		try {
-			Files.delete(this.root.resolve(filename));
+			Files.delete(this.uploads.resolve(filename));
 			return true;
 		} catch (IOException e) {
 			throw new RuntimeException("Could not delete the file. Error: " + e.getMessage());
@@ -52,7 +64,7 @@ public class FileUtils {
 	
 	public byte[] load(String filename) throws IOException {
 		try {
-			Path file = root.resolve(filename);
+			Path file = uploads.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
 			
 			if (resource.exists() || resource.isReadable()) {

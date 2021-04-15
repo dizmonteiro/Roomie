@@ -22,7 +22,12 @@ public class AvatarService {
 	public FileUtils fileUtils;
 	
 	public Avatar store(MultipartFile file) throws PersistentException {
-		String path = fileUtils.save(file);
+		String path;
+		if (file == null) {
+			path = fileUtils.save("user-default.png");
+		} else {
+			path = fileUtils.save(file);
+		}
 		Avatar avatar = AvatarDAO.createAvatar();
 		avatar.setPath(path);
 		AvatarDAO.save(avatar);

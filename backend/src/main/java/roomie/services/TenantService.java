@@ -24,11 +24,13 @@ public class TenantService {
 	
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
-	public Tenant register(Tenant tenant, Avatar avatar) throws PersistentException {
+	public void exists(Tenant tenant) throws PersistentException {
 		if (userUtils.existsByEmail(tenant.getEmail())) {
 			throw new ErrorDetails("There is already a user with that email");
 		}
-		
+	}
+	
+	public Tenant register(Tenant tenant, Avatar avatar) throws PersistentException {
 		if (avatar == null) {
 			avatar = AvatarDAO.createAvatar();
 			AvatarDAO.save(avatar);

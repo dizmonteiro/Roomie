@@ -31,7 +31,8 @@ public class TenantController {
 	private AvatarService avatarService;
 	
 	@PostMapping(consumes = {"multipart/form-data"})
-	public Tenant register(@Valid Tenant tenant, @RequestPart("file") MultipartFile file) throws PersistentException {
+	public Tenant register(@Valid Tenant tenant, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException {
+		tenantService.exists(tenant);
 		Avatar avatar = avatarService.store(file);
 		return tenantService.register(tenant, avatar);
 	}

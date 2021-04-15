@@ -24,11 +24,13 @@ public class LandlordService {
 	
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
-	public Landlord register(Landlord landlord, Avatar avatar) throws PersistentException {
+	public void exists(Landlord landlord) throws PersistentException {
 		if (userUtils.existsByEmail(landlord.getEmail())) {
 			throw new ErrorDetails("There is already a user with that email");
 		}
-		
+	}
+	
+	public Landlord register(Landlord landlord, Avatar avatar) throws PersistentException {
 		if (avatar == null) {
 			avatar = AvatarDAO.createAvatar();
 			AvatarDAO.save(avatar);
