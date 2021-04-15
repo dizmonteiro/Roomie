@@ -1,13 +1,14 @@
 package roomie.models.auth;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * @author: Vasco Ramos
  * @created: 15/04/2021 - 13:54
  */
 
-public class UpdatePasswordRequest {
+public class UpdatePasswordRequest implements Serializable {
 	@NotNull
 	private String oldPassword;
 	@NotNull
