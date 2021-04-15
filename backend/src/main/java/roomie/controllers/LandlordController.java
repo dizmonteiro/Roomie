@@ -44,7 +44,9 @@ public class LandlordController {
 	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteLandlord(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-		boolean res = landlordService.deleteById(id);
+		Landlord landlord = landlordService.getById(id);
+		avatarService.delete(landlord.getAvatar());
+		boolean res = landlordService.delete(landlord);
 		if (res) {
 			return ResponseEntity.noContent().build();
 		} else {

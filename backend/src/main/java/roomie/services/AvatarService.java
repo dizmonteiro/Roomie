@@ -32,4 +32,8 @@ public class AvatarService {
 	public byte[] load(Avatar avatar) throws IOException {
 		return fileUtils.load(avatar.getPath());
 	}
+	
+	public boolean delete(Avatar avatar) throws PersistentException {
+		return fileUtils.delete(avatar.getPath());
+	}
 }

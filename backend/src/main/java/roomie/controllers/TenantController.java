@@ -44,7 +44,8 @@ public class TenantController {
 	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Void> editTenant(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-		boolean res = tenantService.deleteById(id);
+		Tenant tenant = tenantService.getById(id);
+		boolean res = tenantService.delete(tenant);
 		if (res) {
 			return ResponseEntity.noContent().build();
 		} else {
@@ -55,7 +56,9 @@ public class TenantController {
 	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteTenant(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-		boolean res = tenantService.deleteById(id);
+		Tenant tenant = tenantService.getById(id);
+		avatarService.delete(tenant.getAvatar());
+		boolean res = tenantService.delete(tenant);
 		if (res) {
 			return ResponseEntity.noContent().build();
 		} else {

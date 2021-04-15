@@ -49,8 +49,7 @@ public class TenantService {
 		return tenant;
 	}
 	
-	public boolean deleteById(int id) throws PersistentException, ResourceNotFoundException {
-		Tenant tenant = getById(id);
+	public boolean delete(Tenant tenant) throws PersistentException, ResourceNotFoundException {
 		TenantDAO.evict(tenant);
 		return TenantDAO.delete(tenant);
 	}

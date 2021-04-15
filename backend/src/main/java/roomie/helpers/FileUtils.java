@@ -41,6 +41,15 @@ public class FileUtils {
 		}
 	}
 	
+	public boolean delete(String filename) {
+		try {
+			Files.delete(this.root.resolve(filename));
+			return true;
+		} catch (IOException e) {
+			throw new RuntimeException("Could not delete the file. Error: " + e.getMessage());
+		}
+	}
+	
 	public byte[] load(String filename) throws IOException {
 		try {
 			Path file = root.resolve(filename);
