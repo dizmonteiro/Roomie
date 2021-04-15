@@ -56,4 +56,33 @@ public class TenantService {
 		return TenantDAO.delete(tenant);
 	}
 	
+	public Tenant update(Tenant tenant, Tenant tenantInfo) throws PersistentException {
+		if (tenantInfo.getName() != null) {
+			tenant.setName(tenantInfo.getName());
+		}
+		
+		if (tenantInfo.getUsername() != null) {
+			tenant.setUsername(tenantInfo.getUsername());
+		}
+		
+		if (tenantInfo.getPhone() != null) {
+			tenant.setPhone(tenantInfo.getPhone());
+		}
+		
+		if (tenantInfo.getSex() != null) {
+			tenant.setSex(tenantInfo.getSex());
+		}
+		
+		if (tenantInfo.getNationality() != null) {
+			tenant.setNationality(tenantInfo.getNationality());
+		}
+		
+		if (tenantInfo.getOccupation() != null) {
+			tenant.setOccupation(tenantInfo.getOccupation());
+		}
+		
+		TenantDAO.save(tenant);
+		TenantDAO.refresh(tenant);
+		return tenant;
+	}
 }

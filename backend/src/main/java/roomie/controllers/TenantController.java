@@ -44,14 +44,11 @@ public class TenantController {
 	
 	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> editTenant(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+	public Tenant editTenant(@PathVariable int id, Tenant tenantInfo, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException, ResourceNotFoundException {
 		Tenant tenant = tenantService.getById(id);
-		boolean res = tenantService.delete(tenant);
-		if (res) {
-			return ResponseEntity.noContent().build();
-		} else {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+		tenant = tenantService.update(tenant, tenantInfo);
+		avatarService.update(tenant.getAvatar(), file);
+		return tenant;
 	}
 	
 	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")

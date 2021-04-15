@@ -41,4 +41,15 @@ public class AvatarService {
 	public boolean delete(Avatar avatar) throws PersistentException {
 		return fileUtils.delete(avatar.getPath());
 	}
+	
+	public boolean update(Avatar avatar, MultipartFile file) throws PersistentException {
+		if (file != null) {
+			String path = fileUtils.save(file);
+			delete(avatar);
+			avatar.setPath(path);
+		}
+		AvatarDAO.save(avatar);
+		AvatarDAO.refresh(avatar);
+		return true;
+	}
 }
