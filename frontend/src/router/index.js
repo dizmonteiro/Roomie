@@ -28,6 +28,11 @@ export default new Router({
       component: () => import('@/views/Register')
     },
     {
+      name: 'LandlordProfile',
+      path: '/llprofile',
+      component: () => import('@/views/LandlordProfile')
+    },
+    {
       path: '/404',
       component: () => import('@/views/NotFound')
     },
