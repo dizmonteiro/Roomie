@@ -1,8 +1,6 @@
 <template>
-  <div id="app" class="is-flex is-flex-direction-column">
-    <div class="is-flex-grow-1">
-      <router-view/>
-    </div>
+  <div id="app">
+    <router-view/>
     <Footer />
   </div>
 </template>
