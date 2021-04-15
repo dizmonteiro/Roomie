@@ -1,9 +1,9 @@
 <template>
   <div>
     <LandlordNavbar />
-    <div class="card pad">
-      <div class="columns">
-        <div class="column adjust-hero-s is-one-quarter">
+    <div id="llcard" class="card pad">
+      <div class="columns is-desktop">
+        <div class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet">
           <figure class="image avatar">
             <img
               class="is-rounded"
@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="column adjust-hero-s is-half form">
+        <div class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form">
           <div class="columns">
             <div class="column is-half">
               <div class="field">
@@ -80,7 +80,7 @@
                 </p>
               </div>
             </div>
-            <div class="column auto">
+            <div class="column is-half">
               <div class="field">
                 <label class="label">Username</label>
                 <div class="control">
@@ -147,7 +147,7 @@
             </p>
           </div>
         </div>
-        <div class="column adjust-hero is-one-quarter has-text-centered">
+        <div class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered">
           <SideMenu title="Houses" />
         </div>
       </div>
@@ -256,11 +256,9 @@ label {
 }
 
 .pad {
-  width: 80%;
+  width: 90%;
   margin: 7% auto;
 }
 
-.adjust-hero-s {
-  margin-top: 5%;
-}
+
 </style>

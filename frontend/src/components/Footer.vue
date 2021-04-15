@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer is-fixed-bottom">
+    <footer class="footer">
         <div class="content has-text-centered">
             <p>
                 <strong>Roomie</strong> @ University of Minho

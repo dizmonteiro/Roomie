@@ -1,8 +1,6 @@
 <template>
   <div>
     <DefaultNavbar />
-    <section class="hero is-fullheight-with-navbar">
-      <div class="hero-body">
         <div id="content">
           <div class="columns is-centered is-vcentered">
             <div class="column is-three-fifths">
@@ -34,8 +32,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -71,6 +67,7 @@ export default {
 
 <style>
   #content {
+    margin: 8% auto;
     width: 100%;
   }
 

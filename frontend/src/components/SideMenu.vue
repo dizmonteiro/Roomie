@@ -4,47 +4,53 @@
       {{ title }}
     </label>
     <div class="mtop">
-      <div class="columns is-gapless oline">
-        <div class="column is-half">
-          <figure class="image placer is-128x128">
+      <div class="columns is-vcentered is-gapless is-desktop oline">
+        <div class="column is-half-desktop is-full-mobile is-full-tablet">
+          <figure class="image placer">
             <img src="https://bulma.io/images/placeholders/256x256.png" />
           </figure>
         </div>
-        <div class="column auto has-text-center">
+        <div
+          class="column is-half-desktop is-full-mobile is-full-tablet has-text-center"
+        >
           <label name="house_name">Name</label>
           <label name="house_location">Location</label>
           <label name="house_slots">Available Slots</label>
-          <button class="button is-success is-rounded mtop" value="view-more">
+          <button class="button is-success vm" style="" value="view-more">
             View More
           </button>
         </div>
       </div>
-      <div class="columns is-gapless oline">
-        <div class="column is-half">
-          <figure class="image placer is-128x128">
+      <div class="columns is-vcentered is-gapless is-desktop oline">
+        <div class="column is-half-desktop is-full-mobile is-full-tablet">
+          <figure class="image placer">
             <img src="https://bulma.io/images/placeholders/256x256.png" />
           </figure>
         </div>
-        <div class="column auto has-text-center">
+        <div
+          class="column is-half-desktop is-full-mobile is-full-tablet has-text-center"
+        >
           <label name="house_name">Name</label>
           <label name="house_location">Location</label>
           <label name="house_slots">Available Slots</label>
-          <button class="button is-success is-rounded mtop" value="view-more">
+          <button class="button is-success vm" style="" value="view-more">
             View More
           </button>
         </div>
       </div>
-      <div class="columns is-gapless oline">
-        <div class="column is-half">
-          <figure class="image placer is-128x128">
+      <div class="columns is-vcentered is-gapless is-desktop oline">
+        <div class="column is-half-desktop is-full-mobile is-full-tablet">
+          <figure class="image placer">
             <img src="https://bulma.io/images/placeholders/256x256.png" />
           </figure>
         </div>
-        <div class="column auto has-text-center">
+        <div
+          class="column is-half-desktop is-full-mobile is-full-tablet has-text-center"
+        >
           <label name="house_name">Name</label>
           <label name="house_location">Location</label>
           <label name="house_slots">Available Slots</label>
-          <button class="button is-success is-rounded mtop" value="view-more">
+          <button class="button is-success vm" style="" value="view-more">
             View More
           </button>
         </div>
@@ -70,11 +76,12 @@ label {
   display: block;
 }
 .placer {
+  padding: 0 5%;
   margin: 5% auto;
 }
 
 .mtop {
-  margin-top: 5%;
+  margin: 0 auto;
 }
 
 .pad {
@@ -84,18 +91,25 @@ label {
 
 .oline {
   border-style: solid;
-    border-width: 1px;
+  border-width: 1px;
 }
-
+.vm {
+  width: 80%;
+  min-width: 80px;
+  margin: 3% auto;
+}
+.teste {
+  width: 100%;
+}
 .bg {
-    width: 90%;
-    padding-top: 2%;
-    padding-left: 2%;
-    padding-right: 2%;
-    border-color: lightslategray;
-    margin: 0 auto;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 1%;
+  width: 90%;
+  padding-top: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-color: lightslategray;
+  margin: 0 auto;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 1%;
 }
 </style>

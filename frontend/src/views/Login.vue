@@ -1,8 +1,7 @@
 <template>
   <div>
     <DefaultNavbar />
-    <section class="hero is-fullheight-with-navbar">
-      <div class="hero-body">
+
         <div class="columns is-centered is-vcentered" id="content">
           <div class="column is-half">
             <div class="card" id="logincard">
@@ -31,8 +30,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -50,6 +47,7 @@ export default {
 
 <style scoped>
   #content {
+    margin: 10% auto;
     width: 100%;
   }
 
@@ -57,9 +55,4 @@ export default {
     margin: 0px 50px;
   }
 
-  @media (max-width: 770px) {
-    #logincard{
-      margin: 20px 50px 0px 50px;
-    }
-  }
 </style>

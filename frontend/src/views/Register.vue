@@ -1,7 +1,6 @@
 <template>
   <div>
     <DefaultNavbar />
-    <section class="hero is-fullheight-with-navbar">
       <div class="columns is-centered is-vcentered is-flex-grow-1">
         <div class="column is-three-quarters">
           <div class="card" id="registercard">
@@ -24,7 +23,6 @@
           </div>
         </div>
       </div>
-    </section>
   </div>
 </template>
 
@@ -401,6 +399,7 @@ export default {
   }
 
   #registercard{
+    margin: 3% auto;
     min-height: 80vh;
   } 
 
@@ -410,9 +409,4 @@ export default {
 
   label { display:block }
 
-  @media (max-width: 770px) {
-    #registercard{
-      margin: 20px 50px 0px 50px;
-    }
-  }
 </style>
