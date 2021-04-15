@@ -24,11 +24,13 @@ public class LandlordService {
 	
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
-	public Landlord register(Landlord landlord, Avatar avatar) throws PersistentException {
+	public void exists(Landlord landlord) throws PersistentException {
 		if (userUtils.existsByEmail(landlord.getEmail())) {
 			throw new ErrorDetails("There is already a user with that email");
 		}
-		
+	}
+	
+	public Landlord register(Landlord landlord, Avatar avatar) throws PersistentException {
 		if (avatar == null) {
 			avatar = AvatarDAO.createAvatar();
 			AvatarDAO.save(avatar);
@@ -49,10 +51,35 @@ public class LandlordService {
 		return landlord;
 	}
 	
-	public boolean deleteById(int id) throws PersistentException, ResourceNotFoundException {
-		Landlord landlord = getById(id);
+	public boolean delete(Landlord landlord) throws PersistentException, ResourceNotFoundException {
 		LandlordDAO.evict(landlord);
 		return LandlordDAO.delete(landlord);
+	}
+	
+	public Landlord update(Landlord landlord, Landlord landlordInfo) throws PersistentException {
+		if (landlordInfo.getName() != null) {
+			landlord.setName(landlordInfo.getName());
+		}
+		
+		if (landlordInfo.getUsername() != null) {
+			landlord.setUsername(landlordInfo.getUsername());
+		}
+		
+		if (landlordInfo.getPhone() != null) {
+			landlord.setPhone(landlordInfo.getPhone());
+		}
+		
+		if (landlordInfo.getSex() != null) {
+			landlord.setSex(landlordInfo.getSex());
+		}
+		
+		if (landlordInfo.getAddress() != null) {
+			landlord.setAddress(landlordInfo.getAddress());
+		}
+		
+		LandlordDAO.save(landlord);
+		LandlordDAO.refresh(landlord);
+		return landlord;
 	}
 	
 }

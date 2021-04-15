@@ -22,7 +22,12 @@ public class AvatarService {
 	public FileUtils fileUtils;
 	
 	public Avatar store(MultipartFile file) throws PersistentException {
-		String path = fileUtils.save(file);
+		String path;
+		if (file == null) {
+			path = fileUtils.save("user-default.png");
+		} else {
+			path = fileUtils.save(file);
+		}
 		Avatar avatar = AvatarDAO.createAvatar();
 		avatar.setPath(path);
 		AvatarDAO.save(avatar);
@@ -31,5 +36,20 @@ public class AvatarService {
 	
 	public byte[] load(Avatar avatar) throws IOException {
 		return fileUtils.load(avatar.getPath());
+	}
+	
+	public boolean delete(Avatar avatar) throws PersistentException {
+		return fileUtils.delete(avatar.getPath());
+	}
+	
+	public boolean update(Avatar avatar, MultipartFile file) throws PersistentException {
+		if (file != null) {
+			String path = fileUtils.save(file);
+			delete(avatar);
+			avatar.setPath(path);
+		}
+		AvatarDAO.save(avatar);
+		AvatarDAO.refresh(avatar);
+		return true;
 	}
 }

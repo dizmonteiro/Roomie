@@ -31,7 +31,8 @@ public class TenantController {
 	private AvatarService avatarService;
 	
 	@PostMapping(consumes = {"multipart/form-data"})
-	public Tenant register(@Valid Tenant tenant, @RequestPart("file") MultipartFile file) throws PersistentException {
+	public Tenant register(@Valid Tenant tenant, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException {
+		tenantService.exists(tenant);
 		Avatar avatar = avatarService.store(file);
 		return tenantService.register(tenant, avatar);
 	}
@@ -42,9 +43,20 @@ public class TenantController {
 	}
 	
 	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")
+	@PutMapping(value = "/{id}")
+	public Tenant editTenant(@PathVariable int id, Tenant tenantInfo, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(id);
+		tenant = tenantService.update(tenant, tenantInfo);
+		avatarService.update(tenant.getAvatar(), file);
+		return tenant;
+	}
+	
+	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteTenant(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-		boolean res = tenantService.deleteById(id);
+		Tenant tenant = tenantService.getById(id);
+		avatarService.delete(tenant.getAvatar());
+		boolean res = tenantService.delete(tenant);
 		if (res) {
 			return ResponseEntity.noContent().build();
 		} else {
