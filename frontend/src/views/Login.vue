@@ -10,7 +10,7 @@
                 <div class="field">
                   <label class="label">Email</label>
                   <div class="control">
-                    <input class="input" type="text" placeholder="username">
+                    <input class="input" type="text" placeholder="email@example.com">
                   </div>
                 </div>
 
@@ -44,7 +44,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
   #filler {
     min-height: 67vh;
   }
