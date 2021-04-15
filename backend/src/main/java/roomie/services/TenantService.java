@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import roomie.exception.ErrorDetails;
 import roomie.exception.ResourceNotFoundException;
+import roomie.helpers.UpdatePasswordRequest;
 import roomie.helpers.UserUtils;
 import roomie.models.avatar.Avatar;
 import roomie.models.avatar.AvatarDAO;
@@ -84,5 +85,21 @@ public class TenantService {
 		TenantDAO.save(tenant);
 		TenantDAO.refresh(tenant);
 		return tenant;
+	}
+	
+	public boolean updatePassword(Tenant tenant, UpdatePasswordRequest body) throws PersistentException {
+		if (!passwordEncoder.matches(body.getOldPassword(), tenant.getPassword())) {
+			throw new ErrorDetails("Current password is not correct");
+		}
+		
+		if (body.getOldPassword().equals(body.getNewPassword())) {
+			throw new ErrorDetails("Current and new passwords can't be the same");
+		}
+		
+		tenant.setPassword(passwordEncoder.encode(body.getNewPassword()));
+		
+		TenantDAO.save(tenant);
+		TenantDAO.refresh(tenant);
+		return true;
 	}
 }
