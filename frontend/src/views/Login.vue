@@ -10,14 +10,14 @@
                 <div class="field">
                   <label class="label">Email</label>
                   <div class="control">
-                    <input class="input" type="text" placeholder="email@example.com">
+                    <input class="input" type="text" placeholder="email@example.com" required>
                   </div>
                 </div>
 
                 <div class="field">
                   <label class="label">Password</label>
                   <div class="control">
-                    <input class="input" type="password" placeholder="********">
+                    <input class="input" type="password" placeholder="********" required>
                   </div>
                 </div>
 
