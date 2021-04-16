@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -19,8 +19,8 @@
             <a class="button is-light">
               My Rent History
             </a>
-            <a class="button is-light">
-              My Applications
+            <a class="button is-primary">
+              <strong>My Applications</strong>
             </a>
           </div>
         </div>
@@ -31,6 +31,11 @@
 
 <script>
 export default {
-  name: 'TenantNavbar'
+  name: 'LandlordNavbar'
 }
 </script>
+<style scoped>
+.navbar{
+  background-color:#95d582;
+}
+</style>

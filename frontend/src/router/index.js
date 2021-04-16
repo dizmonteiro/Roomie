@@ -33,6 +33,11 @@ export default new Router({
       component: () => import('@/views/LandlordProfile')
     },
     {
+      name: 'TenantProfile',
+      path: '/tprofile',
+      component:()=>import('@/views/TenantProfile')
+    },
+    {
       path: '/404',
       component: () => import('@/views/NotFound')
     },

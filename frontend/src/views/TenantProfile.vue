@@ -1,13 +1,15 @@
 <template>
   <div>
-    <LandlordNavbar />
+    <TenantNavbar />
     <div id="llcard" class="card pad">
       <div class="columns is-desktop">
-        <div class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet">
+        <div
+          class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet"
+        >
           <figure class="image avatar">
             <img
               class="is-rounded"
-              src="https://bulma.io/images/placeholders/128x128.png"
+              src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
             />
           </figure>
           <div class="control">
@@ -28,10 +30,10 @@
             </div>
           </div>
         </div>
-        <div class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form">
-          <div class="columns">
-            <div class="column is-half">
-              <div class="field">
+        <div
+          class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form"
+        >
+                      <div class="field">
                 <label class="label">Name</label>
                 <div class="control">
                   <input
@@ -43,6 +45,9 @@
                   />
                 </div>
               </div>
+          <div class="columns">
+            <div class="column is-half">
+
               <div class="field">
                 <label class="label">NIF</label>
                 <div class="control is-expanded">
@@ -79,6 +84,18 @@
                   />
                 </p>
               </div>
+              <div class="field">
+                <label class="label">Nationality</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Portuguese"
+                    name="ocupation"
+                    :readonly="editable"
+                  />
+                </div>
+              </div>
             </div>
             <div class="column is-half">
               <div class="field">
@@ -105,18 +122,6 @@
                 </div>
               </div>
               <div class="field">
-                <label class="label">Address</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Address"
-                    name="address"
-                    :readonly="editable"
-                  />
-                </div>
-              </div>
-              <div class="field">
                 <label class="label">Birth Date</label>
                 <div class="control is-expanded">
                   <input
@@ -124,6 +129,18 @@
                     type="date"
                     placeholder="yyyy-mm-dd"
                     name="dob"
+                    :readonly="editable"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Occupation</label>
+                <div class="control">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Student"
+                    name="ocupation"
                     :readonly="editable"
                   />
                 </div>
@@ -147,19 +164,21 @@
             </p>
           </div>
         </div>
-        <div class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered">
-         <SideMenuEditable title="My Houses">
+        <div
+          class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
+        >
+          <SideMenuEditable title="My Rent History">
             <template v-slot:firstEntry>
               <SideMenuEntry
                 imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
                 :args="[
                   {
-                    k1: 'house_name',
-                    v1: 'House1',
-                    k2: 'house_location',
-                    v2: 'Location1',
-                    k3: 'house_slot',
-                    v3: 'Slots: 2/4'
+                    k1: 'from_date',
+                    v1: 'From:01/01/2021',
+                    k2: 'to_date',
+                    v2: 'To:01/02/2021',
+                    k3: 'landlord',
+                    v3: 'Landord1'
                   },
                 ]"
               />
@@ -169,12 +188,12 @@
                 imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
                 :args="[
                   {
-                   k1: 'house_name',
-                    v1: 'House2',
-                    k2: 'house_location',
-                    v2: 'Location2',
-                    k3: 'house_slot',
-                    v3: 'Slots: 1/4'
+                    k1: 'from_date',
+                    v1: 'From:01/03/2021',
+                    k2: 'to_date',
+                    v2: 'To:01/04/2021',
+                    k3: 'landlord',
+                    v3: 'Landord2'
                   },
                 ]"
               />
@@ -184,12 +203,12 @@
                 imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
                 :args="[
                   {
-                    k1: 'house_name',
-                    v1: 'House3',
-                    k2: 'house_location',
-                    v2: 'Location3',
-                    k3: 'house_slot',
-                    v3: 'Slots: 3/4'
+                    k1: 'from_date',
+                    v1: 'From:01/05/2021',
+                    k2: 'to_date',
+                    v2: 'To:01/06/2021',
+                    k3: 'landlord',
+                    v3: 'Landord3'
                   },
                 ]"
               />
@@ -201,8 +220,8 @@
     <div id="change-password" class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
-          <div class="box has-text-centered">
-<div class="field">
+        <div class="box has-text-centered">
+          <div class="field">
             <label class="label is-left">Old Password</label>
             <div class="control">
               <input
@@ -233,8 +252,7 @@
           >
             Change Password
           </a>
-          </div>
-          
+        </div>
       </div>
 
       <button
@@ -248,16 +266,16 @@
 </template>
 
 <script>
-import LandlordNavbar from "@/components/LandlordNavbar";
+import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
-import SideMenuEntry from "@/components/SideMenuEntry"
+import SideMenuEntry from "@/components/SideMenuEntry";
 
 export default {
-  name: "LandlordProfile",
+  name: "TenantProfile",
   components: {
-    LandlordNavbar,
+    TenantNavbar,
     SideMenuEditable,
-    SideMenuEntry
+    SideMenuEntry,
   },
   data() {
     return {
@@ -304,13 +322,13 @@ label {
 }
 
 .pad {
+  background-color: #eaffe6;
   width: 90%;
   margin: 5% auto;
 }
 
 .form{
-  margin: 8% auto;
+  margin: 6% auto;
 }
-
 
 </style>
