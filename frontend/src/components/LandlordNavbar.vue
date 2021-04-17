@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -17,10 +17,16 @@
         <div class="navbar-item">
           <div class="buttons">
             <a class="button is-light">
-              Login
+              Search
+            </a>
+            <a class="button is-light">
+              Check Applications
+            </a>
+            <a class="button is-light">
+              Add New House
             </a>
             <a class="button is-primary">
-              <strong>Register</strong>
+              <strong>My Houses</strong>
             </a>
           </div>
         </div>
