@@ -4,6 +4,7 @@ import org.orm.PersistentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import roomie.exception.ResourceNotFoundException;
 import roomie.helpers.FileUtils;
 import roomie.models.photo.Photo;
 import roomie.models.photo.PhotoDAO;
@@ -54,5 +55,13 @@ public class PhotoService {
 		PhotoDAO.save(photo);
 		PhotoDAO.refresh(photo);
 		return true;
+	}
+	
+	public Photo getById(int id) throws PersistentException, ResourceNotFoundException {
+		Photo photo = PhotoDAO.getPhotoByORMID(id);
+		if (photo == null) {
+			throw new ResourceNotFoundException("Photo not found: id=" + id);
+		}
+		return photo;
 	}
 }

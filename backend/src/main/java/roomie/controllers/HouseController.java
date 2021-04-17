@@ -4,10 +4,7 @@ import org.orm.PersistentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.auth.MyUser;
@@ -19,6 +16,7 @@ import roomie.services.LandlordService;
 import roomie.services.PhotoService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,50 +58,24 @@ public class HouseController {
 		landlordService.save(landlord);
 		return house;
 	}
-
-    /*@GetMapping(value = "/{id}")
-    public House getHouse(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-        return houseService.getById(id);
-    }
-
-    @PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
-    @PutMapping("/{id}/password")
-    public ResponseEntity<String> updatePassword(@PathVariable int id, @Valid @RequestBody UpdatePasswordRequest body) throws PersistentException, ResourceNotFoundException {
-        House house = houseService.getById(id);
-        boolean res = houseService.updatePassword(house, body);
-        if (res) {
-            return ResponseEntity.ok("Password updated successfully");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
-    @PutMapping(value = "/{id}")
-    public House editLandord(@PathVariable int id, House houseInfo, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException, ResourceNotFoundException {
-        House house = houseService.getById(id);
-        house = houseService.update(house, houseInfo);
-        photoService.update(house.getPhoto(), file);
-        return house;
-    }
-
-    @PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteHouse(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-        House house = houseService.getById(id);
-        photoService.delete(house.getPhoto());
-        boolean res = houseService.delete(house);
-        if (res) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @GetMapping(value = "/{id}/photo", produces = "image/*")
-    @ResponseBody
-    public byte[] getPhoto(@PathVariable int id) throws PersistentException, ResourceNotFoundException, IOException {
-        return photoService.load(houseService.getById(id).getPhoto());
-    }
-*/
+	
+	@PreAuthorize("hasRole('LANDLORD')")
+	@GetMapping(value = "/{id}")
+	public House getHouse(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		return houseService.getById(id);
+	}
+	
+	@PreAuthorize("hasRole('LANDLORD')")
+	@GetMapping(value = "/{id}/photos")
+	public List<Integer> getHousePhotos(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		return houseService.getById(id).getPhotos();
+	}
+	
+	
+	@GetMapping(value = "/photos/{id}", produces = "image/*")
+	@ResponseBody
+	public byte[] getPhoto(@PathVariable int id) throws PersistentException, ResourceNotFoundException, IOException {
+		return photoService.load(photoService.getById(id));
+	}
+	
 }
