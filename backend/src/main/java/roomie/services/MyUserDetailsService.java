@@ -38,7 +38,7 @@ public class MyUserDetailsService implements UserDetailsService {
 			if (landlords.length > 0) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_LANDLORD"));
 				return new MyUser(landlords[0].getEmail(), landlords[0].getPassword(), landlords[0]
-						.getName(), tenants[0].getId(), authorities);
+						.getName(), landlords[0].getId(), authorities);
 			}
 		} catch (PersistentException e) {
 			e.printStackTrace();
