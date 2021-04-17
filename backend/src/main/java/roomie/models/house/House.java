@@ -13,6 +13,7 @@ import roomie.models.photo.PhotoListCollection;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class House implements Serializable {
 	private int id;
@@ -134,12 +135,12 @@ public class House implements Serializable {
 		return ORM_photos;
 	}
 	
-	public List<Photo> getPhotos() {
-		return ORM_photos;
-	}
-	
 	private void setORM_Photos(List<Photo> value) {
 		this.ORM_photos = value;
+	}
+	
+	public List<Integer> getPhotos() {
+		return ORM_photos.stream().map(Photo::getID).collect(Collectors.toList());
 	}
 	
 	public String toString() {
