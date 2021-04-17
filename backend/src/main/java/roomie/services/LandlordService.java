@@ -99,4 +99,10 @@ public class LandlordService {
 		return true;
 	}
 	
+	public boolean save(Landlord landlord) throws PersistentException {
+		LandlordDAO.save(landlord);
+		LandlordDAO.refresh(landlord);
+		return true;
+	}
+	
 }

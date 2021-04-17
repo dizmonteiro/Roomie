@@ -18,38 +18,41 @@ import java.io.IOException;
 
 @Service
 public class PhotoService {
-    @Autowired
-    public FileUtils fileUtils;
-
-    public Photo store(MultipartFile file) throws PersistentException {
-        String path;
-        if (file == null) {
-            path = fileUtils.save("house-default.png");
-        } else {
-            path = fileUtils.save(file);
-        }
-        Photo photo = PhotoDAO.createPhoto();
-        photo.setPath(path);
-        PhotoDAO.save(photo);
-        return photo;
-    }
-
-    public byte[] load(Photo photo) throws IOException {
-        return fileUtils.load(photo.getPath());
-    }
-
-    public boolean delete(Photo photo) throws PersistentException {
-        return fileUtils.delete(photo.getPath());
-    }
-
-    public boolean update(Photo photo, MultipartFile file) throws PersistentException {
-        if (file != null) {
-            String path = fileUtils.save(file);
-            delete(photo);
-            photo.setPath(path);
-        }
-        PhotoDAO.save(photo);
-        PhotoDAO.refresh(photo);
-        return true;
-    }
+	@Autowired
+	public FileUtils fileUtils;
+	
+	public Photo store(MultipartFile file) {
+		String path;
+		if (file == null) {
+			path = fileUtils.save("house-default.png");
+		} else {
+			path = fileUtils.save(file);
+		}
+		Photo photo = PhotoDAO.createPhoto();
+		photo.setPath(path);
+		return photo;
+	}
+	
+	public boolean save(Photo photo) throws PersistentException {
+		return PhotoDAO.save(photo);
+	}
+	
+	public byte[] load(Photo photo) throws IOException {
+		return fileUtils.load(photo.getPath());
+	}
+	
+	public boolean delete(Photo photo) throws PersistentException {
+		return fileUtils.delete(photo.getPath());
+	}
+	
+	public boolean update(Photo photo, MultipartFile file) throws PersistentException {
+		if (file != null) {
+			String path = fileUtils.save(file);
+			delete(photo);
+			photo.setPath(path);
+		}
+		PhotoDAO.save(photo);
+		PhotoDAO.refresh(photo);
+		return true;
+	}
 }

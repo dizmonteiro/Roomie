@@ -10,12 +10,14 @@ import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.auth.UpdatePasswordRequest;
 import roomie.models.avatar.Avatar;
+import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
 import roomie.services.AvatarService;
 import roomie.services.LandlordService;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author: Vasco Ramos
@@ -81,6 +83,11 @@ public class LandlordController {
 	@ResponseBody
 	public byte[] getAvatar(@PathVariable int id) throws PersistentException, ResourceNotFoundException, IOException {
 		return avatarService.load(landlordService.getById(id).getAvatar());
+	}
+	
+	@GetMapping(value = "/{id}/houses")
+	public List<House> getLandlordHouses(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		return landlordService.getById(id).houses.getCollection();
 	}
 	
 }

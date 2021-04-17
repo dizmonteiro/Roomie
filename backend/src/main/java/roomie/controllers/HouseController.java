@@ -2,24 +2,24 @@ package roomie.controllers;
 
 import org.orm.PersistentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
-import roomie.models.auth.UpdatePasswordRequest;
+import roomie.models.auth.MyUser;
+import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
-import roomie.models.house.House;
-import roomie.models.landlord.LandlordDAO;
-import roomie.services.PhotoService;
 import roomie.services.HouseService;
+import roomie.services.LandlordService;
+import roomie.services.PhotoService;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,31 +30,36 @@ import java.util.List;
 @RestController
 @RequestMapping("/houses")
 public class HouseController {
-    @Autowired
-    private HouseService houseService;
-
-    @Autowired
-    private PhotoService photoService;
-
-    @PostMapping(consumes = {"multipart/form-data"})
-    public House register(@Valid House house, @RequestPart(value = "file", required = false) MultipartFile[] files) throws PersistentException {
-
-        List<Photo> photos = new ArrayList<>();
-        if(files != null) {
-            Arrays.stream(files).forEach(file -> {
-                try {
-                    Photo photo = photoService.store(file);
-                    photos.add(photo);
-                } catch (PersistentException e) {
-                    e.printStackTrace();
-                }
-
-            });
-        }
-        Landlord l = LandlordDAO.loadLandlordByORMID(2);
-        l.houses.add(house);
-        return houseService.register(house, photos);
-    }
+	@Autowired
+	private HouseService houseService;
+	
+	@Autowired
+	private LandlordService landlordService;
+	
+	@Autowired
+	private PhotoService photoService;
+	
+	@PreAuthorize("hasRole('LANDLORD')")
+	@PostMapping(consumes = {"multipart/form-data"})
+	public House register(@Valid House house, @RequestPart(value = "files", required = false) MultipartFile[] files, Authentication auth) throws PersistentException, ResourceNotFoundException {
+		Landlord landlord = landlordService.getById(((MyUser) auth.getPrincipal()).getId());
+		
+		List<Photo> photos = new ArrayList<>();
+		if (files != null) {
+			for (MultipartFile file : files) {
+				Photo photo = photoService.store(file);
+				photos.add(photo);
+			}
+		} else {
+			Photo photo = photoService.store(null);
+			photos.add(photo);
+		}
+		
+		landlord.houses.add(house);
+		houseService.register(house, photos);
+		landlordService.save(landlord);
+		return house;
+	}
 
     /*@GetMapping(value = "/{id}")
     public House getHouse(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
