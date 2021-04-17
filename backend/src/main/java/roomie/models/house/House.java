@@ -5,6 +5,7 @@ package roomie.models.house;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import roomie.models.ORMConstants;
 import roomie.models.photo.Photo;
 import roomie.models.photo.PhotoListCollection;
@@ -52,6 +53,7 @@ public class House implements Serializable {
 		this.id = value;
 	}
 	
+	@JsonIgnore
 	public int getORMID() {
 		return getId();
 	}
@@ -129,6 +131,10 @@ public class House implements Serializable {
 	}
 	
 	private List<Photo> getORM_Photos() {
+		return ORM_photos;
+	}
+	
+	public List<Photo> getPhotos() {
 		return ORM_photos;
 	}
 	

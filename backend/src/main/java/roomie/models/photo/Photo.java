@@ -5,6 +5,8 @@ package roomie.models.photo;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 public class Photo implements Serializable {
@@ -22,10 +24,12 @@ public class Photo implements Serializable {
 		this.ID = value;
 	}
 	
+	@JsonIgnore
 	public int getORMID() {
 		return getID();
 	}
 	
+	@JsonIgnore
 	public String getPath() {
 		return path;
 	}
