@@ -11,8 +11,8 @@
      <br>
      <slot  name="thirdEntry"></slot>
      <br>
-      <button class="button is-primary is-rounded pad" value="more">
-        More
+      <button class="button pad" value="more">
+        <strong>More</strong>
       </button>
     </div>
   </div>
@@ -28,6 +28,10 @@ export default {
 </script>
 
 <style scoped>
+strong{
+  color: white;
+}
+
 label {
   display: block;
 }
@@ -68,5 +72,8 @@ label {
   border-style: solid;
   border-width: 2px;
   border-radius: 1%;
+}
+button{
+  background-color: #2D6A4f;
 }
 </style>

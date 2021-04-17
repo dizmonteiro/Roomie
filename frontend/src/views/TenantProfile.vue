@@ -149,16 +149,16 @@
           <div class="field is-grouped is-grouped-right">
             <p class="control">
               <a
-                class="button is-primary"
+                class="button bs"
                 value="edit-password"
                 @click="editPassword()"
               >
-                Edit Password
+               <strong> Edit Password</strong>
               </a>
             </p>
             <p class="control">
-              <a class="button is-light" value="edit" @click="edit()">
-                {{ edit_text }}
+              <a class="button bs" value="edit" @click="edit()">
+                <strong>{{ edit_text }}</strong>
               </a>
             </p>
           </div>
@@ -333,22 +333,9 @@ export default {
       ss:24,
       edit_text: "Edit",
       modal_active: "modal",
-      ratings: [{ rate: 3.25 }, { rate: 2.75 }, { rate: 4.75 }, { rate: 2.75 }],
     };
   },
   methods: {
-    setRating0: function (rating) {
-      this.ratings[0].rate = rating;
-    },
-    setRating1: function (rating) {
-      this.ratings[1].rate = rating;
-    },
-    setRating2: function (rating) {
-      this.ratings[2].rate = rating;
-    },
-    setRating3: function (rating) {
-      this.ratings[3].rate = rating;
-    },
     edit() {
       console.log(document.getElementById("stars3").getAttribute("value"));
       if (this.editable) this.edit_text = "Apply Changes";
@@ -367,6 +354,9 @@ export default {
 
 
 <style scoped>
+strong{
+  color: white;
+}
 .avatar {
   width: 80%;
   margin: 25% auto 8% auto;
@@ -391,7 +381,9 @@ label {
   width: 90%;
   margin: 3% auto;
 }
-
+.bs{
+  background-color:  #2D6A4f;
+}
 star-rating {
   background-color: red;
 }

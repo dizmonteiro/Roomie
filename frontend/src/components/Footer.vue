@@ -24,7 +24,7 @@ strong{
     bottom: 0;
     width: 100%;
     padding: 1% 0;
-      background-color: #00d1b2;
+      background-color: #2D6A4f;
       color:white;
     }
 </style>

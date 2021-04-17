@@ -43,6 +43,6 @@ strong{
   background-color: rgba(1,1,1,0);
 }
 .navbar{
-  background-color:#00d1b2;
+  background-color:#2D6A4f;
 }
 </style>
