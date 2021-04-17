@@ -62,7 +62,7 @@ label {
   padding-top: 2%;
   padding-left: 2%;
   padding-right: 2%;
-  background-color: #d6fccf;
+  background-color: white;
   border-color: lightslategray;
   margin: 0 auto;
   border-style: solid;

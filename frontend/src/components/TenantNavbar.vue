@@ -16,10 +16,10 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-light">
-              My Rent History
+            <a class="button navb">
+              <strong>My Rent History </strong>
             </a>
-            <a class="button is-primary">
+            <a class="button navb">
               <strong>My Applications</strong>
             </a>
           </div>
@@ -35,7 +35,14 @@ export default {
 }
 </script>
 <style scoped>
+strong{
+  color:white
+}
+.navb{
+  border-width: 0;
+  background-color: rgba(1,1,1,0);
+}
 .navbar{
-  background-color:#95d582;
+  background-color:#00d1b2;
 }
 </style>

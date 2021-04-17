@@ -4,7 +4,7 @@
     <div id="llcard" class="card pad">
       <div class="columns is-desktop">
         <div
-          class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet"
+          class="column is-one-quarter-desktop is-full-mobile is-full-tablet"
         >
           <figure class="image avatar">
             <img
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div
-          class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form"
+          class="column is-half-desktop is-full-mobile is-full-tablet form"
         >
           <div class="field">
             <label class="label">Name</label>
@@ -165,54 +165,57 @@
           <div class="card rates">
             <div class="columns is-desktop">
               <div
-                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
               >
-                <figure class="image">
+                <figure class="image feature">
                   <img
                     class="is-rounded"
-                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                    src="https://picsum.photos/200"
                   />
                 </figure>
+                <StarRating class="stars" id="stars0" :initialValue="4" :editable="false"/>
               </div>
               <div
-                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
               >
-                <figure class="image">
+                <figure class="image feature">
                   <img
                     class="is-rounded"
-                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                    src="https://picsum.photos/200"
                   />
                 </figure>
+                <StarRating class="stars" id="stars1" :initialValue="1" :editable="false"/>
               </div>
               <div
-                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
               >
-                <figure class="image">
+                <figure class="image feature">
                   <img
                     class="is-rounded"
-                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                    src="https://picsum.photos/200"
                   />
                 </figure>
+                <StarRating class="stars" id="stars2" :initialValue="3" :editable="false"/>
               </div>
               <div
-                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
               >
-                <figure class="image">
+                <figure class="image feature">
                   <img
                     class="is-rounded"
-                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                    src="https://picsum.photos/200"
                   />
                 </figure>
-                  <StarRating/>
+                  <StarRating class="stars" id="stars3" :initialValue="2" :editable="false"/>
                 
               </div>
             </div>
           </div>
         </div>
         <div
-          class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
+          class="column is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
         >
-          <SideMenuEditable title="My Rent History">
+          <SideMenuEditable class="toMargin" title="My Rent History">
             <template v-slot:firstEntry>
               <SideMenuEntry
                 imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
@@ -347,8 +350,7 @@ export default {
       this.ratings[3].rate = rating;
     },
     edit() {
-      this.ss=document.getElementById("stars3").width,
-      console.log(document.getElementById("stars3").value);
+      console.log(document.getElementById("stars3").getAttribute("value"));
       if (this.editable) this.edit_text = "Apply Changes";
       else this.edit_text = "Edit";
       this.editable = !this.editable;
@@ -385,9 +387,9 @@ label {
 }
 
 .pad {
-  background-color: #eaffe6;
+  background-color: white;
   width: 90%;
-  margin: 5% auto;
+  margin: 3% auto;
 }
 
 star-rating {
@@ -395,17 +397,24 @@ star-rating {
 }
 
 .form {
-  margin: 6% auto;
+  margin: 1% auto;
 }
 
-.rates {
-  padding: 0;
-  margin: 5% auto;
-  padding-left: 5%;
-  padding-right: 5%;
+.rates{
+  padding: 1% 5% 1% 5%;
+}
+.stars {
+  margin: 3% auto;
+}
+.feature{
+  border-style: solid;
+  border-width: 5%;
+  border-color: black;
+  border-radius: 50%;
 }
 
-.adjust {
-  width: 50%;
+.toMargin{
+  margin:4% auto;
 }
+
 </style>

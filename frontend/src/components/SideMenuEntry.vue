@@ -12,7 +12,7 @@
         <label :name="args[0].k1">{{ args[0].v1 }}</label>
         <label :name="args[0].k2">{{ args[0].v2 }}</label>
         <label :name="args[0].k3">{{ args[0].v3 }}</label>
-        <button class="button is-success vm" value="view-more">
+        <button class="button is-primary vm" value="view-more">
           View More
         </button>
       </div>
@@ -35,7 +35,8 @@ label{
     display: block;
 }
 .oline {
-  background-color: #baffad;
+  
+  background-color: white;
   border-style: solid;
   border-width: 1px;
 }
