@@ -24,7 +24,7 @@ public class PhotoService {
 	public Photo store(MultipartFile file) {
 		String path;
 		if (file == null) {
-			path = fileUtils.save("house-default.png");
+			path = fileUtils.save("house-default.jpg");
 		} else {
 			path = fileUtils.save(file);
 		}
