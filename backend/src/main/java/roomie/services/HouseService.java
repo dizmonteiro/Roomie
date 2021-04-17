@@ -32,7 +32,7 @@ public class HouseService {
 		return house;
 	}
 	
-	public boolean delete(House house) throws PersistentException, ResourceNotFoundException {
+	public boolean delete(House house) throws PersistentException {
 		HouseDAO.evict(house);
 		return HouseDAO.delete(house);
 	}
