@@ -33,21 +33,20 @@
         <div
           class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form"
         >
-                      <div class="field">
-                <label class="label">Name</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Full Name"
-                    name="name"
-                    :readonly="editable"
-                  />
-                </div>
-              </div>
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Full Name"
+                name="name"
+                :readonly="editable"
+              />
+            </div>
+          </div>
           <div class="columns">
             <div class="column is-half">
-
               <div class="field">
                 <label class="label">NIF</label>
                 <div class="control is-expanded">
@@ -163,6 +162,52 @@
               </a>
             </p>
           </div>
+          <div class="card rates">
+            <div class="columns is-desktop">
+              <div
+                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+              >
+                <figure class="image">
+                  <img
+                    class="is-rounded"
+                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                  />
+                </figure>
+              </div>
+              <div
+                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+              >
+                <figure class="image">
+                  <img
+                    class="is-rounded"
+                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                  />
+                </figure>
+              </div>
+              <div
+                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+              >
+                <figure class="image">
+                  <img
+                    class="is-rounded"
+                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                  />
+                </figure>
+              </div>
+              <div
+                class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet form"
+              >
+                <figure class="image">
+                  <img
+                    class="is-rounded"
+                    src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+                  />
+                </figure>
+                  <StarRating/>
+                
+              </div>
+            </div>
+          </div>
         </div>
         <div
           class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
@@ -178,7 +223,7 @@
                     k2: 'to_date',
                     v2: 'To:01/02/2021',
                     k3: 'landlord',
-                    v3: 'Landord1'
+                    v3: 'Landord1',
                   },
                 ]"
               />
@@ -193,7 +238,7 @@
                     k2: 'to_date',
                     v2: 'To:01/04/2021',
                     k3: 'landlord',
-                    v3: 'Landord2'
+                    v3: 'Landord2',
                   },
                 ]"
               />
@@ -208,7 +253,7 @@
                     k2: 'to_date',
                     v2: 'To:01/06/2021',
                     k3: 'landlord',
-                    v3: 'Landord3'
+                    v3: 'Landord3',
                   },
                 ]"
               />
@@ -269,6 +314,7 @@
 import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
+import StarRating from "@/components/StarRating";
 
 export default {
   name: "TenantProfile",
@@ -276,16 +322,33 @@ export default {
     TenantNavbar,
     SideMenuEditable,
     SideMenuEntry,
+    StarRating,
   },
   data() {
     return {
       editable: true,
+      ss:24,
       edit_text: "Edit",
       modal_active: "modal",
+      ratings: [{ rate: 3.25 }, { rate: 2.75 }, { rate: 4.75 }, { rate: 2.75 }],
     };
   },
   methods: {
+    setRating0: function (rating) {
+      this.ratings[0].rate = rating;
+    },
+    setRating1: function (rating) {
+      this.ratings[1].rate = rating;
+    },
+    setRating2: function (rating) {
+      this.ratings[2].rate = rating;
+    },
+    setRating3: function (rating) {
+      this.ratings[3].rate = rating;
+    },
     edit() {
+      this.ss=document.getElementById("stars3").width,
+      console.log(document.getElementById("stars3").value);
       if (this.editable) this.edit_text = "Apply Changes";
       else this.edit_text = "Edit";
       this.editable = !this.editable;
@@ -327,8 +390,22 @@ label {
   margin: 5% auto;
 }
 
-.form{
+star-rating {
+  background-color: red;
+}
+
+.form {
   margin: 6% auto;
 }
 
+.rates {
+  padding: 0;
+  margin: 5% auto;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.adjust {
+  width: 50%;
+}
 </style>

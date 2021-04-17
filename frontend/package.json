@@ -12,7 +12,8 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
-    "vue-router": "^3.5.1"
+    "vue-router": "^3.5.1",
+    "vue-star-rating": "^1.7.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
