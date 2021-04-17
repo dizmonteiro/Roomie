@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import roomie.models.auth.MyUser;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -45,13 +46,14 @@ public class JwtTokenUtil implements Serializable {
 		return getExpirationDateFromToken(token).before(new Date());
 	}
 	
-	public String generateToken(UserDetails userDetails) {
+	public String generateToken(MyUser userDetails) {
 		Map<String, Object> claims = new HashMap<>();
-		return doGenerateToken(claims, userDetails.getUsername());
+		return doGenerateToken(claims, userDetails);
 	}
 	
-	private String doGenerateToken(Map<String, Object> claims, String subject) {
-		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+	private String doGenerateToken(Map<String, Object> claims, MyUser user) {
+		return Jwts.builder().setClaims(claims).setSubject(user.getUsername())
+		           .setIssuedAt(new Date(System.currentTimeMillis())).claim("user", user)
 		           .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
 		           .signWith(SignatureAlgorithm.HS512, JWT_TOKEN_SECRET).compact();
 	}
