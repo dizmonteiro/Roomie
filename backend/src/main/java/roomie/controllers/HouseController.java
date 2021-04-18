@@ -75,7 +75,6 @@ public class HouseController {
 		return houseService.getById(id);
 	}
 	
-	@PreAuthorize("hasRole('LANDLORD')")
 	@GetMapping(value = "/{id}/photos")
 	public List<Integer> getHousePhotos(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return houseService.getById(id).getPhotos();
