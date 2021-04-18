@@ -1,5 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
+
+const ifNotAuthenticated = (to, from, next) => {
+  if (!store.getters.isAuthenticated) {
+    next()
+    return
+  }
+  next('/')
+}
+
+const ifAuthenticated = (to, from, next) => {
+  if (store.getters.isAuthenticated) {
+    next()
+    return
+  }
+  next('/login')
+}
 
 Vue.use(Router)
 
@@ -20,7 +37,8 @@ export default new Router({
     {
       name: 'Login',
       path: '/login',
-      component: () => import('@/views/Login')
+      component: () => import('@/views/Login'),
+      beforeEnter: ifNotAuthenticated
     },
     {
       name: 'Register',
@@ -30,7 +48,8 @@ export default new Router({
     {
       name: 'LandlordProfile',
       path: '/llprofile',
-      component: () => import('@/views/LandlordProfile')
+      component: () => import('@/views/LandlordProfile'),
+      beforeEnter: ifAuthenticated
     },
     {
       path: '/404',

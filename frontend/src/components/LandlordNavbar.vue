@@ -22,7 +22,7 @@
             <a class="button is-light">
               Check Applications
             </a>
-            <a class="button is-light">
+            <a class="button is-light" v-on:click="logout">
               Add New House
             </a>
             <a class="button is-primary">
@@ -36,7 +36,17 @@
 </template>
 
 <script>
+import { AUTH_LOGOUT } from "@/store/actions/auth";
+
 export default {
-  name: 'LandlordNavbar'
+  name: 'LandlordNavbar',
+  methods: {
+    logout: function () {
+      this.$store.dispatch(AUTH_LOGOUT)
+      .then(() => {
+        this.$router.push('/login')
+      })
+    }
+  },
 }
 </script>
