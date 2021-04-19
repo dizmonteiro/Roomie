@@ -19,7 +19,7 @@
             <a class="button navb">
              <strong>Check Applications</strong>
             </a>
-            <a class="button navb" v-on:click="logout">
+            <a class="button navb" @click="logout">
               <strong>Add New House</strong>
             </a>
             <a class="button navb">
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { AUTH_LOGOUT } from "@/store/actions/auth";
+import { AUTH_LOGOUT } from "@/store/actions/auth"
 
 export default {
   name: 'LandlordNavbar',

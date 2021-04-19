@@ -9,7 +9,6 @@
 import Footer from '@/components/Footer'
 import axios from 'axios'
 import { AUTH_LOGOUT } from "@/store/actions/auth";
-import { USER_REQUEST } from "@/store/actions/user";
 
 export default {
   name: 'App',
@@ -17,10 +16,6 @@ export default {
     Footer
   },
   created: function () {
-    if(this.$store.getters.isAuthenticated){
-      this.$store.dispatch(USER_REQUEST)
-    }
-
     axios.interceptors.response.use(undefined, function (err) {
       // eslint-disable-next-line no-unused-vars
       return new Promise(function (resolve, reject) {
