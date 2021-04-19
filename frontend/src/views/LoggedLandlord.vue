@@ -15,19 +15,19 @@
                 <div class="card-content">
 
                   <div class="buttons is-centered">
-                    <a class="button is-primary vm" href="/">
+                    <a class="button is-green vm" href="/">
                        View my Houses
                     </a>
                   </div>
 
                   <div class="buttons is-centered">
-                    <a class="button is-primary vm" href="/">
+                    <a class="button is-green vm" href="/">
                        Add new Houses
                     </a>
                   </div>
 
                   <div class="buttons is-centered">
-                    <a class="button is-primary vm" href="/">
+                    <a class="button is-green vm" href="/">
                        Check Applications
                     </a>
                   </div>
@@ -96,10 +96,9 @@ export default {
   label { display:block }
 
   .vm {
-  width: 25%;
-  min-width: 70px;
-  margin: 3% auto;
-}
+    width: 25%;
+    min-width: 70px;
+  }
 
   .carousel {
     position:relative;
