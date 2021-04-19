@@ -19,12 +19,12 @@ export default {
 strong{
     color:white;
 }
-    .footer {
+.footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     padding: 1% 0;
       background-color: #2D6A4f;
       color:white;
-    }
+}
 </style>

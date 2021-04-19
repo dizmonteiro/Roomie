@@ -16,10 +16,10 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button navb">
+            <a class="button navb" href="/login">
              <strong>Login</strong>
             </a>
-            <a class="button navb">
+            <a class="button navb" href="/register">
               <strong>Register</strong>
             </a>
           </div>

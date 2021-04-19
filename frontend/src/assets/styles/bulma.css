@@ -999,6 +999,12 @@ fieldset[disabled] .button.is-dark.is-inverted.is-outlined {
   color: #fff;
 }
 
+.button.is-green {
+  background-color:#2D6A4f !important;
+  border-color: transparent;
+  color: white !important;
+}
+
 .button.is-primary:hover, .button.is-primary.is-hovered {
   background-color: #00c4a7;
   border-color: transparent;

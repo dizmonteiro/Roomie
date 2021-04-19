@@ -23,7 +23,7 @@
                     <a class="button is-light" href="/login">
                        Login
                     </a>
-                    <a class="button is-primary" href="/register">
+                    <a class="button is-green" href="/register">
                       <strong>Register</strong>
                     </a>
                   </div>

@@ -20,7 +20,7 @@
              <strong>Check Applications</strong>
             </a>
             <a class="button navb" v-on:click="logout">
-              Add New House
+              <strong>Add New House</strong>
             </a>
             <a class="button navb">
               <strong>My Houses</strong>
