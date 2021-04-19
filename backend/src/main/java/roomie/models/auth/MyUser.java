@@ -23,6 +23,10 @@ public class MyUser extends User implements Serializable {
 		this.id = id;
 	}
 	
+	public String getType() {
+		return super.getAuthorities().toArray()[0].toString().substring(5).toLowerCase();
+	}
+	
 	@JsonIgnore
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
