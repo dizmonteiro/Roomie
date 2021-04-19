@@ -7,6 +7,9 @@ const state = { status: "", email: "", type: "", name: "", id: ""};
 const getters = {
   getProfile: state => state.profile,
   getType: state => state.profile.type,
+  getId: state => state.profile.id,
+  getName: state => state.profile.name,
+  getEmail: state => state.profile.email,
   isProfileLoaded: state => !!state.profile.name
 };
 
@@ -19,6 +22,7 @@ const actions = {
     resp.type = token.type
     resp.name = token.name
     resp.email = token.email
+    resp.id = token.id
     
     commit(USER_SUCCESS, resp);
 

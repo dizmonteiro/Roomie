@@ -30,7 +30,7 @@ import jwt_decode from "jwt-decode"
             axios.defaults.headers.common['Authorization'] = token
             commit(AUTH_SUCCESS, resp);
             var decoded = jwt_decode(token);
-            dispatch(USER_REQUEST, {type: decoded.user.type, name: decoded.user.name, email: decoded.user.email});
+            dispatch(USER_REQUEST, {type: decoded.user.type, name: decoded.user.name, email: decoded.user.email, id: decoded.user.id});
             resolve(decoded.user.type);
           })
           .catch(err => {
