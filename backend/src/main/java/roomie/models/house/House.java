@@ -5,24 +5,38 @@ package roomie.models.house;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import roomie.models.ORMConstants;
 import roomie.models.photo.Photo;
 import roomie.models.photo.PhotoListCollection;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class House implements Serializable {
+	@Schema(hidden = true)
 	private int id;
+	@NotNull
 	private String address;
+	@NotNull
 	private String title;
+	@NotNull
 	private int rooms;
+	@NotNull
 	private int availableRooms;
+	@NotNull
 	private int bathRooms;
+	@NotNull
 	private double minPrice;
+	@NotNull
 	private double maxPrice;
+	@NotNull
 	private String description;
+	@NotNull
 	private String features;
 	private List<Photo> ORM_photos = new ArrayList<>();
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
@@ -52,6 +66,7 @@ public class House implements Serializable {
 		this.id = value;
 	}
 	
+	@JsonIgnore
 	public int getORMID() {
 		return getId();
 	}
@@ -134,6 +149,10 @@ public class House implements Serializable {
 	
 	private void setORM_Photos(List<Photo> value) {
 		this.ORM_photos = value;
+	}
+	
+	public List<Integer> getPhotos() {
+		return ORM_photos.stream().map(Photo::getID).collect(Collectors.toList());
 	}
 	
 	public String toString() {

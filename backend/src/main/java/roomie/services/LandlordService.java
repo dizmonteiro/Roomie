@@ -11,8 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import roomie.exception.ErrorDetails;
 import roomie.exception.ResourceNotFoundException;
-import roomie.models.auth.UpdatePasswordRequest;
 import roomie.helpers.UserUtils;
+import roomie.models.auth.UpdatePasswordRequest;
 import roomie.models.avatar.Avatar;
 import roomie.models.avatar.AvatarDAO;
 import roomie.models.landlord.Landlord;
@@ -94,6 +94,12 @@ public class LandlordService {
 		
 		landlord.setPassword(passwordEncoder.encode(body.getNewPassword()));
 		
+		LandlordDAO.save(landlord);
+		LandlordDAO.refresh(landlord);
+		return true;
+	}
+	
+	public boolean save(Landlord landlord) throws PersistentException {
 		LandlordDAO.save(landlord);
 		LandlordDAO.refresh(landlord);
 		return true;

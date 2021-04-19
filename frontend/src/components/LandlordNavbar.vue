@@ -19,10 +19,10 @@
             <a class="button navb">
              <strong>Check Applications</strong>
             </a>
-            <a class="button navb">
-              <strong>Add New House</strong>
+            <a class="button navb" v-on:click="logout">
+              Add New House
             </a>
-            <a class="button navb">
+            <a class="button navb>
               <strong>My Houses</strong>
             </a>
           </div>
@@ -33,8 +33,18 @@
 </template>
 
 <script>
+import { AUTH_LOGOUT } from "@/store/actions/auth";
+
 export default {
-  name: 'LandlordNavbar'
+  name: 'LandlordNavbar',
+  methods: {
+    logout: function () {
+      this.$store.dispatch(AUTH_LOGOUT)
+      .then(() => {
+        this.$router.push('/login')
+      })
+    }
+  },
 }
 </script>
 <style scoped>

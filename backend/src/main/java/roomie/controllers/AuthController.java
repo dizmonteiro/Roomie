@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import roomie.exception.ErrorDetails;
 import roomie.helpers.JwtTokenUtil;
 import roomie.models.auth.JwtRequest;
 import roomie.models.auth.JwtResponse;
+import roomie.models.auth.MyUser;
 import roomie.services.MyUserDetailsService;
 
 import javax.validation.Valid;
@@ -43,7 +43,7 @@ public class AuthController {
 	public ResponseEntity<?> login(@Valid @RequestBody JwtRequest authenticationRequest) throws ErrorDetails {
 		try {
 			authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
-			final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+			final MyUser userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 			final String token = jwtTokenUtil.generateToken(userDetails);
 			return ResponseEntity.ok(new JwtResponse(token));
 		} catch (Exception e) {
