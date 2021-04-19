@@ -28,7 +28,7 @@ import axios from 'axios'
             axios.defaults.headers.common['Authorization'] = resp.token
             commit(AUTH_SUCCESS, resp);
             dispatch(USER_REQUEST);
-            resolve(resp);
+            resolve("landlord");
           })
           .catch(err => {
             commit(AUTH_ERROR, err);

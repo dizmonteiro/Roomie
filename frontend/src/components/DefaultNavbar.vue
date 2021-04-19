@@ -16,10 +16,10 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-light" href="/login">
-              Login
+            <a class="button navb">
+             <strong>Login</strong>
             </a>
-            <a class="button is-primary" href="/register">
+            <a class="button navb">
               <strong>Register</strong>
             </a>
           </div>
@@ -31,6 +31,18 @@
 
 <script>
 export default {
-  name: 'DefaultNavbar'
+  name: 'LandlordNavbar'
 }
 </script>
+<style scoped>
+strong{
+  color:white
+}
+.navb{
+  border-width: 0;
+  background-color: rgba(1,1,1,0);
+}
+.navbar{
+  background-color:#2D6A4f;
+}
+</style>
