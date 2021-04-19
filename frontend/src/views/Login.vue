@@ -53,7 +53,9 @@ export default {
       const { email, password } = this
       this.$store.dispatch(AUTH_REQUEST, { email, password }).then(resp => {
         if(resp == "landlord"){
-          window.location.replace('/llprofile')
+          window.location.replace('/landlord')
+        } else if(resp == "tenant"){
+          window.location.replace('/tenant')
         } else {
           window.location.replace('/404')
         }

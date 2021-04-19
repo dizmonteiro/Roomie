@@ -16,7 +16,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button navb">
+            <a class="button navb" @click="logout">
               <strong>My Rent History </strong>
             </a>
             <a class="button navb">
@@ -30,8 +30,18 @@
 </template>
 
 <script>
+import { AUTH_LOGOUT } from "@/store/actions/auth"
+
 export default {
-  name: 'LandlordNavbar'
+  name: 'LandlordNavbar',
+  methods: {
+    logout: function () {
+      this.$store.dispatch(AUTH_LOGOUT)
+      .then(() => {
+        this.$router.push('/login')
+      })
+    }
+  },
 }
 </script>
 <style scoped>
