@@ -51,8 +51,12 @@ export default {
   methods: {
     login: function () {
       const { email, password } = this
-      this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
-        this.$router.push('/')
+      this.$store.dispatch(AUTH_REQUEST, { email, password }).then(resp => {
+        if(resp == "landlord"){
+          window.location.replace('/llprofile')
+        } else {
+          window.location.replace('/404')
+        }
       })
     }
   }
