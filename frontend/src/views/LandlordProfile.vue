@@ -133,16 +133,16 @@
           <div class="field is-grouped is-grouped-right">
             <p class="control">
               <a
-                class="button is-primary"
+                class="button bs"
                 value="edit-password"
                 @click="editPassword()"
               >
-                Edit Password
+               <strong> Edit Password</strong>
               </a>
             </p>
             <p class="control">
-              <a class="button is-light" value="edit" @click="edit()">
-                {{ edit_text }}
+              <a class="button bs" value="edit" @click="edit()">
+                <strong>{{ edit_text }}</strong>
               </a>
             </p>
           </div>
@@ -227,11 +227,11 @@
             </div>
           </div>
           <a
-            class="button is-primary is-centered"
+            class="button bs is-centered"
             value="pwd-change"
             @click="closeModal()"
           >
-            Change Password
+            <strong>Change Password</strong>
           </a>
           </div>
           
@@ -284,6 +284,9 @@ export default {
 
 
 <style scoped>
+strong{
+  color: white;
+}
 .avatar {
   width: 80%;
   margin: 25% auto 8% auto;
@@ -301,6 +304,9 @@ label {
 .gender-label {
   text-align: center;
   margin: 0 auto 10% auto;
+}
+.bs{
+  background-color:  #2D6A4f;
 }
 
 .pad {

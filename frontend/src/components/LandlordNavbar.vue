@@ -16,16 +16,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-light">
-              Search
+            <a class="button navb">
+             <strong>Check Applications</strong>
             </a>
-            <a class="button is-light">
-              Check Applications
+            <a class="button navb">
+              <strong>Add New House</strong>
             </a>
-            <a class="button is-light">
-              Add New House
-            </a>
-            <a class="button is-primary">
+            <a class="button navb">
               <strong>My Houses</strong>
             </a>
           </div>
@@ -40,3 +37,15 @@ export default {
   name: 'LandlordNavbar'
 }
 </script>
+<style scoped>
+strong{
+  color:white
+}
+.navb{
+  border-width: 0;
+  background-color: rgba(1,1,1,0);
+}
+.navbar{
+  background-color:#2D6A4f;
+}
+</style>
