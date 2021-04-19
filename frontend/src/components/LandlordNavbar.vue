@@ -22,7 +22,7 @@
             <a class="button navb" v-on:click="logout">
               Add New House
             </a>
-            <a class="button navb>
+            <a class="button navb">
               <strong>My Houses</strong>
             </a>
           </div>

@@ -23,7 +23,7 @@
                   </div>
 
                   <div class="has-text-centered">
-                    <button class="button is-primary" type="submit" >Sign in</button>
+                    <button class="button bs" type="submit" ><strong>Sign in</strong></button>
                   </div>
                 </form>
               </div>
@@ -65,6 +65,9 @@ export default {
 
 
 <style scoped>
+strong{
+  color:white;
+}
   #content {
     margin: 10% auto;
     width: 100%;
@@ -72,6 +75,9 @@ export default {
 
   .login {
     margin: 0px 50px;
+  }
+  .bs{
+    background-color:#2D6A4f;
   }
 
 </style>
