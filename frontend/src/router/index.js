@@ -52,6 +52,11 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
+      name: 'TenantProfile',
+      path: '/tprofile',
+      component:()=>import('@/views/TenantProfile')
+    },
+    {
       path: '/404',
       component: () => import('@/views/NotFound')
     },
