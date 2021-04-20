@@ -8,6 +8,7 @@ package roomie.models.house;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import roomie.models.ORMConstants;
+import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
 import roomie.models.photo.PhotoListCollection;
 
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class House implements Serializable {
 	@Schema(hidden = true)
 	private int id;
+	private Landlord landlord;
 	@NotNull
 	private String address;
 	@NotNull
@@ -40,8 +42,12 @@ public class House implements Serializable {
 	private String features;
 	private List<Photo> ORM_photos = new ArrayList<>();
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public List getList(int key) {
+		public java.util.List getList(int key) {
 			return this_getList(key);
+		}
+		
+		public void setOwner(Object owner, int key) {
+			this_setOwner(owner, key);
 		}
 		
 	};
@@ -50,12 +56,18 @@ public class House implements Serializable {
 	public House() {
 	}
 	
-	private List this_getList(int key) {
+	private java.util.List this_getList(int key) {
 		if (key == ORMConstants.KEY_HOUSE_PHOTOS) {
 			return ORM_photos;
 		}
 		
 		return null;
+	}
+	
+	private void this_setOwner(Object owner, int key) {
+		if (key == ORMConstants.KEY_HOUSE_LANDLORD) {
+			this.landlord = (Landlord) owner;
+		}
 	}
 	
 	public int getId() {
@@ -143,11 +155,35 @@ public class House implements Serializable {
 		this.features = value;
 	}
 	
-	private List<Photo> getORM_Photos() {
+	public Landlord getLandlord() {
+		return landlord;
+	}
+	
+	public void setLandlord(Landlord value) {
+		if (landlord != null) {
+			landlord.houses.remove(this);
+		}
+		if (value != null) {
+			value.houses.add(this);
+		}
+	}
+	
+	private Landlord getORM_Landlord() {
+		return landlord;
+	}
+	
+	/**
+	 * This method is for internal use only.
+	 */
+	public void setORM_Landlord(Landlord value) {
+		this.landlord = value;
+	}
+	
+	private java.util.List getORM_Photos() {
 		return ORM_photos;
 	}
 	
-	private void setORM_Photos(List<Photo> value) {
+	private void setORM_Photos(java.util.List value) {
 		this.ORM_photos = value;
 	}
 	

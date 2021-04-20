@@ -46,19 +46,4 @@
         <ServerName></ServerName>
         <SelectedForm>true</SelectedForm>
     </Setting>
-    <Setting type="2">
-        <Driver>MySQL (Connector/J Driver)</Driver>
-        <DriverFiles>&lt;&lt;MySQL Connector/J 8.0.23&gt;&gt;</DriverFiles>
-        <Dialect>org.hibernate.dialect.MySQLDialect</Dialect>
-        <DriverClass>com.mysql.cj.jdbc.Driver</DriverClass>
-        <URL>jdbc:mysql://localhost:3306/roomie</URL>
-        <UserName>roomie</UserName>
-        <EncryptedPassword>86B5D09CD8912AF029972D274BBCBE9B</EncryptedPassword>
-        <HostName>localhost</HostName>
-        <PortNO>3306</PortNO>
-        <DBName>roomie</DBName>
-        <ServiceName></ServiceName>
-        <ServerName></ServerName>
-        <SelectedForm>true</SelectedForm>
-    </Setting>
 </Database>

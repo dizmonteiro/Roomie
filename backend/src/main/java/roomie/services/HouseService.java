@@ -13,6 +13,7 @@ import roomie.exception.ResourceNotFoundException;
 import roomie.models.RoomiePersistentManager;
 import roomie.models.house.House;
 import roomie.models.house.HouseDAO;
+import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
 import roomie.repositories.house.HouseCriteria;
 
@@ -20,10 +21,11 @@ import java.util.List;
 
 @Service
 public class HouseService {
-	public House register(House house, List<Photo> photos) throws PersistentException {
+	public House register(House house, Landlord landlord, List<Photo> photos) throws PersistentException {
 		for (Photo p : photos) {
 			house.photos.add(p);
 		}
+		house.setLandlord(landlord);
 		HouseDAO.save(house);
 		return house;
 	}

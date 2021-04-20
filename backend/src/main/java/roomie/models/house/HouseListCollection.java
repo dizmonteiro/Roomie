@@ -1,9 +1,8 @@
-package roomie.models.house;
-
 /**
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
  */
+package roomie.models.house;
 
 import org.orm.PersistentException;
 import org.orm.PersistentManager;
@@ -34,7 +33,7 @@ public class HouseListCollection extends org.orm.util.ORMList {
 	 */
 	public void add(House value) {
 		if (value != null) {
-			super.add(value, null);
+			super.add(value, value._ormAdapter);
 		}
 	}
 	
@@ -44,7 +43,7 @@ public class HouseListCollection extends org.orm.util.ORMList {
 	 * @param value the persistent object
 	 */
 	public void remove(House value) {
-		super.remove(value, null);
+		super.remove(value, value._ormAdapter);
 	}
 	
 	/**
@@ -128,7 +127,7 @@ public class HouseListCollection extends org.orm.util.ORMList {
 	public House remove(int index) {
 		House value = get(index);
 		if (value != null) {
-			return (House) super.removeImpl(index, null);
+			return (House) super.removeImpl(index, value._ormAdapter);
 		}
 		return null;
 	}
@@ -141,7 +140,7 @@ public class HouseListCollection extends org.orm.util.ORMList {
 	 */
 	public void add(int index, House value) {
 		if (value != null) {
-			super.add(index, value, null);
+			super.add(index, value, value._ormAdapter);
 		}
 	}
 	

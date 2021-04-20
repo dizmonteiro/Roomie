@@ -1,10 +1,10 @@
-package roomie.models.house;
-
 /**
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
  */
+package roomie.models.house;
 
+import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
@@ -34,7 +34,7 @@ public class HouseDAO {
 		}
 	}
 	
-	public static House loadHouseByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House loadHouseByORMID(int id, LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return loadHouseByORMID(session, id, lockMode);
@@ -44,7 +44,7 @@ public class HouseDAO {
 		}
 	}
 	
-	public static House getHouseByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House getHouseByORMID(int id, LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return getHouseByORMID(session, id, lockMode);
@@ -56,7 +56,7 @@ public class HouseDAO {
 	
 	public static House loadHouseByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (House) session.load(House.class, id);
+			return (House) session.load(House.class, new Integer(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -65,25 +65,25 @@ public class HouseDAO {
 	
 	public static House getHouseByORMID(PersistentSession session, int id) throws PersistentException {
 		try {
-			return (House) session.get(House.class, id);
+			return (House) session.get(House.class, new Integer(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
 	}
 	
-	public static House loadHouseByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House loadHouseByORMID(PersistentSession session, int id, LockMode lockMode) throws PersistentException {
 		try {
-			return (House) session.load(House.class, id, lockMode);
+			return (House) session.load(House.class, new Integer(id), lockMode);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
 	}
 	
-	public static House getHouseByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House getHouseByORMID(PersistentSession session, int id, LockMode lockMode) throws PersistentException {
 		try {
-			return (House) session.get(House.class, id, lockMode);
+			return (House) session.get(House.class, new Integer(id), lockMode);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
@@ -100,7 +100,7 @@ public class HouseDAO {
 		}
 	}
 	
-	public static List queryHouse(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryHouse(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return queryHouse(session, condition, orderBy, lockMode);
@@ -120,7 +120,7 @@ public class HouseDAO {
 		}
 	}
 	
-	public static House[] listHouseByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House[] listHouseByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return listHouseByQuery(session, condition, orderBy, lockMode);
@@ -131,7 +131,7 @@ public class HouseDAO {
 	}
 	
 	public static List queryHouse(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuilder sb = new StringBuilder("From roomie.models.house.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -143,8 +143,8 @@ public class HouseDAO {
 		}
 	}
 	
-	public static List queryHouse(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
+	public static List queryHouse(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From roomie.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -167,7 +167,7 @@ public class HouseDAO {
 		}
 	}
 	
-	public static House[] listHouseByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House[] listHouseByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			List list = queryHouse(session, condition, orderBy, lockMode);
 			return (House[]) list.toArray(new House[list.size()]);
@@ -187,7 +187,7 @@ public class HouseDAO {
 		}
 	}
 	
-	public static House loadHouseByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House loadHouseByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return loadHouseByQuery(session, condition, orderBy, lockMode);
@@ -203,7 +203,7 @@ public class HouseDAO {
 		else return null;
 	}
 	
-	public static House loadHouseByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static House loadHouseByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		House[] houses = listHouseByQuery(session, condition, orderBy, lockMode);
 		if (houses != null && houses.length > 0) return houses[0];
 		else return null;
@@ -219,7 +219,7 @@ public class HouseDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateHouseByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateHouseByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
 			PersistentSession session = RoomiePersistentManager.instance().getSession();
 			return iterateHouseByQuery(session, condition, orderBy, lockMode);
@@ -230,7 +230,7 @@ public class HouseDAO {
 	}
 	
 	public static java.util.Iterator iterateHouseByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -242,8 +242,8 @@ public class HouseDAO {
 		}
 	}
 	
-	public static java.util.Iterator iterateHouseByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
+	public static java.util.Iterator iterateHouseByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
+		StringBuffer sb = new StringBuffer("From roomie.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -274,6 +274,37 @@ public class HouseDAO {
 		try {
 			RoomiePersistentManager.instance().deleteObject(house);
 			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public static boolean deleteAndDissociate(House house) throws PersistentException {
+		try {
+			if (house.getLandlord() != null) {
+				house.getLandlord().houses.remove(house);
+			}
+			
+			return delete(house);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public static boolean deleteAndDissociate(House house, PersistentSession session) throws PersistentException {
+		try {
+			if (house.getLandlord() != null) {
+				house.getLandlord().houses.remove(house);
+			}
+			
+			try {
+				session.delete(house);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);

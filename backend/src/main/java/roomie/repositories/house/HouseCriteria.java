@@ -1,9 +1,8 @@
-package roomie.repositories.house;
-
 /**
  * Licensee: vr(Universidade do Minho)
  * License Type: Academic
  */
+package roomie.repositories.house;
 
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
@@ -11,10 +10,13 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 import roomie.models.RoomiePersistentManager;
 import roomie.models.house.House;
+import roomie.repositories.landlord.LandlordCriteria;
 import roomie.repositories.photo.PhotoCriteria;
 
 public class HouseCriteria extends AbstractORMCriteria {
 	public final IntegerExpression id;
+	public final IntegerExpression landlordId;
+	public final AssociationExpression landlord;
 	public final StringExpression address;
 	public final StringExpression title;
 	public final IntegerExpression rooms;
@@ -29,6 +31,8 @@ public class HouseCriteria extends AbstractORMCriteria {
 	public HouseCriteria(Criteria criteria) {
 		super(criteria);
 		id = new IntegerExpression("id", this);
+		landlordId = new IntegerExpression("landlord.id", this);
+		landlord = new AssociationExpression("landlord", this);
 		address = new StringExpression("address", this);
 		title = new StringExpression("title", this);
 		rooms = new IntegerExpression("rooms", this);
@@ -47,6 +51,10 @@ public class HouseCriteria extends AbstractORMCriteria {
 	
 	public HouseCriteria() throws PersistentException {
 		this(RoomiePersistentManager.instance().getSession());
+	}
+	
+	public LandlordCriteria createLandlordCriteria() {
+		return new LandlordCriteria(createCriteria("landlord"));
 	}
 	
 	public PhotoCriteria createPhotosCriteria() {

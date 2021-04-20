@@ -14,14 +14,6 @@ License Type: Academic
         <property name="connection.url">jdbc:postgresql://localhost:5432/roomie</property>
         <property name="connection.username">roomie</property>
         <property name="connection.password">passw0rd</property>
-        <property name="hibernate.connection.provider_class">
-            org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider
-        </property>
-        <property name="hibernate.c3p0.acquire_increment">1</property>
-        <property name="hibernate.c3p0.idle_test_period">0</property>
-        <property name="hibernate.c3p0.min_size">1</property>
-        <property name="hibernate.c3p0.max_size">15</property>
-        <property name="hibernate.c3p0.timeout">0</property>
         <property name="show_sql">false</property>
         <property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
         <!-- mapping files -->

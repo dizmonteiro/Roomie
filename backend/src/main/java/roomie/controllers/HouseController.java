@@ -44,7 +44,6 @@ public class HouseController {
 	@PostMapping(consumes = {"multipart/form-data"})
 	public House register(@Valid House house, @RequestPart(value = "files", required = false) MultipartFile[] files, Authentication auth) throws PersistentException, ResourceNotFoundException {
 		Landlord landlord = landlordService.getById(((MyUser) auth.getPrincipal()).getId());
-		landlord.houses.contains(house);
 		
 		List<Photo> photos = new ArrayList<>();
 		if (files != null) {
@@ -57,9 +56,7 @@ public class HouseController {
 			photos.add(photo);
 		}
 		
-		landlord.houses.add(house);
-		houseService.register(house, photos);
-		landlordService.save(landlord);
+		houseService.register(house, landlord, photos);
 		return house;
 	}
 	
