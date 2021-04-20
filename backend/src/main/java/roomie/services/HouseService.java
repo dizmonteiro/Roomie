@@ -7,10 +7,8 @@ package roomie.services;
 
 import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
-import org.orm.PersistentSession;
 import org.springframework.stereotype.Service;
 import roomie.exception.ResourceNotFoundException;
-import roomie.models.RoomiePersistentManager;
 import roomie.models.house.House;
 import roomie.models.house.HouseDAO;
 import roomie.models.landlord.Landlord;
@@ -67,16 +65,7 @@ public class HouseService {
 	
 	public boolean delete(House house) throws PersistentException {
 		house.photos.clear();
-		
-		try {
-			PersistentSession session = RoomiePersistentManager.instance().getSession();
-			session.clear();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-		
-		return HouseDAO.delete(house);
+		return HouseDAO.deleteAndDissociate(house);
 	}
 	
 }
