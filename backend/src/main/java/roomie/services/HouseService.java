@@ -13,11 +13,7 @@ import roomie.models.house.House;
 import roomie.models.house.HouseDAO;
 import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
-import roomie.models.tenant.Tenant;
-import roomie.models.tenant.TenantDAO;
 import roomie.repositories.house.HouseCriteria;
-
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service

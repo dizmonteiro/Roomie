@@ -5,17 +5,29 @@ package roomie.models.application;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Schema;
 import roomie.models.house.House;
 import roomie.models.tenant.Tenant;
 
 import java.io.Serializable;
 
 public class Application implements Serializable {
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Tenant tenant;
+	@JsonIgnore
 	private int tenantId;
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private House house;
+	@NotNull
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int houseId;
+	@Schema(example = "false")
 	private boolean toBeAssessed;
+	@Schema(example = "false")
 	private boolean accepted;
 	
 	public Application() {
@@ -44,7 +56,7 @@ public class Application implements Serializable {
 		}
 		return hashcode;
 	}
-	
+
 	public int getTenantId() {
 		return tenantId;
 	}
@@ -52,7 +64,7 @@ public class Application implements Serializable {
 	private void setTenantId(int value) {
 		this.tenantId = value;
 	}
-	
+
 	public int getHouseId() {
 		return houseId;
 	}
@@ -72,7 +84,7 @@ public class Application implements Serializable {
 	public boolean getAccepted() {
 		return accepted;
 	}
-	
+
 	public House getHouse() {
 		return house;
 	}
@@ -87,16 +99,6 @@ public class Application implements Serializable {
 	
 	public void setTenant(Tenant value) {
 		this.tenant = value;
-	}
-	
-	public boolean hasBeenAssessed() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public boolean isAccepted() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
 	}
 	
 	public void setAccepted(boolean value) {
