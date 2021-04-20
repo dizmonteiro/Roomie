@@ -45,4 +45,31 @@ public class MyUserDetailsService implements UserDetailsService {
 		}
 		return null;
 	}
+	
+	public MyUser loadUserByUsernameAndType(String email, String type) throws UsernameNotFoundException {
+		try {
+			Set<GrantedAuthority> authorities = new HashSet<>();
+			if (type.equals("tenant")) {
+				Tenant[] tenants = TenantDAO.listTenantByQuery("Email='" + email + "'", null);
+				if (tenants.length > 0) {
+					authorities.add(new SimpleGrantedAuthority("ROLE_TENANT"));
+					return new MyUser(tenants[0].getEmail(), tenants[0].getPassword(), tenants[0].getName(), tenants[0]
+							.getId(), authorities);
+				}
+			}
+			
+			if (type.equals("landlord")) {
+				Landlord[] landlords = LandlordDAO.listLandlordByQuery("Email='" + email + "'", null);
+				if (landlords.length > 0) {
+					authorities.add(new SimpleGrantedAuthority("ROLE_LANDLORD"));
+					return new MyUser(landlords[0].getEmail(), landlords[0].getPassword(), landlords[0]
+							.getName(), landlords[0].getId(), authorities);
+				}
+			}
+			
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -29,6 +29,10 @@ public class JwtTokenUtil implements Serializable {
 		return getClaimFromToken(token, Claims::getSubject);
 	}
 	
+	public String getTypeFromToken(String token) {
+		return (String) ((HashMap) getAllClaimsFromToken(token).get("user")).get("type");
+	}
+	
 	public Date getExpirationDateFromToken(String token) {
 		return getClaimFromToken(token, Claims::getExpiration);
 	}

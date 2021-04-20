@@ -36,12 +36,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		
 		String username = null;
 		String jwtToken = null;
+		String type = null;
 		
 		if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 			jwtToken = requestTokenHeader.substring(7);
 			try {
+				type = jwtTokenUtil.getTypeFromToken(jwtToken);
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
 				System.out.println("Unable to get JWT Token");
 			} catch (ExpiredJwtException e) {
 				System.out.println("JWT Token has expired");
@@ -51,7 +54,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		}
 		
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			UserDetails userDetails = userDetailsService.loadUserByUsernameAndType(username, type);
 			if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails
 						.getAuthorities());
