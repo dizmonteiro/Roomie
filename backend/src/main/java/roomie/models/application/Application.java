@@ -5,6 +5,9 @@ package roomie.models.application;
  * License Type: Academic
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 import roomie.models.house.House;
 import roomie.models.tenant.Tenant;
 
@@ -12,10 +15,20 @@ import java.io.Serializable;
 
 public class Application implements Serializable {
 	private Tenant tenant;
+	
+	@JsonIgnore
 	private int tenantId;
+	
 	private House house;
+	
+	@NotNull
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int houseId;
+	
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private boolean toBeAssessed;
+	
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private boolean accepted;
 	
 	public Application() {
@@ -73,6 +86,10 @@ public class Application implements Serializable {
 		return accepted;
 	}
 	
+	public void setAccepted(boolean value) {
+		this.accepted = value;
+	}
+	
 	public House getHouse() {
 		return house;
 	}
@@ -87,20 +104,6 @@ public class Application implements Serializable {
 	
 	public void setTenant(Tenant value) {
 		this.tenant = value;
-	}
-	
-	public boolean hasBeenAssessed() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public boolean isAccepted() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setAccepted(boolean value) {
-		this.accepted = value;
 	}
 	
 	public String toString() {
