@@ -15,20 +15,20 @@ import roomie.models.tenant.Tenant;
 
 @Service
 public class ApplicationService {
-
-    public Application create(Tenant tenant, House house) throws PersistentException {
-        if(ApplicationDAO.getApplicationByORMID(tenant,house) != null){
-            throw new ErrorDetails("Tenant already applied to this house.");
-        }
-        Application application = new Application();
-        application.setHouse(house);
-        application.setTenant(tenant);
-        application.setAccepted(false);
-        application.setToBeAssessed(false);
-
-        ApplicationDAO.save(application);
-        return application;
-    }
+	
+	public Application create(Tenant tenant, House house) throws PersistentException {
+		if (ApplicationDAO.getApplicationByORMID(tenant, house) != null) {
+			throw new ErrorDetails("Tenant already applied to this house.");
+		}
+		Application application = new Application();
+		application.setHouse(house);
+		application.setTenant(tenant);
+		application.setAccepted(false);
+		application.setToBeAssessed(false);
+		
+		ApplicationDAO.save(application);
+		return application;
+	}
 
     /*public Application register(Application application, Avatar avatar) throws PersistentException {
         if (avatar == null) {

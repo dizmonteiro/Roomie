@@ -4,7 +4,10 @@ import org.orm.PersistentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
 import roomie.models.auth.MyUser;
@@ -24,22 +27,22 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/applications")
 public class ApplicationController {
-    @Autowired
-    private ApplicationService applicationService;
-
-    @Autowired
-    private TenantService tenantService;
-
-    @Autowired
-    private HouseService houseService;
-
-    @PreAuthorize("hasRole('TENANT')")
-    @PostMapping
-    public Application register(@Valid @RequestBody Application application, Authentication auth) throws PersistentException, ResourceNotFoundException {
-        Tenant tenant = tenantService.getById(((MyUser) auth.getPrincipal()).getId());
-        House house = houseService.getById(application.getHouseId());
-        return applicationService.create(tenant,house);
-    }
+	@Autowired
+	private ApplicationService applicationService;
+	
+	@Autowired
+	private TenantService tenantService;
+	
+	@Autowired
+	private HouseService houseService;
+	
+	@PreAuthorize("hasRole('TENANT')")
+	@PostMapping
+	public Application register(@Valid @RequestBody Application application, Authentication auth) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(((MyUser) auth.getPrincipal()).getId());
+		House house = houseService.getById(application.getHouseId());
+		return applicationService.create(tenant, house);
+	}
 
     /*@GetMapping(value = "/{id}")
     public Application getApplication(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
