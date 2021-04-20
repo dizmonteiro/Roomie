@@ -5,6 +5,7 @@ package roomie.services;
  * @created: 13/04/2021 - 11:02
  */
 
+import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
 import org.springframework.stereotype.Service;
 import roomie.exception.ErrorDetails;
@@ -12,6 +13,8 @@ import roomie.models.application.Application;
 import roomie.models.application.ApplicationDAO;
 import roomie.models.house.House;
 import roomie.models.tenant.Tenant;
+import roomie.repositories.application.ApplicationCriteria;
+import roomie.repositories.house.HouseCriteria;
 
 import java.util.List;
 
@@ -33,11 +36,22 @@ public class ApplicationService {
 	}
 	
 	public List<Application> getByTenantId(int id) throws PersistentException {
-		return ApplicationDAO.queryApplication("tenant.id=" + id, null);
+		return getByEntityId("tenant", id);
 	}
 	
 	public List<Application> getByLandlordId(int id) throws PersistentException {
-		return ApplicationDAO.queryApplication("house.landlord.id=" + id, null);
+		return getByEntityId("landlord", id);
+	}
+	
+	public List<Application> getByEntityId(String entity, int id) throws PersistentException {
+		ApplicationCriteria criteria = new ApplicationCriteria();
+		if (entity.equals("landlord")) {
+			HouseCriteria houseCriteria = criteria.createHouseCriteria();
+			houseCriteria.add(Restrictions.eq(entity + ".id", id));
+		} else {
+			criteria.add(Restrictions.eq(entity + ".id", id));
+		}
+		return criteria.list();
 	}
 
     /*
