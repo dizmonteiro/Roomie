@@ -72,23 +72,12 @@ export default {
     width: 100%;
   }
 
-  #preview {
-    min-height: 200px;
-    max-height: 200px;
-  }
-
-  #filler {
-    min-height: 90vh;
-  }
-
   @media (max-width: 770px) {
     #homecard{
         margin: 3% auto;
         min-height: 80vh;
     }
   }
-
-  label { display:block }
 
   .carousel {
     position:relative;

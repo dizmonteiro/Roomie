@@ -67,6 +67,11 @@ public class HouseController {
 		return houseService.filter(title, rooms, price, limit, offset);
 	}
 	
+	@GetMapping(("/total"))
+	public Integer getTotalHouses() throws PersistentException, ResourceNotFoundException {
+		return houseService.getTotalHouses();
+	}
+	
 	@GetMapping(value = "/{id}")
 	public House getHouse(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return houseService.getById(id);

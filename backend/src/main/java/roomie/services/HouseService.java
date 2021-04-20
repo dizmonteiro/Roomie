@@ -49,10 +49,17 @@ public class HouseService {
 	
 	private List<House> applyPagination(List<House> houses, int limit, int offset) {
 		int count = houses.size();
-		if (offset + limit >= count) {
+		
+		if (count == 0) {
+			limit = 0;
+		} else if (offset + limit >= count) {
 			limit = count - (offset + 1);
 		}
 		return houses.subList(offset, offset + limit);
+	}
+	
+	public int getTotalHouses() throws PersistentException {
+		return HouseDAO.getTotalNOfHouses();
 	}
 	
 	public House getById(int id) throws ResourceNotFoundException, PersistentException {
@@ -64,8 +71,6 @@ public class HouseService {
 	}
 	
 	public House update(House house, House houseInfo, List<Photo> photos) throws PersistentException {
-		
-		
 		if (houseInfo.getAddress() != null) {
 			house.setAddress(houseInfo.getAddress());
 		}
@@ -111,5 +116,4 @@ public class HouseService {
 		house.photos.clear();
 		return HouseDAO.deleteAndDissociate(house);
 	}
-	
 }
