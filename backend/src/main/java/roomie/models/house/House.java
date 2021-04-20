@@ -23,21 +23,21 @@ public class House implements Serializable {
 	private int id;
 	private Landlord landlord;
 	@NotNull
-	private String address;
+	private String address; // editable
 	@NotNull
-	private String title;
+	private String title; // editable
 	@NotNull
-	private int rooms;
+	private int rooms; // editable
 	@NotNull
-	private int availableRooms;
+	private int availableRooms; // editable
 	@NotNull
-	private int bathRooms;
+	private int bathRooms; // editable
 	@NotNull
-	private double minPrice;
+	private double minPrice; // editable
 	@NotNull
-	private double maxPrice;
+	private double maxPrice; // editable
 	@NotNull
-	private String description;
+	private String description; // editable
 	@NotNull
 	private String features;
 	private List<Photo> ORM_photos = new ArrayList<>();

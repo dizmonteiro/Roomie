@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
 import roomie.helpers.FileUtils;
+import roomie.models.house.House;
 import roomie.models.photo.Photo;
 import roomie.models.photo.PhotoDAO;
+import roomie.models.photo.PhotoListCollection;
 
 import java.io.IOException;
 
@@ -44,17 +46,6 @@ public class PhotoService {
 	
 	public boolean delete(Photo photo) throws PersistentException {
 		return fileUtils.delete(photo.getPath());
-	}
-	
-	public boolean update(Photo photo, MultipartFile file) throws PersistentException {
-		if (file != null) {
-			String path = fileUtils.save(file);
-			delete(photo);
-			photo.setPath(path);
-		}
-		PhotoDAO.save(photo);
-		PhotoDAO.refresh(photo);
-		return true;
 	}
 	
 	public Photo getById(int id) throws PersistentException, ResourceNotFoundException {

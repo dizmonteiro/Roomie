@@ -31,22 +31,25 @@ export default {
 
 <style scoped>
 
-label{
+label {
     display: block;
 }
-strong{
+
+strong {
   color:white;
 }
+
 .oline {
-  
   background-color: white;
   border-style: solid;
   border-width: 1px;
 }
+
 .placer {
   padding: 0 5%;
   margin: 5% auto;
 }
+
 .vm {
   background-color: #2D6A4f;
   width: 80%;
@@ -54,4 +57,5 @@ strong{
   margin: 3% auto;
   color:white;
 }
+
 </style>
