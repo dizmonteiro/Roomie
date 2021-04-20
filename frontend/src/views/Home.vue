@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
   #content {
     margin: 3% auto;
@@ -101,37 +101,6 @@ export default {
   img {
     object-fit: contain;
   }
-  
-  .btn {
-    padding:5px 10px;
-    background-color:rgba(0,0,0,0);
-    border:1px solid transparent;
-    margin:5px 10px;
-    color:#FFF;
-    height:380px;
-    width:100px;
-    position:absolute;
-    margin-top:-190px;
-    z-index:2;
-  }
-
-  .btn:hover {
-    cursor: pointer;
-  }
-    
-  .btn:focus{
-    outline:none;
-  }
-  
-  .btn-next {
-    top:50%;
-    right:0;
-  }
-  
-  .btn-prev {
-    top:50%;
-    left:0;
-  }
 
   .carousel-slider {
     position:absolute;
@@ -145,4 +114,5 @@ export default {
     width:100%;
     height:100%;
   }
+
 </style>
