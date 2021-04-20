@@ -70,7 +70,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
 .star {
   width: 20%;
 }
