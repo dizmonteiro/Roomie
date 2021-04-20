@@ -23,16 +23,51 @@
           </div>
         </div>
       </div>
-  </div>
+      <div class="modal" id="modal">
+        <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="card">
+              <div class="card-content is-vcentered">
+                <div class="content has-text-centered">
+                  <br>
+                  <h1>Registration Complete!</h1>  
+                  <br>
+                  <br>
+                  <button type="submit" class="button is-green" v-on:click="goToHome()">Return to Home</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close" v-on:click="closeModal()"></button>
+        </div>
+      </div>
 </template>
 
 <script>
 
 import DefaultNavbar from '@/components/DefaultNavbar'
 import axios from 'axios';
+import countries from '@/assets/scripts/countries'
 
 function getUserType() {
     var radios = document.getElementsByName('user');
+
+    var countrySelector1 = `
+      <div class="select">
+        <select id="nationality" required>
+          <option>Select a Country</option>
+    `
+
+    for (var i = 0; i < countries.length; i++) {
+      countrySelector1 += "<option value=" + countries[i].name  + ">" + countries[i].name + "</option>"
+    }
+
+    var countrySelector2 =`
+        </select>
+      </div>
+    `
+
+    var countrySelector = countrySelector1 + countrySelector2
 
     if(radios[0].checked){
       document.getElementById('register-form').innerHTML = '';
@@ -70,9 +105,7 @@ function getUserType() {
             </div>
             <div class="field">
               <label class="label">Nationality</label>
-              <div class="control is-expanded">
-                <input class="input" type="text" placeholder="Nationality" id="nationality" required>
-              </div>
+                ` + countrySelector + `
             </div>
           </div>
           <div class="column">
@@ -85,7 +118,7 @@ function getUserType() {
             <div class="field">
               <label class="label">NIF</label>
               <div class="control is-expanded">
-                <input class="input" type="text" placeholder="NIF" id="nif" maxlength="9" size="9" required>
+                <input class="input" type="text" placeholder="NIF" id="nif" minlength="9" maxlength="9" size="9" required>
               </div>
             </div>
             <div class="field">
@@ -151,7 +184,7 @@ function getUserType() {
           </div>
         </div>
       `;
-      
+
       document.getElementById('register-form').appendChild(div);
 
       const submit = document.getElementById('regist');
@@ -193,7 +226,8 @@ function getUserType() {
             },
           })
           .then(function () {
-            window.location.replace("/");
+            document.getElementById("modal").classList.add("is-active");
+            //window.location.replace("/");
           })
           .catch(function (response) {
             alert(response)
@@ -247,7 +281,7 @@ function getUserType() {
             <div class="field">
               <label class="label">NIF</label>
               <div class="control is-expanded">
-                <input class="input" type="text" placeholder="NIF" id="nif" maxlength="9" size="9" required>
+                <input class="input" type="text" placeholder="NIF" id="nif" minlength="9" maxlength="9" size="9" required>
               </div>
             </div>
             <div class="field">
@@ -351,7 +385,8 @@ function getUserType() {
             },
           })
           .then(function () {
-            window.location.replace("/");
+            document.getElementById("modal").classList.add("is-active");
+            //window.location.replace("/");
           })
           .catch(function (response) {
             alert(response)
@@ -370,10 +405,18 @@ function getUserType() {
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(fileInput.files[0]);
         output.onload = function() {
-          URL.revokeObjectURL(output.src) // free memory
+          URL.revokeObjectURL(output.src)
         }
       }
     }
+}
+
+function goToHome() {
+  window.location.replace("/");
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.remove("is-active");
 }
 
 
@@ -383,7 +426,9 @@ export default {
     DefaultNavbar
   },
   methods: {
-    getUserType
+    getUserType,
+    closeModal,
+    goToHome
   }
 }
 </script>
