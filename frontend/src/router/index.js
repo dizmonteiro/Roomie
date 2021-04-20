@@ -1,5 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
+
+const ifNotAuthenticated = (to, from, next) => {
+  if (!store.getters.isAuthenticated) {
+    next()
+    return
+  }
+  next('/')
+}
+
+const ifAuthenticated = (to, from, next) => {
+  if (store.getters.isAuthenticated) {
+    next()
+    return
+  }
+  next('/login')
+}
 
 Vue.use(Router)
 
@@ -20,7 +37,8 @@ export default new Router({
     {
       name: 'Login',
       path: '/login',
-      component: () => import('@/views/Login')
+      component: () => import('@/views/Login'),
+      beforeEnter: ifNotAuthenticated
     },
     {
       name: 'Register',
@@ -28,9 +46,39 @@ export default new Router({
       component: () => import('@/views/Register')
     },
     {
-      name: 'LandlordProfile',
-      path: '/llprofile',
-      component: () => import('@/views/LandlordProfile')
+      name: 'Landlord',
+      path: '/landlord',
+      component: () => import('@/views/LoggedLandlord'),
+      beforeEnter: ifAuthenticated
+    },
+    {
+      name: 'Landlord',
+      path: '/landlord/profile',
+      component: () => import('@/views/LandlordProfile'),
+      beforeEnter: ifAuthenticated
+    },
+    {
+      name: 'Tenant',
+      path: '/tenant',
+      component: () => import('@/views/LoggedTenant'),
+      beforeEnter: ifAuthenticated
+    },
+    {
+      name: 'Tenant',
+      path: '/tenant/profile',
+      component: () => import('@/views/TenantProfile'),
+      beforeEnter: ifAuthenticated
+    },
+    {
+      name: 'LoggedTenant',
+      path: '/loggedtt',
+      component: () => import('@/views/LoggedTenant'),
+      //beforeEnter: ifAuthenticated
+    },
+    {                      
+      name: 'TenantProfile',
+      path: '/tprofile',
+      component:()=>import('@/views/TenantProfile')
     },
     {
       path: '/404',

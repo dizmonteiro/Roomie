@@ -1,10 +1,10 @@
 <template>
   <div>
-    <DefaultNavbar />
+    <LandlordNavbar />
         <div id="content">
           <div class="columns is-centered is-vcentered">
             <div class="column is-three-fifths">
-              <div class="card" id="homecard">
+              <div class="card" id="loggedlandlordcard">
                 <div class="card-image">
                   <carousel >
                     <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
@@ -13,20 +13,25 @@
                   </carousel>
                 </div>
                 <div class="card-content">
-                  <div class="content has-text-justified">
-                    <p>
-                      A Roomie é uma Plataforma de Procura e Disponibilização de Imobiliário para Arrendamento que procura não só facilitar o processo de encontrar uma habitação como também o processo da escolha do ambiente em que se pretende viver.
-                    </p>
-                  </div>
-                    
+
                   <div class="buttons is-centered">
-                    <a class="button is-light" href="/login">
-                       Login
-                    </a>
-                    <a class="button is-green" href="/register">
-                      <strong>Register</strong>
+                    <a class="button is-green vm" href="/">
+                       View my Houses
                     </a>
                   </div>
+
+                  <div class="buttons is-centered">
+                    <a class="button is-green vm" href="/">
+                       Add new Houses
+                    </a>
+                  </div>
+
+                  <div class="buttons is-centered">
+                    <a class="button is-green vm" href="/">
+                       Check Applications
+                    </a>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -36,7 +41,7 @@
 </template>
 
 <script>
-import DefaultNavbar from '@/components/DefaultNavbar';
+import LandlordNavbar from '@/components/LandlordNavbar.vue';
 import Carousel from '@/components/Carousel.vue';
 import CarouselSlide from '@/components/CarouselSlide.vue';
 
@@ -55,10 +60,10 @@ export default {
     }
   },
 
-  name: 'Home',
+  name: 'LoggedLandlord',
 
   components: {
-    DefaultNavbar,
+    LandlordNavbar,
     Carousel: Carousel,
     CarouselSlide: CarouselSlide
   }
@@ -82,13 +87,18 @@ export default {
   }
 
   @media (max-width: 770px) {
-    #homecard{
+    #loggedlandlordcard{
         margin: 3% auto;
         min-height: 80vh;
     }
   }
 
   label { display:block }
+
+  .vm {
+    width: 25%;
+    min-width: 70px;
+  }
 
   .carousel {
     position:relative;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <DefaultNavbar />
-      <div class="columns is-centered is-vcentered is-flex-grow-1">
+      <div class="columns is-centered is-vcentered">
         <div class="column is-three-quarters">
           <div class="card" id="registercard">
             <div class="card-content">
@@ -146,7 +146,7 @@ function getUserType() {
                   Cancel
                 </a>
               </p>
-              <button type="submit" class="button is-primary" id="regist">Register</button>
+              <button type="submit" class="button is-green" id="regist">Register</button>
             </div>
           </div>
         </div>
@@ -306,7 +306,7 @@ function getUserType() {
                   Cancel
                 </a>
               </p>
-              <button type="submit" class="button is-primary" id="regist">Register</button>
+              <button type="submit" class="button is-green" id="regist">Register</button>
             </div>
           </div>
         </div>
@@ -401,6 +401,7 @@ export default {
   #registercard{
     margin: 3% auto;
     min-height: 80vh;
+    margin-bottom: 50px;
   } 
 
   .login {

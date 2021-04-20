@@ -16,16 +16,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-light">
-              Search
+            <a class="button navb">
+             <strong>Check Applications</strong>
             </a>
-            <a class="button is-light">
-              Check Applications
+            <a class="button navb" @click="logout">
+              <strong>Add New House</strong>
             </a>
-            <a class="button is-light">
-              Add New House
-            </a>
-            <a class="button is-primary">
+            <a class="button navb">
               <strong>My Houses</strong>
             </a>
           </div>
@@ -36,7 +33,29 @@
 </template>
 
 <script>
+import { AUTH_LOGOUT } from "@/store/actions/auth"
+
 export default {
-  name: 'LandlordNavbar'
+  name: 'LandlordNavbar',
+  methods: {
+    logout: function () {
+      this.$store.dispatch(AUTH_LOGOUT)
+      .then(() => {
+        this.$router.push('/login')
+      })
+    }
+  },
 }
 </script>
+<style scoped>
+strong{
+  color:white
+}
+.navb{
+  border-width: 0;
+  background-color: rgba(1,1,1,0);
+}
+.navbar{
+  background-color:#2D6A4f;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -16,11 +16,11 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-light">
-              My Rent History
+            <a class="button navb" @click="logout">
+              <strong>My Rent History </strong>
             </a>
-            <a class="button is-light">
-              My Applications
+            <a class="button navb">
+              <strong>My Applications</strong>
             </a>
           </div>
         </div>
@@ -30,7 +30,29 @@
 </template>
 
 <script>
+import { AUTH_LOGOUT } from "@/store/actions/auth"
+
 export default {
-  name: 'TenantNavbar'
+  name: 'LandlordNavbar',
+  methods: {
+    logout: function () {
+      this.$store.dispatch(AUTH_LOGOUT)
+      .then(() => {
+        this.$router.push('/login')
+      })
+    }
+  },
 }
 </script>
+<style scoped>
+strong{
+  color:white
+}
+.navb{
+  border-width: 0;
+  background-color: rgba(1,1,1,0);
+}
+.navbar{
+  background-color:#2D6A4f;
+}
+</style>
