@@ -63,12 +63,12 @@ public class HouseController {
 	@GetMapping()
 	@Parameter(name = "limit", description = "Number of items per page")
 	@Parameter(name = "offset", description = "Index of first item in page")
-	public List<House> getHouses(@RequestParam(required = false) String title, @RequestParam(required = false) Integer rooms, @RequestParam(required = false) Double price, @RequestParam(required = false, defaultValue = "10") Integer limit, @RequestParam(required = false, defaultValue = "0") Integer offset) throws PersistentException, ResourceNotFoundException {
-		return houseService.filter(title, rooms, price, limit, offset);
+	public List<House> getHouses(@RequestParam(required = false) String title, @RequestParam(required = false) String city, @RequestParam(required = false) Integer rooms, @RequestParam(required = false) Double price, @RequestParam(required = false, defaultValue = "9") Integer limit, @RequestParam(required = false, defaultValue = "0") Integer offset) throws PersistentException {
+		return houseService.filter(title, city, rooms, price, limit, offset);
 	}
 	
 	@GetMapping(("/total"))
-	public Integer getTotalHouses() throws PersistentException, ResourceNotFoundException {
+	public Integer getTotalHouses() throws PersistentException {
 		return houseService.getTotalHouses();
 	}
 	

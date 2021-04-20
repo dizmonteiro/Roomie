@@ -28,11 +28,15 @@ public class HouseService {
 		return house;
 	}
 	
-	public List<House> filter(String title, Integer rooms, Double price, int limit, int offset) throws PersistentException {
+	public List<House> filter(String title, String city, Integer rooms, Double price, int limit, int offset) throws PersistentException {
 		HouseCriteria houseCriteria = new HouseCriteria();
 		
 		if (title != null && title.trim().length() != 0) {
 			houseCriteria.add(Restrictions.ilike("title", "%" + title + "%"));
+		}
+		
+		if (city != null && city.trim().length() != 0) {
+			houseCriteria.add(Restrictions.ilike("address", "%" + city + "%"));
 		}
 		
 		if (rooms != null) {
@@ -53,7 +57,7 @@ public class HouseService {
 		if (count == 0) {
 			limit = 0;
 		} else if (offset + limit >= count) {
-			limit = count - (offset + 1);
+			limit = count - offset;
 		}
 		return houses.subList(offset, offset + limit);
 	}
