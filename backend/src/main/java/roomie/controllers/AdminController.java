@@ -46,6 +46,7 @@ public class AdminController {
 		}
 	}
 	
+	/*
 	@GetMapping("/populate")
 	public String populateDB() throws PersistentException {
 		PersistentTransaction t = RoomiePersistentManager.instance().getSession().beginTransaction();
@@ -77,4 +78,5 @@ public class AdminController {
 			return e.toString();
 		}
 	}
+	*/
 }

@@ -284,6 +284,7 @@ export default {
 
 
 <style scoped>
+
 strong{
   color: white;
 }
