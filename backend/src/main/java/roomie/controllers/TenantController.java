@@ -8,14 +8,17 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
+import roomie.models.application.Application;
 import roomie.models.auth.UpdatePasswordRequest;
 import roomie.models.avatar.Avatar;
 import roomie.models.tenant.Tenant;
+import roomie.services.ApplicationService;
 import roomie.services.AvatarService;
 import roomie.services.TenantService;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author: Vasco Ramos
@@ -30,6 +33,9 @@ public class TenantController {
 	
 	@Autowired
 	private AvatarService avatarService;
+	
+	@Autowired
+	private ApplicationService applicationService;
 	
 	@PostMapping(consumes = {"multipart/form-data"})
 	public Tenant register(@Valid Tenant tenant, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException {
@@ -55,7 +61,7 @@ public class TenantController {
 		}
 	}
 	
-	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")
+	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication, #id)")
 	@PutMapping(value = "/{id}")
 	public Tenant editTenant(@PathVariable int id, Tenant tenantInfo, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException, ResourceNotFoundException {
 		Tenant tenant = tenantService.getById(id);
@@ -64,7 +70,7 @@ public class TenantController {
 		return tenant;
 	}
 	
-	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication,#id)")
+	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication, #id)")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> deleteTenant(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		Tenant tenant = tenantService.getById(id);
@@ -81,6 +87,12 @@ public class TenantController {
 	@ResponseBody
 	public byte[] getAvatar(@PathVariable int id) throws PersistentException, ResourceNotFoundException, IOException {
 		return avatarService.load(tenantService.getById(id).getAvatar());
+	}
+	
+	@PreAuthorize("hasRole('TENANT') and @userSecurity.isSelf(authentication, #id)")
+	@GetMapping(value = "/{id}/applications")
+	public List<Application> getApplications(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		return applicationService.getByTenantId(id);
 	}
 	
 }
