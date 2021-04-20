@@ -44,21 +44,10 @@ public class ApplicationController {
 		return applicationService.create(tenant, house);
 	}
 
-    /*@GetMapping(value = "/{id}")
+    /*
+    @GetMapping(value = "/{id}")
     public Application getApplication(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
         return applicationService.getById(id);
-    }
-
-    @PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
-    @PutMapping("/{id}/password")
-    public ResponseEntity<String> updatePassword(@PathVariable int id, @Valid @RequestBody UpdatePasswordRequest body) throws PersistentException, ResourceNotFoundException {
-        Application application = applicationService.getById(id);
-        boolean res = applicationService.updatePassword(application, body);
-        if (res) {
-            return ResponseEntity.ok("Password updated successfully");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
     @PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
@@ -82,16 +71,6 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-    @GetMapping(value = "/{id}/avatar", produces = "image/*")
-    @ResponseBody
-    public byte[] getAvatar(@PathVariable int id) throws PersistentException, ResourceNotFoundException, IOException {
-        return avatarService.load(applicationService.getById(id).getAvatar());
-    }
-
-    @GetMapping(value = "/{id}/houses")
-    public List<House> getApplicationHouses(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-        return applicationService.getById(id).houses.getCollection();
-    }
-*/
+    
+    */
 }

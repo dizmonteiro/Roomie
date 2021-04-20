@@ -13,6 +13,8 @@ import roomie.models.application.ApplicationDAO;
 import roomie.models.house.House;
 import roomie.models.tenant.Tenant;
 
+import java.util.List;
+
 @Service
 public class ApplicationService {
 	
@@ -29,28 +31,16 @@ public class ApplicationService {
 		ApplicationDAO.save(application);
 		return application;
 	}
+	
+	public List<Application> getByTenantId(int id) throws PersistentException {
+		return ApplicationDAO.queryApplication("tenant.id=" + id, null);
+	}
+	
+	public List<Application> getByLandlordId(int id) throws PersistentException {
+		return ApplicationDAO.queryApplication("house.landlord.id=" + id, null);
+	}
 
-    /*public Application register(Application application, Avatar avatar) throws PersistentException {
-        if (avatar == null) {
-            avatar = AvatarDAO.createAvatar();
-            AvatarDAO.save(avatar);
-        }
-
-        application.setPassword(passwordEncoder.encode(application.getPassword()));
-        application.setAvatar(avatar);
-
-        ApplicationDAO.save(application);
-        return application;
-    }
-
-    public Application getById(int id) throws ResourceNotFoundException, PersistentException {
-        Application application = ApplicationDAO.getApplicationByORMID(id);
-        if (application == null) {
-            throw new ResourceNotFoundException("Application not found: id=" + id);
-        }
-        return application;
-    }
-
+    /*
     public boolean delete(Application application) throws PersistentException, ResourceNotFoundException {
         ApplicationDAO.evict(application);
         return ApplicationDAO.delete(application);
@@ -103,5 +93,5 @@ public class ApplicationService {
         ApplicationDAO.refresh(application);
         return true;
     }
-*/
+	*/
 }

@@ -8,10 +8,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
+import roomie.models.application.Application;
 import roomie.models.auth.UpdatePasswordRequest;
 import roomie.models.avatar.Avatar;
 import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
+import roomie.services.ApplicationService;
 import roomie.services.AvatarService;
 import roomie.services.LandlordService;
 
@@ -32,6 +34,9 @@ public class LandlordController {
 	
 	@Autowired
 	private AvatarService avatarService;
+	
+	@Autowired
+	private ApplicationService applicationService;
 	
 	@PostMapping(consumes = {"multipart/form-data"})
 	public Landlord register(@Valid Landlord landlord, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException {
@@ -88,6 +93,12 @@ public class LandlordController {
 	@GetMapping(value = "/{id}/houses")
 	public List<House> getLandlordHouses(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return landlordService.getById(id).houses.getCollection();
+	}
+	
+	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication, #id)")
+	@GetMapping(value = "/{id}/applications")
+	public List<Application> getApplications(@PathVariable int id) throws PersistentException {
+		return applicationService.getByLandlordId(id);
 	}
 	
 }
