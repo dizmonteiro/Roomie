@@ -7,16 +7,17 @@ package roomie.services;
 
 import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
-import org.orm.PersistentSession;
 import org.springframework.stereotype.Service;
 import roomie.exception.ResourceNotFoundException;
-import roomie.models.RoomiePersistentManager;
 import roomie.models.house.House;
 import roomie.models.house.HouseDAO;
 import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
+import roomie.models.tenant.Tenant;
+import roomie.models.tenant.TenantDAO;
 import roomie.repositories.house.HouseCriteria;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
@@ -64,19 +65,54 @@ public class HouseService {
 		}
 		return house;
 	}
+
+	public House update(House house, House houseInfo, List<Photo> photos) throws PersistentException {
+
+
+		if (houseInfo.getAddress() != null) {
+			house.setAddress(houseInfo.getAddress());
+		}
+
+		if (houseInfo.getTitle() != null) {
+			house.setTitle(houseInfo.getTitle());
+		}
+
+		if(houseInfo.getRooms() != 0){
+			house.setRooms(houseInfo.getRooms());
+		}
+
+		if(houseInfo.getAvailableRooms() != 0) {
+			house.setAvailableRooms(houseInfo.getAvailableRooms());
+		}
+
+		if(houseInfo.getBathRooms() != 0){
+			house.setBathRooms(houseInfo.getBathRooms());
+		}
+
+		if(houseInfo.getMinPrice() != 0) {
+			house.setMinPrice(houseInfo.getMinPrice());
+		}
+
+		if(houseInfo.getMaxPrice() != 0) {
+			house.setMaxPrice(houseInfo.getMaxPrice());
+		}
+
+		if (houseInfo.getDescription() != null) {
+			house.setDescription(houseInfo.getDescription());
+		}
+
+		for (Photo p : photos) {
+			house.photos.add(p);
+		}
+
+		HouseDAO.save(house);
+		HouseDAO.refresh(house);
+		return house;
+	}
 	
 	public boolean delete(House house) throws PersistentException {
 		house.photos.clear();
-		
-		try {
-			PersistentSession session = RoomiePersistentManager.instance().getSession();
-			session.clear();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-		
-		return HouseDAO.delete(house);
+		return HouseDAO.deleteAndDissociate(house);
 	}
 	
 }
