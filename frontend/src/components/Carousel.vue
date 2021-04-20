@@ -60,3 +60,38 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+  .btn {
+    padding:5px 10px;
+    background-color:rgba(0,0,0,0);
+    border:1px solid transparent;
+    margin:5px 10px;
+    color:#FFF;
+    height:380px;
+    width:100px;
+    position:absolute;
+    margin-top:-190px;
+    z-index:2;
+  }
+
+  .btn:hover {
+    cursor: pointer;
+  }
+    
+  .btn:focus{
+    outline:none;
+  }
+  
+  .btn-next {
+    top:50%;
+    right:0;
+  }
+  
+  .btn-prev {
+    top:50%;
+    left:0;
+  }
+
+</style>
