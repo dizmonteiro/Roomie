@@ -6,10 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
 import roomie.helpers.FileUtils;
-import roomie.models.house.House;
 import roomie.models.photo.Photo;
 import roomie.models.photo.PhotoDAO;
-import roomie.models.photo.PhotoListCollection;
 
 import java.io.IOException;
 

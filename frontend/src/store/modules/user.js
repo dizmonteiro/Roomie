@@ -26,12 +26,13 @@ const actions = {
     resp.name = token.name
     resp.email = token.email
     resp.id = token.id
-
+    console.log("user request "+JSON.stringify(state))
     commit(USER_SUCCESS, resp);
-
+    console.log("after user sucess "+JSON.stringify(state))
     if (resp.type != "tenant" && resp.type != "landlord") {
       dispatch(AUTH_LOGOUT)
     }
+    console.log("after logout "+JSON.stringify(state))
   }
 };
 

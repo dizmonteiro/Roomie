@@ -131,7 +131,7 @@ public class HouseDAO {
 	}
 	
 	public static List queryHouse(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -144,7 +144,7 @@ public class HouseDAO {
 	}
 	
 	public static List queryHouse(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -230,7 +230,7 @@ public class HouseDAO {
 	}
 	
 	public static java.util.Iterator iterateHouseByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
@@ -243,13 +243,25 @@ public class HouseDAO {
 	}
 	
 	public static java.util.Iterator iterateHouseByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From roomie.House as House");
+		StringBuffer sb = new StringBuffer("From roomie.models.house.House as House");
 		if (condition != null) sb.append(" Where ").append(condition);
 		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			query.setLockMode("House", lockMode);
 			return query.iterate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public static int getTotalNOfHouses() throws PersistentException {
+		StringBuffer sb = new StringBuffer("Select count(id) as total From roomie.models.house.House as House");
+		try {
+			PersistentSession session = RoomiePersistentManager.instance().getSession();
+			Query query = session.createQuery(sb.toString());
+			return Integer.parseInt(query.list().get(0).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);

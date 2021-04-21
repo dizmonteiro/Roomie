@@ -1,19 +1,10 @@
 package roomie.controllers;
 
 import org.orm.ORMDatabaseInitiator;
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import roomie.models.RoomiePersistentManager;
-import roomie.models.avatar.Avatar;
-import roomie.models.avatar.AvatarDAO;
-import roomie.models.landlord.Landlord;
-import roomie.models.landlord.LandlordDAO;
-import roomie.models.tenant.Tenant;
-import roomie.models.tenant.TenantDAO;
 
 /**
  * @author: Vasco Ramos

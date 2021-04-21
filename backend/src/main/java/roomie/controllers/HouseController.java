@@ -14,7 +14,6 @@ import roomie.models.auth.MyUser;
 import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
-import roomie.models.tenant.Tenant;
 import roomie.services.HouseService;
 import roomie.services.LandlordService;
 import roomie.services.PhotoService;
@@ -64,8 +63,13 @@ public class HouseController {
 	@GetMapping()
 	@Parameter(name = "limit", description = "Number of items per page")
 	@Parameter(name = "offset", description = "Index of first item in page")
-	public List<House> getHouses(@RequestParam(required = false) String title, @RequestParam(required = false) Integer rooms, @RequestParam(required = false) Double price, @RequestParam(required = false, defaultValue = "10") Integer limit, @RequestParam(required = false, defaultValue = "0") Integer offset) throws PersistentException, ResourceNotFoundException {
-		return houseService.filter(title, rooms, price, limit, offset);
+	public List<House> getHouses(@RequestParam(required = false) String title, @RequestParam(required = false) String city, @RequestParam(required = false) Integer rooms, @RequestParam(required = false) Double price, @RequestParam(required = false, defaultValue = "9") Integer limit, @RequestParam(required = false, defaultValue = "0") Integer offset) throws PersistentException {
+		return houseService.filter(title, city, rooms, price, limit, offset);
+	}
+	
+	@GetMapping(("/total"))
+	public Integer getTotalHouses() throws PersistentException {
+		return houseService.getTotalHouses();
 	}
 	
 	@GetMapping(value = "/{id}")
@@ -77,25 +81,25 @@ public class HouseController {
 	public List<Integer> getHousePhotos(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return houseService.getById(id).getPhotos();
 	}
-
+	
 	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isOwner(authentication,#id)")
 	@PutMapping(value = "/{id}")
 	public House editHouse(@PathVariable int id, House houseInfo, @RequestPart(value = "files", required = false) MultipartFile[] files) throws PersistentException, ResourceNotFoundException {
 		House house = houseService.getById(id);
 		List<Photo> photos = new ArrayList<>();
-
-		if(files != null) {
+		
+		if (files != null) {
 			for (Photo p : house.photos.toArray()) {
 				photoService.delete(p);
 			}
 			house.photos.clear();
-
+			
 			for (MultipartFile file : files) {
 				Photo photo = photoService.store(file);
 				photos.add(photo);
 			}
 		}
-
+		
 		house = houseService.update(house, houseInfo, photos);
 		return house;
 	}

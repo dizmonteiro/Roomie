@@ -13,11 +13,8 @@ import roomie.models.house.House;
 import roomie.models.house.HouseDAO;
 import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
-import roomie.models.tenant.Tenant;
-import roomie.models.tenant.TenantDAO;
 import roomie.repositories.house.HouseCriteria;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
@@ -31,11 +28,15 @@ public class HouseService {
 		return house;
 	}
 	
-	public List<House> filter(String title, Integer rooms, Double price, int limit, int offset) throws PersistentException {
+	public List<House> filter(String title, String city, Integer rooms, Double price, int limit, int offset) throws PersistentException {
 		HouseCriteria houseCriteria = new HouseCriteria();
 		
 		if (title != null && title.trim().length() != 0) {
 			houseCriteria.add(Restrictions.ilike("title", "%" + title + "%"));
+		}
+		
+		if (city != null && city.trim().length() != 0) {
+			houseCriteria.add(Restrictions.ilike("address", "%" + city + "%"));
 		}
 		
 		if (rooms != null) {
@@ -52,10 +53,17 @@ public class HouseService {
 	
 	private List<House> applyPagination(List<House> houses, int limit, int offset) {
 		int count = houses.size();
-		if (offset + limit >= count) {
-			limit = count - (offset + 1);
+		
+		if (count == 0) {
+			limit = 0;
+		} else if (offset + limit >= count) {
+			limit = count - offset;
 		}
 		return houses.subList(offset, offset + limit);
+	}
+	
+	public int getTotalHouses() throws PersistentException {
+		return HouseDAO.getTotalNOfHouses();
 	}
 	
 	public House getById(int id) throws ResourceNotFoundException, PersistentException {
@@ -65,46 +73,44 @@ public class HouseService {
 		}
 		return house;
 	}
-
+	
 	public House update(House house, House houseInfo, List<Photo> photos) throws PersistentException {
-
-
 		if (houseInfo.getAddress() != null) {
 			house.setAddress(houseInfo.getAddress());
 		}
-
+		
 		if (houseInfo.getTitle() != null) {
 			house.setTitle(houseInfo.getTitle());
 		}
-
-		if(houseInfo.getRooms() != 0){
+		
+		if (houseInfo.getRooms() != 0) {
 			house.setRooms(houseInfo.getRooms());
 		}
-
-		if(houseInfo.getAvailableRooms() != 0) {
+		
+		if (houseInfo.getAvailableRooms() != 0) {
 			house.setAvailableRooms(houseInfo.getAvailableRooms());
 		}
-
-		if(houseInfo.getBathRooms() != 0){
+		
+		if (houseInfo.getBathRooms() != 0) {
 			house.setBathRooms(houseInfo.getBathRooms());
 		}
-
-		if(houseInfo.getMinPrice() != 0) {
+		
+		if (houseInfo.getMinPrice() != 0) {
 			house.setMinPrice(houseInfo.getMinPrice());
 		}
-
-		if(houseInfo.getMaxPrice() != 0) {
+		
+		if (houseInfo.getMaxPrice() != 0) {
 			house.setMaxPrice(houseInfo.getMaxPrice());
 		}
-
+		
 		if (houseInfo.getDescription() != null) {
 			house.setDescription(houseInfo.getDescription());
 		}
-
+		
 		for (Photo p : photos) {
 			house.photos.add(p);
 		}
-
+		
 		HouseDAO.save(house);
 		HouseDAO.refresh(house);
 		return house;
@@ -114,5 +120,4 @@ public class HouseService {
 		house.photos.clear();
 		return HouseDAO.deleteAndDissociate(house);
 	}
-	
 }

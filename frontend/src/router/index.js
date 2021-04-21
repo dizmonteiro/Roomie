@@ -58,7 +58,7 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
-      name: 'Tenant',
+      name: 'LoggedTenant',
       path: '/tenant',
       component: () => import('@/views/LoggedTenant'),
       beforeEnter: ifAuthenticated

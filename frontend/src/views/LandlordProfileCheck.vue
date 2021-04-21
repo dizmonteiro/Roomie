@@ -37,7 +37,7 @@
           <div class="columns">
             <div class="column is-half">
               <div class="field">
-                <label class="label" v-on:click="getUserType">Name</label>
+                <label class="label">Name ({{ type }})</label>
                 <div class="control">
                   <input
                     class="input"
@@ -212,11 +212,11 @@ export default {
       modal_active: "modal",
     };
   },
-  methods: {
-    getUserType() {
-      // eslint-disable-next-line
-      alert("--- " + store.getters.getType);
-    }
+  computed: {
+    ...mapGetters(["getType"]),
+    ...mapState({
+      type: (state) => `${state.user.type}`,
+    }),
   },
 };
 </script>
