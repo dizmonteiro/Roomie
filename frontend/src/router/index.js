@@ -21,20 +21,28 @@ const ifAuthenticated = (to, from, next) => {
 }
 
 const ifAuthenticatedLandlord = (to, from, next) => {
-  if (store.getters.isLandlord) {
-    next()
-    return
+  if (store.getters.isAuthenticated) {
+    if (store.getters.isLandlord) {
+      next()
+      return
+    } else {
+      next('/tenant')
+    }
   } else {
-    next('/tenant')
+    next('/login')
   }
 }
 
 const ifAuthenticatedTenant = (to, from, next) => {
-  if (store.getters.isTenant) {
-    next()
-    return
+  if (store.getters.isAuthenticated) {
+    if (store.getters.isTenant) {
+      next()
+      return
+    } else {
+      next('/landlord')
+    }
   } else {
-    next('/landlord')
+    next('/login')
   }
 }
 
