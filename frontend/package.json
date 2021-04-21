@@ -13,13 +13,16 @@
     "core-js": "^3.6.5",
     "jwt-decode": "^3.1.2",
     "vue": "^2.6.11",
+    "vue-agile": "^1.1.3",
     "vue-country-code-select": "^1.6.7",
     "vue-country-select": "^0.2.2",
     "vue-router": "^3.5.1",
+    "vue-smooth-scrollbar": "^0.1.2",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "*"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

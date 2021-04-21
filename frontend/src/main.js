@@ -4,6 +4,14 @@ import router from './router'
 import VueFormulate from '@braid/vue-formulate'
 import axios from 'axios'
 import store from './store'
+import VueAgile from 'vue-agile'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
+import SmoothScrollbar from 'vue-smooth-scrollbar'
+
+Vue.use(SmoothScrollbar)
+
+Vue.use(VueAgile)
 
 Vue.config.productionTip = false
 
