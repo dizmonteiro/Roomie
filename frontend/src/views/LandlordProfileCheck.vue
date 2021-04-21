@@ -196,7 +196,7 @@
 import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
-import store from '@/store'
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: "LandlordProfileTenant",
