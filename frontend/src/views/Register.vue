@@ -49,6 +49,12 @@ import DefaultNavbar from '@/components/DefaultNavbar'
 import axios from 'axios';
 import countries from '@/assets/scripts/countries'
 
+function validateEmail(email) {
+  /* eslint-disable-next-line */
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
 function getUserType() {
     var radios = document.getElementsByName('user');
 
@@ -96,12 +102,14 @@ function getUserType() {
               <div class="control is-expanded">
                 <input class="input" type="email" placeholder="Email" id="email" required>
               </div>
+              <p class="help is-danger" id="email-message"></p>
             </div>
             <div class="field">
               <label class="label">Phone Number</label>
               <p class="control">
-                <input class="input" type="tel" placeholder="(+351) XXX XXX XXX" id="phone" maxlength="9" size="9" equired>
+                <input class="input" type="number" placeholder="Phone Number" id="phone" minlength="9" maxlength="9" size="9" required>
               </p>
+              <p class="help is-danger" id="phone-message"></p>
             </div>
             <div class="field">
               <label class="label">Nationality</label>
@@ -118,8 +126,9 @@ function getUserType() {
             <div class="field">
               <label class="label">NIF</label>
               <div class="control is-expanded">
-                <input class="input" type="text" placeholder="NIF" id="nif" minlength="9" maxlength="9" size="9" required>
+                <input class="input" type="number" placeholder="NIF" id="nif" minlength="9" maxlength="9" size="9" required>
               </div>
+              <p class="help is-danger" id="nif-message"></p>
             </div>
             <div class="field">
               <label class="label">Birth Date</label>
@@ -171,8 +180,9 @@ function getUserType() {
                   Other
                 </label>
               </div>
+              <br>
+              <p class="help is-danger" id="fill-message"></p>
             </div>
-            <br>
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
                 <a class="button is-light" href="/">
@@ -189,6 +199,10 @@ function getUserType() {
 
       const submit = document.getElementById('regist');
       submit.onclick = function(){
+        document.getElementById('nif-message').innerHTML = '';
+        document.getElementById('fill-message').innerHTML = '';
+        document.getElementById('phone-message').innerHTML = '';
+        document.getElementById('email-message').innerHTML = '';
 
         var name = document.getElementById('name');
         var email = document.getElementById('email');
@@ -203,38 +217,56 @@ function getUserType() {
         var file = document.getElementById('photo');
 
         if(name.value && email.value && username.value && phone.value && birthdate.value && sex && nif.value && nationality.value && occupation.value && password.value && file.files[0]) {
-          var bodyFormData = new FormData();
-          bodyFormData.append('name', name.value);
-          bodyFormData.append('email', email.value);
-          bodyFormData.append('username', username.value);
-          bodyFormData.append('phone', phone.value);
-          bodyFormData.append('birthDate', birthdate.value);
-          bodyFormData.append('sex', sex.value);
-          bodyFormData.append('nif', nif.value);
-          bodyFormData.append('nationality', nationality.value);
-          bodyFormData.append('occupation', occupation.value);
-          bodyFormData.append('password', password.value);
-          bodyFormData.append('file', file.files[0], file.files[0].name);
+          var error = 0
+          if(nif.value.length != 9){
+            document.getElementById('nif-message').innerHTML = 'Invalid NIF!';
+            error++
+          } 
+          
+          if(phone.value.length != 9) {
+            document.getElementById('phone-message').innerHTML = 'Invalid Phone Number!';
+            error++
+          }
 
-          axios({
-            method: "post",
-            url: "http://localhost:8083/api/tenants",
-            data: bodyFormData,
-            headers: { 
-              "Authorization": null,
-              "Content-Type": "multipart/form-data" 
-            },
-          })
-          .then(function () {
-            document.getElementById("modal").classList.add("is-active");
-            //window.location.replace("/");
-          })
-          .catch(function (response) {
-            alert(response)
-            window.location.replace("/");
-          });
+          if(!validateEmail(email.value)) {
+            document.getElementById('email-message').innerHTML = 'Invalid Email!';
+            error++
+          }
+          
+          if(error == 0){
+              var bodyFormData = new FormData();
+              bodyFormData.append('name', name.value);
+              bodyFormData.append('email', email.value);
+              bodyFormData.append('username', username.value);
+              bodyFormData.append('phone', phone.value);
+              bodyFormData.append('birthDate', birthdate.value);
+              bodyFormData.append('sex', sex.value);
+              bodyFormData.append('nif', nif.value);
+              bodyFormData.append('nationality', nationality.value);
+              bodyFormData.append('occupation', occupation.value);
+              bodyFormData.append('password', password.value);
+              bodyFormData.append('file', file.files[0], file.files[0].name);
+
+              axios({
+                method: "post",
+                url: "http://localhost:8083/api/tenants",
+                data: bodyFormData,
+                headers: { 
+                  "Authorization": null,
+                  "Content-Type": "multipart/form-data" 
+                },
+              })
+              .then(function () {
+                document.getElementById("modal").classList.add("is-active");
+                //window.location.replace("/");
+              })
+              .catch(function (response) {
+                alert(response)
+                window.location.replace("/");
+              });
+          }
         } else {
-          alert('Please fill all the information')
+            document.getElementById('fill-message').innerHTML = 'Please fill all the fields!';
         }
       };
 
@@ -263,12 +295,14 @@ function getUserType() {
               <div class="control is-expanded">
                 <input class="input" type="email" placeholder="Email" id="email" required>
               </div>
+              <p class="help is-danger" id="email-message"></p>
             </div>
             <div class="field">
               <label class="label">Phone Number</label>
               <p class="control">
-                <input class="input" type="tel" placeholder="(+351) XXX XXX XXX" id="phone" maxlength="9" size="9" required>
+                <input class="input" type="number" placeholder="Phone Number" id="phone" maxlength="9" size="9" required>
               </p>
+              <p class="help is-danger" id="phone-message"></p>
             </div>
           </div>
           <div class="column is-one-third">
@@ -281,8 +315,9 @@ function getUserType() {
             <div class="field">
               <label class="label">NIF</label>
               <div class="control is-expanded">
-                <input class="input" type="text" placeholder="NIF" id="nif" minlength="9" maxlength="9" size="9" required>
+                <input class="input" type="number" placeholder="NIF" id="nif" minlength="9" maxlength="9" size="9" required>
               </div>
+              <p class="help is-danger" id="nif-message"></p>
             </div>
             <div class="field">
               <label class="label">Address</label>
@@ -332,8 +367,9 @@ function getUserType() {
                   Other
                 </label>
               </div>
+              <br>
+              <p class="help is-danger" id="fill-message"></p>
             </div>
-            <br>
             <div class="field is-grouped is-grouped-centered">
               <p class="control">
                 <a class="button is-light" href="/">
@@ -350,6 +386,10 @@ function getUserType() {
 
       const submit = document.getElementById('regist');
       submit.onclick = function(){
+        document.getElementById('nif-message').innerHTML = '';
+        document.getElementById('fill-message').innerHTML = '';
+        document.getElementById('phone-message').innerHTML = '';
+        document.getElementById('email-message').innerHTML = '';
 
         var name = document.getElementById('name');
         var email = document.getElementById('email');
@@ -363,37 +403,55 @@ function getUserType() {
         var file = document.getElementById('photo');
 
         if(name.value && email.value && username.value && phone.value && birthdate.value && sex && nif.value && address.value && password.value && file.files[0]){
-          var bodyFormData = new FormData();
-          bodyFormData.append('name', name.value);
-          bodyFormData.append('email', email.value);
-          bodyFormData.append('username', username.value);
-          bodyFormData.append('phone', phone.value);
-          bodyFormData.append('birthDate', birthdate.value);
-          bodyFormData.append('sex', sex.value);
-          bodyFormData.append('nif', nif.value);
-          bodyFormData.append('address', address.value);
-          bodyFormData.append('password', password.value);
-          bodyFormData.append('file', file.files[0], file.files[0].name);
+          var error = 0
+          if(nif.value.length != 9){
+            document.getElementById('nif-message').innerHTML = 'Invalid NIF!';
+            error++
+          } 
+          
+          if(phone.value.length != 9) {
+            document.getElementById('phone-message').innerHTML = 'Invalid Phone Number!';
+            error++
+          }
 
-          axios({
-            method: "post",
-            url: "http://localhost:8083/api/landlords",
-            data: bodyFormData,
-            headers: { 
-              "Authorization": null,
-              "Content-Type": "multipart/form-data" 
-            },
-          })
-          .then(function () {
-            document.getElementById("modal").classList.add("is-active");
-            //window.location.replace("/");
-          })
-          .catch(function (response) {
-            alert(response)
-            window.location.replace("/");
-          });
+          if(!validateEmail(email.value)) {
+            document.getElementById('email-message').innerHTML = 'Invalid Email!';
+            error++
+          }
+
+          if(error == 0){
+            var bodyFormData = new FormData();
+            bodyFormData.append('name', name.value);
+            bodyFormData.append('email', email.value);
+            bodyFormData.append('username', username.value);
+            bodyFormData.append('phone', phone.value);
+            bodyFormData.append('birthDate', birthdate.value);
+            bodyFormData.append('sex', sex.value);
+            bodyFormData.append('nif', nif.value);
+            bodyFormData.append('address', address.value);
+            bodyFormData.append('password', password.value);
+            bodyFormData.append('file', file.files[0], file.files[0].name);
+
+            axios({
+              method: "post",
+              url: "http://localhost:8083/api/landlords",
+              data: bodyFormData,
+              headers: { 
+                "Authorization": null,
+                "Content-Type": "multipart/form-data" 
+              },
+            })
+            .then(function () {
+              document.getElementById("modal").classList.add("is-active");
+              //window.location.replace("/");
+            })
+            .catch(function (response) {
+              alert(response)
+              window.location.replace("/");
+            });
+          }
         } else {
-          alert('Please fill all the information')
+          document.getElementById('fill-message').innerHTML = 'Please fill all the fields!';
         }
       };
     }
