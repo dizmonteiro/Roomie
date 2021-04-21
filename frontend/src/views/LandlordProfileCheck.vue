@@ -37,7 +37,7 @@
           <div class="columns">
             <div class="column is-half">
               <div class="field">
-                <label class="label">Name</label>
+                <label class="label">{{getType}}</label>
                 <div class="control">
                   <input
                     class="input"
@@ -213,7 +213,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getProfile"]),
+    ...mapGetters(["getType"]),
     ...mapState({
       profile: (state) => `${state.user.profile}`,
     }),

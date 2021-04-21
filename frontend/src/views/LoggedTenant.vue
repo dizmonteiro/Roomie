@@ -1,6 +1,7 @@
 <template>
   <div>
     <TenantNavbar />
+    <button @click="aux">help</button>
     <div id="ttcard" class="card pad">
 
         <div class="column adjust-hero is-centered has-text-centered">
@@ -168,6 +169,9 @@ export default {
   },
 
   methods: {
+    aux(){
+      this.$router.push("/tenant/llprofile")
+    }
 
   },
 };
