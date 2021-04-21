@@ -1,6 +1,13 @@
 <template>
   <div>
-    <TenantNavbar />
+    <div v-if="type==='tenant'">
+          <TenantNavbar />
+    </div>
+    <div v-else-if="type==='landlord'">
+      <LandlordNavbar/>
+
+    </div>
+
 
     <div id="llcard" class="card pad">
       <div class="columns is-desktop">
@@ -194,14 +201,16 @@
 
 <script>
 import TenantNavbar from "@/components/TenantNavbar";
+import LandlordNavbar from "@/components/LandlordNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
 import { mapGetters, mapState } from 'vuex';
 
 export default {
-  name: "LandlordProfileTenant",
+  name: "LandlordProfileCheck",
   components: {
     TenantNavbar,
+    LandlordNavbar,
     SideMenuEditable,
     SideMenuEntry,
   },
