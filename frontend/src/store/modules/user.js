@@ -1,21 +1,25 @@
 import { USER_REQUEST, USER_ERROR, USER_SUCCESS } from "../actions/user";
-import Vue from "vue";
 import { AUTH_LOGOUT } from "../actions/auth";
 
 const state = {
   status: "",
-  profile: {}
+  type: "",
+  name: "",
+  id: "",
+  email: ""
 };
 
 const getters = {
-  getProfile: state => state.profile,
+  getType: state => state.type,
+  getName: state => state.name,
+  getId: state => state.id,
+  getEmail: state => state.email,
   isProfileLoaded: state => !!state.profile.name
 };
 
 const actions = {
   [USER_REQUEST]: ({ commit, dispatch }, token) => {
     commit(USER_REQUEST);
-
 
     var resp = {}
     resp.type = token.type
@@ -37,9 +41,10 @@ const mutations = {
   },
   [USER_SUCCESS]: (state, resp) => {
     state.status = "success";
-    Vue.set(state, "profile", resp);
-    console.log(state.profile)
-    alert("asiodjasoidj")
+    state.type = resp.type;
+    state.name = resp.name;
+    state.id = resp.id;
+    state.email = resp.email;
   },
   [USER_ERROR]: state => {
     state.status = "error";

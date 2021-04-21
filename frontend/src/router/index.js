@@ -52,7 +52,7 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
-      name: 'Landlord',
+      name: 'Landlord Profile',
       path: '/landlord/profile',
       component: () => import('@/views/LandlordProfile'),
       beforeEnter: ifAuthenticated
@@ -64,13 +64,13 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
-      name: 'Tenant',
+      name: 'Tenant Profile',
       path: '/tenant/profile',
       component: () => import('@/views/TenantProfile'),
       beforeEnter: ifAuthenticated
     },
     {
-      name: 'Tenant',
+      name: 'Tenant Landlord Profile',
       path: '/tenant/llprofile',
       component: () => import('@/views/LandlordProfileCheck'),
       beforeEnter: ifAuthenticated

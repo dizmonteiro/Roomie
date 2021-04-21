@@ -37,7 +37,7 @@
           <div class="columns">
             <div class="column is-half">
               <div class="field">
-                <label class="label">Name</label>
+                <label class="label" v-on:click="getUserType">Name</label>
                 <div class="control">
                   <input
                     class="input"
@@ -193,10 +193,10 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
 import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
+import store from '@/store'
 
 export default {
   name: "LandlordProfileTenant",
@@ -212,13 +212,12 @@ export default {
       modal_active: "modal",
     };
   },
-  computed: {
-    ...mapGetters(["getProfile"]),
-    ...mapState({
-      profile: (state) => `${state.user.profile}`,
-    }),
+  methods: {
+    getUserType() {
+      // eslint-disable-next-line
+      alert("--- " + store.getters.getType);
+    }
   },
-  methods: {},
 };
 </script>
 
