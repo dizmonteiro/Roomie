@@ -20,6 +20,24 @@ const ifAuthenticated = (to, from, next) => {
   }
 }
 
+const ifAuthenticatedLandlord = (to, from, next) => {
+  if (store.getters.isLandlord) {
+    next()
+    return
+  } else {
+    next('/tenant')
+  }
+}
+
+const ifAuthenticatedTenant = (to, from, next) => {
+  if (store.getters.isTenant) {
+    next()
+    return
+  } else {
+    next('/landlord')
+  }
+}
+
 Vue.use(Router)
 
 export default new Router({
@@ -51,25 +69,25 @@ export default new Router({
       name: 'Landlord',
       path: '/landlord',
       component: () => import('@/views/LoggedLandlord'),
-      beforeEnter: ifAuthenticated
+      beforeEnter: ifAuthenticatedLandlord
     },
     {
       name: 'Landlord Profile',
       path: '/landlord/profile',
       component: () => import('@/views/LandlordProfile'),
-      beforeEnter: ifAuthenticated
+      beforeEnter: ifAuthenticatedLandlord
     },
     {
       name: 'LoggedTenant',
       path: '/tenant',
       component: () => import('@/views/LoggedTenant'),
-      beforeEnter: ifAuthenticated
+      beforeEnter: ifAuthenticatedTenant
     },
     {
       name: 'Tenant Profile',
       path: '/tenant/profile',
       component: () => import('@/views/TenantProfile'),
-      beforeEnter: ifAuthenticated
+      beforeEnter: ifAuthenticatedTenant
     },
     {
       name: 'Tenant Landlord Profile',

@@ -14,6 +14,8 @@ const getters = {
   getName: state => state.name,
   getId: state => state.id,
   getEmail: state => state.email,
+  isLandlord: state => state.type == "landlord",
+  isTenant: state => state.type == "tenant",
   isProfileLoaded: state => !!state.profile.name
 };
 
