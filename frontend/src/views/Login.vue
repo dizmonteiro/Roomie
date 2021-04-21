@@ -11,7 +11,7 @@
                   <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                      <input class="input" type="text" placeholder="email@example.com" required v-model="email">
+                      <input class="input" type="email" placeholder="email@example.com" required v-model="email">
                     </div>
                   </div>
 
@@ -20,6 +20,10 @@
                     <div class="control">
                       <input class="input" type="password" placeholder="********" required v-model="password">
                     </div>
+                  </div>
+
+                  <div id="message" v-if="error == 'error' && loaded == 1 ">
+                    <p class="help is-danger">Invalid Credentials!</p>
                   </div>
 
                   <div class="has-text-centered">
@@ -36,6 +40,7 @@
 <script>
 import { AUTH_REQUEST } from "@/store/actions/auth";
 import DefaultNavbar from '@/components/DefaultNavbar'
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'Login',
@@ -46,11 +51,19 @@ export default {
     return {
       email: '',
       password: '',
+      loaded: 0
     };
+  },
+  computed: {
+    ...mapGetters(["authStatus"]),
+    ...mapState({
+      error: (state) => `${state.auth.status}`,
+    }),
   },
   methods: {
     login: function () {
       const { email, password } = this
+      this.loaded++
       this.$store.dispatch(AUTH_REQUEST, { email, password }).then(resp => {
         if(resp == "landlord"){
           this.$router.push("/landlord")
