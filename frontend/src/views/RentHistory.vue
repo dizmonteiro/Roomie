@@ -65,19 +65,15 @@ export default {
       },
       tenantsHouse1: [
         {
-          name: "jose filipe",
+          name: "Jose Filipe",
           photo: "https://randomuser.me/api/portraits/men/52.jpg",
         },
         {
-          name: "antonio ramalho",
+          name: "Antonio Ramalho",
           photo: "https://randomuser.me/api/portraits/men/51.jpg",
         },
         {
-          name: "antonio ramalho",
-          photo: "https://randomuser.me/api/portraits/men/51.jpg",
-        },
-        {
-          name: "marco antunes",
+          name: "Marco Antunes",
           photo: "https://randomuser.me/api/portraits/men/53.jpg",
         },
       ],
