@@ -299,7 +299,7 @@ label {
   margin: auto 22%;
 }
 .adjust-gender {
-  width: 50%;
+  width: 55%;
   margin: 0 auto;
 }
 .gender-label {
@@ -312,7 +312,7 @@ label {
 
 .pad {
   width: 90%;
-  margin: 5% auto;
+  margin: 3% auto;
 }
 
 .form{

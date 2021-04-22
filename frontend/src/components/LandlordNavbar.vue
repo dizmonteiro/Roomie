@@ -25,7 +25,7 @@
         <span aria-hidden="true"></span>
       </a>
 
-<nav-bar-picture :profilePic="profilePic" :w="ppw" :h="pph" :profile="getType" v-if="ww < 1024"/>
+<nav-bar-picture :profilePic="`http://localhost:8083/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :profile="getType" v-if="ww < 1024"/>
         
       </div>
     <div id="navbarBasicExample" class="navbar-menu">
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <nav-bar-picture :profilePic="profilePic" :w="ppw" :h="pph" :profile="getType" v-if="ww >= 1024"/>
+    <nav-bar-picture :profilePic="`http://localhost:8083/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :profile="getType" v-if="ww >= 1024"/>
   </nav>
 </template>
 
@@ -89,9 +89,10 @@ components:{
     
   },
   computed: {
-    ...mapGetters(["getType"]),
+    ...mapGetters(["getType","getId"]),
     ...mapState({
       type: (state) => `${state.user.type}`,
+      id: (state) => `${state.user.id}`,
     }),
   }
 };

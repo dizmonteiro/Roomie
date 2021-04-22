@@ -4,6 +4,7 @@
       <div class="dropdown-trigger">
         <img
           class="pp"
+          object-fit="cover"
           aria-haspopup="true"
           aria-controls="dropdown-menu3"
           @click="activateDropdown"
