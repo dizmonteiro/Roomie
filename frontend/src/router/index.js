@@ -20,6 +20,19 @@ const ifAuthenticated = (to, from, next) => {
   }
 }
 
+const redirectAuthenticated = (to, from, next) => {
+  if (store.getters.isAuthenticated) {
+    if (store.getters.isLandlord) {
+      next('/landlord')
+    } else if (store.getters.isTenant) {
+      next('/tenant')
+    }
+    return
+  } else {
+    next()
+  }
+}
+
 const ifAuthenticatedLandlord = (to, from, next) => {
   if (store.getters.isAuthenticated) {
     if (store.getters.isLandlord) {
@@ -60,7 +73,8 @@ export default new Router({
           name: 'Home',
           component: () => import('@/views/Home')
         }
-      ]
+      ],
+      beforeEnter: redirectAuthenticated
     },
     {
       name: 'Login',
