@@ -35,8 +35,8 @@
             <a class="button navb">
               <strong>Check Applications</strong>
             </a>
-            <a class="button navb">
-              <strong>Add New House</strong>
+            <a class="button navb" href="/landlord/house/add">
+              <strong>Add House</strong>
             </a>
             <a class="button navb">
               <strong>My Houses</strong>

@@ -100,6 +100,12 @@ export default new Router({
       beforeEnter: ifAuthenticatedLandlord
     },
     {
+      name: 'Landlord Add House',
+      path: '/landlord/house/add',
+      component: () => import('@/views/AddHouse'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
       name: 'LoggedTenant',
       path: '/tenant',
       component: () => import('@/views/LoggedTenant'),
