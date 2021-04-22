@@ -15,6 +15,7 @@ import jwt_decode from "jwt-decode"
   };
   
   const getters = {
+    getToken: state => state.token,
     isAuthenticated: state => !!state.token,
     authStatus: state => state.status
   };

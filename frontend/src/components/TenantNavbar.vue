@@ -11,6 +11,7 @@
           width="112"
           height="28"
         />
+        <img :src="profilepic"/>
       </a>
 
       <a
@@ -25,9 +26,9 @@
         <span aria-hidden="true"></span>
       </a>
 
-<nav-bar-picture :profilePic="profilePic" :w="ppw" :h="pph" :type="getType" v-if="ww < 1024"/>
+      <nav-bar-picture :profilePic="`http://localhost:8083/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :type="getType" v-if="ww < 1024"/>
         
-      </div>
+    </div>
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item">
@@ -42,24 +43,25 @@
         </div>
       </div>
     </div>
-    <nav-bar-picture :profilePic="profilePic" :w="ppw" :h="pph" :profile="getType" v-if="ww >= 1024"/>
+    <nav-bar-picture :profilePic="`http://localhost:8083/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :profile="getType" v-if="ww >= 1024"/>
   </nav>
 </template>
 
 <script>
 import NavBarPicture from './NavBarPicture.vue';
 import { mapGetters, mapState } from 'vuex';
+
 export default {
   name: "LandlordNavbar",
   created() {
-  window.addEventListener("resize", this.myEventHandler);
-},
-destroyed() {
-  window.removeEventListener("resize", this.myEventHandler);
-},
-components:{
-  NavBarPicture
-},
+    window.addEventListener("resize", this.myEventHandler);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.myEventHandler);
+  },
+  components:{
+    NavBarPicture
+  },
   data(){
     return{
       ww:window.innerWidth,
@@ -72,23 +74,23 @@ components:{
   methods: {
      myEventHandler() {
        console.log(this.ww)
-    if (window.innerWidth < 1024 && !this.lr)
-    {
-      this.ww=window.innerWidth
-      this.lr=true;
-    }
-    else if (window.innerWidth >= 1024 && this.lr)
-    {
-      this.ww=window.innerWidth
-      this.lr=false;
-    }
-  },
-    
+        if (window.innerWidth < 1024 && !this.lr)
+        {
+          this.ww=window.innerWidth
+          this.lr=true;
+        }
+        else if (window.innerWidth >= 1024 && this.lr)
+        {
+          this.ww=window.innerWidth
+          this.lr=false;
+        }
+      }, 
   },
   computed: {
-    ...mapGetters(["getType"]),
+    ...mapGetters(["getType","getId"]),
     ...mapState({
       type: (state) => `${state.user.type}`,
+      id: (state) => `${state.user.id}`,
     }),
   }
 };
