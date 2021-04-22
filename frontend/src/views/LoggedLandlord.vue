@@ -73,9 +73,9 @@ export default {
 <style scoped>
 
   #content {
-    margin: 3% auto;
+    margin: 3% auto 2% auto;
     width: 100%;
-  }
+  } 
 
   @media (max-width: 770px) {
     #loggedlandlordcard{
@@ -83,6 +83,7 @@ export default {
         min-height: 80vh;
     }
   }
+
 
   .vm {
     width: 25%;
@@ -93,7 +94,7 @@ export default {
     position:relative;
     overflow: hidden;
     max-width:100%;
-    height:400px;
+    height:46vh;
     z-index:10;
   }
 
