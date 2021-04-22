@@ -21,8 +21,8 @@
                   </div>
 
                   <div class="buttons is-centered">
-                    <a class="button is-green vm" href="/">
-                       Add new Houses
+                    <a class="button is-green vm" href="/landlord/house/add">
+                       Add House
                     </a>
                   </div>
 
