@@ -124,6 +124,12 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
+      name: 'Tenant Rent History',
+      path: '/tenant/rhistory',
+      component: () => import('@/views/RentHistory'),
+      beforeEnter: ifAuthenticated
+    },
+    {
       path: '/404',
       component: () => import('@/views/NotFound')
     },
