@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
+import roomie.models.auth.AcceptRejectApplication;
 import roomie.models.auth.MyUser;
 import roomie.models.house.House;
 import roomie.models.tenant.Tenant;
@@ -55,5 +57,14 @@ public class ApplicationController {
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+	
+	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isOwner(authentication, #id)")
+	@PutMapping(value = "/{id}")
+	public Application acceptRejectApplication(@PathVariable int id, @Valid @RequestBody AcceptRejectApplication body) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(body.getTenantId());
+		House house = houseService.getById(id);
+		Application application = applicationService.getById(tenant,house);
+		return applicationService.update(application,body.isAccept());
 	}
 }
