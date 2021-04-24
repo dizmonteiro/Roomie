@@ -28,7 +28,9 @@ import jwt_decode from "jwt-decode"
           .then(resp => {
             var token = resp.data.token
             localStorage.setItem("user-token", token);
-            axios.defaults.headers.common['Authorization'] = token
+
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
             commit(AUTH_SUCCESS, resp);
             var decoded = jwt_decode(token);
             dispatch(USER_REQUEST, {type: decoded.user.type, name: decoded.user.name, email: decoded.user.email, id: decoded.user.id});
