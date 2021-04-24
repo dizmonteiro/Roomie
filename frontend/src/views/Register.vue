@@ -46,7 +46,7 @@
 <script>
 
 import DefaultNavbar from '@/components/DefaultNavbar'
-import axios from 'axios';
+import axios from 'axios'
 import countries from '@/assets/scripts/countries'
 
 function validateEmail(email) {

@@ -55,6 +55,11 @@ export default {
 </script>
 
 <style scoped>
+.dropdown-trigger{
+  width: 40px; 
+  height: 40px;
+}
+
 .pph {
   padding: 0;
   padding-right: 1%;
@@ -62,8 +67,7 @@ export default {
 
 .pp {
   cursor: pointer;
-  margin-top: 10%;
-  max-height: 100%;
+  min-height: 100%;
   border-radius: 50%;
 }
 </style>
