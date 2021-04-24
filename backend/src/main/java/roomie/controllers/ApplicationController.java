@@ -2,12 +2,11 @@ package roomie.controllers;
 
 import org.orm.PersistentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
 import roomie.models.auth.MyUser;
@@ -43,34 +42,18 @@ public class ApplicationController {
 		House house = houseService.getById(application.getHouseId());
 		return applicationService.create(tenant, house);
 	}
-
-    /*
-    @GetMapping(value = "/{id}")
-    public Application getApplication(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-        return applicationService.getById(id);
-    }
-
-    @PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
-    @PutMapping(value = "/{id}")
-    public Application editLandord(@PathVariable int id, Application applicationInfo, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException, ResourceNotFoundException {
-        Application application = applicationService.getById(id);
-        application = applicationService.update(application, applicationInfo);
-        avatarService.update(application.getAvatar(), file);
-        return application;
-    }
-
-    @PreAuthorize("hasRole('LANDLORD') and @userSecurity.isSelf(authentication,#id)")
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteApplication(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
-        Application application = applicationService.getById(id);
-        avatarService.delete(application.getAvatar());
-        boolean res = applicationService.delete(application);
-        if (res) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-    
-    */
+	
+	@PreAuthorize("hasRole('TENANT') and @userSecurity.hasApplied(authentication,#id)")
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> deleteApplication(@PathVariable int id, Authentication auth) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(((MyUser) auth.getPrincipal()).getId());
+		House house = houseService.getById(id);
+		Application application = applicationService.getById(tenant, house);
+		boolean res = applicationService.delete(application);
+		if (res) {
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 }

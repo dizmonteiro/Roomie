@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import roomie.exception.ResourceNotFoundException;
+import roomie.models.application.ApplicationDAO;
 import roomie.models.auth.MyUser;
 import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
@@ -14,6 +15,7 @@ import roomie.models.tenant.Tenant;
 import roomie.models.tenant.TenantDAO;
 import roomie.services.HouseService;
 import roomie.services.LandlordService;
+import roomie.services.TenantService;
 
 /**
  * @author: Vasco Ramos
@@ -27,6 +29,9 @@ public class UserSecurity {
 	
 	@Autowired
 	private LandlordService landlordService;
+	
+	@Autowired
+	private TenantService tenantService;
 	
 	public boolean isSelf(Authentication authentication, int userId) throws PersistentException {
 		String email = ((UserDetails) authentication.getPrincipal()).getUsername();
@@ -48,5 +53,16 @@ public class UserSecurity {
 		Landlord landlord = landlordService.getById(((MyUser) authentication.getPrincipal()).getId());
 		House house = houseService.getById(houseId);
 		return landlord.houses.contains(house);
+	}
+	
+	public boolean hasApplied(Authentication authentication, int houseId) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(((MyUser) authentication.getPrincipal()).getId());
+		House house;
+		try {
+			house = houseService.getById(houseId);
+		} catch (ResourceNotFoundException e) {
+			return false;
+		}
+		return ApplicationDAO.getApplicationByORMID(tenant, house) != null;
 	}
 }

@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
 import org.springframework.stereotype.Service;
 import roomie.exception.ErrorDetails;
+import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
 import roomie.models.application.ApplicationDAO;
 import roomie.models.house.House;
@@ -53,59 +54,18 @@ public class ApplicationService {
 		}
 		return criteria.list();
 	}
-
-    /*
-    public boolean delete(Application application) throws PersistentException, ResourceNotFoundException {
-        ApplicationDAO.evict(application);
-        return ApplicationDAO.delete(application);
-    }
-
-    public Application update(Application application, Application applicationInfo) throws PersistentException {
-        if (applicationInfo.getName() != null) {
-            application.setName(applicationInfo.getName());
-        }
-
-        if (applicationInfo.getUsername() != null) {
-            application.setUsername(applicationInfo.getUsername());
-        }
-
-        if (applicationInfo.getPhone() != null) {
-            application.setPhone(applicationInfo.getPhone());
-        }
-
-        if (applicationInfo.getSex() != null) {
-            application.setSex(applicationInfo.getSex());
-        }
-
-        if (applicationInfo.getAddress() != null) {
-            application.setAddress(applicationInfo.getAddress());
-        }
-
-        ApplicationDAO.save(application);
-        ApplicationDAO.refresh(application);
-        return application;
-    }
-
-    public boolean updatePassword(Application application, UpdatePasswordRequest body) throws PersistentException {
-        if (!passwordEncoder.matches(body.getOldPassword(), application.getPassword())) {
-            throw new ErrorDetails("Current password is not correct");
-        }
-
-        if (body.getOldPassword().equals(body.getNewPassword())) {
-            throw new ErrorDetails("Current and new passwords can't be the same");
-        }
-
-        application.setPassword(passwordEncoder.encode(body.getNewPassword()));
-
-        ApplicationDAO.save(application);
-        ApplicationDAO.refresh(application);
-        return true;
-    }
-
-    public boolean save(Application application) throws PersistentException {
-        ApplicationDAO.save(application);
-        ApplicationDAO.refresh(application);
-        return true;
-    }
-	*/
+	
+	public boolean delete(Application application) throws PersistentException {
+		ApplicationDAO.evict(application);
+		return ApplicationDAO.delete(application);
+	}
+	
+	public Application getById(Tenant tenant, House house) throws ResourceNotFoundException, PersistentException {
+		Application application = ApplicationDAO.getApplicationByORMID(tenant, house);
+		if (application == null) {
+			throw new ResourceNotFoundException("Application not found: tenant = " + tenant
+					.toString() + ", house = " + house.toString());
+		}
+		return application;
+	}
 }
