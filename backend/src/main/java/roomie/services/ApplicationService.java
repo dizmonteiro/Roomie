@@ -13,6 +13,7 @@ import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
 import roomie.models.application.ApplicationDAO;
 import roomie.models.house.House;
+import roomie.models.house.HouseDAO;
 import roomie.models.tenant.Tenant;
 import roomie.repositories.application.ApplicationCriteria;
 import roomie.repositories.house.HouseCriteria;
@@ -66,6 +67,14 @@ public class ApplicationService {
 			throw new ResourceNotFoundException("Application not found: tenant = " + tenant
 					.toString() + ", house = " + house.toString());
 		}
+		return application;
+	}
+	
+	public Application update(Application application, boolean accept) throws PersistentException {
+		application.setToBeAssessed(true);
+		application.setAccepted(accept);
+		ApplicationDAO.save(application);
+		ApplicationDAO.refresh(application);
 		return application;
 	}
 }
