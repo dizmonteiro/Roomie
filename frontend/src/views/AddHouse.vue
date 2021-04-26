@@ -44,13 +44,23 @@
                                 min="0"
                                 max="10"
                             />
-                            <FormulateInput
-                                name="price"
-                                label="Price per Bedroom"
-                                type="number"
-                                validation="required|number"
-                                min="0"
-                            />
+                            <div class="price-range">
+                                <FormulateInput
+                                    name="min-price"
+                                    label="Min. Price p/ Bedroom"
+                                    type="number"
+                                    validation="required|number"
+                                    min="0"
+                                />
+                                <div class="spacer"></div>
+                                <FormulateInput
+                                    name="max-price"
+                                    label="Max. Price p/ Bedroom"
+                                    type="number"
+                                    validation="required|number"
+                                    min="0"
+                                />
+                            </div>
                         </div>
                         <div class="column is-full-mobile is-full-tablet is-one-third-desktop">
                             <FormulateInput
@@ -102,11 +112,36 @@
             </div>
         </div>
     </div>
+    <div class="modal" id="modal">
+        <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="card">
+              <div class="card-content is-vcentered">
+                <div class="content has-text-centered">
+                  <br>
+                  <h1>House added!</h1>  
+                  <br>
+                  <br>
+                  <button type="submit" class="button is-green" v-on:click="goToProfile()">Return to Home</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close" v-on:click="closeModal()"></button>
+    </div>
   </div>
 </template>
 
 <script>
 import LandlordNavbar from '@/components/LandlordNavbar'
+
+function goToProfile() {
+    window.location.replace("/landlord");
+}
+
+function closeModal() {
+    document.getElementById("modal").classList.remove("is-active");
+}
 
 export default {
   name: 'Login',
@@ -123,8 +158,8 @@ export default {
     
   },
   methods: {
-    
-    
+    closeModal,
+    goToProfile
   }
 }
 </script>
@@ -144,5 +179,15 @@ export default {
     #scroll-area-2 {
         height: 58vh;
         margin-bottom: 10px;
+    }
+
+    .price-range {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .spacer {
+        width: 5px;
     }
 </style>
