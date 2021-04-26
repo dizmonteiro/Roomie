@@ -30,9 +30,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="column is-half-desktop is-full-mobile is-full-tablet form"
-        >
+        <div class="column is-half-desktop is-full-mobile is-full-tablet form">
           <div class="field">
             <label class="label">Name</label>
             <div class="control">
@@ -124,10 +122,11 @@
             </div>
           </div>
           <div class="field is-grouped is-grouped-right">
-              <button class="button is-green" @click="editPassword()">Edit Password</button>
-              <button  class="button is-green" @click="edit()">Edit</button>
-
-            </div>
+            <button class="button is-green" @click="editPassword()">
+              Edit Password
+            </button>
+            <button class="button is-green" @click="edit()">Edit</button>
+          </div>
           <div class="card rates">
             <div class="control">
               <div class="columns">
@@ -393,10 +392,10 @@ export default {
   data() {
     return {
       editable: true,
-      ss:24,
+      ss: 24,
       edit_text: "Edit",
       modal_active: "modal",
-      checkRates: "tenant"
+      checkRates: "tenant",
     };
   },
   methods: {
@@ -423,7 +422,7 @@ export default {
 
 
 <style scoped>
-strong{
+strong {
   color: white;
 }
 .avatar {
@@ -450,8 +449,8 @@ label {
   width: 90%;
   margin: 3% auto;
 }
-.bs{
-  background-color:  #2D6A4f;
+.bs {
+  background-color: #2d6a4f;
 }
 star-rating {
   background-color: red;
@@ -461,20 +460,19 @@ star-rating {
   margin: 3% auto;
 }
 
-.rates{
+.rates {
   padding: 1% 5% 1% 5%;
 }
 .stars {
   margin: 3% auto;
 }
-.feature{
+.feature {
   width: 80%;
   height: 80%;
   margin: 0 auto;
 }
 
-.toMargin{
-  margin:4% auto;
+.toMargin {
+  margin: 4% auto;
 }
-
 </style>
