@@ -39,8 +39,8 @@
             </div>
           </div>
           <button class="modal-close is-large" aria-label="close" v-on:click="closeModal()"></button>
-        </div>
       </div>
+    </div>
 </template>
 
 <script>

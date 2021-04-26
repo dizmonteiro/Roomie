@@ -4,7 +4,7 @@
     <FormulateForm v-model="formData" @submit="submitProfile">
       <div id="llcard" class="card pad">
         <div class="columns is-desktop">
-          <div class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet">
+          <div class="column is-one-quarter-desktop is-full-mobile is-full-tablet">
             <figure class="image avatar">
               <img
                 class="is-rounded"
@@ -25,8 +25,8 @@
               </div>
             </div>
           </div>
-          <div class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form">
-            <div class="columns">
+          <div class="column is-half-desktop is-full-mobile is-full-tablet form">
+            <div class="columns is-full-mobile is-full-tablet is-full-desktop">
               <div class="column is-half">
                 <div class="field">
                   <FormulateInput
@@ -358,8 +358,8 @@ strong{
 }
 
 .avatar {
-  width: 70%;
-  height: 35%;
+  width: 200px;
+  height: 200px;
   position: relative;
   display: block;
   margin: 25% auto 8% auto;
@@ -394,6 +394,13 @@ label {
 
 .form{
   margin: 8% auto;
+}
+
+@media screen and (max-width: 1030px) {
+  .form{
+    margin: 8% auto;
+    padding: 0 20%;
+  }
 }
 
 #profile-pic {
