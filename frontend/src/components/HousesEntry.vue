@@ -25,28 +25,27 @@
         <div
           class="column adjust-hero-s is-three-fifths-desktop is-full-mobile is-full-tablet form has-text-centered"
         >
-          <label class="label">You were here with:</label>
+          <label class="label">Tenants living in this house:</label>
           <div class="otherTenants">
             <div class="sTenant" v-for="tenant in tenants" :key="tenant">
               <figure class="image center is-128x128">
-                <img class="is-rounded" :src="tenant.photo" @click="checkProfile"/>
+                <img class="is-rounded" :src="tenant.photo" />
               </figure>
               <label class="label center">{{ tenant.name }}</label>
               <button class="button is-green">Rate Roommate</button>
+              <button class="button is-green">No longer lives here</button>
             </div>
           </div>
-          <label class="label date">From:{{ from }}</label>
-          <label class="label date">To:{{ to }}</label>
+          <label class="label date">For Rent Since:{{ since }}</label>
         </div>
         <div
           class="column adjust-hero is-one-fifth-desktop is-full-mobile is-full-tablet has-text-centered"
         >
-          <label class="label">Landlord</label>
-          <figure class="image center">
-            <img class="is-rounded center llp" :src="landlord.photo" />
-          </figure>
-          <label class="label">{{ landlord.name }}</label>
-          <button class="button is-green">Check House</button>
+          <div class="sButtons">
+            <button class="button is-green rightButtons">View House</button>
+            <button class="button is-green rightButtons">Update House</button>
+            <button class="button is-green rightButtons">Remove House</button>
+          </div>
         </div>
       </div>
     </div>
@@ -56,30 +55,29 @@
 <script>
 import { VueAgile } from "vue-agile";
 export default {
-  props: [
-    "houseSlides",
-    "houseName",
-    "houseLocation",
-    "tenants",
-    "from",
-    "to",
-    "landlord",
-  ],
+  props: ["houseSlides", "houseName", "houseLocation", "tenants", "since"],
   components: { agile: VueAgile },
   data() {
     return {};
   },
-  methods:{
-    checkProfile(){
-      this.$router.push("/tenant/tprofile")
-    }
-  }
 };
 </script>
 
 <style scoped>
+.rightButtons {
+  width: 90%;
+}
+
+.sButtons{
+    margin: 30% auto;
+}
+
+.button {
+  display: block;
+  margin: 2.5% auto 2.5% auto;
+}
 .sBox {
-  margin: 6% auto;
+  margin: 11% auto;
 }
 .date {
   margin-right: 5%;
@@ -92,14 +90,6 @@ export default {
 .sTenant {
   display: inline-block;
   margin: 2%;
-}
-.colContent {
-  margin: 0 auto;
-}
-.llp{
-  width: 60%;
-  margin-bottom: 5%;
-  margin-top: 5%;
 }
 .sCard {
   margin: 0 auto 1% auto;

@@ -38,7 +38,7 @@
             <a class="button navb" href="/landlord/house/add">
               <strong>Add House</strong>
             </a>
-            <a class="button navb">
+            <a class="button navb" href="/landlord/houses">
               <strong>My Houses</strong>
             </a>
           </div>
