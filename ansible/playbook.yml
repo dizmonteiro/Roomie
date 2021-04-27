@@ -10,7 +10,6 @@
 
 - name: Update & Upgrade all VMs
   hosts:
-    - monitor
     - managers
     - workers
   roles:

@@ -67,3 +67,21 @@
     - /nfs/roomie/pg
     - /nfs/roomie/images
     - /nfs/roomie/uploads
+
+- name: Copy default house image
+  become: yes
+  copy:
+    src: ../../../backend/images/house-default.jpg
+    dest: /nfs/roomie/images/house-default.jpg
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy default user image
+  become: yes
+  copy:
+    src: ../../../backend/images/user-default.png
+    dest: /nfs/roomie/images/user-default.png
+    owner: root
+    group: root
+    mode: '0644'
