@@ -5,6 +5,7 @@
           <div class="columns is-centered is-vcentered">
             <div class="column is-three-fifths">
               <div class="card" id="homecard">
+
                 <div class="card-image">
                   <carousel >
                     <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
@@ -12,6 +13,7 @@
                     </carousel-slide>
                   </carousel>
                 </div>
+
                 <div class="card-content">
                   <div class="content has-text-justified">
                     <p>
@@ -28,6 +30,7 @@
                     </a>
                   </div>
                 </div>
+                
               </div>
             </div>
           </div>
