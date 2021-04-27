@@ -1,16 +1,4 @@
 /**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * <p>
- * This is an automatic generated file. It will be regenerated every time
- * you generate persistence class.
- * <p>
- * Modifying its content may cause the program not work, or your work may lost.
- * <p>
- * Licensee: joaonunoabreu(Universidade do Minho)
- * License Type: Academic
- */
-
-/**
  * Licensee: joaonunoabreu(Universidade do Minho)
  * License Type: Academic
  */
