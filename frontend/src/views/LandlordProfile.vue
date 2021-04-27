@@ -329,14 +329,21 @@ export default {
       })
     },
     async submitProfile (data) {
-      let payload = {
-        name: data.name,
-        username: data.username,
-        sex: data.sex,
-        address: data.address,
-        phone: data.phone
+
+      var bodyFormData = new FormData();
+      bodyFormData.append('name', data.name);
+      bodyFormData.append('username', data.username);
+      bodyFormData.append('sex', data.sex);
+      bodyFormData.append('address', data.address);
+      bodyFormData.append('phone', data.phone);
+
+      let options = {
+        headers: { 
+          "Content-Type": "multipart/form-data" 
+        }
       }
-      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId, payload).then(() => {
+      
+      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
         alert("Profile Updated!")
       }).catch(e => {
         alert(e)
