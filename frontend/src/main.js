@@ -10,7 +10,6 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import SmoothScrollbar from 'vue-smooth-scrollbar'
 
 Vue.use(SmoothScrollbar)
-
 Vue.use(VueAgile)
 
 Vue.config.productionTip = false
@@ -18,6 +17,7 @@ Vue.config.productionTip = false
 Vue.use(VueFormulate)
 
 const token = localStorage.getItem('user-token')
+Vue.prototype.$backendurl = 'http://localhost:8083'
 
 if (token) {
   axios.defaults.headers.common['Authorization'] = "Bearer " + token
