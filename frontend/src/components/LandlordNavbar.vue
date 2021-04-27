@@ -32,7 +32,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button navb">
+            <a class="button navb" href="/landlord/applications">
               <strong>Check Applications</strong>
             </a>
             <a class="button navb" href="/landlord/house/add">

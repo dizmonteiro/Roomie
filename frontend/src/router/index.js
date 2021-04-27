@@ -100,6 +100,12 @@ export default new Router({
       beforeEnter: ifAuthenticatedLandlord
     },
     {
+      name: 'Landlord Tenant Profile',
+      path: '/landlord/tprofile',
+      component: () => import('@/views/TenantProfileCheck'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
       name: 'Landlord Add House',
       path: '/landlord/house/add',
       component: () => import('@/views/AddHouse'),
@@ -109,6 +115,12 @@ export default new Router({
       name: 'Landlord Houses',
       path: '/landlord/houses',
       component: () => import('@/views/LandlordHouses'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
+      name: 'Landlord Applications',
+      path: '/landlord/applications',
+      component: () => import('@/views/CheckApplications'),
       beforeEnter: ifAuthenticatedLandlord
     },
     {
