@@ -8,4 +8,4 @@ FROM openjdk:11-jre-slim-buster
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/target/backend-1.1.0.jar ./backend.jar
 EXPOSE 8083
-ENTRYPOINT ["java", "-jar", "backend.jar"]
+CMD ["java", "-jar", "backend.jar"]
