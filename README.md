@@ -81,9 +81,8 @@ ansible-galaxy collection install community.docker
 
     -   Available services:
 
-        -   web - default of 3 replicas
-        -   celery - default of 1 replica
-        -   misago - default of 3 replicas
+        -   frontend - default of 3 replicas
+        -   backend - default of 3 replicas
 
     -   Examples:
         ```bash
