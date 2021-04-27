@@ -17,6 +17,13 @@
     advertise_addr: '{{ internal_ip }}'
   when: groups['managers'][0] != inventory_hostname
 
+- name: Make sure the destination folder exists
+  become: yes
+  file:
+    path: '/opt/roomie'
+    state: directory
+    recurse: yes
+
 - name: Copy Docker Stack file
   become: yes
   copy:

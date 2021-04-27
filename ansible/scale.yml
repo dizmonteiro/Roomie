@@ -6,13 +6,9 @@
   become: yes
   tasks:
       - name: Scale web service containers
-        shell: "docker service scale misago_web={{ lookup('vars', 'web') | int }}"
-        when: web is defined
+        shell: "docker service scale roomie_frontend={{ lookup('vars', 'frontend') | int }}"
+        when: frontend is defined
       
       - name: Scale celery service containers
-        shell: "docker service scale misago_celery={{ lookup('vars', 'celery') | int }}"
-        when: celery is defined
-      
-      - name: Scale misago service containers
-        shell: "docker service scale misago_misago={{ lookup('vars', 'misago') | int }}"
-        when: misago is defined
+        shell: "docker service scale roomie_backend={{ lookup('vars', 'backend') | int }}"
+        when: backend is defined
