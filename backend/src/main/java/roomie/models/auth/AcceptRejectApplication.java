@@ -1,7 +1,5 @@
 package roomie.models.auth;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -24,12 +22,12 @@ public class AcceptRejectApplication implements Serializable {
 		return tenantId;
 	}
 	
-	public boolean isAccept() {
-		return accept;
-	}
-	
 	public void setTenantId(int tenantId) {
 		this.tenantId = tenantId;
+	}
+	
+	public boolean isAccept() {
+		return accept;
 	}
 	
 	public void setAccept(boolean accept) {

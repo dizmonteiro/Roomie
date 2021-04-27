@@ -13,7 +13,6 @@ import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
 import roomie.models.application.ApplicationDAO;
 import roomie.models.house.House;
-import roomie.models.house.HouseDAO;
 import roomie.models.tenant.Tenant;
 import roomie.repositories.application.ApplicationCriteria;
 import roomie.repositories.house.HouseCriteria;
