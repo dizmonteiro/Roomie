@@ -24,9 +24,9 @@ public class RentHistoryService {
 		RentHistoryDAO.save(rentHistory);
 	}
 	
-	/*
-	public boolean delete(RentHistory rentHistory) throws PersistentException {
-		return false;
+	public void finish(RentHistory r) throws PersistentException {
+		r.seteDate(new Date());
+		RentHistoryDAO.save(r);
+		RentHistoryDAO.refresh(r);
 	}
-	*/
 }
