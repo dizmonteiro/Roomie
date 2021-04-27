@@ -57,7 +57,7 @@
       become: yes
       community.docker.docker_stack:
         state: present
-        name: misago
+        name: roomie
         compose:
           - /opt/roomie/docker-stack.yml
   tags:
