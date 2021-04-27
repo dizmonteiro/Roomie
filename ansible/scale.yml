@@ -5,10 +5,10 @@
   run_once: true
   become: yes
   tasks:
-      - name: Scale web service containers
+      - name: Scale frontend service containers
         shell: "docker service scale roomie_frontend={{ lookup('vars', 'frontend') | int }}"
         when: frontend is defined
       
-      - name: Scale celery service containers
+      - name: Scale backend service containers
         shell: "docker service scale roomie_backend={{ lookup('vars', 'backend') | int }}"
         when: backend is defined
