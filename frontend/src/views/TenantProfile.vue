@@ -11,7 +11,7 @@
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="'http://localhost:8083/api/tenants/'+ id + '/avatar'"
+                v-bind:src="this.$backendurl + '/api/tenants/'+ id + '/avatar'"
               />
             </figure>
             <div class="control">
@@ -321,7 +321,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:8083/api/tenants/'+store.getters.getId).then(response => {
+    axios.get(this.$backendurl + '/api/tenants/'+store.getters.getId).then(response => {
       this.formData = response.data;
     }).catch(e => {
       console.log(e)
@@ -379,7 +379,7 @@ export default {
       }
     },
     async submitPassword (data) {
-      await axios.put('http://localhost:8083/api/tenants/'+store.getters.getId+'/password', data).then(() => {
+      await axios.put(this.$backendurl + '/api/tenants/'+store.getters.getId+'/password', data).then(() => {
         this.closeModal()
       }).catch(e => {
         alert(e)
@@ -401,7 +401,7 @@ export default {
         }
       }
       
-      await axios.put('http://localhost:8083/api/tenants/'+store.getters.getId, bodyFormData, options).then(() => {
+      await axios.put(this.$backendurl + '/api/tenants/'+store.getters.getId, bodyFormData, options).then(() => {
         alert("Profile Updated!")
       }).catch(e => {
         alert(e)
