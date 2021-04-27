@@ -29,12 +29,6 @@ postgres=# create user roomie with encrypted password 'passw0rd';
 postgres=# grant all privileges on database roomie to roomie;
 ```
 
-#### Add orm.jar dependency
-
-```bash
-mvn install:install-file -Dfile=./lib/orm.jar -DgroupId=org.orm -DartifactId=orm -Dversion=1.0 -Dpackaging=jar
-```
-
 #### Run Project
 
 Execute (in IntelliJ) by running `RestApiApplication.java` file.
