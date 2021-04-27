@@ -9,11 +9,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
+import roomie.models.auth.AcceptRejectApplication;
 import roomie.models.auth.MyUser;
 import roomie.models.house.House;
 import roomie.models.tenant.Tenant;
 import roomie.services.ApplicationService;
 import roomie.services.HouseService;
+import roomie.services.RentHistoryService;
 import roomie.services.TenantService;
 
 import javax.validation.Valid;
@@ -35,6 +37,9 @@ public class ApplicationController {
 	@Autowired
 	private HouseService houseService;
 	
+	@Autowired
+	private RentHistoryService rentHistoryService;
+	
 	@PreAuthorize("hasRole('TENANT')")
 	@PostMapping
 	public Application register(@Valid @RequestBody Application application, Authentication auth) throws PersistentException, ResourceNotFoundException {
@@ -55,5 +60,19 @@ public class ApplicationController {
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+	
+	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isOwner(authentication, #id)")
+	@PutMapping(value = "/{id}")
+	public Application acceptRejectApplication(@PathVariable int id, @Valid @RequestBody AcceptRejectApplication body) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(body.getTenantId());
+		House house = houseService.getById(id);
+		Application application = applicationService.getById(tenant, house);
+		
+		if (body.isAccept()) {
+			rentHistoryService.create(tenant, house);
+		}
+		
+		return applicationService.update(application, body.isAccept());
 	}
 }

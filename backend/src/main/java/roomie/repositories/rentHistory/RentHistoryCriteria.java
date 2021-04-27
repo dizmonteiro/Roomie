@@ -1,9 +1,8 @@
-package roomie.repositories.rentHistory;
-
 /**
- * Licensee: vr(Universidade do Minho)
+ * Licensee: joaonunoabreu(Universidade do Minho)
  * License Type: Academic
  */
+package roomie.repositories.rentHistory;
 
 import org.hibernate.Criteria;
 import org.orm.PersistentException;

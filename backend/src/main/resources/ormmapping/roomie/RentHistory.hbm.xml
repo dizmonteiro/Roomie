@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Licensee: vr(Universidade do Minho)
+Licensee: joaonunoabreu(Universidade do Minho)
 License Type: Academic
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
@@ -14,6 +14,6 @@ License Type: Academic
             </key-many-to-one>
         </composite-id>
         <property name="bDate" column="BDate" type="date" not-null="true" lazy="false"/>
-        <property name="eDate" column="EDate" type="date" not-null="true" lazy="false"/>
+        <property name="eDate" column="EDate" type="date" not-null="false" lazy="false"/>
     </class>
 </hibernate-mapping>

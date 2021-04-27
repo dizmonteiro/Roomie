@@ -483,7 +483,7 @@
             <ForeignKey>false</ForeignKey>
             <Type>17</Type>
             <Length>0</Length>
-            <Nullable>false</Nullable>
+            <Nullable>true</Nullable>
             <IDGenerator>native</IDGenerator>
             <Unique>false</Unique>
             <Index>false</Index>

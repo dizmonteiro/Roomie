@@ -4,7 +4,7 @@
     <FormulateForm v-model="formData" @submit="submitProfile">
       <div id="llcard" class="card pad">
         <div class="columns is-desktop">
-          <div class="column adjust-hero-s is-one-quarter-desktop is-full-mobile is-full-tablet">
+          <div class="column is-one-quarter-desktop is-full-mobile is-full-tablet">
             <figure class="image avatar">
               <img
                 class="is-rounded"
@@ -25,8 +25,8 @@
               </div>
             </div>
           </div>
-          <div class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form">
-            <div class="columns">
+          <div class="column is-half-desktop is-full-mobile is-full-tablet form">
+            <div class="columns is-full-mobile is-full-tablet is-full-desktop">
               <div class="column is-half">
                 <div class="field">
                   <FormulateInput
@@ -329,14 +329,21 @@ export default {
       })
     },
     async submitProfile (data) {
-      let payload = {
-        name: data.name,
-        username: data.username,
-        sex: data.sex,
-        address: data.address,
-        phone: data.phone
+
+      var bodyFormData = new FormData();
+      bodyFormData.append('name', data.name);
+      bodyFormData.append('username', data.username);
+      bodyFormData.append('sex', data.sex);
+      bodyFormData.append('address', data.address);
+      bodyFormData.append('phone', data.phone);
+
+      let options = {
+        headers: { 
+          "Content-Type": "multipart/form-data" 
+        }
       }
-      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId, payload).then(() => {
+      
+      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
         alert("Profile Updated!")
       }).catch(e => {
         alert(e)
@@ -358,8 +365,8 @@ strong{
 }
 
 .avatar {
-  width: 70%;
-  height: 35%;
+  width: 200px;
+  height: 200px;
   position: relative;
   display: block;
   margin: 25% auto 8% auto;
@@ -394,6 +401,13 @@ label {
 
 .form{
   margin: 8% auto;
+}
+
+@media screen and (max-width: 1030px) {
+  .form{
+    margin: 8% auto;
+    padding: 0 20%;
+  }
 }
 
 #profile-pic {

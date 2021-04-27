@@ -68,4 +68,12 @@ public class ApplicationService {
 		}
 		return application;
 	}
+	
+	public Application update(Application application, boolean accept) throws PersistentException {
+		application.setToBeAssessed(true);
+		application.setAccepted(accept);
+		ApplicationDAO.save(application);
+		ApplicationDAO.refresh(application);
+		return application;
+	}
 }
