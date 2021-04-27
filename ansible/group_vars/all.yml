@@ -1,0 +1,10 @@
+--- 
+
+# GCP Authentication Configuration
+gcp_project: roomie-312016
+gcp_auth_kind: serviceaccount
+gcp_service_account_file: ./roomie.json
+
+# App configuration
+region: europe-west1
+zone: europe-west1-b

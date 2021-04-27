@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+    frontend:
+        image: vascoalramos/roomie-frontend
+        ports:
+            - 80:80
+        depends_on:
+            - postgres
+            - backend
+        deploy:
+            replicas: 3
+            restart_policy:
+                condition: on-failure
+
+    backend:
+        image: vascoalramos/roomie-backend
+        ports:
+            - 8083:8083
+        depends_on:
+            - postgres
+        volumes:
+            - /nfs/roomie/images:/usr/src/app/images:z
+            - /nfs/roomie/uploads:/usr/src/app/uploads:z
+        deploy:
+            replicas: 3
+            restart_policy:
+                condition: on-failure
+
+    postgres:
+        image: postgres
+        restart: unless-stopped
+        ports:
+            - 5433:5432
+        environment:
+            - POSTGRES_DB=roomie
+            - POSTGRES_USER=roomie
+            - POSTGRES_PASSWORD=passw0rd
+        volumes:
+            - /nfs/roomie/pg:/var/lib/postgresql/data/:z
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+
+volumes:
+    database-data:
