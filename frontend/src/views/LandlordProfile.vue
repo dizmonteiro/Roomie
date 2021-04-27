@@ -9,7 +9,7 @@
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="'http://localhost:8083/api/landlords/'+ id + '/avatar'"
+                v-bind:src="this.$backendurl + '/api/landlords/'+ id + '/avatar'"
               />
             </figure>
             <div class="control">
@@ -247,7 +247,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:8083/api/landlords/'+store.getters.getId).then(response => {
+    axios.get(this.$backendurl + '/api/landlords/'+store.getters.getId).then(response => {
       this.formData = response.data;
     }).catch(e => {
       console.log(e)
@@ -297,7 +297,7 @@ export default {
       }
     },
     async submitPassword (data) {
-      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId+'/password', data).then(() => {
+      await axios.put(this.$backendurl + '/api/landlords/'+store.getters.getId+'/password', data).then(() => {
         this.closeModal()
       }).catch(e => {
         alert(e)
@@ -318,7 +318,7 @@ export default {
         }
       }
       
-      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
+      await axios.put(this.$backendurl + '/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
         alert("Profile Updated!")
       }).catch(e => {
         alert(e)

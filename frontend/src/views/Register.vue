@@ -249,7 +249,7 @@ function getUserType() {
 
               axios({
                 method: "post",
-                url: "http://localhost:8083/api/tenants",
+                url: this.$backendurl + "/api/tenants",
                 data: bodyFormData,
                 headers: { 
                   "Authorization": null,
@@ -434,7 +434,7 @@ function getUserType() {
 
             axios({
               method: "post",
-              url: "http://localhost:8083/api/landlords",
+              url: this.$backendurl + "/api/landlords",
               data: bodyFormData,
               headers: { 
                 "Authorization": null,
