@@ -1,307 +1,278 @@
 <template>
   <div>
     <TenantNavbar />
-    <div id="llcard" class="card pad">
-      <div class="columns is-desktop">
-        <div
-          class="column is-one-quarter-desktop is-full-mobile is-full-tablet"
-        >
-          <figure class="image avatar">
-            <img
-              class="is-rounded"
-              src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
-            />
-          </figure>
-          <div class="control">
-            <div class="box adjust-gender">
-              <label class="label gender-label">Gender</label>
-              <label class="radio gender">
-                <input type="radio" name="gender" value="female" disabled />
-                Female
-              </label>
-              <label class="radio gender">
-                <input type="radio" name="gender" value="male" disabled />
-                Male
-              </label>
-              <label class="radio gender">
-                <input type="radio" name="gender" value="other" disabled />
-                Other
-              </label>
-            </div>
-          </div>
-        </div>
-        <div
-          class="column is-half-desktop is-full-mobile is-full-tablet form"
-        >
-          <div class="field">
-            <label class="label">Name</label>
+    <FormulateForm v-model="formData" @submit="submitProfile">
+      <div id="llcard" class="card pad">
+        <div class="columns is-desktop">
+          <div
+            class="column is-one-quarter-desktop is-full-mobile is-full-tablet"
+          >
+            <figure class="image avatar">
+              <img
+                class="is-rounded"
+                id="profile-pic"
+                v-bind:src="'http://localhost:8083/api/tenants/'+ id + '/avatar'"
+              />
+            </figure>
             <div class="control">
-              <input
-                class="input"
-                type="text"
-                placeholder="Full Name"
-                name="name"
-                :readonly="editable"
-              />
+              <div class="box adjust-gender">
+                <FormulateInput
+                  id="gender"
+                  name="sex"
+                  :options="{female: 'Female', male: 'Male', other: 'Other'}"
+                  type="radio"
+                  label="Gender"
+                  disabled
+                />
+              </div>
             </div>
           </div>
-          <div class="columns">
-            <div class="column is-half">
-              <div class="field">
-                <label class="label">NIF</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
+          <div class="column is-half-desktop is-full-mobile is-full-tablet form">
+            <div class="columns">
+              <div class="column is-half">
+                <div class="field">
+                  <FormulateInput
                     type="text"
-                    placeholder="NIF"
+                    name="name"
+                    label="Name"
+                    placeholder="Full Name"
+                    validation="required"
+                    disabled
+                  />
+                </div>
+                <div class="field">
+                  <FormulateInput
+                    type="number"
                     name="nif"
-                    :readonly="editable"
+                    label="NIF"
+                    placeholder="NIF"
+                    validation="number|min:9,length|max:9,length"
+                    min="0"
+                    max="999999999"
+                    disabled
                   />
                 </div>
-              </div>
-              <div class="field">
-                <label class="label">Email</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
+                <div class="field">
+                  <FormulateInput
                     type="email"
-                    placeholder="Email"
                     name="email"
-                    :readonly="editable"
+                    label="Email"
+                    placeholder="email"
+                    validation="email"
+                    disabled
                   />
                 </div>
-              </div>
-              <div class="field">
-                <label class="label">Phone Number</label>
-                <p class="control">
-                  <input
-                    class="input"
-                    type="tel"
-                    placeholder="(+351) XXX XXX XXX"
-                    name="phone"
-                    :readonly="editable"
-                  />
-                </p>
-              </div>
-              <div class="field">
-                <label class="label">Nationality</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Portuguese"
-                    name="ocupation"
-                    :readonly="editable"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="column is-half">
-              <div class="field">
-                <label class="label">Username</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Username"
-                    name="username"
-                    :readonly="editable"
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <label class="label">Password</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <label class="label">Birth Date</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
+                <div class="field">
+                  <FormulateInput
                     type="date"
-                    placeholder="yyyy-mm-dd"
-                    name="dob"
-                    :readonly="editable"
+                    name="birthDate"
+                    label="Birth Date"
+                    placeholder="dd/mm/yyyy"
+                    min="1910-01-01"
+                    disabled
                   />
                 </div>
               </div>
-              <div class="field">
-                <label class="label">Occupation</label>
-                <div class="control">
-                  <input
-                    class="input"
+              <div class="column is-half">
+                <div class="field">
+                  <FormulateInput
                     type="text"
-                    placeholder="Student"
-                    name="ocupation"
-                    :readonly="editable"
+                    name="username"
+                    label="Username"
+                    placeholder="Username"
+                    validation="required"
+                    disabled
+                  />
+                </div>
+                
+                <div class="field">
+                  <FormulateInput
+                    type="text"
+                    name="occupation"
+                    label="Occupation"
+                    placeholder="Occupation"
+                    validation="required"
+                    disabled
+                  />
+                </div> 
+                <div class="field">
+                  <FormulateInput
+                    type="tel"
+                    name="phone"
+                    label="Phone Number"
+                    placeholder="Phone Number"
+                    validation="required"
+                    disabled
+                  />
+                </div>
+                <div class="field">
+                  <FormulateInput
+                    name="nationality"
+                    :options=countries
+                    type="select"
+                    placeholder="'data.nationality'"
+                    label="Nationality"
+                    validation="required"
+                    disabled
                   />
                 </div>
               </div>
             </div>
-          </div>
-          <div class="field is-grouped is-grouped-right">
-            <p class="control">
-              <a
-                class="button bs"
-                value="edit-password"
+            <div class="field is-grouped is-grouped-right">
+              <div class="field is-grouped is-grouped-right">
+              <FormulateInput
+                type="button"
+                label="Edit Password"
                 @click="editPassword()"
-              >
-               <strong> Edit Password</strong>
-              </a>
-            </p>
-            <p class="control">
-              <a class="button bs" value="edit" @click="edit()">
-                <strong>{{ edit_text }}</strong>
-              </a>
-            </p>
-          </div>
-          <div class="card rates">
-            <div class="columns is-desktop">
-              <div
-                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-              >
-                <figure class="image feature">
-                  <img
-                    class="is-rounded"
-                    src="https://picsum.photos/200"
-                  />
-                </figure>
-                <StarRating class="stars" id="stars0" :initialValue="4" :editable="false"/>
-              </div>
-              <div
-                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-              >
-                <figure class="image feature">
-                  <img
-                    class="is-rounded"
-                    src="https://picsum.photos/200"
-                  />
-                </figure>
-                <StarRating class="stars" id="stars1" :initialValue="1" :editable="false"/>
-              </div>
-              <div
-                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-              >
-                <figure class="image feature">
-                  <img
-                    class="is-rounded"
-                    src="https://picsum.photos/200"
-                  />
-                </figure>
-                <StarRating class="stars" id="stars2" :initialValue="3" :editable="false"/>
-              </div>
-              <div
-                class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-              >
-                <figure class="image feature">
-                  <img
-                    class="is-rounded"
-                    src="https://picsum.photos/200"
-                  />
-                </figure>
-                  <StarRating class="stars" id="stars3" :initialValue="2" :editable="false"/>
-                
+              />
+              <FormulateInput
+                type="submit"
+                v-if="editable === false"
+                v-bind:label="edit_text"
+                @click="edit()"
+              />
+              <FormulateInput
+                v-if="editable === true"
+                type="button"
+                label="Apply Changes"
+                @click="edit()"
+              />
+            </div>
+            </div>
+            <div class="card rates">
+              <div class="columns is-desktop">
+                <div
+                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                >
+                  <figure class="image feature">
+                    <img
+                      class="is-rounded"
+                      src="https://picsum.photos/200"
+                    />
+                  </figure>
+                  <StarRating class="stars" id="stars0" :initialValue="4" :editable="false"/>
+                </div>
+                <div
+                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                >
+                  <figure class="image feature">
+                    <img
+                      class="is-rounded"
+                      src="https://picsum.photos/200"
+                    />
+                  </figure>
+                  <StarRating class="stars" id="stars1" :initialValue="1" :editable="false"/>
+                </div>
+                <div
+                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                >
+                  <figure class="image feature">
+                    <img
+                      class="is-rounded"
+                      src="https://picsum.photos/200"
+                    />
+                  </figure>
+                  <StarRating class="stars" id="stars2" :initialValue="3" :editable="false"/>
+                </div>
+                <div
+                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
+                >
+                  <figure class="image feature">
+                    <img
+                      class="is-rounded"
+                      src="https://picsum.photos/200"
+                    />
+                  </figure>
+                    <StarRating class="stars" id="stars3" :initialValue="2" :editable="false"/>
+                  
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          class="column is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
-        >
-          <SideMenuEditable class="toMargin" title="My Rent History">
-            <template v-slot:firstEntry>
-              <SideMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'from_date',
-                    v1: 'From:01/01/2021',
-                    k2: 'to_date',
-                    v2: 'To:01/02/2021',
-                    k3: 'landlord',
-                    v3: 'Landord1',
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:secondEntry>
-              <SideMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'from_date',
-                    v1: 'From:01/03/2021',
-                    k2: 'to_date',
-                    v2: 'To:01/04/2021',
-                    k3: 'landlord',
-                    v3: 'Landord2',
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:thirdEntry>
-              <SideMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'from_date',
-                    v1: 'From:01/05/2021',
-                    k2: 'to_date',
-                    v2: 'To:01/06/2021',
-                    k3: 'landlord',
-                    v3: 'Landord3',
-                  },
-                ]"
-              />
-            </template>
-          </SideMenuEditable>
+          <div
+            class="column is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
+          >
+            <SideMenuEditable class="toMargin" title="My Rent History">
+              <template v-slot:firstEntry>
+                <SideMenuEntry
+                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
+                  :args="[
+                    {
+                      k1: 'from_date',
+                      v1: 'From:01/01/2021',
+                      k2: 'to_date',
+                      v2: 'To:01/02/2021',
+                      k3: 'landlord',
+                      v3: 'Landord1',
+                    },
+                  ]"
+                />
+              </template>
+              <template v-slot:secondEntry>
+                <SideMenuEntry
+                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
+                  :args="[
+                    {
+                      k1: 'from_date',
+                      v1: 'From:01/03/2021',
+                      k2: 'to_date',
+                      v2: 'To:01/04/2021',
+                      k3: 'landlord',
+                      v3: 'Landord2',
+                    },
+                  ]"
+                />
+              </template>
+              <template v-slot:thirdEntry>
+                <SideMenuEntry
+                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
+                  :args="[
+                    {
+                      k1: 'from_date',
+                      v1: 'From:01/05/2021',
+                      k2: 'to_date',
+                      v2: 'To:01/06/2021',
+                      k3: 'landlord',
+                      v3: 'Landord3',
+                    },
+                  ]"
+                />
+              </template>
+            </SideMenuEditable>
+          </div>
         </div>
       </div>
-    </div>
+    </FormulateForm>
     <div id="change-password" class="modal">
       <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="box has-text-centered">
-          <div class="field">
-            <label class="label is-left">Old Password</label>
-            <div class="control">
-              <input
-                class="input"
-                type="password"
-                placeholder="Old password"
-                id="old-password"
-                required
-              />
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">New Password</label>
-            <div class="control">
-              <input
-                class="input"
-                type="password"
-                placeholder="New password"
-                id="new-password"
-                required
-              />
-            </div>
-          </div>
-          <a
-            class="button is-primary is-centered"
-            value="pwd-change"
-            @click="closeModal()"
-          >
-            Change Password
-          </a>
+      <FormulateForm 
+        @submit="submitPassword"
+        #default="{ isLoading }"
+      >
+        <div class="modal-content">
+          <div class="box has-text-centered">
+            <FormulateInput
+              type="password"
+              name="oldPassword"
+              label="Old Password"
+              placeholder="**********"
+              validation="required"
+            />
+            <FormulateInput
+              type="password"
+              name="newPassword"
+              label="New Password"
+              placeholder="**********"
+              validation="required|min:4,length"
+            />
+            <FormulateInput
+              type="submit"
+              :disabled="isLoading"
+              :label="isLoading ? 'Updating...' : 'Change Password'"
+            />
+          </div>   
         </div>
-      </div>
+      </FormulateForm>
 
       <button
         class="modal-close is-large"
@@ -318,6 +289,10 @@ import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
 import StarRating from "@/components/StarRating";
+import { mapGetters, mapState } from 'vuex';
+import axios from 'axios';
+import store from '@/store';
+import countries from '@/assets/scripts/countries';
 
 export default {
   name: "TenantProfile",
@@ -329,25 +304,109 @@ export default {
   },
   data() {
     return {
-      editable: true,
+      editable: false,
       ss:24,
       edit_text: "Edit",
       modal_active: "modal",
+      countries: countries,
+      formData: {
+        username: "",
+        name: "",
+        sex: "",
+        password: "",
+        birthDate: "",
+        nationality: "",
+        occupation: ""
+      }
     };
+  },
+  created() {
+    axios.get('http://localhost:8083/api/tenants/'+store.getters.getId).then(response => {
+      this.formData = response.data;
+    }).catch(e => {
+      console.log(e)
+    });  
+  },
+  computed: {
+    ...mapGetters(["getType","getId"]),
+    ...mapState({
+      type: (state) => `${state.user.type}`,
+      id: (state) => `${state.user.id}`,
+    }),
   },
   methods: {
     edit() {
       console.log(document.getElementById("stars3").getAttribute("value"));
-      if (this.editable) this.edit_text = "Apply Changes";
-      else this.edit_text = "Edit";
       this.editable = !this.editable;
+      var inputs, select;
+
+      if (this.editable){
+        this.edit_text = "Apply Changes";
+        inputs = document.getElementsByTagName('input');
+        for(var i = 0; i < inputs.length; i++) {
+          if(inputs[i].type.toLowerCase() != 'password' && inputs[i].type.toLowerCase() != 'email' && inputs[i].type.toLowerCase() != 'number' && inputs[i].type.toLowerCase() != 'date')
+            inputs[i].disabled = false
+        }
+
+        select = document.getElementById('formulate--tenant-profile-12');
+        select.disabled = false;
+
+      } else {
+        this.edit_text = "Edit";
+        inputs = document.getElementsByTagName('input');
+        for(var j = 0; j < inputs.length; j++)
+          inputs[j].disabled = true
+        
+        select = document.getElementById('formulate--tenant-profile-12');
+        select.disabled = true;
+      }
     },
     editPassword() {
       document.getElementById("change-password").classList.add("is-active");
+
+      var inputs = document.getElementsByTagName('input');
+      for(var i = 0; i < inputs.length; i++) {
+          if(inputs[i].type.toLowerCase() == 'password')
+            inputs[i].disabled = false
+      }
     },
     closeModal() {
       document.getElementById("change-password").classList.remove("is-active");
+      var inputs = document.getElementsByTagName('input');
+      for(var i = 0; i < inputs.length; i++) {
+          if(inputs[i].type.toLowerCase() == 'password')
+            inputs[i].disabled = true
+      }
     },
+    async submitPassword (data) {
+      await axios.put('http://localhost:8083/api/tenants/'+store.getters.getId+'/password', data).then(() => {
+        this.closeModal()
+      }).catch(e => {
+        alert(e)
+      })
+    },
+    async submitProfile (data) {
+
+      var bodyFormData = new FormData();
+      bodyFormData.append('name', data.name);
+      bodyFormData.append('username', data.username);
+      bodyFormData.append('phone', data.phone);
+      bodyFormData.append('sex', data.sex);
+      bodyFormData.append('nationality', data.nationality);
+      bodyFormData.append('occupation', data.occupation);
+
+      let options = {
+        headers: { 
+          "Content-Type": "multipart/form-data" 
+        }
+      }
+      
+      await axios.put('http://localhost:8083/api/tenants/'+store.getters.getId, bodyFormData, options).then(() => {
+        alert("Profile Updated!")
+      }).catch(e => {
+        alert(e)
+      })
+    }
   },
 };
 </script>
@@ -358,7 +417,10 @@ strong{
   color: white;
 }
 .avatar {
-  width: 80%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  display: block;
   margin: 25% auto 8% auto;
 }
 label {
@@ -368,7 +430,7 @@ label {
   margin: auto 22%;
 }
 .adjust-gender {
-  width: 50%;
+  width: 55%;
   margin: 0 auto;
 }
 .gender-label {
@@ -409,4 +471,15 @@ star-rating {
   margin:4% auto;
 }
 
+#profile-pic {
+  position: absolute; 
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
 </style>

@@ -4,12 +4,12 @@ body {
     flex-direction: column; 
 }
 
-#formulate--landlord-house-add-13 {
+#formulate--landlord-house-add-12 {
     background-color: #2d6a4f !important;
     border-color: #2d6a4f !important;
 }
 
-#formulate--landlord-profile-13 {
+#formulate--landlord-profile-12 {
     background-color: #2d6a4f !important;
     border-color: #2d6a4f !important;
 }
@@ -19,7 +19,7 @@ body {
     border-color: #2d6a4f !important;
 }
 
-#formulate--landlord-profile-14 {
+#formulate--landlord-profile-13 {
     background-color: #2d6a4f !important;
     border-color: #2d6a4f !important;
     margin-left: 10px !important;
@@ -58,4 +58,19 @@ textarea[id^='formulate--landlord-house-add-']:focus{
 
 .formulate-input[data-classification=file] .formulate-input-upload-area input:focus~.formulate-input-upload-area-mask:before, .formulate-input[data-classification=file] .formulate-input-upload-area input:hover~.formulate-input-upload-area-mask:before, .formulate-input[data-classification=file] .formulate-input-upload-area input[data-is-drag-hover]~.formulate-input-upload-area-mask:before {
     background-color: #2d6a4f !important;
+}
+
+#formulate--tenant-profile-13 {
+    background-color: #2d6a4f !important;
+    border-color: #2d6a4f !important;
+}
+
+#formulate--tenant-profile-14 {
+    background-color: #2d6a4f !important;
+    border-color: #2d6a4f !important;
+    margin-left: 10px !important;
+}
+
+#gender_label {
+    text-align: center !important;
 }

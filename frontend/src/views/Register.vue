@@ -65,7 +65,7 @@ function getUserType() {
     `
 
     for (var i = 0; i < countries.length; i++) {
-      countrySelector1 += "<option value=" + countries[i].name  + ">" + countries[i].name + "</option>"
+      countrySelector1 += "<option value=" + countries[i].value  + ">" + countries[i].value + "</option>"
     }
 
     var countrySelector2 =`

@@ -9,7 +9,7 @@
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="'http://localhost:8083/api/tenants/'+ id + '/avatar'"
+                v-bind:src="'http://localhost:8083/api/landlords/'+ id + '/avatar'"
               />
             </figure>
             <div class="control">
@@ -84,15 +84,6 @@
                 </div>
                 <div class="field">
                   <FormulateInput
-                    type="password"
-                    name="password"
-                    label="Password"
-                    placeholder="**********"
-                    disabled
-                  />
-                </div>
-                <div class="field">
-                  <FormulateInput
                     type="text"
                     name="address"
                     label="Address"
@@ -131,22 +122,6 @@
                 label="Apply Changes"
                 @click="edit()"
               />
-              <!--
-              <p class="control">
-                <a
-                  class="button bs"
-                  value="edit-password"
-                  @click="editPassword()"
-                >
-                <strong> Edit Password</strong>
-                </a>
-              </p>
-              <p class="control">
-                <a class="button bs" value="edit" @click="edit()">
-                  <strong>{{ edit_text }}</strong>
-                </a>
-              </p>
-              -->
             </div>
           </div>
           <div class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered">
