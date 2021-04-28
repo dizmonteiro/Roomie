@@ -48,6 +48,7 @@
 import DefaultNavbar from '@/components/DefaultNavbar'
 import axios from 'axios'
 import countries from '@/assets/scripts/countries'
+import { url as api_url } from "@/assets/scripts/api"
 
 function validateEmail(email) {
   /* eslint-disable-next-line */
@@ -249,7 +250,7 @@ function getUserType() {
 
               axios({
                 method: "post",
-                url: this.$backendurl + "/api/tenants",
+                url: api_url + "/api/tenants",
                 data: bodyFormData,
                 headers: { 
                   "Authorization": null,
@@ -434,7 +435,7 @@ function getUserType() {
 
             axios({
               method: "post",
-              url: this.$backendurl + "/api/landlords",
+              url: api_url + "/api/landlords",
               data: bodyFormData,
               headers: { 
                 "Authorization": null,
