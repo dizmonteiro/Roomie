@@ -6,7 +6,7 @@
             <div class="card" id="form-card">
                 <div class="card-content">
                     <p class="title has-text-centered">Add New House</p>
-                    <FormulateForm v-model="formData" class="columns is-centered">
+                    <FormulateForm v-model="formData" class="columns is-centered" @submit="submitHouse">
                         <div class="column is-full-mobile is-full-tablet is-one-third-desktop">
                             <FormulateInput
                                 name="title"
@@ -46,7 +46,7 @@
                             />
                             <div class="price-range">
                                 <FormulateInput
-                                    name="min-price"
+                                    name="minprice"
                                     label="Min. Price p/ Bedroom"
                                     type="number"
                                     validation="required|number"
@@ -54,7 +54,7 @@
                                 />
                                 <div class="spacer"></div>
                                 <FormulateInput
-                                    name="max-price"
+                                    name="maxprice"
                                     label="Max. Price p/ Bedroom"
                                     type="number"
                                     validation="required|number"
@@ -134,6 +134,8 @@
 
 <script>
 import LandlordNavbar from '@/components/LandlordNavbar'
+import axios from 'axios';
+import { url as api_url } from "@/assets/scripts/api";
 
 function goToProfile() {
     window.location.replace("/landlord");
@@ -142,6 +144,8 @@ function goToProfile() {
 function closeModal() {
     document.getElementById("modal").classList.remove("is-active");
 }
+
+
 
 export default {
   name: 'Login',
@@ -159,7 +163,31 @@ export default {
   },
   methods: {
     closeModal,
-    goToProfile
+    goToProfile,
+    async submitHouse (data) {
+        var bodyFormData = new FormData();
+        bodyFormData.append('address', data.address);
+        bodyFormData.append('features', data.features);
+        bodyFormData.append('description', data.description);
+        bodyFormData.append('minPrice', data.minprice);
+        bodyFormData.append('maxPrice', data.maxprice);
+        bodyFormData.append('bathRooms', data.bathrooms);
+        bodyFormData.append('availableRooms', data.available);
+        bodyFormData.append('rooms', data.bedrooms);
+        bodyFormData.append('title', data.title);
+        bodyFormData.append('files', data.photos);
+
+        let options = {
+            headers: { 
+            "Content-Type": "multipart/form-data" 
+            }
+        }
+        await axios.post(api_url + '/api/houses', bodyFormData, options).then(() => {
+            document.getElementById("modal").classList.add("is-active");
+        }).catch(e => {
+            alert(e)
+        })
+    }
   }
 }
 </script>
