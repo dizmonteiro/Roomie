@@ -9,7 +9,7 @@
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="this.$backendurl + '/api/landlords/'+ id + '/avatar'"
+                v-bind:src="url + '/api/landlords/'+ id + '/avatar'"
               />
             </figure>
             <div class="control">
@@ -224,6 +224,7 @@ import SideMenuEntry from "@/components/SideMenuEntry";
 import { mapGetters, mapState } from 'vuex';
 import axios from 'axios';
 import store from '@/store';
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "LandlordProfile",
@@ -237,6 +238,7 @@ export default {
       editable: false,
       edit_text: "Edit",
       modal_active: "modal",
+      url: api_url,
       formData: {
         username: "",
         name: "",
@@ -247,7 +249,7 @@ export default {
     };
   },
   created() {
-    axios.get(this.$backendurl + '/api/landlords/'+store.getters.getId).then(response => {
+    axios.get(api_url + '/api/landlords/'+store.getters.getId).then(response => {
       this.formData = response.data;
     }).catch(e => {
       console.log(e)
@@ -297,7 +299,7 @@ export default {
       }
     },
     async submitPassword (data) {
-      await axios.put(this.$backendurl + '/api/landlords/'+store.getters.getId+'/password', data).then(() => {
+      await axios.put(api_url + '/api/landlords/'+store.getters.getId+'/password', data).then(() => {
         this.closeModal()
       }).catch(e => {
         alert(e)
@@ -318,7 +320,7 @@ export default {
         }
       }
       
-      await axios.put(this.$backendurl + '/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
+      await axios.put(api_url + '/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
         alert("Profile Updated!")
       }).catch(e => {
         alert(e)
