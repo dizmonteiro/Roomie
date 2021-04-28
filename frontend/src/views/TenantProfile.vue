@@ -11,7 +11,7 @@
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="this.$backendurl + '/api/tenants/'+ id + '/avatar'"
+                v-bind:src="url + '/api/tenants/'+ id + '/avatar'"
               />
             </figure>
             <div class="control">
@@ -293,6 +293,7 @@ import { mapGetters, mapState } from 'vuex';
 import axios from 'axios';
 import store from '@/store';
 import countries from '@/assets/scripts/countries';
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "TenantProfile",
@@ -304,6 +305,7 @@ export default {
   },
   data() {
     return {
+      url: api_url,
       editable: false,
       ss:24,
       edit_text: "Edit",
@@ -321,7 +323,7 @@ export default {
     };
   },
   created() {
-    axios.get(this.$backendurl + '/api/tenants/'+store.getters.getId).then(response => {
+    axios.get(api_url + '/api/tenants/'+store.getters.getId).then(response => {
       this.formData = response.data;
     }).catch(e => {
       console.log(e)
@@ -379,7 +381,7 @@ export default {
       }
     },
     async submitPassword (data) {
-      await axios.put(this.$backendurl + '/api/tenants/'+store.getters.getId+'/password', data).then(() => {
+      await axios.put(api_url + '/api/tenants/'+store.getters.getId+'/password', data).then(() => {
         this.closeModal()
       }).catch(e => {
         alert(e)
@@ -401,7 +403,7 @@ export default {
         }
       }
       
-      await axios.put(this.$backendurl + '/api/tenants/'+store.getters.getId, bodyFormData, options).then(() => {
+      await axios.put(api_url + '/api/tenants/'+store.getters.getId, bodyFormData, options).then(() => {
         alert("Profile Updated!")
       }).catch(e => {
         alert(e)

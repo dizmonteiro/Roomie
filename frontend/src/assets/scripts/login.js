@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { url } from './api'
 
 export const myLoginRoutine = user => new Promise ((resolve, reject) => {
-    axios({url: 'http://localhost:8083/api/auth/login', data: user, method: 'POST' })
+    axios({url: url + '/api/auth/login', data: user, method: 'POST' })
       .then(resp => {
         const token = resp.data.token
         localStorage.setItem('user-token', token) // store the token in localstorage
