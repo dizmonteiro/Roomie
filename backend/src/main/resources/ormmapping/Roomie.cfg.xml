@@ -18,8 +18,8 @@ License Type: Academic
         <property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 
         <property name="hibernate.c3p0.min_size">3</property>
-        <property name="hibernate.c3p0.max_size">200</property>
-        <property name="hibernate.c3p0.max_statements">200</property>
+        <property name="hibernate.c3p0.max_size">1000</property>
+        <property name="hibernate.c3p0.max_statements">1000</property>
 
         <!-- mapping files -->
         <mapping resource="ormmapping/roomie/Application.hbm.xml"/>
