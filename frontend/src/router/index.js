@@ -154,6 +154,12 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
+      name: 'Tenant Application',
+      path: '/tenant/applications',
+      component: () => import('@/views/ApplicationsTenant'),
+      beforeEnter: ifAuthenticated
+    },
+    {
       path: '/404',
       component: () => import('@/views/NotFound')
     },
