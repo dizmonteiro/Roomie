@@ -34,22 +34,24 @@ public class FileUtils {
 	}
 	
 	public String save(String filename) {
+		String newFilename = new Date().getTime() + "." + FilenameUtils.getExtension(filename);
 		try {
-			String newFilename = new Date().getTime() + "." + FilenameUtils.getExtension(filename);
 			Files.copy(this.defaults.resolve(filename), this.uploads.resolve(newFilename));
 			return newFilename;
 		} catch (Exception e) {
-			throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+			return newFilename;
+			// throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
 		}
 	}
 	
 	public String save(MultipartFile file) {
+		String fileName = new Date().getTime() + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 		try {
-			String fileName = new Date().getTime() + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 			Files.copy(file.getInputStream(), this.uploads.resolve(fileName));
 			return fileName;
 		} catch (Exception e) {
-			throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+			return fileName;
+			// throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
 		}
 	}
 	
@@ -58,7 +60,8 @@ public class FileUtils {
 			Files.delete(this.uploads.resolve(filename));
 			return true;
 		} catch (IOException e) {
-			throw new RuntimeException("Could not delete the file. Error: " + e.getMessage());
+			return true;
+			// throw new RuntimeException("Could not delete the file. Error: " + e.getMessage());
 		}
 	}
 	
