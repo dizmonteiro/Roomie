@@ -53,7 +53,7 @@ import { mapGetters, mapState } from 'vuex';
 import { url as api_url } from "@/assets/scripts/api";
 
 export default {
-  name: "LandlordNavbar",
+  name: "TenantNavbar",
   created() {
     window.addEventListener("resize", this.myEventHandler);
   },
