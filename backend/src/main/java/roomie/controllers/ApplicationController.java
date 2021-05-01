@@ -7,11 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import roomie.exception.ErrorDetails;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
 import roomie.models.auth.AcceptRejectApplication;
 import roomie.models.auth.MyUser;
 import roomie.models.house.House;
+import roomie.models.house.HouseDAO;
 import roomie.models.tenant.Tenant;
 import roomie.services.ApplicationService;
 import roomie.services.HouseService;
@@ -69,8 +71,18 @@ public class ApplicationController {
 		House house = houseService.getById(id);
 		Application application = applicationService.getById(tenant, house);
 		
+		if (application.getToBeAssessed()) {
+			throw new ErrorDetails("Application already assessed!");
+		}
+		
 		if (body.isAccept()) {
+			if (house.getAvailableRooms() == 0) {
+				throw new ErrorDetails("House is already full.");
+			}
 			rentHistoryService.create(tenant, house);
+			house.setAvailableRooms(house.getAvailableRooms() - 1);
+			HouseDAO.save(house);
+			HouseDAO.refresh(house);
 		}
 		
 		return applicationService.update(application, body.isAccept());

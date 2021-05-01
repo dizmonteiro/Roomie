@@ -30,7 +30,7 @@ public class ApplicationService {
 		application.setHouse(house);
 		application.setTenant(tenant);
 		application.setAccepted(false);
-		application.setToBeAssessed(true);
+		application.setToBeAssessed(false);
 		
 		ApplicationDAO.save(application);
 		return application;
