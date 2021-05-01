@@ -14,17 +14,17 @@ body {
     border-color: #2d6a4f !important;
 }
 
-#formulate--landlord-profile-12 {
-    background-color: #2d6a4f !important;
-    border-color: #2d6a4f !important;
-}
-
 #formulate--landlord-profile-17 {
     background-color: #2d6a4f !important;
     border-color: #2d6a4f !important;
 }
 
 #formulate--landlord-profile-13 {
+    background-color: #2d6a4f !important;
+    border-color: #2d6a4f !important;
+}
+
+#formulate--landlord-profile-14 {
     background-color: #2d6a4f !important;
     border-color: #2d6a4f !important;
     margin-left: 10px !important;
@@ -65,12 +65,12 @@ textarea[id^='formulate--landlord-house-add-']:focus{
     background-color: #2d6a4f !important;
 }
 
-#formulate--tenant-profile-13 {
+#formulate--tenant-profile-14 {
     background-color: #2d6a4f !important;
     border-color: #2d6a4f !important;
 }
 
-#formulate--tenant-profile-14 {
+#formulate--tenant-profile-15 {
     background-color: #2d6a4f !important;
     border-color: #2d6a4f !important;
     margin-left: 10px !important;

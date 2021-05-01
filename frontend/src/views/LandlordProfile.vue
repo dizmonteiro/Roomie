@@ -11,6 +11,17 @@
                 id="profile-pic"
                 v-bind:src="url + '/api/landlords/'+ id + '/avatar'"
               />
+              <div id="profile-pic-field">
+                <FormulateInput
+                  type="image"
+                  name="file"
+                  label="Profile Picture"
+                  help="Select a png, jpg or gif to upload."
+                  validation="mime:image/jpeg,image/png,image/gif"
+                  upload-behavior="delayed"
+                  :uploader="uploadFile"
+                />
+              </div>
             </figure>
             <div class="control">
               <div class="box adjust-gender">
@@ -245,6 +256,7 @@ export default {
         sex: "",
         password: "",
         birthDate: "",
+        file: ""
       }
     };
   },
@@ -263,12 +275,19 @@ export default {
     }),
   },
   methods: {
+    /* eslint-disable-next-line */
+    async uploadFile (file, progress, error, option) {
+      console.log(file)
+      this.formData.file = file;
+    },
     edit() {
       this.editable = !this.editable;
       var inputs;
+      var f = document.getElementById("profile-pic-field");
 
       if (this.editable){
         this.edit_text = "Apply Changes";
+        f.style.display = "block";
         inputs = document.getElementsByTagName('input');
         for(var i = 0; i < inputs.length; i++) {
           if(inputs[i].type.toLowerCase() != 'password' && inputs[i].type.toLowerCase() != 'email' && inputs[i].type.toLowerCase() != 'number' && inputs[i].type.toLowerCase() != 'date')
@@ -276,9 +295,17 @@ export default {
         }
       } else {
         this.edit_text = "Edit";
+        f.style.display = "none";
         inputs = document.getElementsByTagName('input');
         for(var j = 0; j < inputs.length; j++)
           inputs[j].disabled = true
+      }
+
+      var x = document.getElementById("profile-pic");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
       }
     },
     editPassword() {
@@ -313,6 +340,7 @@ export default {
       bodyFormData.append('sex', data.sex);
       bodyFormData.append('address', data.address);
       bodyFormData.append('phone', data.phone);
+      bodyFormData.append('file', this.formData.file);
 
       let options = {
         headers: { 
@@ -397,6 +425,10 @@ label {
   right: 0;
   width: 100%;
   height: 100%;
+}
+
+#profile-pic-field {
+  display: none;
 }
 
 </style>
