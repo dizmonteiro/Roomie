@@ -120,12 +120,13 @@ export default new Router({
     {
       name: 'Landlord Applications',
       path: '/landlord/applications',
-      component: () => import('@/views/CheckApplications').
+      component: () => import('@/views/CheckApplications'),
       beforeEnter: ifAuthenticatedLandlord
-},
+    },
+    {
       name: 'Landlord Check House',
-      path: '/landlord/house/checkhouse',
-      component: () => import('@/views/LandlordCheckHouse'),
+      path: '/lanlord/house/checkhouse',
+      component: ()=>import('@/views/LandlordCheckHouse'),
       beforeEnter: ifAuthenticatedLandlord
     },
     {

@@ -12,7 +12,7 @@
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="url + '/api/tenants/'+ id + '/avatar'"
+                v-bind:src="url + '/api/tenants/' + id + '/avatar'"
               />
               <div id="profile-pic-field">
                 <FormulateInput
@@ -31,7 +31,7 @@
                 <FormulateInput
                   id="gender"
                   name="sex"
-                  :options="{female: 'Female', male: 'Male', other: 'Other'}"
+                  :options="{ female: 'Female', male: 'Male', other: 'Other' }"
                   type="radio"
                   label="Gender"
                   disabled
@@ -39,7 +39,9 @@
               </div>
             </div>
           </div>
-          <div class="column is-half-desktop is-full-mobile is-full-tablet form">
+          <div
+            class="column is-half-desktop is-full-mobile is-full-tablet form"
+          >
             <div class="columns">
               <div class="column is-half">
                 <div class="field">
@@ -96,7 +98,7 @@
                     disabled
                   />
                 </div>
-                
+
                 <div class="field">
                   <FormulateInput
                     type="text"
@@ -106,7 +108,7 @@
                     validation="required"
                     disabled
                   />
-                </div> 
+                </div>
                 <div class="field">
                   <FormulateInput
                     type="tel"
@@ -120,7 +122,7 @@
                 <div class="field">
                   <FormulateInput
                     name="nationality"
-                    :options=countries
+                    :options="countries"
                     type="select"
                     placeholder="'data.nationality'"
                     label="Nationality"
@@ -132,26 +134,27 @@
             </div>
             <div class="field is-grouped is-grouped-right">
               <div class="field is-grouped is-grouped-right">
-              <FormulateInput
-                type="button"
-                label="Edit Password"
-                @click="editPassword()"
-              />
-              <FormulateInput
-                type="submit"
-                v-if="editable === false"
-                v-bind:label="edit_text"
-                @click="edit()"
-              />
-              <FormulateInput
-                v-if="editable === true"
-                type="button"
-                label="Apply Changes"
-                @click="edit()"
-              />
+                <FormulateInput
+                  type="button"
+                  label="Edit Password"
+                  @click="editPassword()"
+                />
+                <FormulateInput
+                  type="submit"
+                  v-if="editable === false"
+                  v-bind:label="edit_text"
+                  @click="edit()"
+                />
+                <FormulateInput
+                  v-if="editable === true"
+                  type="button"
+                  label="Apply Changes"
+                  @click="edit()"
+                />
+              </div>
             </div>
-            </div>
-            <check-rates/>
+            <check-rates />
+          </div>
           <div
             class="column is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
           >
@@ -208,10 +211,7 @@
     </FormulateForm>
     <div id="change-password" class="modal">
       <div class="modal-background"></div>
-      <FormulateForm 
-        @submit="submitPassword"
-        #default="{ isLoading }"
-      >
+      <FormulateForm @submit="submitPassword" #default="{ isLoading }">
         <div class="modal-content">
           <div class="box has-text-centered">
             <FormulateInput
@@ -233,7 +233,7 @@
               :disabled="isLoading"
               :label="isLoading ? 'Updating...' : 'Change Password'"
             />
-          </div>   
+          </div>
         </div>
       </FormulateForm>
 
@@ -251,13 +251,12 @@
 import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
-import CheckRates from '../components/CheckRates.vue';
-import StarRating from "@/components/StarRating";
-import { mapGetters, mapState } from 'vuex';
-import axios from 'axios';
-import store from '@/store';
-import countries from '@/assets/scripts/countries';
-import { url as api_url } from "@/assets/scripts/api
+import CheckRates from "../components/CheckRates.vue";
+import { mapGetters, mapState } from "vuex";
+import axios from "axios";
+import store from "@/store";
+import countries from "@/assets/scripts/countries";
+import { url as api_url } from "@/assets/scripts/api.js";
 
 export default {
   name: "TenantProfile",
@@ -269,11 +268,10 @@ export default {
   },
   data() {
     return {
-
       checkRates: "tenant",
       url: api_url,
       editable: false,
-      ss:24,
+      ss: 24,
       edit_text: "Edit",
       modal_active: "modal",
       countries: countries,
@@ -284,19 +282,22 @@ export default {
         password: "",
         birthDate: "",
         nationality: "",
-        occupation: ""
-      }
+        occupation: "",
+      },
     };
   },
   created() {
-    axios.get(api_url + '/api/tenants/'+store.getters.getId).then(response => {
-      this.formData = response.data;
-    }).catch(e => {
-      console.log(e)
-    });  
+    axios
+      .get(api_url + "/api/tenants/" + store.getters.getId)
+      .then((response) => {
+        this.formData = response.data;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
   computed: {
-    ...mapGetters(["getType","getId"]),
+    ...mapGetters(["getType", "getId"]),
     ...mapState({
       type: (state) => `${state.user.type}`,
       id: (state) => `${state.user.id}`,
@@ -304,8 +305,8 @@ export default {
   },
   methods: {
     /* eslint-disable-next-line */
-    async uploadFile (file, progress, error, option) {
-      console.log(file)
+    async uploadFile(file, progress, error, option) {
+      console.log(file);
       this.formData.file = file;
     },
     edit() {
@@ -314,26 +315,29 @@ export default {
       var inputs, select;
       var f = document.getElementById("profile-pic-field");
 
-      if (this.editable){
+      if (this.editable) {
         this.edit_text = "Apply Changes";
         f.style.display = "block";
-        inputs = document.getElementsByTagName('input');
-        for(var i = 0; i < inputs.length; i++) {
-          if(inputs[i].type.toLowerCase() != 'password' && inputs[i].type.toLowerCase() != 'email' && inputs[i].type.toLowerCase() != 'number' && inputs[i].type.toLowerCase() != 'date')
-            inputs[i].disabled = false
+        inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+          if (
+            inputs[i].type.toLowerCase() != "password" &&
+            inputs[i].type.toLowerCase() != "email" &&
+            inputs[i].type.toLowerCase() != "number" &&
+            inputs[i].type.toLowerCase() != "date"
+          )
+            inputs[i].disabled = false;
         }
 
-        select = document.getElementById('formulate--tenant-profile-12');
+        select = document.getElementById("formulate--tenant-profile-12");
         select.disabled = false;
-
       } else {
         this.edit_text = "Edit";
         f.style.display = "none";
-        inputs = document.getElementsByTagName('input');
-        for(var j = 0; j < inputs.length; j++)
-          inputs[j].disabled = true
-        
-        select = document.getElementById('formulate--tenant-profile-12');
+        inputs = document.getElementsByTagName("input");
+        for (var j = 0; j < inputs.length; j++) inputs[j].disabled = true;
+
+        select = document.getElementById("formulate--tenant-profile-12");
         select.disabled = true;
       }
 
@@ -347,51 +351,63 @@ export default {
     editPassword() {
       document.getElementById("change-password").classList.add("is-active");
 
-      var inputs = document.getElementsByTagName('input');
-      for(var i = 0; i < inputs.length; i++) {
-          if(inputs[i].type.toLowerCase() == 'password')
-            inputs[i].disabled = false
+      var inputs = document.getElementsByTagName("input");
+      for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].type.toLowerCase() == "password")
+          inputs[i].disabled = false;
       }
     },
     closeModal() {
       document.getElementById("change-password").classList.remove("is-active");
-      var inputs = document.getElementsByTagName('input');
-      for(var i = 0; i < inputs.length; i++) {
-          if(inputs[i].type.toLowerCase() == 'password')
-            inputs[i].disabled = true
+      var inputs = document.getElementsByTagName("input");
+      for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].type.toLowerCase() == "password")
+          inputs[i].disabled = true;
       }
     },
 
-    async submitPassword (data) {
-      await axios.put(api_url + '/api/tenants/'+store.getters.getId+'/password', data).then(() => {
-        this.closeModal()
-      }).catch(e => {
-        alert(e)
-      })
+    async submitPassword(data) {
+      await axios
+        .put(
+          api_url + "/api/tenants/" + store.getters.getId + "/password",
+          data
+        )
+        .then(() => {
+          this.closeModal();
+        })
+        .catch((e) => {
+          alert(e);
+        });
     },
-    async submitProfile (data) {
-
+    async submitProfile(data) {
       var bodyFormData = new FormData();
-      bodyFormData.append('name', data.name);
-      bodyFormData.append('username', data.username);
-      bodyFormData.append('phone', data.phone);
-      bodyFormData.append('sex', data.sex);
-      bodyFormData.append('nationality', data.nationality);
-      bodyFormData.append('occupation', data.occupation);
-      bodyFormData.append('file', this.formData.file);
+      bodyFormData.append("name", data.name);
+      bodyFormData.append("username", data.username);
+      bodyFormData.append("phone", data.phone);
+      bodyFormData.append("sex", data.sex);
+      bodyFormData.append("nationality", data.nationality);
+      bodyFormData.append("occupation", data.occupation);
+      bodyFormData.append("file", this.formData.file);
 
       let options = {
-        headers: { 
-          "Content-Type": "multipart/form-data" 
-        }
-      }
-      
-      await axios.put(api_url + '/api/tenants/'+store.getters.getId, bodyFormData, options).then(() => {
-        alert("Profile Updated!")
-      }).catch(e => {
-        alert(e)
-      })
-    }
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      await axios
+        .put(
+          api_url + "/api/tenants/" + store.getters.getId,
+          bodyFormData,
+          options
+        )
+        .then(() => {
+          alert("Profile Updated!");
+        })
+        .catch((e) => {
+          alert(e);
+        });
+    },
   },
 };
 </script>
@@ -435,13 +451,12 @@ star-rating {
   background-color: red;
 }
 
-
 .toMargin {
   margin: 4% auto;
 }
 
 #profile-pic {
-  position: absolute; 
+  position: absolute;
   object-fit: cover;
   object-position: center;
   top: 0;
