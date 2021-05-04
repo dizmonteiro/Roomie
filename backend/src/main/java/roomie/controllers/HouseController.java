@@ -119,10 +119,10 @@ public class HouseController {
 		}
 	}
 	
-	@GetMapping(value = "/photos/{id}", produces = "image/*")
+	@GetMapping(value = "/photos/{photoId}", produces = "image/*")
 	@ResponseBody
-	public byte[] getPhoto(@PathVariable int id) throws PersistentException, ResourceNotFoundException, IOException {
-		return photoService.load(photoService.getById(id));
+	public byte[] getPhoto(@PathVariable int photoId) throws PersistentException, ResourceNotFoundException, IOException {
+		return photoService.load(photoService.getById(photoId));
 	}
 	
 }
