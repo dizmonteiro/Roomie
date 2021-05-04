@@ -22,21 +22,15 @@ public class RentHistory implements Serializable {
 	}
 	
 	public boolean equals(Object aObj) {
-		if (aObj == this)
-			return true;
-		if (!(aObj instanceof RentHistory))
-			return false;
+		if (aObj == this) return true;
+		if (!(aObj instanceof RentHistory)) return false;
 		RentHistory renthistory = (RentHistory) aObj;
 		if (getHouse() == null) {
-			if (renthistory.getHouse() != null)
-				return false;
-		} else if (!getHouse().equals(renthistory.getHouse()))
-			return false;
+			if (renthistory.getHouse() != null) return false;
+		} else if (!getHouse().equals(renthistory.getHouse())) return false;
 		if (getTenant() == null) {
-			if (renthistory.getTenant() != null)
-				return false;
-		} else if (!getTenant().equals(renthistory.getTenant()))
-			return false;
+			if (renthistory.getTenant() != null) return false;
+		} else if (!getTenant().equals(renthistory.getTenant())) return false;
 		return true;
 	}
 	
