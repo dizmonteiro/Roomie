@@ -18,10 +18,11 @@
           <div class="block">
             <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
               
-              <div class="column is-4-mobile is-4-tablet is-4-desktop">
+              <div class="column is-one-third-mobile is-one-third-tablet is-one-third-desktop">
                 <div class="box">
-                  <p class="title has-text-centered is-3">Main Info</p>
+                  <p class="title has-text-centered is-one-third">Main Info</p>
                     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
+
                       <div class="column is-half-mobile is-half-tablet is-half-desktop">
                         <div class="block">
                           <button class="button is-green is-rounded">Template 1</button>
@@ -33,6 +34,7 @@
                           <button class="button is-green is-rounded">Template 3</button>
                         </div>
                       </div>
+
                       <div class="column is-half-mobile is-half-tablet is-half-desktop">
                         <div class="block">
                           <button class="button is-green is-rounded">Template 4</button>
@@ -44,20 +46,21 @@
                           <button class="button is-green is-rounded">Template 6</button>
                         </div>
                       </div>
+
                     </div>
                 </div>
               </div>
               
-              <div class="column is-4-mobile is-4-tablet is-4-desktop">
+              <div class="column is-one-third-mobile is-one-third-tablet is-one-third-desktop">
                 <div class="box">
-                  <p class="title has-text-centered is-3">Description</p>
+                  <p class="title has-text-centered is-one-third">Description</p>
                     Attention Grab with the Best Feature. You need to get their attention before they click off. Put the property’s best feature in the first sentence in an attention-grabbing way. If your property is a dump in a great location, sell the location. If it’s the only home in the neighborhood with a downstairs master, maybe that is its best feature!
                 </div>
               </div>
               
-              <div class="column is-4-mobile is-4-tablet is-4-desktop">
+              <div class="column is-one-third-mobile is-one-third-tablet is-one-third-desktop">
                 <div class="box">
-                  <p class="title has-text-centered is-3">Members</p>
+                  <p class="title has-text-centered is-one-third">Members</p>
                   <p class="subtitle">This column has house members</p>
                 </div>
               </div>
