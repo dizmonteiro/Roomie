@@ -18,6 +18,30 @@
               <div class="box">
                 <p class="title has-text-centered is-3">Main Info</p>
                 <p class="subtitle">This column has house info</p>
+                  <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
+                    <div class="column is-half-mobile is-half-tablet is-half-desktop">
+                      <div class="block">
+                        <button class="button is-green is-rounded">Rounded</button>
+                      </div>
+                      <div class="block">
+                        <button class="button is-green is-rounded">Rounded</button>
+                      </div>
+                      <div class="block">
+                        <button class="button is-green is-rounded">Rounded</button>
+                      </div>
+                    </div>
+                    <div class="column is-half-mobile is-half-tablet is-half-desktop">
+                      <div class="block">
+                        <button class="button is-green is-rounded">Rounded</button>
+                      </div>
+                      <div class="block">
+                        <button class="button is-green is-rounded">Rounded</button>
+                      </div>
+                      <div class="block">
+                        <button class="button is-green is-rounded">Rounded</button>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
             <div class="column is-4-mobile is-4-tablet is-4-desktop">
