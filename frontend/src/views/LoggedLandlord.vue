@@ -15,7 +15,7 @@
                 <div class="card-content">
 
                   <div class="buttons is-centered">
-                    <a class="button is-green vm" href="/">
+                    <a class="button is-green vm" href="/landlord/houses">
                        View my Houses
                     </a>
                   </div>

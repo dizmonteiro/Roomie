@@ -1,6 +1,7 @@
 <template>
   <div>
     <TenantNavbar />
+
     <FormulateForm v-model="formData" @submit="submitProfile">
       <div id="llcard" class="card pad">
         <div class="columns is-desktop">
@@ -150,56 +151,7 @@
               />
             </div>
             </div>
-            <div class="card rates">
-              <div class="columns is-desktop">
-                <div
-                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-                >
-                  <figure class="image feature">
-                    <img
-                      class="is-rounded"
-                      src="https://picsum.photos/200"
-                    />
-                  </figure>
-                  <StarRating class="stars" id="stars0" :initialValue="4" :editable="false"/>
-                </div>
-                <div
-                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-                >
-                  <figure class="image feature">
-                    <img
-                      class="is-rounded"
-                      src="https://picsum.photos/200"
-                    />
-                  </figure>
-                  <StarRating class="stars" id="stars1" :initialValue="1" :editable="false"/>
-                </div>
-                <div
-                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-                >
-                  <figure class="image feature">
-                    <img
-                      class="is-rounded"
-                      src="https://picsum.photos/200"
-                    />
-                  </figure>
-                  <StarRating class="stars" id="stars2" :initialValue="3" :editable="false"/>
-                </div>
-                <div
-                  class="column is-one-quarter-desktop is-full-mobile is-full-tablet form"
-                >
-                  <figure class="image feature">
-                    <img
-                      class="is-rounded"
-                      src="https://picsum.photos/200"
-                    />
-                  </figure>
-                    <StarRating class="stars" id="stars3" :initialValue="2" :editable="false"/>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
+            <check-rates/>
           <div
             class="column is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
           >
@@ -299,12 +251,13 @@
 import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
+import CheckRates from '../components/CheckRates.vue';
 import StarRating from "@/components/StarRating";
 import { mapGetters, mapState } from 'vuex';
 import axios from 'axios';
 import store from '@/store';
 import countries from '@/assets/scripts/countries';
-import { url as api_url } from "@/assets/scripts/api";
+import { url as api_url } from "@/assets/scripts/api
 
 export default {
   name: "TenantProfile",
@@ -312,10 +265,12 @@ export default {
     TenantNavbar,
     SideMenuEditable,
     SideMenuEntry,
-    StarRating,
+    CheckRates,
   },
   data() {
     return {
+
+      checkRates: "tenant",
       url: api_url,
       editable: false,
       ss:24,
@@ -406,6 +361,7 @@ export default {
             inputs[i].disabled = true
       }
     },
+
     async submitPassword (data) {
       await axios.put(api_url + '/api/tenants/'+store.getters.getId+'/password', data).then(() => {
         this.closeModal()
@@ -442,7 +398,7 @@ export default {
 
 
 <style scoped>
-strong{
+strong {
   color: white;
 }
 .avatar {
@@ -472,32 +428,16 @@ label {
   width: 90%;
   margin: 3% auto;
 }
-.bs{
-  background-color:  #2D6A4f;
+.bs {
+  background-color: #2d6a4f;
 }
 star-rating {
   background-color: red;
 }
 
-.form {
-  margin: 1% auto;
-}
 
-.rates{
-  padding: 1% 5% 1% 5%;
-}
-.stars {
-  margin: 3% auto;
-}
-.feature{
-  border-style: solid;
-  border-width: 5%;
-  border-color: black;
-  border-radius: 50%;
-}
-
-.toMargin{
-  margin:4% auto;
+.toMargin {
+  margin: 4% auto;
 }
 
 #profile-pic {
