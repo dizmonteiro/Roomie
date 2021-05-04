@@ -1,9 +1,8 @@
-package roomie.models.rentHistory;
-
 /**
- * Licensee: vr(Universidade do Minho)
+ * Licensee: joaonunoabreu(Universidade do Minho)
  * License Type: Academic
  */
+package roomie.models.rentHistory;
 
 import roomie.models.house.House;
 import roomie.models.tenant.Tenant;
@@ -11,6 +10,7 @@ import roomie.models.tenant.Tenant;
 import java.io.Serializable;
 
 public class RentHistory implements Serializable {
+	
 	private House house;
 	private int houseId;
 	private Tenant tenant;
@@ -45,20 +45,20 @@ public class RentHistory implements Serializable {
 		return hashcode;
 	}
 	
-	public int getHouseId() {
-		return houseId;
-	}
-	
-	private void setHouseId(int value) {
-		this.houseId = value;
-	}
-	
 	public int getTenantId() {
 		return tenantId;
 	}
 	
 	private void setTenantId(int value) {
 		this.tenantId = value;
+	}
+	
+	public int getHouseId() {
+		return houseId;
+	}
+	
+	private void setHouseId(int value) {
+		this.houseId = value;
 	}
 	
 	public java.util.Date getbDate() {
@@ -91,11 +91,6 @@ public class RentHistory implements Serializable {
 	
 	public void setTenant(Tenant value) {
 		this.tenant = value;
-	}
-	
-	public void setEDate(java.util.Date eDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

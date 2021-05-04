@@ -25,7 +25,7 @@
         <span aria-hidden="true"></span>
       </a>
 
-      <nav-bar-picture :profilePic="`http://localhost:8083/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :type="getType" v-if="ww < 1024"/>
+      <nav-bar-picture :profilePic="`${url}/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :type="getType" v-if="ww < 1024"/>
         
     </div>
     <div id="navbarBasicExample" class="navbar-menu">
@@ -42,13 +42,14 @@
         </div>
       </div>
     </div>
-    <nav-bar-picture :profilePic="`http://localhost:8083/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :profile="getType" v-if="ww >= 1024"/>
+    <nav-bar-picture :profilePic="`${url}/api/tenants/${id}/avatar`" :w="ppw" :h="pph" :profile="getType" v-if="ww >= 1024"/>
   </nav>
 </template>
 
 <script>
 import NavBarPicture from './NavBarPicture.vue';
 import { mapGetters, mapState } from 'vuex';
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "TenantNavbar",
@@ -65,6 +66,7 @@ export default {
     return{
       ww:window.innerWidth,
       lr:false,
+      url: api_url,
       profilePic:"https://source.unsplash.com/random/200x200?sig=1",
       ppw:50,
       pph:50

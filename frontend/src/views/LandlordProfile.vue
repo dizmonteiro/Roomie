@@ -9,8 +9,19 @@
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="'http://localhost:8083/api/tenants/'+ id + '/avatar'"
+                v-bind:src="url + '/api/landlords/'+ id + '/avatar'"
               />
+              <div id="profile-pic-field">
+                <FormulateInput
+                  type="image"
+                  name="file"
+                  label="Profile Picture"
+                  help="Select a png, jpg or gif to upload."
+                  validation="mime:image/jpeg,image/png,image/gif"
+                  upload-behavior="delayed"
+                  :uploader="uploadFile"
+                />
+              </div>
             </figure>
             <div class="control">
               <div class="box adjust-gender">
@@ -84,15 +95,6 @@
                 </div>
                 <div class="field">
                   <FormulateInput
-                    type="password"
-                    name="password"
-                    label="Password"
-                    placeholder="**********"
-                    disabled
-                  />
-                </div>
-                <div class="field">
-                  <FormulateInput
                     type="text"
                     name="address"
                     label="Address"
@@ -131,22 +133,6 @@
                 label="Apply Changes"
                 @click="edit()"
               />
-              <!--
-              <p class="control">
-                <a
-                  class="button bs"
-                  value="edit-password"
-                  @click="editPassword()"
-                >
-                <strong> Edit Password</strong>
-                </a>
-              </p>
-              <p class="control">
-                <a class="button bs" value="edit" @click="edit()">
-                  <strong>{{ edit_text }}</strong>
-                </a>
-              </p>
-              -->
             </div>
           </div>
           <div class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered">
@@ -249,6 +235,7 @@ import SideMenuEntry from "@/components/SideMenuEntry";
 import { mapGetters, mapState } from 'vuex';
 import axios from 'axios';
 import store from '@/store';
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "LandlordProfile",
@@ -262,17 +249,19 @@ export default {
       editable: false,
       edit_text: "Edit",
       modal_active: "modal",
+      url: api_url,
       formData: {
         username: "",
         name: "",
         sex: "",
         password: "",
         birthDate: "",
+        file: ""
       }
     };
   },
   created() {
-    axios.get('http://localhost:8083/api/landlords/'+store.getters.getId).then(response => {
+    axios.get(api_url + '/api/landlords/'+store.getters.getId).then(response => {
       this.formData = response.data;
     }).catch(e => {
       console.log(e)
@@ -286,12 +275,19 @@ export default {
     }),
   },
   methods: {
+    /* eslint-disable-next-line */
+    async uploadFile (file, progress, error, option) {
+      console.log(file)
+      this.formData.file = file;
+    },
     edit() {
       this.editable = !this.editable;
       var inputs;
+      var f = document.getElementById("profile-pic-field");
 
       if (this.editable){
         this.edit_text = "Apply Changes";
+        f.style.display = "block";
         inputs = document.getElementsByTagName('input');
         for(var i = 0; i < inputs.length; i++) {
           if(inputs[i].type.toLowerCase() != 'password' && inputs[i].type.toLowerCase() != 'email' && inputs[i].type.toLowerCase() != 'number' && inputs[i].type.toLowerCase() != 'date')
@@ -299,9 +295,17 @@ export default {
         }
       } else {
         this.edit_text = "Edit";
+        f.style.display = "none";
         inputs = document.getElementsByTagName('input');
         for(var j = 0; j < inputs.length; j++)
           inputs[j].disabled = true
+      }
+
+      var x = document.getElementById("profile-pic");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
       }
     },
     editPassword() {
@@ -322,21 +326,29 @@ export default {
       }
     },
     async submitPassword (data) {
-      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId+'/password', data).then(() => {
+      await axios.put(api_url + '/api/landlords/'+store.getters.getId+'/password', data).then(() => {
         this.closeModal()
       }).catch(e => {
         alert(e)
       })
     },
     async submitProfile (data) {
-      let payload = {
-        name: data.name,
-        username: data.username,
-        sex: data.sex,
-        address: data.address,
-        phone: data.phone
+
+      var bodyFormData = new FormData();
+      bodyFormData.append('name', data.name);
+      bodyFormData.append('username', data.username);
+      bodyFormData.append('sex', data.sex);
+      bodyFormData.append('address', data.address);
+      bodyFormData.append('phone', data.phone);
+      bodyFormData.append('file', this.formData.file);
+
+      let options = {
+        headers: { 
+          "Content-Type": "multipart/form-data" 
+        }
       }
-      await axios.put('http://localhost:8083/api/landlords/'+store.getters.getId, payload).then(() => {
+      
+      await axios.put(api_url + '/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
         alert("Profile Updated!")
       }).catch(e => {
         alert(e)
@@ -413,6 +425,10 @@ label {
   right: 0;
   width: 100%;
   height: 100%;
+}
+
+#profile-pic-field {
+  display: none;
 }
 
 </style>

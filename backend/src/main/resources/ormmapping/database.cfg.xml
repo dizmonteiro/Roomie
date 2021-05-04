@@ -38,7 +38,7 @@
         <DriverClass>org.postgresql.Driver</DriverClass>
         <URL>jdbc:postgresql://localhost:5432/roomie</URL>
         <UserName>roomie</UserName>
-        <EncryptedPassword>E6AED528FB6F5F07E65B7C253FD9A56F</EncryptedPassword>
+        <EncryptedPassword>E9D8B1D46D6CB3622ACBEE08BB88C77D</EncryptedPassword>
         <HostName>localhost</HostName>
         <PortNO>5432</PortNO>
         <DBName>roomie</DBName>

@@ -58,7 +58,7 @@ CREATE TABLE RentHistory
     HouseID  int4 NOT NULL,
     TenantID int4 NOT NULL,
     BDate    date NOT NULL,
-    EDate    date NOT NULL,
+    EDate    date,
     PRIMARY KEY (HouseID, TenantID)
 );
 CREATE TABLE Application

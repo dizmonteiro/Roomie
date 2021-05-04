@@ -7,6 +7,7 @@ import {
 import { USER_REQUEST } from "@/store/actions/user";
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
+import { url as api_url } from "@/assets/scripts/api"
   
   const state = {
     token: localStorage.getItem("user-token") || "",
@@ -24,7 +25,7 @@ import jwt_decode from "jwt-decode"
     [AUTH_REQUEST]: ({ commit, dispatch }, user) => {
       return new Promise((resolve, reject) => {
         commit(AUTH_REQUEST);
-        axios({ url: "http://localhost:8083/api/auth/login", data: user, method: "POST" })
+        axios({ url: api_url + "/api/auth/login", data: user, method: "POST" })
           .then(resp => {
             var token = resp.data.token
             localStorage.setItem("user-token", token);

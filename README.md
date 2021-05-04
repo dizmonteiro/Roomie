@@ -37,7 +37,7 @@ Execute endpoint http://localhost:8083/api/admin/create-db.
 ## Authors
 
 -   **Diogo Ribeiro:** [ribeiropdiogo](https://github.com/ribeiropdiogo)
--   **João Diogo Monteiro:** [dxmonteiro](https://github.com/DxMonteiro)
+-   **José Diogo Monteiro:** [dxmonteiro](https://github.com/DxMonteiro)
 -   **João Nuno Abreu:** [JoaoNunoAbreu](https://github.com/JoaoNunoAbreu)
 -   **Rui Mendes:** [ruimendes29](https://github.com/ruimendes29)
 -   **Vasco Ramos:** [vascoalramos](https://vascoalramos.me)

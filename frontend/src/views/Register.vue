@@ -48,6 +48,7 @@
 import DefaultNavbar from '@/components/DefaultNavbar'
 import axios from 'axios'
 import countries from '@/assets/scripts/countries'
+import { url as api_url } from "@/assets/scripts/api"
 
 function validateEmail(email) {
   /* eslint-disable-next-line */
@@ -65,7 +66,7 @@ function getUserType() {
     `
 
     for (var i = 0; i < countries.length; i++) {
-      countrySelector1 += "<option value=" + countries[i].name  + ">" + countries[i].name + "</option>"
+      countrySelector1 += "<option value=" + countries[i].value  + ">" + countries[i].value + "</option>"
     }
 
     var countrySelector2 =`
@@ -249,7 +250,7 @@ function getUserType() {
 
               axios({
                 method: "post",
-                url: "http://localhost:8083/api/tenants",
+                url: api_url + "/api/tenants",
                 data: bodyFormData,
                 headers: { 
                   "Authorization": null,
@@ -434,7 +435,7 @@ function getUserType() {
 
             axios({
               method: "post",
-              url: "http://localhost:8083/api/landlords",
+              url: api_url + "/api/landlords",
               data: bodyFormData,
               headers: { 
                 "Authorization": null,
