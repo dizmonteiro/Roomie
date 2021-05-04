@@ -2,7 +2,7 @@
   <div>
     <LandlordNavbar />
     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
-      <div class="column is-four-fifths-mobile is-four-fifths-tablet is-three-quarters-desktop">
+      <div class="column is-11-mobile is-11-tablet is-11-desktop">
         <div id="checkhouse-card">
 
           <div class="block">
@@ -16,10 +16,10 @@
           </div>
 
           <div class="block">
-            <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
+            <div class="columns is-centered is-mobile is-tablet is-desktop">
               
-              <div class="column is-one-third-mobile is-one-third-tablet is-one-third-desktop">
-                <div class="box">
+              <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
+                <div class="box custom-height">
                   <p class="title has-text-centered is-one-third">Main Info</p>
                     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
 
@@ -51,17 +51,21 @@
                 </div>
               </div>
               
-              <div class="column is-one-third-mobile is-one-third-tablet is-one-third-desktop">
-                <div class="box">
+              <div class="column is-half-mobile is-half-tablet is-half-desktop">
+                <div class="box custom-height">
                   <p class="title has-text-centered is-one-third">Description</p>
-                    Attention Grab with the Best Feature. You need to get their attention before they click off. Put the property’s best feature in the first sentence in an attention-grabbing way. If your property is a dump in a great location, sell the location. If it’s the only home in the neighborhood with a downstairs master, maybe that is its best feature!
+                    <p class="subtitle">Put the property’s best feature in the first sentence in an attention-grabbing way. If your property is a dump in a great location, sell the location. If it’s the only home in the neighborhood with a downstairs master, maybe that is its best feature!</p>
                 </div>
               </div>
               
-              <div class="column is-one-third-mobile is-one-third-tablet is-one-third-desktop">
-                <div class="box">
-                  <p class="title has-text-centered is-one-third">Members</p>
-                  <p class="subtitle">This column has house members</p>
+              <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
+                <div class="container custom-height">
+                  <p class="title has-text-centered is-one-third">Tenants</p>
+                
+                  <div class="section">
+                    <ZDMCarousel :cards="cards" />
+                  </div>
+
                 </div>
               </div>
 
@@ -78,6 +82,7 @@
 import LandlordNavbar from '@/components/LandlordNavbar.vue';
 import Carousel from '@/components/Carousel.vue';
 import CarouselSlide from '@/components/CarouselSlide.vue';
+import ZDMCarousel from "@/components/ZDMCarousel.vue";
 
 export default {
   data(){
@@ -90,6 +95,27 @@ export default {
           'https://picsum.photos/id/351/1080/720',
           'https://picsum.photos/id/369/1080/720',
           'https://picsum.photos/id/398/1080/720'
+      ],
+
+      cards: [
+        {
+          headline: "Jeremias",
+          text:
+            "O",
+          imgName: "setting.svg"
+        },
+        {
+          headline: "Use background sync to defer actions",
+          text:
+            "User inputs entered when offline are sent in the background once they get connectivity.",
+          imgName: "cloud.svg"
+        },
+        {
+          headline: "Send Push Notifications",
+          text:
+            "The Notifications API lets us send push notifications to re-engage users.",
+          imgName: "antenna.svg"
+        }
       ]
     }
   },
@@ -99,7 +125,8 @@ export default {
   components: {
     LandlordNavbar,
     Carousel: Carousel,
-    CarouselSlide: CarouselSlide
+    CarouselSlide: CarouselSlide,
+    ZDMCarousel
   }
 }
 </script>
@@ -176,6 +203,10 @@ export default {
 
   .borderc {
   background-color: orange;
+  }
+
+  .custom-height {
+    min-height: 40vh;
   }
 
 </style>

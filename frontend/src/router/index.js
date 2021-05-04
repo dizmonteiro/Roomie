@@ -125,7 +125,7 @@ export default new Router({
     },
     {
       name: 'Landlord Check House',
-      path: '/lanlord/house/checkhouse',
+      path: '/landlord/house/checkhouse',
       component: ()=>import('@/views/LandlordCheckHouse'),
       beforeEnter: ifAuthenticatedLandlord
     },
