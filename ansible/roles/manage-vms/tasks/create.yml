@@ -5,7 +5,7 @@
     name: 'disk-{{ name }}'
     state: present
 
-    size_gb: 10
+    size_gb: 125
     source_image: 'projects/ubuntu-os-cloud/global/images/family/ubuntu-minimal-2004-lts'
 
     auth_kind: '{{ gcp_auth_kind }}'
