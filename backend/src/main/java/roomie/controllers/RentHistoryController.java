@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import roomie.exception.ResourceNotFoundException;
 import roomie.models.auth.AcceptRejectApplication;
 import roomie.models.house.House;
+import roomie.models.house.HouseDAO;
 import roomie.models.rentHistory.RentHistory;
 import roomie.models.rentHistory.RentHistoryDAO;
 import roomie.models.tenant.Tenant;
@@ -39,6 +40,9 @@ public class RentHistoryController {
 	public String finishRentHistory(@PathVariable int id, @Valid @RequestBody AcceptRejectApplication body) throws PersistentException, ResourceNotFoundException {
 		Tenant tenant = tenantService.getById(body.getTenantId());
 		House house = houseService.getById(id);
+		house.setAvailableRooms(house.getAvailableRooms() + 1);
+		HouseDAO.save(house);
+		HouseDAO.refresh(house);
 		RentHistory r = RentHistoryDAO.getRentHistoryByORMID(house, tenant);
 		rentHistoryService.finish(r);
 		return "Success!";
