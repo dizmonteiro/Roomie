@@ -5,7 +5,7 @@
         <div class="column is-four-fifths-mobile is-four-fifths-tablet is-three-quarters-desktop">
             <div class="card" id="form-card">
                 <div class="card-content">
-                    <p class="title has-text-centered">Add New House</p>
+                    <p class="title has-text-centered">Update House</p>
                     <FormulateForm v-model="formData" class="columns is-centered" @submit="submitHouse">
                         <div class="column is-full-mobile is-full-tablet is-one-third-desktop">
                             <FormulateInput
@@ -79,11 +79,14 @@
                                         label="Features"
                                         add-label="Add Feature"
                                         validation="required"
+                                        v-bind:value="this.formData.features"
+                                        disabled
                                     >
                                         <FormulateInput
                                             name="feature"
                                             type="text"
                                             validation="required"
+                                            disabled
                                         />
                                     </FormulateInput>
                                 </smooth-scrollbar>
@@ -99,12 +102,14 @@
                                         help="Select a png, jpg or gif to upload."
                                         validation="required|mime:image/jpeg,image/png,image/gif"
                                         multiple
+                                        upload-behavior="delayed"
+                                        :uploader="uploadFile"
                                     />
                                 </smooth-scrollbar>
                             </div>
                             <FormulateInput
                                 type="submit"
-                                label="Add House"
+                                label="Update House"
                             />
                         </div>
                     </FormulateForm>
@@ -119,7 +124,7 @@
               <div class="card-content is-vcentered">
                 <div class="content has-text-centered">
                   <br>
-                  <h1>House added!</h1>  
+                  <h1>House updated!</h1>  
                   <br>
                   <br>
                   <button type="submit" class="button is-green" v-on:click="goToProfile()">Return to Home</button>
@@ -156,6 +161,7 @@ export default {
     return {
         id: this.$route.params.id,
         formData: {
+            file: [],
             title: "",
             address: "",
             rooms: "",
@@ -164,15 +170,19 @@ export default {
             minPrice: "",
             maxPrice: "",
             description: "",
-            features: "",
-            photos: ""
+            features: ""
         }
     };
   },
   created() {
     axios.get(api_url + '/api/houses/'+this.id).then(response => {
-        console.log(response.data)
-      this.formData = response.data;
+        this.formData = response.data;
+        var fs = response.data.features.split(',');
+        this.formData.features = [];
+        this.formData.file = []
+        for (var f in fs){
+            this.formData.features.push({feature: fs[f]});
+        }
     }).catch(e => {
       console.log(e)
     });  
@@ -187,25 +197,32 @@ export default {
   methods: {
     closeModal,
     goToProfile,
+    /* eslint-disable-next-line */
+    async uploadFile (file, progress, error, option) {
+      this.formData.file.push(file);
+    },
     async submitHouse (data) {
+
         var bodyFormData = new FormData();
         bodyFormData.append('address', data.address);
-        bodyFormData.append('features', data.features);
         bodyFormData.append('description', data.description);
-        bodyFormData.append('minPrice', data.minprice);
-        bodyFormData.append('maxPrice', data.maxprice);
-        bodyFormData.append('bathRooms', data.bathrooms);
-        bodyFormData.append('availableRooms', data.available);
-        bodyFormData.append('rooms', data.bedrooms);
+        bodyFormData.append('minPrice', data.minPrice);
+        bodyFormData.append('maxPrice', data.maxPrice);
+        bodyFormData.append('bathRooms', data.bathRooms);
+        bodyFormData.append('availableRooms', data.availableRooms);
+        bodyFormData.append('rooms', data.rooms);
         bodyFormData.append('title', data.title);
-        bodyFormData.append('files', data.photos);
+
+        for(var i = 0; i < this.formData.file.length; i++){
+            bodyFormData.append('files', this.formData.file[i]);
+        }  
 
         let options = {
             headers: { 
             "Content-Type": "multipart/form-data" 
             }
         }
-        await axios.post(api_url + '/api/houses', bodyFormData, options).then(() => {
+        await axios.put(api_url + '/api/houses/'+this.$route.params.id, bodyFormData, options).then(() => {
             document.getElementById("modal").classList.add("is-active");
         }).catch(e => {
             alert(e)

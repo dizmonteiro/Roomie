@@ -99,6 +99,8 @@
                                         help="Select a png, jpg or gif to upload."
                                         validation="required|mime:image/jpeg,image/png,image/gif"
                                         multiple
+                                        upload-behavior="delayed"
+                                        :uploader="uploadFile"
                                     />
                                 </smooth-scrollbar>
                             </div>
@@ -154,20 +156,30 @@ export default {
   },
   data() {
     return {
-        formData: {}
+        formData: {
+            file: [],
+        }
     };
   },
   computed: {
     
-    
   },
   methods: {
+    /* eslint-disable-next-line */
+    async uploadFile (file, progress, error, option) {
+      this.formData.file.push(file);
+    },
     closeModal,
     goToProfile,
     async submitHouse (data) {
+
+        let features = []
+        for(var f = 0; f < data.features.length; f++)
+            features.push(data.features[f].feature)
+
         var bodyFormData = new FormData();
         bodyFormData.append('address', data.address);
-        bodyFormData.append('features', data.features);
+        bodyFormData.append('features', features);
         bodyFormData.append('description', data.description);
         bodyFormData.append('minPrice', data.minprice);
         bodyFormData.append('maxPrice', data.maxprice);
@@ -175,13 +187,17 @@ export default {
         bodyFormData.append('availableRooms', data.available);
         bodyFormData.append('rooms', data.bedrooms);
         bodyFormData.append('title', data.title);
-        bodyFormData.append('files', data.photos);
+
+        for(var i = 0; i < this.formData.file.length; i++){
+            bodyFormData.append('files', this.formData.file[i]);
+        }        
 
         let options = {
             headers: { 
             "Content-Type": "multipart/form-data" 
             }
         }
+        
         await axios.post(api_url + '/api/houses', bodyFormData, options).then(() => {
             document.getElementById("modal").classList.add("is-active");
         }).catch(e => {
