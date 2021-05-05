@@ -1,6 +1,6 @@
 from faker import Faker
 
-import os, random, requests
+import os, random, requests, json
 
 fake = Faker()
 
@@ -109,6 +109,10 @@ def main():
         landlord = random.choice(landlords)
         house = post_house(landlord["token"])
         houses.append(house)
+
+    users = {"landlords": landlords, "tenants": tenants}
+    with open("./users.json", "w") as file:
+        json.dump(users, file, indent=4, sort_keys=True)
 
 
 if __name__ == "__main__":
