@@ -301,11 +301,11 @@ export default {
       .then((response) => {
         for (var i = 0; i < response.length && i < 3; i++) {
           var rhentry = {
-            photo: response[i].house.photos[0],
-            name: response[i].house.title,
-            bdate: response[i].getbDate,
-            edate: response[i].geteDate,
-            landlord: response[i].house.landlord.name,
+            photo: response.data[i].house.photos[0],
+            name: response.data[i].house.title,
+            bdate: response.data[i].getbDate,
+            edate: response.data[i].geteDate,
+            landlord: response.data[i].house.landlord.name,
           };
           this.rentHistory.push(rhentry);
         }

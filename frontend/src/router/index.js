@@ -137,7 +137,7 @@ export default new Router({
     },
     {
       name: 'Landlord Check House',
-      path: '/landlord/house/checkhouse',
+      path: '/landlord/house/:id',
       component: ()=>import('@/views/LandlordCheckHouse'),
       beforeEnter: ifAuthenticatedLandlord
     },
@@ -155,7 +155,7 @@ export default new Router({
     },
     {
       name: 'Tenant Landlord Profile',
-      path: '/tenant/llprofile',
+      path: '/tenant/llprofile/:id',
       component: () => import('@/views/LandlordProfileCheck'),
       beforeEnter: ifAuthenticated
     },
@@ -184,8 +184,8 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
-      name: 'Landlord Check House',
-      path: '/tenant/house/checkhouse',
+      name: 'Tenant Check House',
+      path: '/tenant/house/:id',
       component: () => import('@/views/TenantCheckHouse'),
       beforeEnter: ifAuthenticated
     },

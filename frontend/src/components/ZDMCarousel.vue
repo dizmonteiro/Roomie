@@ -12,6 +12,7 @@
         :text="currentElement.text"
         :imgName1="currentElement.imgName1"
         :imgName2="currentElement.imgName2"
+        :link="currentElement.link"
       />
       <ZDMArrowButton
         arrowType="right"

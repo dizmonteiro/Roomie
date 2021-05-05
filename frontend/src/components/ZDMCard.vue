@@ -2,30 +2,23 @@
   <div class="card">
     <div class="columns">
       <div class="column">
-        <img
-        class="card-icon-left"
-        :src="require(`@/assets/svg/${imgName1}`)"
-        alt="card icon"
-        />
+        <img class="card-icon-left" :src="imgName1" alt="card icon" />
       </div>
       <div class="column">
         <img
-        class="card-icon-right"
-        :src="require(`@/assets/svg/${imgName2}`)"
-        alt="card icon"
+          class="card-icon-right"
+          :src="require(`@/assets/svg/${imgName2}`)"
+          alt="card icon"
         />
       </div>
     </div>
-    <div class='card-content'>
+    <div class="card-content">
       <div class="buttons is-centered">
         <a class="button is-small is-green is-rounded is-static vm">
-           {{headline}}
+          {{ headline }}
         </a>
-        <a class="button is-small is-green is-rounded is-static vm">
-           {{text}}
-        </a>
-        <a class="button is-small is-green is-rounded vm" href="/">
-           View More
+        <a class="button is-small is-green is-rounded vm" :href="link">
+          Check Profile
         </a>
       </div>
     </div>
@@ -35,12 +28,9 @@
 <script>
 export default {
   name: "ZDMCard",
-  props: {
-    headline: String,
-    imgName1: String,
-    imgName2: String,
-    text: String
-  }
+  props: [
+    "headline","imgName1","imgName2","text","link"
+  ]
 };
 </script>
 
