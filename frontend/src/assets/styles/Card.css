@@ -1,0 +1,35 @@
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px 0 rgba(41, 67, 100, 0.21);
+  width: 300px;
+  height: 265px;
+  padding: 10px;
+}
+
+.headline {
+  font-weight: bold;
+}
+
+.card-icon-left {
+  border-radius: 20px;
+  pointer-events: none;
+  width: auto;
+  height: auto;
+  padding: 10px 5px 10px 10px;
+}
+
+.card-icon-right {
+  pointer-events: none;
+  height: auto;
+  width: auto;
+  padding: 10px 10px 0px 0px;
+}
+
+.card-content {
+  padding: 0px 10px 0px 10px;
+}
+
+.vm {
+    min-width: 130px;
+}

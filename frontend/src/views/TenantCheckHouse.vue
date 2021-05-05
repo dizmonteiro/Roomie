@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LandlordNavbar />
+    <TenantNavbar />
     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
         <div id="checkhouse-card">
@@ -70,6 +70,14 @@
 
             </div>
           </div>
+
+          <div class="block">
+            <div class="buttons is-centered">
+              <a class="button is-large is-green is-rounded vm">
+                Apply For House
+              </a>
+            </div>
+          </div>
           
         </div>
       </div>
@@ -78,7 +86,7 @@
 </template>
 
 <script>
-import LandlordNavbar from '@/components/LandlordNavbar.vue';
+import TenantNavbar from '@/components/TenantNavbar.vue';
 import Carousel from '@/components/Carousel.vue';
 import CarouselSlide from '@/components/CarouselSlide.vue';
 import ZDMCarousel from "@/components/ZDMCarousel.vue";
@@ -98,20 +106,20 @@ export default {
 
       cards: [
         {
-          headline: "Landlord Name",
-          text: "965467982",
+          headline: "António Ourives",
+          text: "962956721",
           imgName1: "face1.svg",
           imgName2: "landlord.svg"
         },
         {
-          headline: "Tenant Name 2",
-          text: "Average Rating 2",
+          headline: "Maria Madalena",
+          text: "Average Rating 1",
           imgName1: "face2.svg",
           imgName2: "roommate.svg"
         },
         {
-          headline: "Tenant Name 3",
-          text: "Average Rating 3",
+          headline: "Mafalda Costa",
+          text: "Average Rating 2",
           imgName1: "face3.svg",
           imgName2: "roommate.svg"
         }
@@ -119,14 +127,15 @@ export default {
     }
   },
 
-  name: 'Landlord Check House',
+  name: 'Tenant Check House',
 
   components: {
-    LandlordNavbar,
+    TenantNavbar,
     Carousel: Carousel,
     CarouselSlide: CarouselSlide,
     ZDMCarousel
-  }
+  },
+    
 }
 </script>
 

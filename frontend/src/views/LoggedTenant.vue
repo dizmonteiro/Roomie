@@ -1,192 +1,120 @@
 <template>
   <div>
     <TenantNavbar />
-    <button @click="aux">help</button>
-    <div id="ttcard" class="card pad">
+    <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
+      <div class="column is-11-mobile is-11-tablet is-11-desktop">
+        <div id="checkhouse-card">
 
-        <div class="column adjust-hero is-centered has-text-centered">
-          <HouseMenuEditable>
-            <template v-slot:firstEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House1',
-                    k2: 'house_location',
-                    v2: 'Location1',
-                    k3: 'house_slot',
-                    v3: 'Slots: 2/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:secondEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                   k1: 'house_name',
-                    v1: 'House2',
-                    k2: 'house_location',
-                    v2: 'Location2',
-                    k3: 'house_slot',
-                    v3: 'Slots: 1/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:thirdEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House3',
-                    k2: 'house_location',
-                    v2: 'Location3',
-                    k3: 'house_slot',
-                    v3: 'Slots: 3/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:fourthEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House4',
-                    k2: 'house_location',
-                    v2: 'Location1',
-                    k3: 'house_slot',
-                    v3: 'Slots: 2/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:fifthEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                   k1: 'house_name',
-                    v1: 'House5',
-                    k2: 'house_location',
-                    v2: 'Location2',
-                    k3: 'house_slot',
-                    v3: 'Slots: 1/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:sixthEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House6',
-                    k2: 'house_location',
-                    v2: 'Location3',
-                    k3: 'house_slot',
-                    v3: 'Slots: 3/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:seventhEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House7',
-                    k2: 'house_location',
-                    v2: 'Location3',
-                    k3: 'house_slot',
-                    v3: 'Slots: 3/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:eigthEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House8',
-                    k2: 'house_location',
-                    v2: 'Location3',
-                    k3: 'house_slot',
-                    v3: 'Slots: 3/4'
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:ninthEntry>
-              <HouseMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House9',
-                    k2: 'house_location',
-                    v2: 'Location3',
-                    k3: 'house_slot',
-                    v3: 'Slots: 3/4'
-                  },
-                ]"
-              />
-            </template>
-          </HouseMenuEditable>
+          <div class="block">
+            <div class="columns is-centered is-mobile is-tablet is-desktop">
+              
+              <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
+                <div class="box custom-height">
+                    <ZDMCarousel :cards="cards" />
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
         </div>
-
-        <nav class="pagination" role="navigation" aria-label="pagination">
-          <a class="pagination-previous">Previous</a>
-          <a class="pagination-next">Next page</a>
-        </nav>
-
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import TenantNavbar from "@/components/TenantNavbar";
-import HouseMenuEditable from "@/components/HouseMenuEditable.vue";
-import HouseMenuEntry from "@/components/HouseMenuEntry.vue"
+import TenantNavbar from '@/components/TenantNavbar.vue';
+import ZDMCarousel from "@/components/ZDMCarousel.vue";
 
 export default {
+  data(){
+    return {
 
-  name: "LoggedTenant",
-  
+      cards: [
+        {
+          headline: "António Ourives",
+          text: "962956721",
+          imgName1: "face1.svg",
+          imgName2: "landlord.svg"
+        },
+        {
+          headline: "Maria Madalena",
+          text: "Average Rating 1",
+          imgName1: "face2.svg",
+          imgName2: "roommate.svg"
+        },
+        {
+          headline: "Mafalda Costa",
+          text: "Average Rating 2",
+          imgName1: "face3.svg",
+          imgName2: "roommate.svg"
+        }
+      ]
+    }
+  },
+
+  name: 'Tenant Check House',
+
   components: {
     TenantNavbar,
-    HouseMenuEditable,
-    HouseMenuEntry
+    ZDMCarousel
   },
-
-  methods: {
-    aux(){
-      this.$router.push("/tenant/llprofile")
-    }
-
-  },
-};
+    
+}
 </script>
-
 
 <style scoped>
 
-label {
-  display: block;
-}
+  #content {
+    margin: 3% auto 2% auto;
+    width: 100%;
+  } 
+  
+  #checkhouse-card {
+      min-height: 80vh;
+      margin-top: 2%;
+      margin-bottom: 5%;
+  }
 
-.pad {
-  width: 90%;
-  margin: 5% auto;
-}
+  #scroll-area-1 {
+      height: 34vh;
+  }
+
+  #scroll-area-2 {
+      height: 58vh;
+      margin-bottom: 10px;
+  }
+  
+  .price-range {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+
+  .spacer {
+      width: 5px;
+  }
+
+  .vm {
+    width: 25%;
+    min-width: 70px;
+  }
+
+  .bordera {
+  background-color: lightseagreen;
+  }
+  
+  .borderb {
+  background-color: pink;
+  }
+
+  .borderc {
+  background-color: orange;
+  }
+
+  .custom-height {
+    min-height: 80vh;
+  }
 
 </style>

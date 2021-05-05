@@ -73,7 +73,7 @@ export default {
 <style scoped>
 
 .star {
-  width: 20%;
+  width: 10%;
 }
 .aux {
   display: inline;
