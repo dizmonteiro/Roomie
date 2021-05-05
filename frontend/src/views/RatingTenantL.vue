@@ -3,11 +3,9 @@
     <LandlordNavbar />
     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
         <div class="column is-11-mobile is-11-tablet is-11-desktop">
-            <div id="ratetenantt-card">
-
+            <div id="ratetenantl-card">
                 <div class="block">
                   <div class="columns is-centered is-mobile is-tablet is-desktop">
-                  
                     <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
                       <div class="box custom-height">
                           <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
@@ -23,23 +21,55 @@
                                     </figure>
                                 </div>
                                 
-                                <div class="box">
+                                <div class="field">
+                                  <label class="label">Name</label>
+                                  <div class="control">
+                                    <input
+                                      class="input"
+                                      type="text"
+                                      placeholder="Full Name"
+                                      name="name"
+                                      readonly
+                                    />
+                                  </div>
                                 </div>
-
+                                <div class="field">
+                                  <label class="label">Phone Number</label>
+                                  <p class="control">
+                                    <input
+                                      class="input"
+                                      type="tel"
+                                      placeholder="(+351) XXX XXX XXX"
+                                      name="phone"
+                                      readonly
+                                    />
+                                  </p>
+                                </div>
+                                <div class="field">
+                                  <label class="label">Nationality</label>
+                                  <div class="control">
+                                    <input
+                                      class="input"
+                                      type="text"
+                                      placeholder="Portuguese"
+                                      name="ocupation"
+                                      readonly
+                                    />
+                                  </div>
+                                </div>
+                          
                             </div>
-
                           </div>
                       </div>
                     </div>
 
                     <div class="column is-two-thirds-mobile is-two-thirds-tablet is-two-thirds-desktop">
-                      <div class="box custom-height">
-                      </div>
+                        <rate/>
                     </div>
 
                   </div>
                 </div>
-          
+                
         </div>
       </div>
     </div>
@@ -48,19 +78,30 @@
 
 <script>
 import LandlordNavbar from '@/components/LandlordNavbar.vue';
+import { mapGetters, mapState } from "vuex";
+import Rate from '../components/Rate.vue';
 
 export default {
-  data(){
+  components: {
+    LandlordNavbar,
+    Rate
+  },
+
+  computed: {
+    ...mapGetters(["getType"]),
+    ...mapState({
+      type: (state) => `${state.user.type}`,
+    }),
+  },
+
+  data() {
     return {
-    
-    }
+      checkRates: "tenant",
+    };
   },
 
   name: 'Landlord Rate Tenant',
 
-  components: {
-    LandlordNavbar
-  }
 }
 </script>
 
@@ -71,7 +112,7 @@ export default {
     width: 100%;
   } 
   
-  #ratetenantt-card {
+  #ratetenantl-card {
       min-height: 80vh;
       margin-top: 5%;
       margin-bottom: 5%;
@@ -118,7 +159,7 @@ export default {
   }
 
   .custom-height {
-    min-height: 40vh;
+    min-height: 82vh;
   }
 
 </style>
