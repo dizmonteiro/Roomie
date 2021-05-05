@@ -268,6 +268,7 @@ export default {
   },
   data() {
     return {
+      rentHistory: [],
       checkRates: "tenant",
       url: api_url,
       editable: false,
@@ -291,6 +292,24 @@ export default {
       .get(api_url + "/api/tenants/" + store.getters.getId)
       .then((response) => {
         this.formData = response.data;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    axios
+      .get(api_url + "/api/tenants/" + store.getters.getId + "/rentHistory")
+      .then((response) => {
+        for (var i = 0; i < response.length && i < 3; i++) {
+          var rhentry = {
+            photo: response[i].house.photos[0],
+            name: response[i].house.title,
+            bdate: response[i].getbDate,
+            edate: response[i].geteDate,
+            landlord: response[i].house.landlord.name,
+          };
+          this.rentHistory.push(rhentry);
+        }
+        console.log(this.rentHistory);
       })
       .catch((e) => {
         console.log(e);
