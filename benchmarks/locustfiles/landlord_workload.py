@@ -2,6 +2,8 @@ from locust import HttpUser, task
 from config import UserSimulationConfig
 from faker import Faker
 
+import random
+
 # 1 -> register
 # 2 -> login
 # 3 -> add house(s)
@@ -21,7 +23,7 @@ class LandlordWorkload(HttpUser):
     def on_start(self):
         self.register()
         self.login()
-        for _i in range(0, 4):
+        for _i in range(0, random.randint(3, 7)):
             self.post_house()
         self.get_houses()
         self.get_applications()

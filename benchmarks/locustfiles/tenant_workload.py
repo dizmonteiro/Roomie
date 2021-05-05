@@ -26,7 +26,7 @@ class TenantWorkload(HttpUser):
         self.register()
         self.login()
         self.get_houses()
-        for _i in range(0, 4):
+        for _i in range(0, random.randint(3, 7)):
             self.apply_to_house()
         self.get_applications()
         self.cancel_application()
@@ -62,7 +62,7 @@ class TenantWorkload(HttpUser):
     def get_houses(self):
         headers = {"Authorization": "Bearer " + self.token}
         response = self.client.get(
-            "/api/houses?limit=30&offset=" + str(fake.random_int(0, 100)),
+            "/api/houses?limit=60&offset=" + str(fake.random_int(0, 100)),
             headers=headers,
             name="/api/houses?limit=[number]&offset=[number]",
         )
