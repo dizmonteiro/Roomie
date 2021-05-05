@@ -54,18 +54,17 @@
               <div class="column is-half-mobile is-half-tablet is-half-desktop">
                 <div class="box custom-height">
                   <p class="title has-text-centered is-one-third">Description</p>
-                    <p class="subtitle">Put the property’s best feature in the first sentence in an attention-grabbing way. If your property is a dump in a great location, sell the location. If it’s the only home in the neighborhood with a downstairs master, maybe that is its best feature!</p>
+                  <div class="content has-text-justified">
+                    <p>
+                      A Roomie é uma Plataforma de Procura e Disponibilização de Imobiliário para Arrendamento que procura não só facilitar o processo de encontrar uma habitação como também o processo da escolha do ambiente em que se pretende viver.
+                    </p>
+                  </div>
                 </div>
               </div>
               
               <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
-                <div class="container custom-height">
-                  <p class="title has-text-centered is-one-third">Tenants</p>
-                
-                  <div class="section">
+                <div class="box custom-height">
                     <ZDMCarousel :cards="cards" />
-                  </div>
-
                 </div>
               </div>
 
@@ -99,22 +98,22 @@ export default {
 
       cards: [
         {
-          headline: "Jeremias",
-          text:
-            "O",
-          imgName: "setting.svg"
+          headline: "Landlord Name",
+          text: "Average Rating 1",
+          imgName1: "face1.svg",
+          imgName2: "landlord.svg"
         },
         {
-          headline: "Use background sync to defer actions",
-          text:
-            "User inputs entered when offline are sent in the background once they get connectivity.",
-          imgName: "cloud.svg"
+          headline: "Tenant Name 2",
+          text: "Average Rating 2",
+          imgName1: "face2.svg",
+          imgName2: "roommate.svg"
         },
         {
-          headline: "Send Push Notifications",
-          text:
-            "The Notifications API lets us send push notifications to re-engage users.",
-          imgName: "antenna.svg"
+          headline: "Tenant Name 3",
+          text: "Average Rating 3",
+          imgName1: "face3.svg",
+          imgName2: "roommate.svg"
         }
       ]
     }

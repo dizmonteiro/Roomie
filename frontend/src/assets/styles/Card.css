@@ -1,9 +1,9 @@
 .card {
   background-color: white;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 20px 60px 0 rgba(41, 67, 100, 0.21);
-  width: 280px;
-  height: 420px;
+  width: 300px;
+  height: 265px;
   padding: 10px;
 }
 
@@ -11,12 +11,21 @@
   font-weight: bold;
 }
 
-.card-icon {
+.card-icon-left {
+  border-radius: 20px;
   pointer-events: none;
-  width: 180px;
-  padding: 40px 20px 0px 20px;
+  width: auto;
+  height: auto;
+  padding: 10px 5px 10px 10px;
+}
+
+.card-icon-right {
+  pointer-events: none;
+  height: auto;
+  width: auto;
+  padding: 10px 10px 0px 0px;
 }
 
 .card-content {
-  padding: 20px;
+  padding: 0px 10px 0px 10px;
 }

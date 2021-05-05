@@ -166,6 +166,12 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
+      name: 'Landlord Check House',
+      path: '/tenant/house/checkhouse',
+      component: () => import('@/views/TenantCheckHouse'),
+      beforeEnter: ifAuthenticated
+    },
+    {
       path: '/404',
       component: () => import('@/views/NotFound')
     },

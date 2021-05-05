@@ -1,11 +1,11 @@
 .card-carousel {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: auto;
 }
 
 .btn {
-  height: 90px;
+  height: auto;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -33,6 +33,6 @@
 }
 
 .icon {
-  height: 90px;
-  width: auto;
+  height: 60px;
+  width: 30px;
 }

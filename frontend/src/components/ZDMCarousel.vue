@@ -10,7 +10,8 @@
         class="current-element"
         :headline="currentElement.headline"
         :text="currentElement.text"
-        :imgName="currentElement.imgName"
+        :imgName1="currentElement.imgName1"
+        :imgName2="currentElement.imgName2"
       />
       <ZDMArrowButton
         arrowType="right"
@@ -18,22 +19,16 @@
         :disabled="this.reachedMaxRight"
       />
     </div>
-    <ZDMIndicators
-      :elements="this.cards"
-      :currentElementIndex="this.currentElementIndex"
-      :showElement="this.showElement"
-    />
   </div>
 </template>
 <script>
 import ZDMCard from "./ZDMCard.vue";
 import ZDMArrowButton from "./ZDMArrowButton.vue";
-import ZDMIndicators from "./ZDMIndicators.vue";
 
 export default {
   name: "ZDMCarousel",
   props: { cards: Array },
-  components: { ZDMCard, ZDMArrowButton, ZDMIndicators },
+  components: { ZDMCard, ZDMArrowButton},
 
   data() {
     return {

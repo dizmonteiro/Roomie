@@ -1,5 +1,5 @@
 .btn {
-  height: 90px;
+  height: 60px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -27,6 +27,6 @@
 }
 
 .icon {
-  height: 90px;
-  width: auto;
+  height: 60px;
+  width: 30px;
 }
