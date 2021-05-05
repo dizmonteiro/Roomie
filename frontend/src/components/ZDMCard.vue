@@ -18,10 +18,13 @@
     </div>
     <div class='card-content'>
       <div class="buttons is-centered">
-        <a class="button is-green is-rounded">
+        <a class="button is-small is-green is-rounded is-static vm">
+           {{headline}}
+        </a>
+        <a class="button is-small is-green is-rounded is-static vm">
            {{text}}
         </a>
-        <a class="button is-green is-rounded" href="/">
+        <a class="button is-small is-green is-rounded vm" href="/">
            View More
         </a>
       </div>

@@ -115,10 +115,14 @@ export default new Router({
       name: 'Landlord Update House',
       path: '/landlord/house/:id/update',
       component: () => import('@/views/UpdateHouse'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
       name: 'Landlord Houses',
       path: '/landlord/houses',
       component: () => import('@/views/LandlordHouses'),
       beforeEnter: ifAuthenticatedLandlord
+      
     },
     {
       name: 'Landlord Applications',

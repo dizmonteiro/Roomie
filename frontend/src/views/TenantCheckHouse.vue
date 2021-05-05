@@ -25,25 +25,25 @@
 
                       <div class="column is-half-mobile is-half-tablet is-half-desktop">
                         <div class="block">
-                          <button class="button is-green is-rounded">Template 1</button>
+                          <button class="button is-green is-static is-rounded">Template 1</button>
                         </div>
                         <div class="block">
-                          <button class="button is-green is-rounded">Template 2</button>
+                          <button class="button is-green is-static is-rounded">Template 2</button>
                         </div>
                         <div class="block">
-                          <button class="button is-green is-rounded">Template 3</button>
+                          <button class="button is-green is-static is-rounded">Template 3</button>
                         </div>
                       </div>
 
                       <div class="column is-half-mobile is-half-tablet is-half-desktop">
                         <div class="block">
-                          <button class="button is-green is-rounded">Template 4</button>
+                          <button class="button is-green is-static is-rounded">Template 4</button>
                         </div>
                         <div class="block">
-                          <button class="button is-green is-rounded">Template 5</button>
+                          <button class="button is-green is-static is-rounded">Template 5</button>
                         </div>
                         <div class="block">
-                          <button class="button is-green is-rounded">Template 6</button>
+                          <button class="button is-green is-static is-rounded">Template 6</button>
                         </div>
                       </div>
 
@@ -68,6 +68,14 @@
                 </div>
               </div>
 
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="buttons is-centered">
+              <a class="button is-large is-green is-rounded vm">
+                Apply For House
+              </a>
             </div>
           </div>
           
@@ -126,7 +134,8 @@ export default {
     Carousel: Carousel,
     CarouselSlide: CarouselSlide,
     ZDMCarousel
-  }
+  },
+    
 }
 </script>
 

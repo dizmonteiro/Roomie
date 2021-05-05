@@ -29,3 +29,7 @@
 .card-content {
   padding: 0px 10px 0px 10px;
 }
+
+.vm {
+    min-width: 130px;
+}
