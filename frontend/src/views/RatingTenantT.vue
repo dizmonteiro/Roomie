@@ -4,10 +4,8 @@
     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
         <div class="column is-11-mobile is-11-tablet is-11-desktop">
             <div id="ratetenantt-card">
-
                 <div class="block">
                   <div class="columns is-centered is-mobile is-tablet is-desktop">
-                  
                     <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
                       <div class="box custom-height">
                           <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
@@ -23,19 +21,50 @@
                                     </figure>
                                 </div>
                                 
-                                <div class="box">
+                                <div class="field">
+                                  <label class="label">Name</label>
+                                  <div class="control">
+                                    <input
+                                      class="input"
+                                      type="text"
+                                      placeholder="Full Name"
+                                      name="name"
+                                      readonly
+                                    />
+                                  </div>
                                 </div>
-
+                                <div class="field">
+                                  <label class="label">Phone Number</label>
+                                  <p class="control">
+                                    <input
+                                      class="input"
+                                      type="tel"
+                                      placeholder="(+351) XXX XXX XXX"
+                                      name="phone"
+                                      readonly
+                                    />
+                                  </p>
+                                </div>
+                                <div class="field">
+                                  <label class="label">Nationality</label>
+                                  <div class="control">
+                                    <input
+                                      class="input"
+                                      type="text"
+                                      placeholder="Portuguese"
+                                      name="ocupation"
+                                      readonly
+                                    />
+                                  </div>
+                                </div>
+                          
                             </div>
-
                           </div>
                       </div>
                     </div>
 
                     <div class="column is-two-thirds-mobile is-two-thirds-tablet is-two-thirds-desktop">
-                        <div class="box custom-height">
-                          <check-rates/>
-                        </div>
+                        <check-rates/>
                     </div>
 
                   </div>
@@ -49,19 +78,30 @@
 
 <script>
 import TenantNavbar from '@/components/TenantNavbar.vue';
+import { mapGetters, mapState } from "vuex";
+import CheckRates from '../components/CheckRates.vue';
 
 export default {
-  data(){
+  components: {
+    TenantNavbar,
+    CheckRates
+  },
+
+  computed: {
+    ...mapGetters(["getType"]),
+    ...mapState({
+      type: (state) => `${state.user.type}`,
+    }),
+  },
+
+  data() {
     return {
-    
-    }
+      checkRates: "tenant",
+    };
   },
 
   name: 'Tenant Rate Tenant',
 
-  components: {
-    TenantNavbar
-  }
 }
 </script>
 
