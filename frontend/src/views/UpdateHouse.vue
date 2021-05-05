@@ -5,7 +5,7 @@
         <div class="column is-four-fifths-mobile is-four-fifths-tablet is-three-quarters-desktop">
             <div class="card" id="form-card">
                 <div class="card-content">
-                    <p class="title has-text-centered">Add New House</p>
+                    <p class="title has-text-centered">Update House</p>
                     <FormulateForm v-model="formData" class="columns is-centered" @submit="submitHouse">
                         <div class="column is-full-mobile is-full-tablet is-one-third-desktop">
                             <FormulateInput
@@ -21,7 +21,7 @@
                                 validation="required|max:100,length|min:5,length"
                             />
                             <FormulateInput
-                                name="bedrooms"
+                                name="rooms"
                                 label="Number of Bedrooms"
                                 type="number"
                                 validation="required|number"
@@ -29,7 +29,7 @@
                                 max="10"
                             />
                             <FormulateInput
-                                name="available"
+                                name="availableRooms"
                                 label="Available Bedrooms"
                                 type="number"
                                 validation="required|number"
@@ -37,7 +37,7 @@
                                 max="10"
                             />
                             <FormulateInput
-                                name="bathrooms"
+                                name="bathRooms"
                                 label="Number of Bathrooms"
                                 type="number"
                                 validation="required|number"
@@ -46,7 +46,7 @@
                             />
                             <div class="price-range">
                                 <FormulateInput
-                                    name="minprice"
+                                    name="minPrice"
                                     label="Min. Price p/ Bedroom"
                                     type="number"
                                     validation="required|number"
@@ -54,7 +54,7 @@
                                 />
                                 <div class="spacer"></div>
                                 <FormulateInput
-                                    name="maxprice"
+                                    name="maxPrice"
                                     label="Max. Price p/ Bedroom"
                                     type="number"
                                     validation="required|number"
@@ -79,11 +79,14 @@
                                         label="Features"
                                         add-label="Add Feature"
                                         validation="required"
+                                        v-bind:value="this.formData.features"
+                                        disabled
                                     >
                                         <FormulateInput
                                             name="feature"
                                             type="text"
                                             validation="required"
+                                            disabled
                                         />
                                     </FormulateInput>
                                 </smooth-scrollbar>
@@ -106,7 +109,7 @@
                             </div>
                             <FormulateInput
                                 type="submit"
-                                label="Add House"
+                                label="Update House"
                             />
                         </div>
                     </FormulateForm>
@@ -121,7 +124,7 @@
               <div class="card-content is-vcentered">
                 <div class="content has-text-centered">
                   <br>
-                  <h1>House added!</h1>  
+                  <h1>House updated!</h1>  
                   <br>
                   <br>
                   <button type="submit" class="button is-green" v-on:click="goToProfile()">Return to Home</button>
@@ -137,6 +140,8 @@
 <script>
 import LandlordNavbar from '@/components/LandlordNavbar'
 import axios from 'axios';
+import { mapGetters, mapState } from 'vuex';
+//import store from '@/store';
 import { url as api_url } from "@/assets/scripts/api";
 
 function goToProfile() {
@@ -147,58 +152,77 @@ function closeModal() {
     document.getElementById("modal").classList.remove("is-active");
 }
 
-
-
 export default {
-  name: 'Login',
+  name: 'UpdateHouse',
   components: {
     LandlordNavbar
   },
   data() {
     return {
+        id: this.$route.params.id,
         formData: {
             file: [],
+            title: "",
+            address: "",
+            rooms: "",
+            availableRooms: "",
+            bathRooms: "",
+            minPrice: "",
+            maxPrice: "",
+            description: "",
+            features: ""
         }
     };
   },
+  created() {
+    axios.get(api_url + '/api/houses/'+this.id).then(response => {
+        this.formData = response.data;
+        var fs = response.data.features.split(',');
+        this.formData.features = [];
+        this.formData.file = []
+        for (var f in fs){
+            this.formData.features.push({feature: fs[f]});
+        }
+    }).catch(e => {
+      console.log(e)
+    });  
+  },
   computed: {
-    
+    ...mapGetters(["getType","getId"]),
+    ...mapState({
+      type: (state) => `${state.user.type}`,
+      user_id: (state) => `${state.user.id}`,
+    }),
   },
   methods: {
+    closeModal,
+    goToProfile,
     /* eslint-disable-next-line */
     async uploadFile (file, progress, error, option) {
       this.formData.file.push(file);
     },
-    closeModal,
-    goToProfile,
     async submitHouse (data) {
-
-        let features = []
-        for(var f = 0; f < data.features.length; f++)
-            features.push(data.features[f].feature)
 
         var bodyFormData = new FormData();
         bodyFormData.append('address', data.address);
-        bodyFormData.append('features', features);
         bodyFormData.append('description', data.description);
-        bodyFormData.append('minPrice', data.minprice);
-        bodyFormData.append('maxPrice', data.maxprice);
-        bodyFormData.append('bathRooms', data.bathrooms);
-        bodyFormData.append('availableRooms', data.available);
-        bodyFormData.append('rooms', data.bedrooms);
+        bodyFormData.append('minPrice', data.minPrice);
+        bodyFormData.append('maxPrice', data.maxPrice);
+        bodyFormData.append('bathRooms', data.bathRooms);
+        bodyFormData.append('availableRooms', data.availableRooms);
+        bodyFormData.append('rooms', data.rooms);
         bodyFormData.append('title', data.title);
 
         for(var i = 0; i < this.formData.file.length; i++){
             bodyFormData.append('files', this.formData.file[i]);
-        }        
+        }  
 
         let options = {
             headers: { 
             "Content-Type": "multipart/form-data" 
             }
         }
-        
-        await axios.post(api_url + '/api/houses', bodyFormData, options).then(() => {
+        await axios.put(api_url + '/api/houses/'+this.$route.params.id, bodyFormData, options).then(() => {
             document.getElementById("modal").classList.add("is-active");
         }).catch(e => {
             alert(e)

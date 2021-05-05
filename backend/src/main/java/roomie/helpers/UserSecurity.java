@@ -49,10 +49,14 @@ public class UserSecurity {
 		return false;
 	}
 	
-	public boolean isOwner(Authentication authentication, int houseId) throws PersistentException, ResourceNotFoundException {
-		Landlord landlord = landlordService.getById(((MyUser) authentication.getPrincipal()).getId());
-		House house = houseService.getById(houseId);
-		return landlord.houses.contains(house);
+	public boolean isOwner(Authentication authentication, int houseId) {
+		try {
+			Landlord landlord = landlordService.getById(((MyUser) authentication.getPrincipal()).getId());
+			House house = houseService.getById(houseId);
+			return landlord.houses.contains(house);
+		} catch (ResourceNotFoundException | PersistentException e) {
+			return false;
+		}
 	}
 	
 	public boolean hasApplied(Authentication authentication, int houseId) throws PersistentException, ResourceNotFoundException {

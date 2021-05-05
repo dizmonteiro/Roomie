@@ -100,15 +100,36 @@ export default new Router({
       beforeEnter: ifAuthenticatedLandlord
     },
     {
+      name: 'Landlord Tenant Profile',
+      path: '/landlord/tprofile',
+      component: () => import('@/views/TenantProfileCheck'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
       name: 'Landlord Add House',
       path: '/landlord/house/add',
       component: () => import('@/views/AddHouse'),
       beforeEnter: ifAuthenticatedLandlord
     },
     {
+      name: 'Landlord Update House',
+      path: '/landlord/house/:id/update',
+      component: () => import('@/views/UpdateHouse'),
+      name: 'Landlord Houses',
+      path: '/landlord/houses',
+      component: () => import('@/views/LandlordHouses'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
+      name: 'Landlord Applications',
+      path: '/landlord/applications',
+      component: () => import('@/views/CheckApplications'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
       name: 'Landlord Check House',
-      path: '/landlord/house/checkhouse',
-      component: () => import('@/views/LandlordCheckHouse'),
+      path: '/lanlord/house/checkhouse',
+      component: ()=>import('@/views/LandlordCheckHouse'),
       beforeEnter: ifAuthenticatedLandlord
     },
     {
@@ -130,9 +151,21 @@ export default new Router({
       beforeEnter: ifAuthenticated
     },
     {
+      name: 'Tenant Tenant Profile',
+      path: '/tenant/tprofile',
+      component: () => import('@/views/TenantProfileCheck'),
+      beforeEnter: ifAuthenticated
+    },
+    {
       name: 'Tenant Rent History',
       path: '/tenant/rhistory',
       component: () => import('@/views/RentHistory'),
+      beforeEnter: ifAuthenticated
+    },
+    {
+      name: 'Tenant Application',
+      path: '/tenant/applications',
+      component: () => import('@/views/ApplicationsTenant'),
       beforeEnter: ifAuthenticated
     },
     {
