@@ -22,6 +22,7 @@ import roomie.services.RentHistoryService;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,9 +133,9 @@ public class HouseController {
 	
 	@GetMapping(value = "/{id}/tenants")
 	@ResponseBody
-	public List<Tenant> getHouseTenants(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+	public List<Tenant> getHouseTenants(@PathVariable int id, @RequestParam(required = false) String bDate, @RequestParam(required = false) String eDate) throws PersistentException, ResourceNotFoundException, ParseException {
 		House house = houseService.getById(id);
-		return rentHistoryService.getHouseTenants(house);
+		return rentHistoryService.getHouseTenants(house, bDate, eDate);
 	}
 	
 }
