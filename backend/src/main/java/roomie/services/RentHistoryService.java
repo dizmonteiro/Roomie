@@ -5,12 +5,17 @@ package roomie.services;
  * @created: 17/04/2021 - 15:24
  */
 
+import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
 import org.springframework.stereotype.Service;
+import roomie.models.application.Application;
 import roomie.models.house.House;
 import roomie.models.rentHistory.RentHistory;
 import roomie.models.rentHistory.RentHistoryDAO;
 import roomie.models.tenant.Tenant;
+import roomie.repositories.application.ApplicationCriteria;
+import roomie.repositories.house.HouseCriteria;
+import roomie.repositories.rentHistory.RentHistoryCriteria;
 
 import java.text.ParseException;
 import java.util.ArrayList;

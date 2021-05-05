@@ -11,11 +11,17 @@ import roomie.models.auth.MyUser;
 import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
 import roomie.models.landlord.LandlordDAO;
+import roomie.models.rentHistory.RentHistory;
+import roomie.models.rentHistory.RentHistoryDAO;
 import roomie.models.tenant.Tenant;
 import roomie.models.tenant.TenantDAO;
 import roomie.services.HouseService;
 import roomie.services.LandlordService;
+import roomie.services.RentHistoryService;
 import roomie.services.TenantService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author: Vasco Ramos
@@ -32,6 +38,9 @@ public class UserSecurity {
 	
 	@Autowired
 	private TenantService tenantService;
+	
+	@Autowired
+	private RentHistoryService rentHistoryService;
 	
 	public boolean isSelf(Authentication authentication, int userId) throws PersistentException {
 		String email = ((UserDetails) authentication.getPrincipal()).getUsername();
