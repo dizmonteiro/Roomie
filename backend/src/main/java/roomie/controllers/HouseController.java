@@ -14,9 +14,11 @@ import roomie.models.auth.MyUser;
 import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
 import roomie.models.photo.Photo;
+import roomie.models.tenant.Tenant;
 import roomie.services.HouseService;
 import roomie.services.LandlordService;
 import roomie.services.PhotoService;
+import roomie.services.RentHistoryService;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -39,6 +41,9 @@ public class HouseController {
 	
 	@Autowired
 	private PhotoService photoService;
+	
+	@Autowired
+	private RentHistoryService rentHistoryService;
 	
 	@PreAuthorize("hasRole('LANDLORD')")
 	@PostMapping(consumes = {"multipart/form-data"})
@@ -123,6 +128,13 @@ public class HouseController {
 	@ResponseBody
 	public byte[] getPhoto(@PathVariable int photoId) throws PersistentException, ResourceNotFoundException, IOException {
 		return photoService.load(photoService.getById(photoId));
+	}
+	
+	@GetMapping(value = "/{id}/tenants")
+	@ResponseBody
+	public List<Tenant> getHouseTenants(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		House house = houseService.getById(id);
+		return rentHistoryService.getHouseTenants(house);
 	}
 	
 }
