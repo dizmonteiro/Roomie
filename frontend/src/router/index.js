@@ -115,6 +115,8 @@ export default new Router({
       name: 'Landlord Update House',
       path: '/landlord/house/:id/update',
       component: () => import('@/views/UpdateHouse'),
+    },
+    {
       name: 'Landlord Houses',
       path: '/landlord/houses',
       component: () => import('@/views/LandlordHouses'),
