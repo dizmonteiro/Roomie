@@ -79,3 +79,14 @@ textarea[id^='formulate--landlord-house-add-']:focus{
 #gender_label {
     text-align: center !important;
 }
+
+#formulate--landlord-house-11-update-11 {
+    background-color: #2d6a4f !important;
+    border-color: #2d6a4f !important;
+    color: white !important; 
+}
+
+#formulate--landlord-house-11-update-13 {
+    background-color: #2d6a4f !important;
+    border-color: #2d6a4f !important;
+}
