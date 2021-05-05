@@ -44,7 +44,7 @@ public class EvaluationController {
 		Tenant evaluated = tenantService.getById(id);
 		House house = houseService.getById(body.getHouseId());
 		if(!evaluationService.wereRoommates(evaluator,evaluated,house)){
-			throw new ErrorDetails("Tenants were not roommates on that house or they were but they never meeted!");
+			throw new ErrorDetails("Tenants were not roommates on that house or they were but they never met!");
 		}
 		
 		double tidiness = body.getTidiness();
