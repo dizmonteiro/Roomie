@@ -5,6 +5,7 @@ package roomie.models.evaluation;
  * License Type: Academic
  */
 
+import com.sun.istack.NotNull;
 import roomie.models.landlord.Landlord;
 import roomie.models.tenant.Tenant;
 

@@ -15,13 +15,9 @@ public class TenantEvaluation implements Serializable {
 	private int evaluatorTenantId;
 	private Tenant evaluatedTenant;
 	private int evaluatedTenantId;
-	@NotNull
 	private double tidiness;
-	@NotNull
 	private double cleanliness;
-	@NotNull
 	private double privacy;
-	@NotNull
 	private double friendliness;
 	
 	public TenantEvaluation() {
