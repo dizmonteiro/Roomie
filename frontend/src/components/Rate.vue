@@ -6,7 +6,7 @@
         <div class="block">
           <figure class="image feature">
           <img
-            src="https://www.flaticon.com/svg/vstatic/svg/3553/3553705.svg?token=exp=1619449916~hmac=0bdb944ac4edb8e37aadec0091021a17"
+            src="@/assets/svg/sweeping.svg"
           />
           <label class="label">Tidiness</label>
           </figure>
@@ -20,7 +20,7 @@
         <div class="block">
           <figure class="image feature">
             <img
-              src="https://www.flaticon.com/svg/vstatic/svg/995/995053.svg?token=exp=1619450061~hmac=322835d6cba382d1123a60fa8eac3f00"
+              src="@/assets/svg/washing-hands.png"
             />
             <label class="label">Cleanliness</label>
           </figure>
@@ -36,7 +36,7 @@
         <div class="block">
           <figure class="image feature">
             <img
-              src="https://www.flaticon.com/svg/vstatic/svg/3064/3064197.svg?token=exp=1619450142~hmac=2f52134711944337feb847ece08a69d6"
+              src="@/assets/svg/padlock.png"
             />
             <label class="label">Privacy</label>
           </figure>
@@ -50,7 +50,7 @@
         <div class="block">
           <figure class="image feature">
             <img
-              src="https://www.flaticon.com/svg/vstatic/svg/1441/1441180.svg?token=exp=1619450220~hmac=c5265f738f2134dc4ed81bf596519587"
+              src="@/assets/svg/support.png"
             />
             <label class="label">Friendly</label>
           </figure>
