@@ -3,12 +3,13 @@ from config import UserSimulationConfig
 
 # 1 -> register
 # 2 -> login
-# 3 -> search for houses
-# 4 -> apply to house(s)
-# 5 -> remove one application
+# 3 -> add house(s)
+# 4 -> list its houses
+# 5 -> check applications
+# 6 -> see tenant profile (fixed tenant)
 
 
-class TenantWorkload(HttpUser):
+class LandlordWorkload(HttpUser):
     wait_time = UserSimulationConfig.wait_time_between_tasks
 
     def on_start(self):
