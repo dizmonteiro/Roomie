@@ -150,10 +150,8 @@ public class RentHistoryDAO {
 	
 	public static List queryRentHistory(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From RentHistory as RentHistory");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			return query.list();
@@ -165,10 +163,8 @@ public class RentHistoryDAO {
 	
 	public static List queryRentHistory(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From RentHistory as RentHistory");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			query.setLockMode("RentHistory", lockMode);
@@ -221,18 +217,14 @@ public class RentHistoryDAO {
 	
 	public static RentHistory loadRentHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		RentHistory[] rentHistorys = listRentHistoryByQuery(session, condition, orderBy);
-		if (rentHistorys != null && rentHistorys.length > 0)
-			return rentHistorys[0];
-		else
-			return null;
+		if (rentHistorys != null && rentHistorys.length > 0) return rentHistorys[0];
+		else return null;
 	}
 	
 	public static RentHistory loadRentHistoryByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		RentHistory[] rentHistorys = listRentHistoryByQuery(session, condition, orderBy, lockMode);
-		if (rentHistorys != null && rentHistorys.length > 0)
-			return rentHistorys[0];
-		else
-			return null;
+		if (rentHistorys != null && rentHistorys.length > 0) return rentHistorys[0];
+		else return null;
 	}
 	
 	public static java.util.Iterator iterateRentHistoryByQuery(String condition, String orderBy) throws PersistentException {
@@ -257,10 +249,8 @@ public class RentHistoryDAO {
 	
 	public static java.util.Iterator iterateRentHistoryByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From RentHistory as RentHistory");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			return query.iterate();
@@ -272,10 +262,8 @@ public class RentHistoryDAO {
 	
 	public static java.util.Iterator iterateRentHistoryByQuery(PersistentSession session, String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		StringBuffer sb = new StringBuffer("From RentHistory as RentHistory");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
+		if (condition != null) sb.append(" Where ").append(condition);
+		if (orderBy != null) sb.append(" Order By ").append(orderBy);
 		try {
 			Query query = session.createQuery(sb.toString());
 			query.setLockMode("RentHistory", lockMode);

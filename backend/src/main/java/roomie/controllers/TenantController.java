@@ -11,9 +11,16 @@ import roomie.exception.ResourceNotFoundException;
 import roomie.models.application.Application;
 import roomie.models.auth.UpdatePasswordRequest;
 import roomie.models.avatar.Avatar;
+import roomie.models.evaluation.LandlordEvaluation;
+import roomie.models.evaluation.LandlordEvaluationDAO;
+import roomie.models.evaluation.TenantEvaluation;
+import roomie.models.evaluation.TenantEvaluationDAO;
+import roomie.models.rentHistory.RentHistory;
 import roomie.models.tenant.Tenant;
+import roomie.models.tenant.TenantRating;
 import roomie.services.ApplicationService;
 import roomie.services.AvatarService;
+import roomie.services.RentHistoryService;
 import roomie.services.TenantService;
 
 import javax.validation.Valid;
@@ -36,6 +43,9 @@ public class TenantController {
 	
 	@Autowired
 	private ApplicationService applicationService;
+	
+	@Autowired
+	private RentHistoryService rentHistoryService;
 	
 	@PostMapping(consumes = {"multipart/form-data"})
 	public Tenant register(@Valid Tenant tenant, @RequestPart(value = "file", required = false) MultipartFile file) throws PersistentException {
@@ -94,5 +104,60 @@ public class TenantController {
 	public List<Application> getApplications(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
 		return applicationService.getByTenantId(id);
 	}
+	
+	@GetMapping(value = "/{id}/rating")
+	public TenantRating getRating(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(id);
+		
+		TenantRating rating = new TenantRating();
+		List<LandlordEvaluation> landEvals = LandlordEvaluationDAO.queryLandlordEvaluation("tenant =" + tenant, null);
+		double cleanliness = 0;
+		double payment = 0;
+		double care = 0;
+		
+		if (landEvals.size() != 0) {
+			for (LandlordEvaluation eval : landEvals) {
+				cleanliness = cleanliness + eval.getCleanliness();
+				payment = payment + eval.getPayment();
+				care = care + eval.getCare();
+			}
+			
+			rating.setPayment(payment / landEvals.size());
+			rating.setCare(care / landEvals.size());
+		}
+		
+		List<TenantEvaluation> tenantEvals = TenantEvaluationDAO
+				.queryTenantEvaluation("evaluatedTenant =" + tenant, null);
+		double tidiness = 0;
+		double privacy = 0;
+		double friendliness = 0;
+		
+		if (tenantEvals.size() != 0) {
+			for (TenantEvaluation eval : tenantEvals) {
+				tidiness = tidiness + eval.getTidiness();
+				privacy = privacy + eval.getPrivacy();
+				friendliness = friendliness + eval.getFriendliness();
+				cleanliness = cleanliness + eval.getCleanliness();
+				
+			}
+			
+			rating.setTidiness(tidiness / tenantEvals.size());
+			rating.setPrivacy(privacy / tenantEvals.size());
+			rating.setFriendliness(friendliness / tenantEvals.size());
+		}
+		
+		if (landEvals.size() != 0 || tenantEvals.size() != 0) {
+			rating.setCleanliness(cleanliness / (landEvals.size() + tenantEvals.size()));
+		}
+		
+		return rating;
+	}
+	
+	@GetMapping(value = "/{id}/rentHistory")
+	public List<RentHistory> getRentHistory(@PathVariable int id) throws PersistentException, ResourceNotFoundException {
+		Tenant tenant = tenantService.getById(id);
+		return rentHistoryService.getTenantsRentHistory(tenant);
+	}
+	
 	
 }
