@@ -32,24 +32,4 @@ public class EvaluationService {
 		TenantEvaluationDAO.save(tenantEvaluation);
 		return tenantEvaluation;
 	}
-	
-	public boolean wereRoommates(Tenant evaluator, Tenant evaluated, House house){
-		try {
-			RentHistory evaluatorRH = RentHistoryDAO.getRentHistoryByORMID(house, evaluator);
-			RentHistory evaluatedRH = RentHistoryDAO.getRentHistoryByORMID(house, evaluated);
-			return evaluatorRH != null &&
-				   evaluatedRH != null &&
-				   evaluatorRH.getHouseId() == evaluatedRH.getHouseId() &&
-				   this.intersect(evaluatorRH.getbDate(),evaluatorRH.geteDate(),evaluatedRH.getbDate(),evaluatedRH.geteDate());
-			
-		} catch (PersistentException e) {
-			return false;
-		}
-	}
-	
-	private boolean intersect(Date bdateA,Date edateA,Date bdateB,Date edateB){
-		if(edateA == null) edateA = new Date();
-		if(edateB == null) edateB = new Date();
-		return (bdateA.getTime() <= edateB.getTime()) && (edateA.getTime() >= bdateB.getTime());
-	}
 }

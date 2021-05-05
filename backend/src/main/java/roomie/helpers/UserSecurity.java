@@ -20,6 +20,7 @@ import roomie.services.LandlordService;
 import roomie.services.RentHistoryService;
 import roomie.services.TenantService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -77,5 +78,29 @@ public class UserSecurity {
 			return false;
 		}
 		return ApplicationDAO.getApplicationByORMID(tenant, house) != null;
+	}
+	
+	public boolean wereRoommates(Authentication authentication, int idHouse, int idEvaluated){
+		try {
+			Tenant evaluator = tenantService.getById(((MyUser) authentication.getPrincipal()).getId());
+			Tenant evaluated = tenantService.getById(idEvaluated);
+			House house = houseService.getById(idHouse);
+			
+			RentHistory evaluatorRH = RentHistoryDAO.getRentHistoryByORMID(house, evaluator);
+			RentHistory evaluatedRH = RentHistoryDAO.getRentHistoryByORMID(house, evaluated);
+			return evaluatorRH != null &&
+					evaluatedRH != null &&
+					evaluatorRH.getHouseId() == evaluatedRH.getHouseId() &&
+					this.intersect(evaluatorRH.getbDate(),evaluatorRH.geteDate(),evaluatedRH.getbDate(),evaluatedRH.geteDate());
+			
+		} catch (PersistentException | ResourceNotFoundException e) {
+			return false;
+		}
+	}
+	
+	private boolean intersect(Date bdateA, Date edateA, Date bdateB, Date edateB){
+		if(edateA == null) edateA = new Date();
+		if(edateB == null) edateB = new Date();
+		return (bdateA.getTime() <= edateB.getTime()) && (edateA.getTime() >= bdateB.getTime());
 	}
 }
