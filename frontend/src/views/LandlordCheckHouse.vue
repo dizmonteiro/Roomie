@@ -119,7 +119,7 @@ export default {
     }
   },
 
-  name: 'LoggedLandlord',
+  name: 'Landlord Check House',
 
   components: {
     LandlordNavbar,
