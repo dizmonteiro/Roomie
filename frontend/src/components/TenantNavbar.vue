@@ -11,7 +11,6 @@
           width="112"
           height="28"
         />
-        <img :src="profilepic"/>
       </a>
 
       <a
@@ -36,7 +35,7 @@
             <a class="button navb" href="/tenant/rhistory">
               <strong>My Rent History</strong>
             </a>
-            <a class="button navb">
+            <a class="button navb" href="/tenant/applications">
               <strong>My Applications</strong>
             </a>
           </div>

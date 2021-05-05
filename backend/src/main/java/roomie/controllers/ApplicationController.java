@@ -50,7 +50,7 @@ public class ApplicationController {
 		return applicationService.create(tenant, house);
 	}
 	
-	@PreAuthorize("hasRole('TENANT') and @userSecurity.hasApplied(authentication,#id)")
+	@PreAuthorize("hasRole('TENANT') and @userSecurity.hasApplied(authentication,#houseId)")
 	@DeleteMapping(value = "/{houseId}")
 	public ResponseEntity<Void> deleteApplication(@PathVariable int houseId, Authentication auth) throws PersistentException, ResourceNotFoundException {
 		Tenant tenant = tenantService.getById(((MyUser) auth.getPrincipal()).getId());
@@ -64,7 +64,7 @@ public class ApplicationController {
 		}
 	}
 	
-	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isOwner(authentication, #id)")
+	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isOwner(authentication, #houseId)")
 	@PutMapping(value = "/{houseId}")
 	public Application acceptRejectApplication(@PathVariable int houseId, @Valid @RequestBody AcceptRejectApplication body) throws PersistentException, ResourceNotFoundException {
 		Tenant tenant = tenantService.getById(body.getTenantId());
