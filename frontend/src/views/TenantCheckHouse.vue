@@ -127,7 +127,7 @@ export default {
     }
   },
 
-  name: 'LoggedTenant',
+  name: 'Tenant Check House',
 
   components: {
     TenantNavbar,
