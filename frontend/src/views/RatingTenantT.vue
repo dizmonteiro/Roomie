@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="column is-two-thirds-mobile is-two-thirds-tablet is-two-thirds-desktop">
-                        <check-rates/>
+                        <rate/>
                     </div>
 
                   </div>
@@ -79,12 +79,12 @@
 <script>
 import TenantNavbar from '@/components/TenantNavbar.vue';
 import { mapGetters, mapState } from "vuex";
-import CheckRates from '../components/CheckRates.vue';
+import Rate from '../components/Rate.vue';
 
 export default {
   components: {
     TenantNavbar,
-    CheckRates
+    Rate
   },
 
   computed: {
@@ -159,7 +159,7 @@ export default {
   }
 
   .custom-height {
-    min-height: 40vh;
+    min-height: 82vh;
   }
 
 </style>
