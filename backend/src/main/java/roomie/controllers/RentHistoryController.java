@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import roomie.exception.ResourceNotFoundException;
-import roomie.models.auth.AcceptRejectApplication;
+import roomie.models.auth.FinishRentHistory;
 import roomie.models.house.House;
 import roomie.models.house.HouseDAO;
 import roomie.models.rentHistory.RentHistory;
@@ -35,11 +35,11 @@ public class RentHistoryController {
 	@Autowired
 	private RentHistoryService rentHistoryService;
 	
-	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isOwner(authentication, #id)")
-	@PutMapping(value = "/{id}")
-	public String finishRentHistory(@PathVariable int id, @Valid @RequestBody AcceptRejectApplication body) throws PersistentException, ResourceNotFoundException {
+	@PreAuthorize("hasRole('LANDLORD') and @userSecurity.isOwner(authentication, #houseId)")
+	@PutMapping(value = "/{houseId}")
+	public String finishRentHistory(@PathVariable int houseId, @Valid @RequestBody FinishRentHistory body) throws PersistentException, ResourceNotFoundException {
 		Tenant tenant = tenantService.getById(body.getTenantId());
-		House house = houseService.getById(id);
+		House house = houseService.getById(houseId);
 		house.setAvailableRooms(house.getAvailableRooms() + 1);
 		HouseDAO.save(house);
 		HouseDAO.refresh(house);
