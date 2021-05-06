@@ -2,11 +2,6 @@
     <div class="card-pages">
         <div class="columns is-desktop is-tablet is-mobile">
             <div class="column is-1">
-                <ZDMArrowButton
-                  arrowType="left"
-                  @click.native="showPrevElement"
-                  :disabled="this.reachedMaxLeft"
-                />
             </div>
             <div class="column is-10">
               <div class="block">
@@ -50,18 +45,33 @@
                   :link9="currentElement.link9"
                 />
               </div>
-              <ZDMIndicators
-                :elements="this.panels"
-                :currentElementIndex="this.currentElementIndex"
-                :showElement="this.showElement"
-              />
+              <div class="columns is-centered is-quarter-desktop is-quarter-tablet is-quarter-mobile">
+                <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
+                  <ZDMArrowButton
+                    arrowType="left"
+                    @click.native="showPrevElement"
+                    :disabled="this.reachedMaxLeft"
+                  />
+                </div>
+                <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
+                  <ZDMIndicators
+                    :elements="this.panels"
+                    :currentElementIndex="this.currentElementIndex"
+                    :showElement="this.showElement"
+                  />
+                </div>
+                <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
+                  <ZDMArrowButton
+                    arrowType="right"
+                    @click.native="showNextElement"
+                    :disabled="this.reachedMaxRight"
+                  />
+                </div>
+              </div>
+              
             </div>
             <div class="column is-1">
-                <ZDMArrowButton
-                  arrowType="right"
-                  @click.native="showNextElement"
-                  :disabled="this.reachedMaxRight"
-                />
+                
             </div>
         </div>
     </div>
