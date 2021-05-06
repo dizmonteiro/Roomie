@@ -27,7 +27,7 @@
         >
           <label class="label">Tenants living in this house:</label>
           <div class="otherTenants">
-            <div class="sTenant" v-for="tenant in tenants" :key="tenant">
+            <div class="sTenant" v-for="tenant in tenants" :key="tenant.photo">
               <figure class="image center is-128x128">
                 <img class="is-rounded" :src="tenant.photo" />
               </figure>
@@ -36,14 +36,13 @@
               <button class="button is-green">No longer lives here</button>
             </div>
           </div>
-          <label class="label date">For Rent Since:{{ since }}</label>
         </div>
         <div
           class="column adjust-hero is-one-fifth-desktop is-full-mobile is-full-tablet has-text-centered"
         >
           <div class="sButtons">
-            <button class="button is-green rightButtons">View House</button>
-            <button class="button is-green rightButtons">Update House</button>
+            <a class="button is-green rightButtons" :href="link">View House</a>
+            <a class="button is-green rightButtons" :href="update">Update House</a>
             <button class="button is-green rightButtons">Remove House</button>
           </div>
         </div>
@@ -55,7 +54,7 @@
 <script>
 import { VueAgile } from "vue-agile";
 export default {
-  props: ["houseSlides", "houseName", "houseLocation", "tenants", "since"],
+  props: ["houseSlides", "houseName", "houseLocation", "tenants", "since","link","update"],
   components: { agile: VueAgile },
   data() {
     return {};

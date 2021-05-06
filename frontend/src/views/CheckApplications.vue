@@ -8,13 +8,18 @@
     </div>
     <div id="scroll-area">
       <smooth-scrollbar>
-        <application-entry
-          :houseSlides="house1Slides"
-          :houseLocation="'Braga'"
-          :houseName="'T3 com Piscina'"
-          :tenant="tenantsHouse1[0]"
-        />
-    
+        <div>
+          <div v-for="h in formData" :key="(h.house.id, h.tenant.id)">
+            <application-entry
+              :decision="h.decision"
+              :houseId="h.house.id"
+              :houseSlides="h.housePhotos"
+              :houseLocation="h.house.address"
+              :houseName="h.house.title"
+              :tenant="h.tenantInfo"
+            />
+          </div>
+        </div>
       </smooth-scrollbar>
     </div>
   </div>
@@ -23,11 +28,49 @@
 <script>
 import LandlordNavbar from "../components/LandlordNavbar.vue";
 import ApplicationEntry from "../components/ApplicationEntry.vue";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
+import store from "@/store";
 
 export default {
   components: { LandlordNavbar, ApplicationEntry },
+  created() {
+    axios
+      .get(api_url + "/api/landlords/" + store.getters.getId + "/applications")
+      .then((response) => {
+        this.formData = response.data;
+        for (var j = 0; j < this.formData.length; j++) {
+          var slides = [];
+          for (var i in this.formData[j].house.photos)
+            slides.push(
+              `${api_url}/api/houses/photos/${this.formData[j].house.photos[i]}`
+            );
+          this.formData[j].housePhotos = slides;
+          this.formData[j].tenantInfo={
+            id:this.formData[j].tenant.id,
+            name:this.formData[j].tenant.name,
+            phone:this.formData[j].tenant.phone,
+            avgRating:3.7,
+            photo:`${api_url}/api/tenants/${this.formData[j].tenant.id}/avatar`
+          }
+          if (!this.formData[j].toBeAssessed)           
+            this.formData[j].decision="toDecide"
+          else if (this.formData[j].accepted)
+            this.formData[j].decision="accepted"
+            else this.formData[j].decision="rejected"
+          console.log(this.formData[j].decision)
+        }
+        for (var x = 0; x < this.formData.length; x++) {
+          console.log(this.formData[x]);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
   data() {
     return {
+      formData: undefined,
       wh: window.innerHeight,
       landlordHouse1: {
         photo: "https://randomuser.me/api/portraits/men/54.jpg",

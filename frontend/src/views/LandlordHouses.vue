@@ -8,27 +8,18 @@
     </div>
     <div id="scroll-area">
       <smooth-scrollbar>
-        <houses-entry
-          :houseSlides="house1Slides"
-          :houseLocation="'Braga'"
-          :houseName="'T3 com Piscina'"
-          :tenants="tenantsHouse1"
-          :since="'01/01/2020'"
-        />
-        <houses-entry
-          :houseSlides="house1Slides"
-          :houseLocation="'Braga'"
-          :houseName="'T3 com Piscina'"
-          :tenants="tenantsHouse1"
-          :since="'01/01/2020'"
-        />
-        <houses-entry
-          :houseSlides="house1Slides"
-          :houseLocation="'Braga'"
-          :houseName="'T3 com Piscina'"
-          :tenants="tenantsHouse1"
-          :since="'01/01/2020'"
-        />
+        <div>
+          <div v-for="h in formData" :key="h.id">
+            <houses-entry
+              :houseSlides="h.housePhotos"
+              :houseLocation="h.address"
+              :houseName="h.title"
+              :link="h.houseLink"
+              :update="h.updateLink"
+              :tenants="tenantsHouse1"
+            />
+          </div>
+        </div>
       </smooth-scrollbar>
     </div>
   </div>
@@ -37,11 +28,43 @@
 <script>
 import HousesEntry from "../components/HousesEntry.vue";
 import LandlordNavbar from "../components/LandlordNavbar.vue";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
+import store from "@/store";
 
 export default {
   components: { HousesEntry, LandlordNavbar },
+  created() {
+    axios
+      .get(api_url + "/api/landlords/" + store.getters.getId + "/houses")
+      .then((response) => {
+        this.formData = response.data.splice(0, 3);
+        for (var j = 0; j < this.formData.length; j++)
+        {
+          var slides = []
+          for (var i in this.formData[j].photos)
+            slides.push(
+              `${api_url}/api/houses/photos/${this.formData[j].photos[i]}`
+            );
+            this.formData[j].housePhotos=slides;
+            this.formData[j].houseLink='/landlord/house/'+this.formData[j].id;
+            this.formData[j].updateLink='/landlord/house/'+this.formData[j].id+'/update';
+        }
+        for (var x = 0; x < this.formData.length; x++)
+        {
+          console.log(this.formData[x])
+        }
+
+
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
   data() {
     return {
+      teste: [1, 2, 3],
+      formData: undefined,
       wh: window.innerHeight,
       landlordHouse1: {
         photo: "https://randomuser.me/api/portraits/men/54.jpg",

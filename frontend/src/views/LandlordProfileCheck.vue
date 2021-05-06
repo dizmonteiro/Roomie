@@ -1,13 +1,11 @@
 <template>
   <div>
-    <div v-if="type==='tenant'">
-          <TenantNavbar />
+    <div v-if="type === 'tenant'">
+      <TenantNavbar />
     </div>
     <div v-else>
-      <landlord-navbar/>
-
+      <landlord-navbar />
     </div>
-
 
     <div id="llcard" class="card pad">
       <div class="columns is-desktop">
@@ -16,23 +14,42 @@
         >
           <figure class="image avatar">
             <img
+            id="profile-pic"
               class="is-rounded"
-              src="https://bulma.io/images/placeholders/128x128.png"
+              :src="`${url}/api/landlords/${id}/avatar`"
             />
           </figure>
           <div class="control">
             <div class="box adjust-gender">
               <label class="label gender-label">Gender</label>
               <label class="radio gender">
-                <input type="radio" name="gender" value="female" disabled />
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  disabled
+                  :checked="isFemale"
+                />
                 Female
               </label>
               <label class="radio gender">
-                <input type="radio" name="gender" value="male" disabled />
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  disabled
+                  :checked="isMale"
+                />
                 Male
               </label>
               <label class="radio gender">
-                <input type="radio" name="gender" value="other" disabled />
+                <input
+                  type="radio"
+                  name="gender"
+                  value="other"
+                  disabled
+                  :checked="isOther"
+                />
                 Other
               </label>
             </div>
@@ -41,39 +58,27 @@
         <div
           class="column adjust-hero-s is-half-desktop is-full-mobile is-full-tablet form"
         >
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                :value="formData.name"
+                name="name"
+                readonly
+              />
+            </div>
+          </div>
           <div class="columns">
             <div class="column is-half">
-              <div class="field">
-                <label class="label">Name ({{ type }})</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Full Name"
-                    name="name"
-                    readonly
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <label class="label">NIF</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="NIF"
-                    name="nif"
-                    readonly
-                  />
-                </div>
-              </div>
               <div class="field">
                 <label class="label">Email</label>
                 <div class="control is-expanded">
                   <input
                     class="input"
                     type="email"
-                    placeholder="Email"
+                    :value="formData.email"
                     name="email"
                     readonly
                   />
@@ -85,7 +90,7 @@
                   <input
                     class="input"
                     type="tel"
-                    placeholder="(+351) XXX XXX XXX"
+                    :value="formData.phone"
                     name="phone"
                     readonly
                   />
@@ -99,31 +104,8 @@
                   <input
                     class="input"
                     type="text"
-                    placeholder="Username"
+                    :value="formData.username"
                     name="username"
-                    readonly
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <label class="label">Password</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <label class="label">Address</label>
-                <div class="control is-expanded">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Address"
-                    name="address"
                     readonly
                   />
                 </div>
@@ -134,7 +116,7 @@
                   <input
                     class="input"
                     type="date"
-                    placeholder="yyyy-mm-dd"
+                    :value="formData.birthDate"
                     name="dob"
                     readonly
                   />
@@ -147,51 +129,23 @@
           class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
         >
           <SideMenuEditable title="Houses">
-            <template v-slot:firstEntry>
+            <div v-for="house in houseData" :key="house.i">
+              <br />
               <SideMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
+                :imgSource="house.img"
                 :args="[
                   {
                     k1: 'house_name',
-                    v1: 'House1',
+                    v1: house.title,
                     k2: 'house_location',
-                    v2: 'Location1',
+                    v2: house.address,
                     k3: 'house_slot',
-                    v3: 'Slots: 2/4',
+                    v3: house.slots,
                   },
                 ]"
               />
-            </template>
-            <template v-slot:secondEntry>
-              <SideMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House2',
-                    k2: 'house_location',
-                    v2: 'Location2',
-                    k3: 'house_slot',
-                    v3: 'Slots: 1/4',
-                  },
-                ]"
-              />
-            </template>
-            <template v-slot:thirdEntry>
-              <SideMenuEntry
-                imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: 'House3',
-                    k2: 'house_location',
-                    v2: 'Location3',
-                    k3: 'house_slot',
-                    v3: 'Slots: 3/4',
-                  },
-                ]"
-              />
-            </template>
+            </div>
+            <br />
           </SideMenuEditable>
         </div>
       </div>
@@ -203,8 +157,10 @@
 import TenantNavbar from "@/components/TenantNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
-import { mapGetters, mapState } from 'vuex';
-import LandlordNavbar from '@/components/LandlordNavbar.vue';
+import { mapGetters, mapState } from "vuex";
+import LandlordNavbar from "@/components/LandlordNavbar.vue";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "LandlordProfileCheck",
@@ -216,10 +172,60 @@ export default {
   },
   data() {
     return {
+      isMale: false,
+      isFemale: false,
+      isOther: false,
+      id: this.$route.params.id,
       editable: true,
       edit_text: "Edit",
       modal_active: "modal",
+      url: api_url,
+      formData: {},
+      houseData: {},
     };
+  },
+  created() {
+    axios
+      .get(api_url + "/api/landlords/" + this.id)
+      .then((response) => {
+        this.formData = response.data;
+        switch (this.formData.sex) {
+          case "male":
+            this.isMale = true;
+            break;
+          case "female":
+            this.isFemale = true;
+            break;
+          case "other":
+            this.isOther = true;
+            break;
+          default:
+            console.log(this.formData.sex);
+            break;
+        }
+        axios
+          .get(api_url + "/api/landlords/" + this.id + "/houses")
+          .then((res) => {
+            this.houseData = res.data.splice(0, 3);
+            for (var i = 1; i <= this.houseData.length; i++) {
+              this.houseData[i - 1].i = i;
+              this.houseData[i - 1].img = `${api_url}/api/houses/photos/${
+                this.houseData[i - 1].photos[0]
+              }`;
+              this.houseData[i - 1].slots =
+                "Slots: " +
+                this.houseData[i - 1].availableRooms +
+                "/" +
+                this.houseData[i - 1].rooms;
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
   computed: {
     ...mapGetters(["getType"]),
@@ -236,8 +242,22 @@ strong {
   color: white;
 }
 .avatar {
-  width: 80%;
-  margin: 25% auto 8% auto;
+  width: 400px;
+  height: 400px;
+  position: relative;
+  display: block;
+  margin: 5% auto 8% auto;
+}
+#profile-pic {
+  position: absolute; 
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 label {
   display: block;
@@ -263,6 +283,6 @@ label {
 }
 
 .form {
-  margin: 8% auto;
+  margin: 10% auto;
 }
 </style>

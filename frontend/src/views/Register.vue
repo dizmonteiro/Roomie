@@ -169,15 +169,15 @@ function getUserType() {
               <label class="label">Gender</label>
               <div class="control is-expanded">
                 <label class="radio">
-                  <input type="radio" id="gender" value="female" required>
+                  <input type="radio" id="gender" name="gender" value="female" required>
                   Female
                 </label>
                 <label class="radio">
-                  <input type="radio" id="gender" value="male">
+                  <input type="radio" id="gender" name="gender" value="male">
                   Male
                 </label>
                 <label class="radio">
-                  <input type="radio" id="gender" value="other">
+                  <input type="radio" id="gender" name="gender" value="other">
                   Other
                 </label>
               </div>
@@ -356,15 +356,15 @@ function getUserType() {
               <label class="label">Gender</label>
               <div class="control is-expanded">
                 <label class="radio">
-                  <input type="radio" id="gender" value="female" required>
+                  <input type="radio" id="gender" name="gender" value="female" required>
                   Female
                 </label>
                 <label class="radio">
-                  <input type="radio" id="gender" value="male">
+                  <input type="radio" id="gender" name="gender" value="male">
                   Male
                 </label>
                 <label class="radio">
-                  <input type="radio" id="gender" value="other">
+                  <input type="radio" id="gender" name="gender" value="other">
                   Other
                 </label>
               </div>

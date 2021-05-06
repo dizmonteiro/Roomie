@@ -4,30 +4,31 @@
       <TenantNavbar />
     </div>
     <div v-else-if="type === 'landlord'">
-      <landlord-navbar/>
+      <landlord-navbar />
     </div>
     <div id="llcard" class="card pad">
       <div class="columns is-desktop">
         <div class="column is-one-third-desktop is-full-mobile is-full-tablet">
           <figure class="image avatar">
             <img
+            id="profile-pic"
               class="is-rounded"
-              src="https://thisrentaldoesnotexist.com/img-new/face.jpg"
+              :src="profilePic"
             />
           </figure>
           <div class="control">
             <div class="box adjust-gender">
               <label class="label gender-label">Gender</label>
               <label class="radio gender">
-                <input type="radio" name="gender" value="female" disabled />
+                <input type="radio" name="gender" value="female" :checked="isFemale" disabled />
                 Female
               </label>
               <label class="radio gender">
-                <input type="radio" name="gender" value="male" disabled />
+                <input type="radio" name="gender" value="male" :checked="isMale" disabled />
                 Male
               </label>
               <label class="radio gender">
-                <input type="radio" name="gender" value="other" disabled />
+                <input type="radio" name="gender" value="other" :checked="isOther" disabled />
                 Other
               </label>
             </div>
@@ -42,7 +43,7 @@
               <input
                 class="input"
                 type="text"
-                placeholder="Full Name"
+                :value="formData.name"
                 name="name"
                 readonly
               />
@@ -56,7 +57,7 @@
                   <input
                     class="input"
                     type="email"
-                    placeholder="Email"
+                    :value="formData.email"
                     name="email"
                     readonly
                   />
@@ -68,7 +69,7 @@
                   <input
                     class="input"
                     type="tel"
-                    placeholder="(+351) XXX XXX XXX"
+                    :value="formData.phone"
                     name="phone"
                     readonly
                   />
@@ -80,7 +81,7 @@
                   <input
                     class="input"
                     type="text"
-                    placeholder="Portuguese"
+                    :value="formData.nationality"
                     name="ocupation"
                     readonly
                   />
@@ -94,7 +95,7 @@
                   <input
                     class="input"
                     type="text"
-                    placeholder="Username"
+                    :value="formData.username"
                     name="username"
                     readonly
                   />
@@ -106,7 +107,7 @@
                   <input
                     class="input"
                     type="date"
-                    placeholder="yyyy-mm-dd"
+                    :value="formData.birthDate"
                     name="dob"
                     readonly
                   />
@@ -118,7 +119,7 @@
                   <input
                     class="input"
                     type="text"
-                    placeholder="Student"
+                    :value="formData.occupation"
                     name="ocupation"
                     readonly
                   />
@@ -126,7 +127,7 @@
               </div>
             </div>
           </div>
-          <check-rates/>
+          <check-rates />
         </div>
       </div>
     </div>
@@ -136,8 +137,10 @@
 <script>
 import TenantNavbar from "@/components/TenantNavbar";
 import { mapGetters, mapState } from "vuex";
-import CheckRates from '../components/CheckRates.vue';
-import LandlordNavbar from '../components/LandlordNavbar.vue';
+import CheckRates from "../components/CheckRates.vue";
+import LandlordNavbar from "../components/LandlordNavbar.vue";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "TenantProfile",
@@ -145,6 +148,31 @@ export default {
     TenantNavbar,
     CheckRates,
     LandlordNavbar,
+  },
+  created() {
+    axios
+      .get(api_url + "/api/tenants/" + this.id)
+      .then((response) => {
+        this.formData = response.data;
+        this.profilePic=`${api_url}/api/tenants/${this.id}/avatar`
+        switch (this.formData.sex) {
+          case "male":
+            this.isMale = true;
+            break;
+          case "female":
+            this.isFemale = true;
+            break;
+          case "other":
+            this.isOther = true;
+            break;
+          default:
+            console.log(this.formData.sex);
+            break;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
   computed: {
     ...mapGetters(["getType"]),
@@ -154,6 +182,12 @@ export default {
   },
   data() {
     return {
+      profilePic:undefined,
+      isMale:false,
+      isFemale:false,
+      isOther:false,
+      formData:undefined,
+      id: this.$route.params.id,
       checkRates: "tenant",
     };
   },
@@ -169,8 +203,22 @@ strong {
   color: white;
 }
 .avatar {
-  width: 80%;
+  width: 400px;
+  height: 400px;
+  position: relative;
+  display: block;
   margin: 5% auto 8% auto;
+}
+#profile-pic {
+  position: absolute; 
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 .gender {
   margin: auto 22%;
@@ -197,7 +245,7 @@ strong {
   margin: 4% auto;
 }
 
-.llr{
+.llr {
   margin: 0 5% 0 auto;
 }
 </style>
