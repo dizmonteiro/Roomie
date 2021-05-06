@@ -33,7 +33,7 @@ import java.util.Date;
  */
 
 @RestController
-@RequestMapping("/evaluation")
+@RequestMapping("/evaluations")
 public class EvaluationController {
 	
 	@Autowired
@@ -87,6 +87,10 @@ public class EvaluationController {
 		
 		House house = houseService.getById(houseId);
 		RentHistory rh = RentHistoryDAO.getRentHistoryByORMID(house, tenant);
+		
+		if (rh == null) {
+			throw new ErrorDetails("Tenant doesn't live in this house!");
+		}
 		
 		if (rh.getbDate().getTime() > new Date().getTime())
 			throw new ErrorDetails("Tenant doesn't live in this house yet!");
