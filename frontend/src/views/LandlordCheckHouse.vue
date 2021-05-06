@@ -1,76 +1,110 @@
 <template>
   <div>
-    <LandlordNavbar />
-    <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
+    <landlord-navbar />
+    <slider-navigation>
+      <swiper-slide v-for="slide in slides" :key="slide">
+        <img class="imgSlide" object-fit="cover" :src="slide" :alt="slide" />
+      </swiper-slide>
+    </slider-navigation>
+    <div
+      class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
+    >
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
         <div id="checkhouse-card">
-
           <div class="block">
-            <div class="card-image">
-              <carousel >
-                <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
-                  <img :src="slide" :alt="slide">
-                </carousel-slide>
-              </carousel>
-            </div>
+            <div class="card-image"></div>
           </div>
 
           <div class="block">
             <div class="columns is-centered is-mobile is-tablet is-desktop">
-              
-              <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
+              <div
+                class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
+              >
                 <div class="box custom-height">
                   <p class="title has-text-centered is-one-third">Main Info</p>
-                    <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
+                  <div
+                    class="columns has-text-centered is-centered is-vcentered is-mobile is-tablet is-desktop"
+                  >
+                    <div
+                      class="column is-half-mobile is-half-tablet is-half-desktop"
+                    >
+                      <button class="button inf is-green is-static is-rounded">
+                        T{{ formData.rooms }}
+                      </button>
 
-                      <div class="column is-half-mobile is-half-tablet is-half-desktop">
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 1</button>
-                        </div>
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 2</button>
-                        </div>
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 3</button>
-                        </div>
-                      </div>
-
-                      <div class="column is-half-mobile is-half-tablet is-half-desktop">
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 4</button>
-                        </div>
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 5</button>
-                        </div>
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 6</button>
-                        </div>
-                      </div>
-
+                      <button class="button inf is-green is-static is-rounded">
+                        From {{ formData.minPrice }}€ To
+                        {{ formData.maxPrice }}€
+                      </button>
                     </div>
+                    <div
+                      class="column is-half-mobile is-half-tablet is-half-desktop"
+                    >
+                      <button class="button inf is-green is-static is-rounded">
+                        {{ formData.bathRooms }} WC's
+                      </button>
+
+                      <button class="button inf is-green is-static is-rounded">
+                        Available Rooms: {{ formData.availableRooms }}
+                      </button>
+                    </div>
+                  </div>
+                  <p class="title has-text-centered is-one-third">Features</p>
+                  <div id="scroll-area">
+                    <smooth-scrollbar>
+                      <div
+                        class="columns has-text-centered is-centered is-vcentered is-mobile is-tablet is-desktop"
+                      >
+                        <div
+                          class="column is-half-mobile is-half-tablet is-half-desktop"
+                        >
+                          <button
+                            v-for="feature in featuresLeft"
+                            :key="feature"
+                            class="button inf is-green is-static is-rounded"
+                          >
+                            {{ feature }}
+                          </button>
+                        </div>
+                        <div
+                          class="column is-half-mobile is-half-tablet is-half-desktop"
+                        >
+                          <button
+                            v-for="feature in featuresRight"
+                            :key="feature"
+                            class="button inf is-green is-static is-rounded"
+                          >
+                            {{ feature }}
+                          </button>
+                        </div>
+                      </div>
+                    </smooth-scrollbar>
+                  </div>
                 </div>
               </div>
-              
+
               <div class="column is-half-mobile is-half-tablet is-half-desktop">
                 <div class="box custom-height">
-                  <p class="title has-text-centered is-one-third">Description</p>
+                  <p class="title has-text-centered is-one-third">
+                    Description
+                  </p>
                   <div class="content has-text-justified">
                     <p>
-                      A Roomie é uma Plataforma de Procura e Disponibilização de Imobiliário para Arrendamento que procura não só facilitar o processo de encontrar uma habitação como também o processo da escolha do ambiente em que se pretende viver.
+                      {{ formData.description }}
                     </p>
                   </div>
                 </div>
               </div>
-              
-              <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
+
+              <div
+                class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
+              >
                 <div class="box custom-height">
-                    <ZDMCarousel :cards="cards" />
+                  <ZDMCarousel :cards="cards" />
                 </div>
               </div>
-
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -78,134 +112,129 @@
 </template>
 
 <script>
-import LandlordNavbar from '@/components/LandlordNavbar.vue';
-import Carousel from '@/components/Carousel.vue';
-import CarouselSlide from '@/components/CarouselSlide.vue';
+import {SwiperSlide } from 'vue-awesome-swiper'
 import ZDMCarousel from "@/components/ZDMCarousel.vue";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
+import LandlordNavbar from "../components/LandlordNavbar.vue";
+import SliderNavigation from "../components/SliderNavigation.vue";
 
 export default {
-  data(){
+  methods: {},
+  created() {
+    axios
+      .get(api_url + "/api/houses/" + this.id)
+      .then((response) => {
+        this.formData = response.data;
+        var features = this.formData.features.split(",");
+        const half = Math.ceil(features.length / 2);
+        this.featuresLeft = features.splice(0, half);
+        this.featuresRight = features.splice(-half);
+        this.cards = [
+          {
+            headline: this.formData.landlord.name,
+            text: "962956721",
+            link: "/landlord/llprofile/" + this.formData.landlord.id,
+            imgName1: `${api_url}/api/landlords/${this.formData.landlord.id}/avatar`,
+            imgName2: "landlord.svg",
+          },
+        ];
+        for (var i in this.formData.photos)
+          this.slides.push(
+            `${api_url}/api/houses/photos/${this.formData.photos[i]}`
+          );
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+  data() {
     return {
-      slides: [
-          'https://picsum.photos/id/164/1080/720',
-          'https://picsum.photos/id/163/1080/720',
-          'https://picsum.photos/id/308/1080/720',
-          'https://picsum.photos/id/322/1080/720',
-          'https://picsum.photos/id/351/1080/720',
-          'https://picsum.photos/id/369/1080/720',
-          'https://picsum.photos/id/398/1080/720'
-      ],
+      llPic: "",
+      featuresLeft: [],
+      featuresRight: [],
+      formData: {},
+      id: this.$route.params.id,
+      slides: [],
 
-      cards: [
-        {
-          headline: "Landlord Name",
-          text: "965467982",
-          imgName1: "face1.svg",
-          imgName2: "landlord.svg"
-        },
-        {
-          headline: "Tenant Name 2",
-          text: "Average Rating 2",
-          imgName1: "face2.svg",
-          imgName2: "roommate.svg"
-        },
-        {
-          headline: "Tenant Name 3",
-          text: "Average Rating 3",
-          imgName1: "face3.svg",
-          imgName2: "roommate.svg"
-        }
-      ]
-    }
+      cards: [],
+    };
   },
 
-  name: 'Landlord Check House',
+  name: "LanlordCheckHouse",
 
   components: {
+    SwiperSlide,
+    SliderNavigation,
+    ZDMCarousel,
     LandlordNavbar,
-    Carousel: Carousel,
-    CarouselSlide: CarouselSlide,
-    ZDMCarousel
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
-
-  #content {
-    margin: 3% auto 2% auto;
+.imgSlide{
     width: 100%;
-  } 
-  
-  #checkhouse-card {
-      min-height: 80vh;
-      margin-top: 2%;
-      margin-bottom: 5%;
-  }
+    height: 40vh;
+}
+.inf {
+  margin: 1% auto 1% auto;
+  width: 100%;
+}
+#content {
+  margin: 3% auto 2% auto;
+  width: 100%;
+}
 
-  #scroll-area-1 {
-      height: 34vh;
-  }
+#checkhouse-card {
+  min-height: 80vh;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
 
-  #scroll-area-2 {
-      height: 58vh;
-      margin-bottom: 10px;
-  }
-  
-  .price-range {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-  }
+#scroll-area-1 {
+  height: 34vh;
+}
 
-  .spacer {
-      width: 5px;
-  }
+#scroll-area-2 {
+  height: 58vh;
+  margin-bottom: 10px;
+}
 
-  .vm {
-    width: 25%;
-    min-width: 70px;
-  }
+.price-range {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
-  .carousel {
-    position:relative;
-    overflow: hidden;
-    max-width:100%;
-    height:46vh;
-    z-index:10;
-  }
+.spacer {
+  width: 5px;
+}
 
-  img {
-    object-fit: contain;
-  }
+.vm {
+  width: 25%;
+  min-width: 70px;
+}
 
-  .carousel-slider {
-    position:absolute;
-    top:10;
-    left:0;
-    bottom:0;
-    right:0;
-  }
-  
-  .carousel-slider img {
-    width:100%;
-    height:100%;
-  }
-
-  .bordera {
+.bordera {
   background-color: lightseagreen;
-  }
-  
-  .borderb {
+}
+
+.borderb {
   background-color: pink;
-  }
+}
 
-  .borderc {
+.borderc {
   background-color: orange;
-  }
+}
 
-  .custom-height {
-    min-height: 40vh;
-  }
+.custom-height {
+  min-height: 40vh;
+}
 
+#scroll-area {
+  margin: 2% auto;
+  width: 100%;
+  height: 10vh;
+}
 </style>

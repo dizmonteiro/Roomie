@@ -437,11 +437,11 @@ strong {
   color: white;
 }
 .avatar {
-  width: 200px;
-  height: 200px;
+  width: 350px;
+  height: 350px;
   position: relative;
   display: block;
-  margin: 25% auto 8% auto;
+  margin: 15% auto 8% auto;
 }
 label {
   display: block;

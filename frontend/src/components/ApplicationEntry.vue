@@ -25,12 +25,8 @@
           class="column adjust-hero-s is-one-fifth-desktop is-full-mobile is-full-tablet form has-text-centered"
         >
           <div class="sTenant">
-            <figure class="image center">
-              <img
-                class="is-rounded"
-                :src="tenant.photo"
-                @click="checkProfile"
-              />
+            <figure class="image avatar">
+              <img id="profile-pic" class="is-rounded" :src="tenant.photo" />
             </figure>
             <label class="label center">{{ tenant.name }}</label>
           </div>
@@ -46,13 +42,23 @@
               </button>
             </div>
             <div class="column is-half has-text-centerd">
-              <button class="button is-green ap" @click="rejected">Reject Application</button>
+              <button class="button is-green ap" @click="rejected">
+                Reject Application
+              </button>
             </div>
           </div>
-          <button v-if="decision === 'accepted'" class="button is-green ap" @click="accepted">
+          <button
+            v-if="decision === 'accepted'"
+            class="button is-green ap"
+            @click="accepted"
+          >
             Application Accepted
           </button>
-          <button v-if="decision === 'rejected'" class="button is-green ap" @click="rejected">
+          <button
+            v-if="decision === 'rejected'"
+            class="button is-green ap"
+            @click="rejected"
+          >
             Application Rejected
           </button>
         </div>
@@ -66,7 +72,11 @@
             <label class="label tInfo"
               >{{ tenant.avgRating }}/5 <i class="far fa-star"></i
             ></label>
-            <a class="button is-green rez" href="/landlord/tprofile">View Candidate Profile</a>
+            <a
+              class="button is-green rez"
+              :href="'/landlord/tprofile/' + tenant.id"
+              >View Candidate Profile</a
+            >
           </div>
         </div>
       </div>
@@ -77,19 +87,34 @@
 <script>
 import { VueAgile } from "vue-agile";
 import CheckRates from "./CheckRates.vue";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
+
 export default {
-  props: ["houseSlides", "houseName", "houseLocation", "tenant"],
+  props: ["houseSlides", "houseName", "houseLocation", "tenant", "houseId","decision"],
   components: { agile: VueAgile, CheckRates },
   data() {
-    return { decision: "toDecide" };
+    return {  };
   },
   methods: {
     checkProfile() {
       this.$router.push("/landlord/tprofile");
     },
-    accepted() {
-      if (this.decision === "accepted") this.decision = "toDecide";
-      else this.decision = "accepted";
+    async accepted() {
+      if (this.decision === "toDecide") {
+        var tenantInfo = {
+          tenantId: this.tenant.id,
+          accept: true,
+        };
+        axios
+          .put(api_url + "/api/applications/" + this.houseId, tenantInfo)
+          .then(() => {
+            this.decision = "accepted";
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
     },
     rejected() {
       if (this.decision === "rejected") this.decision = "toDecide";
@@ -100,6 +125,24 @@ export default {
 </script>
 
 <style scoped>
+.avatar {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  display: block;
+  margin: 11% auto 8% auto;
+}
+#profile-pic {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
 .ap {
   width: 100%;
 }
@@ -131,10 +174,7 @@ export default {
   margin-left: 5%;
   display: inline-block;
 }
-.sTenant {
-  display: inline-block;
-  margin: 20% auto;
-}
+
 .colContent {
   margin: 0 auto;
 }
