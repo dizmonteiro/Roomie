@@ -128,14 +128,15 @@ export default {
   methods: {
     async apply() {
       if (this.buttonText !== "Already Applied") {
+
         var sendApplication = {
-          tenantId: store.getters.getId,
-          accept: false,
+          houseId: this.$route.params.id
         };
+        console.log(JSON.stringify(sendApplication))
 
         await axios
-          .put(
-            api_url + "/api/applications/" + this.$route.params.id,
+          .post(
+            api_url + "/api/applications/",
             sendApplication
           )
           .then(() => {
@@ -171,6 +172,18 @@ export default {
           this.slides.push(
             `${api_url}/api/houses/photos/${this.formData.photos[i]}`
           );
+        axios.get(api_url+"/api/tenants/"+store.getters.getId+"/applications").then((r)=>{
+          for(let aux=0;aux<r.data.length;aux++)
+          {
+            if(r.data[aux].house.id==this.id)
+            {
+              this.buttonText="Already Applied";
+              break;
+            }
+          }
+        }).catch((ex)=>{
+          console.log(ex)
+        })
       })
       .catch((e) => {
         console.log(e);

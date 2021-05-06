@@ -8,7 +8,7 @@
     </div>
     <div id="scroll-area">
       <smooth-scrollbar>
-        <scroll-content>
+        <div>
           <div v-for="h in formData" :key="h.id">
             <houses-entry
               :houseSlides="h.housePhotos"
@@ -19,7 +19,7 @@
               :tenants="tenantsHouse1"
             />
           </div>
-        </scroll-content>
+        </div>
       </smooth-scrollbar>
     </div>
   </div>

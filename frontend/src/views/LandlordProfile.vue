@@ -4,12 +4,14 @@
     <FormulateForm v-model="formData" @submit="submitProfile">
       <div id="llcard" class="card pad">
         <div class="columns is-desktop">
-          <div class="column is-one-quarter-desktop is-full-mobile is-full-tablet">
+          <div
+            class="column is-one-quarter-desktop is-full-mobile is-full-tablet"
+          >
             <figure class="image avatar">
               <img
                 class="is-rounded"
                 id="profile-pic"
-                v-bind:src="url + '/api/landlords/'+ id + '/avatar'"
+                v-bind:src="url + '/api/landlords/' + id + '/avatar'"
               />
               <div id="profile-pic-field">
                 <FormulateInput
@@ -28,7 +30,7 @@
                 <FormulateInput
                   id="gender"
                   name="sex"
-                  :options="{female: 'Female', male: 'Male', other: 'Other'}"
+                  :options="{ female: 'Female', male: 'Male', other: 'Other' }"
                   type="radio"
                   label="Gender"
                   disabled
@@ -36,7 +38,9 @@
               </div>
             </div>
           </div>
-          <div class="column is-half-desktop is-full-mobile is-full-tablet form">
+          <div
+            class="column is-half-desktop is-full-mobile is-full-tablet form"
+          >
             <div class="columns is-full-mobile is-full-tablet is-full-desktop">
               <div class="column is-half">
                 <div class="field">
@@ -135,62 +139,35 @@
               />
             </div>
           </div>
-          <div class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered">
-          <SideMenuEditable title="My Houses">
-            <br>
-                <SideMenuEntry
-                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                  :args="[
-                    {
-                      k1: 'house_name',
-                      v1: 'House1',
-                      k2: 'house_location',
-                      v2: 'Location1',
-                      k3: 'house_slot',
-                      v3: 'Slots: 2/4'
-                    },
-                  ]"
-                />
-                <br>
-                <SideMenuEntry
-                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                  :args="[
-                    {
+          <div
+            class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
+          >
+            <SideMenuEditable title="Houses">
+            <div v-for="house in houseData" :key="house.i">
+              <br />
+              <SideMenuEntry
+                :imgSource="house.img"
+                :args="[
+                  {
                     k1: 'house_name',
-                      v1: 'House2',
-                      k2: 'house_location',
-                      v2: 'Location2',
-                      k3: 'house_slot',
-                      v3: 'Slots: 1/4'
-                    },
-                  ]"
-                />
-                <br>
-                <SideMenuEntry
-                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                  :args="[
-                    {
-                      k1: 'house_name',
-                      v1: 'House3',
-                      k2: 'house_location',
-                      v2: 'Location3',
-                      k3: 'house_slot',
-                      v3: 'Slots: 3/4'
-                    },
-                  ]"
-                />
-                <br>
-            </SideMenuEditable>
+                    v1: house.title,
+                    k2: 'house_location',
+                    v2: house.address,
+                    k3: 'house_slot',
+                    v3: house.slots,
+                  },
+                ]"
+              />
+            </div>
+            <br />
+          </SideMenuEditable>
           </div>
         </div>
       </div>
     </FormulateForm>
     <div id="change-password" class="modal">
       <div class="modal-background"></div>
-      <FormulateForm 
-        @submit="submitPassword"
-        #default="{ isLoading }"
-      >
+      <FormulateForm @submit="submitPassword" #default="{ isLoading }">
         <div class="modal-content">
           <div class="box has-text-centered">
             <FormulateInput
@@ -212,7 +189,7 @@
               :disabled="isLoading"
               :label="isLoading ? 'Updating...' : 'Change Password'"
             />
-          </div>   
+          </div>
         </div>
       </FormulateForm>
 
@@ -230,9 +207,9 @@
 import LandlordNavbar from "@/components/LandlordNavbar";
 import SideMenuEditable from "@/components/SideMenuEditable";
 import SideMenuEntry from "@/components/SideMenuEntry";
-import { mapGetters, mapState } from 'vuex';
-import axios from 'axios';
-import store from '@/store';
+import { mapGetters, mapState } from "vuex";
+import axios from "axios";
+import store from "@/store";
 import { url as api_url } from "@/assets/scripts/api";
 
 export default {
@@ -240,10 +217,11 @@ export default {
   components: {
     LandlordNavbar,
     SideMenuEditable,
-    SideMenuEntry
+    SideMenuEntry,
   },
-  data: function() {
+  data: function () {
     return {
+      houseData:undefined,
       editable: false,
       edit_text: "Edit",
       modal_active: "modal",
@@ -254,19 +232,55 @@ export default {
         sex: "",
         password: "",
         birthDate: "",
-        file: ""
-      }
+        file: "",
+      },
     };
   },
   created() {
-    axios.get(api_url + '/api/landlords/'+store.getters.getId).then(response => {
-      this.formData = response.data;
-    }).catch(e => {
-      console.log(e)
-    });  
+    axios
+      .get(api_url + "/api/landlords/" + store.getters.getId)
+      .then((response) => {
+        this.formData = response.data;
+        switch (this.formData.sex) {
+          case "male":
+            this.isMale = true;
+            break;
+          case "female":
+            this.isFemale = true;
+            break;
+          case "other":
+            this.isOther = true;
+            break;
+          default:
+            console.log(this.formData.sex);
+            break;
+        }
+        axios
+          .get(api_url + "/api/landlords/" + store.getters.getId + "/houses")
+          .then((res) => {
+            this.houseData = res.data.splice(0, 3);
+            for (var i = 1; i <= this.houseData.length; i++) {
+              this.houseData[i - 1].i = i;
+              this.houseData[i - 1].img = `${api_url}/api/houses/photos/${
+                this.houseData[i - 1].photos[0]
+              }`;
+              this.houseData[i - 1].slots =
+                "Slots: " +
+                this.houseData[i - 1].availableRooms +
+                "/" +
+                this.houseData[i - 1].rooms;
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
   computed: {
-    ...mapGetters(["getType","getId"]),
+    ...mapGetters(["getType", "getId"]),
     ...mapState({
       type: (state) => `${state.user.type}`,
       id: (state) => `${state.user.id}`,
@@ -274,8 +288,8 @@ export default {
   },
   methods: {
     /* eslint-disable-next-line */
-    async uploadFile (file, progress, error, option) {
-      console.log(file)
+    async uploadFile(file, progress, error, option) {
+      console.log(file);
       this.formData.file = file;
     },
     edit() {
@@ -283,20 +297,24 @@ export default {
       var inputs;
       var f = document.getElementById("profile-pic-field");
 
-      if (this.editable){
+      if (this.editable) {
         this.edit_text = "Apply Changes";
         f.style.display = "block";
-        inputs = document.getElementsByTagName('input');
-        for(var i = 0; i < inputs.length; i++) {
-          if(inputs[i].type.toLowerCase() != 'password' && inputs[i].type.toLowerCase() != 'email' && inputs[i].type.toLowerCase() != 'number' && inputs[i].type.toLowerCase() != 'date')
-            inputs[i].disabled = false
+        inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+          if (
+            inputs[i].type.toLowerCase() != "password" &&
+            inputs[i].type.toLowerCase() != "email" &&
+            inputs[i].type.toLowerCase() != "number" &&
+            inputs[i].type.toLowerCase() != "date"
+          )
+            inputs[i].disabled = false;
         }
       } else {
         this.edit_text = "Edit";
         f.style.display = "none";
-        inputs = document.getElementsByTagName('input');
-        for(var j = 0; j < inputs.length; j++)
-          inputs[j].disabled = true
+        inputs = document.getElementsByTagName("input");
+        for (var j = 0; j < inputs.length; j++) inputs[j].disabled = true;
       }
 
       var x = document.getElementById("profile-pic");
@@ -309,61 +327,72 @@ export default {
     editPassword() {
       document.getElementById("change-password").classList.add("is-active");
 
-      var inputs = document.getElementsByTagName('input');
-      for(var i = 0; i < inputs.length; i++) {
-          if(inputs[i].type.toLowerCase() == 'password')
-            inputs[i].disabled = false
+      var inputs = document.getElementsByTagName("input");
+      for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].type.toLowerCase() == "password")
+          inputs[i].disabled = false;
       }
     },
     closeModal() {
       document.getElementById("change-password").classList.remove("is-active");
-      var inputs = document.getElementsByTagName('input');
-      for(var i = 0; i < inputs.length; i++) {
-          if(inputs[i].type.toLowerCase() == 'password')
-            inputs[i].disabled = true
+      var inputs = document.getElementsByTagName("input");
+      for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].type.toLowerCase() == "password")
+          inputs[i].disabled = true;
       }
     },
-    async submitPassword (data) {
-      await axios.put(api_url + '/api/landlords/'+store.getters.getId+'/password', data).then(() => {
-        this.closeModal()
-      }).catch(e => {
-        alert(e)
-      })
+    async submitPassword(data) {
+      await axios
+        .put(
+          api_url + "/api/landlords/" + store.getters.getId + "/password",
+          data
+        )
+        .then(() => {
+          this.closeModal();
+        })
+        .catch((e) => {
+          alert(e);
+        });
     },
-    async submitProfile (data) {
-
+    async submitProfile(data) {
       var bodyFormData = new FormData();
-      bodyFormData.append('name', data.name);
-      bodyFormData.append('username', data.username);
-      bodyFormData.append('sex', data.sex);
-      bodyFormData.append('address', data.address);
-      bodyFormData.append('phone', data.phone);
-      bodyFormData.append('file', this.formData.file);
+      bodyFormData.append("name", data.name);
+      bodyFormData.append("username", data.username);
+      bodyFormData.append("sex", data.sex);
+      bodyFormData.append("address", data.address);
+      bodyFormData.append("phone", data.phone);
+      bodyFormData.append("file", this.formData.file);
 
       let options = {
-        headers: { 
-          "Content-Type": "multipart/form-data" 
-        }
-      }
-      
-      await axios.put(api_url + '/api/landlords/'+store.getters.getId, bodyFormData, options).then(() => {
-        alert("Profile Updated!")
-      }).catch(e => {
-        alert(e)
-      })
-    }
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      await axios
+        .put(
+          api_url + "/api/landlords/" + store.getters.getId,
+          bodyFormData,
+          options
+        )
+        .then(() => {
+          alert("Profile Updated!");
+        })
+        .catch((e) => {
+          alert(e);
+        });
+    },
   },
 };
 </script>
 
 
 <style scoped>
-
 .modal-content {
   width: 25vw;
 }
 
-strong{
+strong {
   color: white;
 }
 
@@ -393,8 +422,8 @@ label {
   margin: 0 auto 10% auto;
 }
 
-.bs{
-  background-color:  #2D6A4f;
+.bs {
+  background-color: #2d6a4f;
 }
 
 .pad {
@@ -402,19 +431,19 @@ label {
   margin: 3% auto;
 }
 
-.form{
+.form {
   margin: 8% auto;
 }
 
 @media screen and (max-width: 1030px) {
-  .form{
+  .form {
     margin: 8% auto;
     padding: 0 20%;
   }
 }
 
 #profile-pic {
-  position: absolute; 
+  position: absolute;
   object-fit: cover;
   object-position: center;
   top: 0;
@@ -428,5 +457,4 @@ label {
 #profile-pic-field {
   display: none;
 }
-
 </style>

@@ -160,7 +160,6 @@ import SideMenuEntry from "@/components/SideMenuEntry";
 import { mapGetters, mapState } from "vuex";
 import LandlordNavbar from "@/components/LandlordNavbar.vue";
 import axios from "axios";
-import store from "@/store";
 import { url as api_url } from "@/assets/scripts/api";
 
 export default {
@@ -187,7 +186,7 @@ export default {
   },
   created() {
     axios
-      .get(api_url + "/api/landlords/" + store.getters.getId)
+      .get(api_url + "/api/landlords/" + this.id)
       .then((response) => {
         this.formData = response.data;
         switch (this.formData.sex) {
@@ -205,7 +204,7 @@ export default {
             break;
         }
         axios
-          .get(api_url + "/api/landlords/" + store.getters.getId + "/houses")
+          .get(api_url + "/api/landlords/" + this.id + "/houses")
           .then((res) => {
             this.houseData = res.data.splice(0, 3);
             for (var i = 1; i <= this.houseData.length; i++) {
@@ -243,11 +242,11 @@ strong {
   color: white;
 }
 .avatar {
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   position: relative;
   display: block;
-  margin: 25% auto 8% auto;
+  margin: 5% auto 8% auto;
 }
 #profile-pic {
   position: absolute; 
