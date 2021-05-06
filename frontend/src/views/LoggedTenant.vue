@@ -3,21 +3,11 @@
     <TenantNavbar />
     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
-        <div id="checkhouse-card">
 
-          <div class="block">
-            <div class="columns is-centered is-mobile is-tablet is-desktop">
-              
-              <div class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop">
-                <div class="box custom-height">
-                    <ZDMCarousel :cards="cards" />
-                </div>
-              </div>
-
-            </div>
-          </div>
-          
+        <div class="block">
+              <ZDMHouseCarousel :panels="panels" />
         </div>
+          
       </div>
     </div>
   </div>
@@ -25,40 +15,100 @@
 
 <script>
 import TenantNavbar from '@/components/TenantNavbar.vue';
-import ZDMCarousel from "@/components/ZDMCarousel.vue";
+import ZDMHouseCarousel from "@/components/ZDMHouseCarousel.vue";
 
 export default {
   data(){
     return {
 
-      cards: [
+      panels: [
         {
-          headline: "António Ourives",
-          text: "962956721",
-          imgName1: "face1.svg",
-          imgName2: "landlord.svg"
+          headline1: "Casa1",
+          text1: "a casa 1 e cool e nice",
+          imgName1: "img2.svg",
+          link1:"/",
+          headline2: "Casa2",
+          text2: "a casa 1 e cool e nice",
+          imgName2: "img2.svg",
+          link2:"/",
+          headline3: "Casa3",
+          text3: "a casa 1 e cool e nice",
+          imgName3: "img2.svg",
+          link3:"/",
+          headline4: "Casa4",
+          text4: "a casa 1 e cool e nice",
+          imgName4: "img2.svg",
+          link4:"/",
+          headline5: "Casa5",
+          text5: "a casa 1 e cool e nice",
+          imgName5: "img2.svg",
+          link5:"/",
+          headline6: "Casa6",
+          text6: "a casa 1 e cool e nice",
+          imgName6: "img2.svg",
+          link6:"/"
         },
         {
-          headline: "Maria Madalena",
-          text: "Average Rating 1",
-          imgName1: "face2.svg",
-          imgName2: "roommate.svg"
+          headline1: "Casa7",
+          text1: "a casa 1 e cool e nice",
+          imgName1: "img2.svg",
+          link1:"/",
+          headline2: "Casa8",
+          text2: "a casa 1 e cool e nice",
+          imgName2: "img2.svg",
+          link2:"/",
+          headline3: "Casa9",
+          text3: "a casa 1 e cool e nice",
+          imgName3: "img2.svg",
+          link3:"/",
+          headline4: "Casa10",
+          text4: "a casa 1 e cool e nice",
+          imgName4: "img2.svg",
+          link4:"/",
+          headline5: "Casa11",
+          text5: "a casa 1 e cool e nice",
+          imgName5: "img2.svg",
+          link5:"/",
+          headline6: "Casa12",
+          text6: "a casa 1 e cool e nice",
+          imgName6: "img2.svg",
+          link6:"/"
         },
         {
-          headline: "Mafalda Costa",
-          text: "Average Rating 2",
-          imgName1: "face3.svg",
-          imgName2: "roommate.svg"
+          headline1: "Casa1",
+          text1: "a casa 1 e cool e nice",
+          imgName1: "img2.svg",
+          link1:"/",
+          headline2: "Casa2",
+          text2: "a casa 1 e cool e nice",
+          imgName2: "img2.svg",
+          link2:"/",
+          headline3: "Casa3",
+          text3: "a casa 1 e cool e nice",
+          imgName3: "img2.svg",
+          link3:"/",
+          headline4: "Casa4",
+          text4: "a casa 1 e cool e nice",
+          imgName4: "img2.svg",
+          link4:"/",
+          headline5: "Casa5",
+          text5: "a casa 1 e cool e nice",
+          imgName5: "img2.svg",
+          link5:"/",
+          headline6: "Casa6",
+          text6: "a casa 1 e cool e nice",
+          imgName6: "img2.svg",
+          link6:"/"
         }
       ]
     }
   },
 
-  name: 'Tenant Check House',
+  name: 'Logged Tenant',
 
   components: {
     TenantNavbar,
-    ZDMCarousel
+    ZDMHouseCarousel
   },
     
 }
