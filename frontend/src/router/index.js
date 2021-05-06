@@ -100,6 +100,12 @@ export default new Router({
       beforeEnter: ifAuthenticatedLandlord
     },
     {
+      name: 'Landlord Profile Check',
+      path: '/landlord/llprofile/:id',
+      component: () => import('@/views/LandlordProfileCheck'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
       name: 'Landlord Tenant Profile',
       path: '/landlord/tprofile',
       component: () => import('@/views/TenantProfileCheck'),

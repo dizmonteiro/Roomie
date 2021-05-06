@@ -137,7 +137,7 @@
           </div>
           <div class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered">
           <SideMenuEditable title="My Houses">
-              <template v-slot:firstEntry>
+            <br>
                 <SideMenuEntry
                   imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
                   :args="[
@@ -151,8 +151,7 @@
                     },
                   ]"
                 />
-              </template>
-              <template v-slot:secondEntry>
+                <br>
                 <SideMenuEntry
                   imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
                   :args="[
@@ -166,8 +165,7 @@
                     },
                   ]"
                 />
-              </template>
-              <template v-slot:thirdEntry>
+                <br>
                 <SideMenuEntry
                   imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
                   :args="[
@@ -181,7 +179,7 @@
                     },
                   ]"
                 />
-              </template>
+                <br>
             </SideMenuEditable>
           </div>
         </div>

@@ -4,13 +4,7 @@
       {{ title }}
     </label>
     <div class="mtop">
-      <br>
-     <slot name="firstEntry"></slot>
-     <br>
-     <slot  name="secondEntry"></slot>
-     <br>
-     <slot  name="thirdEntry"></slot>
-     <br>
+      <slot></slot>
       <button class="button pad" value="more">
         <strong>More</strong>
       </button>
