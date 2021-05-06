@@ -25,8 +25,8 @@ CREATE TABLE House
     BathRooms      int4   NOT NULL,
     MinPrice       float8 NOT NULL,
     MaxPrice       float8 NOT NULL,
-    Description    varchar(255),
-    Features       varchar(255),
+    Description    text,
+    Features       text,
     LandlordIndex  int4,
     PRIMARY KEY (ID)
 );
