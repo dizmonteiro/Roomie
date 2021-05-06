@@ -1,8 +1,6 @@
 <template>
     <div class="card-pages">
-        <div class="columns is-desktop is-tablet is-mobile">
-            <div class="column is-1">
-            </div>
+        <div class="columns is-centered is-desktop is-tablet is-mobile">
             <div class="column is-10">
               <div class="block">
                 <ZDMHousePanel
@@ -45,33 +43,23 @@
                   :link9="currentElement.link9"
                 />
               </div>
-              <div class="columns is-centered is-quarter-desktop is-quarter-tablet is-quarter-mobile">
-                <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
-                  <ZDMArrowButton
-                    arrowType="left"
-                    @click.native="showPrevElement"
-                    :disabled="this.reachedMaxLeft"
-                  />
-                </div>
-                <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
-                  <ZDMIndicators
-                    :elements="this.panels"
-                    :currentElementIndex="this.currentElementIndex"
-                    :showElement="this.showElement"
-                  />
-                </div>
-                <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
-                  <ZDMArrowButton
-                    arrowType="right"
-                    @click.native="showNextElement"
-                    :disabled="this.reachedMaxRight"
-                  />
-                </div>
+              <div class="columns is-centered is-one-third">
+                <ZDMArrowButton
+                  arrowType="left"
+                  @click.native="showPrevElement"
+                  :disabled="this.reachedMaxLeft"
+                />
+                <ZDMIndicators
+                  :elements="this.panels"
+                  :currentElementIndex="this.currentElementIndex"
+                  :showElement="this.showElement"
+                />
+                <ZDMArrowButton
+                  arrowType="right"
+                  @click.native="showNextElement"
+                  :disabled="this.reachedMaxRight"
+                />
               </div>
-              
-            </div>
-            <div class="column is-1">
-                
             </div>
         </div>
     </div>
@@ -121,7 +109,7 @@ export default {
 .card-pages {
   align-items: center;
   margin-bottom: 6%;
-  margin-top: 2%;
+  margin-top: 4%;
 }
 
 .btn {
