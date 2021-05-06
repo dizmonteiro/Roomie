@@ -51,6 +51,30 @@
                 </div>
             </div>
 
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName7}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline7}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text7}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link7">
+                                Check House
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
@@ -96,6 +120,30 @@
                                 {{text5}}
                             </a>
                             <a class="button is-small is-fullwidth is-green is-rounded" :href="link5">
+                                Check House
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName8}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline8}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text8}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link8">
                                 Check House
                             </a>
                         </div>
@@ -155,6 +203,30 @@
                 </div>
             </div>
 
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName9}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline9}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text9}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link9">
+                                Check House
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -170,6 +242,9 @@ export default {
     "headline4","imgName4","text4","link4",
     "headline5","imgName5","text5","link5",
     "headline6","imgName6","text6","link6",
+    "headline7","imgName7","text7","link7",
+    "headline8","imgName8","text8","link8",
+    "headline9","imgName9","text9","link9",
   ]
 };
 </script>
@@ -189,7 +264,6 @@ export default {
 }
 
 .card-icon {
-  border-radius: 20px;
   pointer-events: none;
   width:auto;
   height: auto;

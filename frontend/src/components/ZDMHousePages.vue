@@ -1,5 +1,5 @@
 <template>
-    <div class="card-carousel">
+    <div class="card-pages">
         <div class="columns is-desktop is-tablet is-mobile">
             <div class="column is-1">
                 <ZDMArrowButton
@@ -17,24 +17,36 @@
                   :headline4="currentElement.headline4"
                   :headline5="currentElement.headline5"
                   :headline6="currentElement.headline6"
+                  :headline7="currentElement.headline7"
+                  :headline8="currentElement.headline8"
+                  :headline9="currentElement.headline9"
                   :text1="currentElement.text1"
                   :text2="currentElement.text2"
                   :text3="currentElement.text3"
                   :text4="currentElement.text4"
                   :text5="currentElement.text5"
                   :text6="currentElement.text6"
+                  :text7="currentElement.text7"
+                  :text8="currentElement.text8"
+                  :text9="currentElement.text9"
                   :imgName1="currentElement.imgName1"
                   :imgName2="currentElement.imgName2"
                   :imgName3="currentElement.imgName3"
                   :imgName4="currentElement.imgName4"
                   :imgName5="currentElement.imgName5"
                   :imgName6="currentElement.imgName6"
+                  :imgName7="currentElement.imgName7"
+                  :imgName8="currentElement.imgName8"
+                  :imgName9="currentElement.imgName9"
                   :link1="currentElement.link1"
                   :link2="currentElement.link2"
                   :link3="currentElement.link3"
                   :link4="currentElement.link4"
                   :link5="currentElement.link5"
                   :link6="currentElement.link6"
+                  :link7="currentElement.link7"
+                  :link8="currentElement.link8"
+                  :link9="currentElement.link9"
                 />
             </div>
             <div class="column is-1">
@@ -88,7 +100,7 @@ export default {
 
 <style scoped>
 
-.card-carousel {
+.card-pages {
   align-items: center;
   margin-bottom: 6%;
   margin-top: 2%;

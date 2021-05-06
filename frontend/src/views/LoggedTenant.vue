@@ -5,7 +5,7 @@
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
 
         <div class="block">
-              <ZDMHouseCarousel :panels="panels" />
+              <ZDMHousePages :panels="panels" />
         </div>
           
       </div>
@@ -15,7 +15,7 @@
 
 <script>
 import TenantNavbar from '@/components/TenantNavbar.vue';
-import ZDMHouseCarousel from "@/components/ZDMHouseCarousel.vue";
+import ZDMHousePages from "@/components/ZDMHousePages.vue";
 
 export default {
   data(){
@@ -46,7 +46,19 @@ export default {
           headline6: "Name Template 6",
           text6: "Template 6",
           imgName6: "house6.jpg",
-          link6:"/"
+          link6:"/",
+          headline7: "Name Template 4",
+          text7: "Template 4",
+          imgName7: "house4.jpg",
+          link7:"/",
+          headline8: "Name Template 5",
+          text8: "Template 5",
+          imgName8: "house5.jpg",
+          link8:"/",
+          headline9: "Name Template 6",
+          text9: "Template 6",
+          imgName9: "house6.jpg",
+          link9:"/"
         },
         {
           headline1: "Name Template 7",
@@ -72,7 +84,19 @@ export default {
           headline6: "Name Template 12",
           text6: "Template 12",
           imgName6: "house12.jpg",
-          link6:"/"
+          link6:"/",
+          headline7: "Name Template 4",
+          text7: "Template 4",
+          imgName7: "house4.jpg",
+          link7:"/",
+          headline8: "Name Template 5",
+          text8: "Template 5",
+          imgName8: "house5.jpg",
+          link8:"/",
+          headline9: "Name Template 6",
+          text9: "Template 6",
+          imgName9: "house6.jpg",
+          link9:"/"
         },
         {
           headline1: "Name Template 13",
@@ -98,7 +122,19 @@ export default {
           headline6: "Name Template 18",
           text6: "Template 18",
           imgName6: "house18.jpg",
-          link6:"/"
+          link6:"/",
+          headline7: "Name Template 4",
+          text7: "Template 4",
+          imgName7: "house4.jpg",
+          link7:"/",
+          headline8: "Name Template 5",
+          text8: "Template 5",
+          imgName8: "house5.jpg",
+          link8:"/",
+          headline9: "Name Template 6",
+          text9: "Template 6",
+          imgName9: "house6.jpg",
+          link9:"/"
         }
       ]
     }
@@ -108,7 +144,7 @@ export default {
 
   components: {
     TenantNavbar,
-    ZDMHouseCarousel
+    ZDMHousePages
   },
     
 }
