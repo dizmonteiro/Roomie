@@ -12,16 +12,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline1}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text1}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link1">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline1}}</p>
+                        <div class="content has-text-centered">
+                            {{text1}}
                         </div>
                     </div>
                 </div>
@@ -36,16 +29,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline4}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text4}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link4">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline4}}</p>
+                        <div class="content has-text-centered">
+                            {{text4}}
                         </div>
                     </div>
                 </div>
@@ -60,16 +46,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline7}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text7}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link7">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline7}}</p>
+                        <div class="content has-text-centered">
+                            {{text7}}
                         </div>
                     </div>
                 </div>
@@ -88,16 +67,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline2}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text2}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link2">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline2}}</p>
+                        <div class="content has-text-centered">
+                            {{text2}}
                         </div>
                     </div>
                 </div>
@@ -112,16 +84,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline5}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text5}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link5">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline5}}</p>
+                        <div class="content has-text-centered">
+                            {{text5}}
                         </div>
                     </div>
                 </div>
@@ -136,16 +101,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline8}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text8}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link8">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline8}}</p>
+                        <div class="content has-text-centered">
+                            {{text8}}
                         </div>
                     </div>
                 </div>
@@ -164,16 +122,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline3}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text3}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link3">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline3}}</p>
+                        <div class="content has-text-centered">
+                            {{text3}}
                         </div>
                     </div>
                 </div>
@@ -188,16 +139,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                       <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline6}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text6}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link6">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline6}}</p>
+                        <div class="content has-text-centered">
+                            {{text6}}
                         </div>
                     </div>
                 </div>
@@ -212,16 +156,9 @@
                       alt="card icon"
                     />
                     <div class="card-content">
-                        <div class="buttons is-centered">
-                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
-                                {{headline9}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
-                                {{text9}}
-                            </a>
-                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link9">
-                                Check House
-                            </a>
+                        <p class="title has-text-centered is-one-third">{{headline9}}</p>
+                        <div class="content has-text-centered">
+                            {{text9}}
                         </div>
                     </div>
                 </div>
@@ -235,6 +172,7 @@
 <script>
 export default {
   name: "ZDMHousePanel",
+
   props: [
     "headline1","imgName1","text1","link1",
     "headline2","imgName2","text2","link2",
@@ -253,9 +191,10 @@ export default {
 .card {
   background-color: white;
   border-radius: 20px;
-  box-shadow: 2% 2% 2% 2% rgba(41, 67, 100, 0.21);
-  width: 300px;
+  box-shadow: 10% rgba(41, 67, 100, 0.21);
+  width: 100%;
   height: auto;
+  max-height: 450px;
   padding: 10% 10% 10% 10%;
 }
 
@@ -265,18 +204,17 @@ export default {
 
 .card-icon {
   pointer-events: none;
-  width:auto;
+  width: 100%;
   height: auto;
+  max-height: 200px;
   padding: 2% 2% 2% 2%;
 }
 
 .card-content {
-  width:auto;
+  width: 100%;
   height: auto;
+  max-height: 200px;
   padding: 2% 2% 2% 2%;
 }
 
-.vm {
-    min-width: 130px;
-}
 </style>

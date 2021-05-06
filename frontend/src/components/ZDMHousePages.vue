@@ -9,6 +9,7 @@
                 />
             </div>
             <div class="column is-10">
+              <div class="block">
                 <ZDMHousePanel
                   class="current-element"
                   :headline1="currentElement.headline1"
@@ -48,6 +49,12 @@
                   :link8="currentElement.link8"
                   :link9="currentElement.link9"
                 />
+              </div>
+              <ZDMIndicators
+                :elements="this.panels"
+                :currentElementIndex="this.currentElementIndex"
+                :showElement="this.showElement"
+              />
             </div>
             <div class="column is-1">
                 <ZDMArrowButton
@@ -62,11 +69,12 @@
 <script>
 import ZDMHousePanel from "./ZDMHousePanel.vue";
 import ZDMArrowButton from "./ZDMArrowButton.vue";
+import ZDMIndicators from "./ZDMIndicators.vue";
 
 export default {
-  name: "ZDMHouseCarousel",
+  name: "ZDMHousePages",
   props: { panels: Array },
-  components: { ZDMHousePanel, ZDMArrowButton},
+  components: { ZDMHousePanel, ZDMArrowButton, ZDMIndicators},
 
   data() {
     return {
