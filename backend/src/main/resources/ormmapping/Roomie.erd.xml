@@ -240,8 +240,8 @@
         <Column name="Description">
             <PrimaryKey>false</PrimaryKey>
             <ForeignKey>false</ForeignKey>
-            <Type>27</Type>
-            <Length>255</Length>
+            <Type>34</Type>
+            <Length>0</Length>
             <Nullable>true</Nullable>
             <IDGenerator>native</IDGenerator>
             <Unique>false</Unique>
@@ -251,8 +251,8 @@
         <Column name="Features">
             <PrimaryKey>false</PrimaryKey>
             <ForeignKey>false</ForeignKey>
-            <Type>27</Type>
-            <Length>255</Length>
+            <Type>34</Type>
+            <Length>0</Length>
             <Nullable>true</Nullable>
             <IDGenerator>native</IDGenerator>
             <Unique>false</Unique>

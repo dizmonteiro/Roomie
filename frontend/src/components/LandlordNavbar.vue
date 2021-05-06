@@ -7,9 +7,9 @@
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
         <img
-          src="https://bulma.io/images/bulma-logo.png"
+          src="@/assets/img/logo.png"
           width="112"
-          height="28"
+          height="40"
         />
       </a>
 

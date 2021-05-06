@@ -9,7 +9,7 @@
                 <div class="card-image">
                   <carousel >
                     <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
-                      <img :src="slide" :alt="slide">
+                      <img :src=slide :alt="slide">
                     </carousel-slide>
                   </carousel>
                 </div>
@@ -47,13 +47,9 @@ export default {
   data(){
     return {
       slides: [
-          'https://picsum.photos/id/164/1080/720',
-          'https://picsum.photos/id/163/1080/720',
-          'https://picsum.photos/id/308/1080/720',
-          'https://picsum.photos/id/322/1080/720',
-          'https://picsum.photos/id/351/1080/720',
-          'https://picsum.photos/id/369/1080/720',
-          'https://picsum.photos/id/398/1080/720'
+          'background1.jpeg',
+          'background2.jpeg',
+          'background3.jpeg'
       ]
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LandlordNavbar />
+    <TenantNavbar />
     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
         <div id="checkhouse-card">
@@ -9,7 +9,7 @@
             <div class="card-image">
               <carousel >
                 <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
-                  <img :src="slide" :alt="slide">
+                  <img  object-fit="cover" :src="slide" :alt="slide">
                 </carousel-slide>
               </carousel>
             </div>
@@ -22,31 +22,35 @@
                 <div class="box custom-height">
                   <p class="title has-text-centered is-one-third">Main Info</p>
                     <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
-
                       <div class="column is-half-mobile is-half-tablet is-half-desktop">
                         <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 1</button>
+                          <button class="button is-green is-static is-rounded">T{{formData.rooms}}</button>
                         </div>
                         <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 2</button>
+                          <button class="button is-green is-static is-rounded">From {{formData.minPrice}}€ To {{formData.maxPrice}}€</button>
                         </div>
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 3</button>
-                        </div>
-                      </div>
 
+                      </div>
                       <div class="column is-half-mobile is-half-tablet is-half-desktop">
                         <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 4</button>
+                          <button class="button is-green is-static is-rounded">{{formData.bathRooms}} WC's</button>
                         </div>
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 5</button>
-                        </div>
-                        <div class="block">
-                          <button class="button is-green is-static is-rounded">Template 6</button>
+                                                <div class="block">
+                          <button class="button is-green is-static is-rounded">Available Rooms: {{formData.availableRooms}}</button>
                         </div>
                       </div>
-
+                    </div>
+                    <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop">
+                      <div class="column is-half-mobile is-half-tablet is-half-desktop">
+                        <div class="block" v-for="feature in featuresLeft" :key=feature>
+                          <button class="button is-green is-static is-rounded">{{feature}}</button>
+                        </div>
+                      </div>
+                      <div class="column is-half-mobile is-half-tablet is-half-desktop">
+                        <div class="block" v-for="feature in featuresRight" :key=feature>
+                          <button class="button is-green is-static is-rounded">{{feature}}</button>
+                        </div>
+                      </div>
                     </div>
                 </div>
               </div>
@@ -56,7 +60,7 @@
                   <p class="title has-text-centered is-one-third">Description</p>
                   <div class="content has-text-justified">
                     <p>
-                      A Roomie é uma Plataforma de Procura e Disponibilização de Imobiliário para Arrendamento que procura não só facilitar o processo de encontrar uma habitação como também o processo da escolha do ambiente em que se pretende viver.
+                     {{formData.description}}
                     </p>
                   </div>
                 </div>
@@ -70,6 +74,14 @@
 
             </div>
           </div>
+
+          <div class="block">
+            <div class="buttons is-centered">
+              <a class="button is-large is-green is-rounded vm" @click="apply">
+                {{buttonText}}
+              </a>
+            </div>
+          </div>
           
         </div>
       </div>
@@ -78,55 +90,73 @@
 </template>
 
 <script>
-import LandlordNavbar from '@/components/LandlordNavbar.vue';
+import TenantNavbar from '@/components/TenantNavbar.vue';
 import Carousel from '@/components/Carousel.vue';
 import CarouselSlide from '@/components/CarouselSlide.vue';
 import ZDMCarousel from "@/components/ZDMCarousel.vue";
+import axios from 'axios';
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
-  data(){
-    return {
-      slides: [
-          'https://picsum.photos/id/164/1080/720',
-          'https://picsum.photos/id/163/1080/720',
-          'https://picsum.photos/id/308/1080/720',
-          'https://picsum.photos/id/322/1080/720',
-          'https://picsum.photos/id/351/1080/720',
-          'https://picsum.photos/id/369/1080/720',
-          'https://picsum.photos/id/398/1080/720'
-      ],
-
-      cards: [
+  methods:{
+     apply(){
+        this.buttonText="Already Applied"
+    }
+  },
+  created() {
+    axios.get(api_url + '/api/houses/'+this.id).then(response => {
+      this.formData=response.data;
+      var features=this.formData.features.split(',');
+      const half = Math.ceil(features.length / 2); 
+      this.featuresLeft=features.splice(0, half);
+      this.featuresRight=features.splice(-half);
+      this.cards=[
         {
-          headline: "Landlord Name",
-          text: "965467982",
-          imgName1: "face1.svg",
+          headline: this.formData.landlord.name,
+          text: "962956721",
+          link: "/tenant/llprofile/"+this.formData.landlord.id,
+          imgName1: `${api_url}/api/landlords/${this.formData.landlord.id}/avatar`,
           imgName2: "landlord.svg"
-        },
-        {
-          headline: "Tenant Name 2",
-          text: "Average Rating 2",
-          imgName1: "face2.svg",
-          imgName2: "roommate.svg"
-        },
-        {
-          headline: "Tenant Name 3",
-          text: "Average Rating 3",
-          imgName1: "face3.svg",
-          imgName2: "roommate.svg"
         }
       ]
+      this.slides=[
+        
+      ]
+      for(var i in this.formData.photos)
+        this.slides.push(`${api_url}/api/houses/photos/${this.formData.photos[i]}`)
+        }
+    ).catch(e => {
+      console.log(e)
+    });
+   
+
+  },
+  data(){
+    return {
+      llPic:"",
+      featuresLeft:[],
+      featuresRight:[],
+      formData: {
+            
+        },
+      id: this.$route.params.id,
+      buttonText:"Apply for House",
+      slides: [
+      ],
+
+      cards: []
     }
   },
 
-  name: 'Landlord Check House',
+  name: 'Tenant Check House',
 
   components: {
-    LandlordNavbar,
+    TenantNavbar,
     Carousel: Carousel,
     CarouselSlide: CarouselSlide,
     ZDMCarousel
-  }
+  },
+    
 }
 </script>
 
@@ -176,7 +206,7 @@ export default {
   }
 
   img {
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .carousel-slider {
