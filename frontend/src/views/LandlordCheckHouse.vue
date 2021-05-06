@@ -1,23 +1,18 @@
 <template>
   <div>
     <landlord-navbar />
+    <slider-navigation>
+      <swiper-slide v-for="slide in slides" :key="slide">
+        <img class="imgSlide" object-fit="cover" :src="slide" :alt="slide" />
+      </swiper-slide>
+    </slider-navigation>
     <div
       class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
     >
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
         <div id="checkhouse-card">
           <div class="block">
-            <div class="card-image">
-              <carousel>
-                <carousel-slide
-                  v-for="slide in slides"
-                  :key="slide"
-                  class="carousel-slider"
-                >
-                  <img object-fit="cover" :src="slide" :alt="slide" />
-                </carousel-slide>
-              </carousel>
-            </div>
+            <div class="card-image"></div>
           </div>
 
           <div class="block">
@@ -117,17 +112,15 @@
 </template>
 
 <script>
-import Carousel from "@/components/Carousel.vue";
-import CarouselSlide from "@/components/CarouselSlide.vue";
+import {SwiperSlide } from 'vue-awesome-swiper'
 import ZDMCarousel from "@/components/ZDMCarousel.vue";
 import axios from "axios";
 import { url as api_url } from "@/assets/scripts/api";
-import LandlordNavbar from '../components/LandlordNavbar.vue';
+import LandlordNavbar from "../components/LandlordNavbar.vue";
+import SliderNavigation from "../components/SliderNavigation.vue";
 
 export default {
-  methods: {
-
-  },
+  methods: {},
   created() {
     axios
       .get(api_url + "/api/houses/" + this.id)
@@ -146,7 +139,6 @@ export default {
             imgName2: "landlord.svg",
           },
         ];
-        this.slides = [];
         for (var i in this.formData.photos)
           this.slides.push(
             `${api_url}/api/houses/photos/${this.formData.photos[i]}`
@@ -169,18 +161,22 @@ export default {
     };
   },
 
-  name: "Tenant Check House",
+  name: "LanlordCheckHouse",
 
   components: {
-    Carousel: Carousel,
-    CarouselSlide: CarouselSlide,
+    SwiperSlide,
+    SliderNavigation,
     ZDMCarousel,
-    LandlordNavbar
+    LandlordNavbar,
   },
 };
 </script>
 
 <style scoped>
+.imgSlide{
+    width: 100%;
+    height: 40vh;
+}
 .inf {
   margin: 1% auto 1% auto;
   width: 100%;
@@ -220,31 +216,6 @@ export default {
   min-width: 70px;
 }
 
-.carousel {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-  height: 46vh;
-  z-index: 10;
-}
-
-img {
-  object-fit: cover;
-}
-
-.carousel-slider {
-  position: absolute;
-  top: 10;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.carousel-slider img {
-  width: 100%;
-  height: 100%;
-}
-
 .bordera {
   background-color: lightseagreen;
 }
@@ -262,8 +233,8 @@ img {
 }
 
 #scroll-area {
-   margin: 2% auto;
-    width: 100%;
-    height: 10vh;
-  }
+  margin: 2% auto;
+  width: 100%;
+  height: 10vh;
+}
 </style>

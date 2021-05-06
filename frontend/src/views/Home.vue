@@ -47,7 +47,7 @@ export default {
   data(){
     return {
       slides: [
-          'https://picsum.photos/id/164/1080/720',
+          'https://picsum.photos/id/164/1000/720',
           'https://picsum.photos/id/163/1080/720',
           'https://picsum.photos/id/308/1080/720',
           'https://picsum.photos/id/322/1080/720',
