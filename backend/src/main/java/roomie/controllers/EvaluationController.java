@@ -55,8 +55,9 @@ public class EvaluationController {
 	@PostMapping(value = "/tenant/{evaluatedTenantId}")
 	public TenantEvaluation evaluateTenant(@PathVariable int evaluatedTenantId, Authentication auth, @Valid @RequestBody TenantEvaluationRequest body) throws PersistentException, ResourceNotFoundException {
 		
-		if (!userSecurity.wereRoommates(auth, body.getHouseId(), evaluatedTenantId))
-			throw new AccessDeniedException("Tenants were not roommates on that house. If they were, they never met!");
+		if (!userSecurity.wereRoommates(auth, body.getHouseId(), evaluatedTenantId)) {
+			throw new ErrorDetails("Tenants were not roommates on that house. If they were, they never met!");
+		}
 		
 		Tenant evaluator = tenantService.getById(((MyUser) auth.getPrincipal()).getId());
 		Tenant evaluated = tenantService.getById(evaluatedTenantId);
