@@ -1,25 +1,16 @@
 <template>
   <div>
     <TenantNavbar />
+    <slider-navigation>
+      <swiper-slide v-for="slide in slides" :key="slide">
+        <img class="imgSlide" object-fit="cover" :src="slide" :alt="slide" />
+      </swiper-slide>
+    </slider-navigation>
     <div
       class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
     >
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
         <div id="checkhouse-card">
-          <div class="block">
-            <div class="card-image">
-              <carousel>
-                <carousel-slide
-                  v-for="slide in slides"
-                  :key="slide"
-                  class="carousel-slider"
-                >
-                  <img object-fit="cover" :src="slide" :alt="slide" />
-                </carousel-slide>
-              </carousel>
-            </div>
-          </div>
-
           <div class="block">
             <div class="columns is-centered is-mobile is-tablet is-desktop">
               <div
@@ -125,16 +116,35 @@
 </template>
 
 <script>
+import { SwiperSlide } from "vue-awesome-swiper";
 import TenantNavbar from "@/components/TenantNavbar.vue";
-import Carousel from "@/components/Carousel.vue";
-import CarouselSlide from "@/components/CarouselSlide.vue";
+import SliderNavigation from "@/components/SliderNavigation.vue";
 import ZDMCarousel from "@/components/ZDMCarousel.vue";
 import axios from "axios";
+import store from "@/store";
 import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   methods: {
-    apply() {
+    async apply() {
+      if (this.buttonText !== "Already Applied") {
+        var sendApplication = {
+          tenantId: store.getters.getId,
+          accept: false,
+        };
+
+        await axios
+          .put(
+            api_url + "/api/applications/" + this.$route.params.id,
+            sendApplication
+          )
+          .then(() => {
+            console.log("done");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
       this.buttonText = "Already Applied";
     },
   },
@@ -183,9 +193,9 @@ export default {
   name: "Tenant Check House",
 
   components: {
+    SwiperSlide,
     TenantNavbar,
-    Carousel: Carousel,
-    CarouselSlide: CarouselSlide,
+    SliderNavigation,
     ZDMCarousel,
   },
 };
@@ -200,7 +210,10 @@ export default {
   margin: 3% auto 2% auto;
   width: 100%;
 }
-
+.imgSlide {
+  width: 100%;
+  height: 40vh;
+}
 #checkhouse-card {
   min-height: 80vh;
   margin-top: 2%;
@@ -231,31 +244,6 @@ export default {
   min-width: 70px;
 }
 
-.carousel {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-  height: 46vh;
-  z-index: 10;
-}
-
-img {
-  object-fit: cover;
-}
-
-.carousel-slider {
-  position: absolute;
-  top: 10;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.carousel-slider img {
-  width: 100%;
-  height: 100%;
-}
-
 .bordera {
   background-color: lightseagreen;
 }
@@ -273,8 +261,8 @@ img {
 }
 
 #scroll-area {
-   margin: 2% auto;
-    width: 100%;
-    height: 10vh;
-  }
+  margin: 2% auto;
+  width: 100%;
+  height: 10vh;
+}
 </style>
