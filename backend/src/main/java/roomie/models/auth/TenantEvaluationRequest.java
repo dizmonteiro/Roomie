@@ -37,28 +37,28 @@ public class TenantEvaluationRequest implements Serializable {
 		return tidiness;
 	}
 	
-	public double getCleanliness() {
-		return cleanliness;
-	}
-	
-	public double getPrivacy() {
-		return privacy;
-	}
-	
-	public double getFriendliness() {
-		return friendliness;
-	}
-	
 	public void setTidiness(double tidiness) {
 		this.tidiness = tidiness;
+	}
+	
+	public double getCleanliness() {
+		return cleanliness;
 	}
 	
 	public void setCleanliness(double cleanliness) {
 		this.cleanliness = cleanliness;
 	}
 	
+	public double getPrivacy() {
+		return privacy;
+	}
+	
 	public void setPrivacy(double privacy) {
 		this.privacy = privacy;
+	}
+	
+	public double getFriendliness() {
+		return friendliness;
 	}
 	
 	public void setFriendliness(double friendliness) {

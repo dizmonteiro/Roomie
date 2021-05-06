@@ -31,27 +31,27 @@ public class LandlordEvaluationRequest implements Serializable {
 		this.houseId = houseId;
 	}
 	
-	public void setCleanliness(double cleanliness) {
-		this.cleanliness = cleanliness;
-	}
-	
-	public void setPayment(double payment) {
-		this.payment = payment;
-	}
-	
-	public void setCare(double care) {
-		this.care = care;
-	}
-	
 	public double getCleanliness() {
 		return cleanliness;
+	}
+	
+	public void setCleanliness(double cleanliness) {
+		this.cleanliness = cleanliness;
 	}
 	
 	public double getPayment() {
 		return payment;
 	}
 	
+	public void setPayment(double payment) {
+		this.payment = payment;
+	}
+	
 	public double getCare() {
 		return care;
+	}
+	
+	public void setCare(double care) {
+		this.care = care;
 	}
 }

@@ -2,18 +2,12 @@ package roomie.services;
 
 import org.orm.PersistentException;
 import org.springframework.stereotype.Service;
-import roomie.exception.ResourceNotFoundException;
 import roomie.models.evaluation.LandlordEvaluation;
 import roomie.models.evaluation.LandlordEvaluationDAO;
 import roomie.models.evaluation.TenantEvaluation;
 import roomie.models.evaluation.TenantEvaluationDAO;
-import roomie.models.house.House;
 import roomie.models.landlord.Landlord;
-import roomie.models.rentHistory.RentHistory;
-import roomie.models.rentHistory.RentHistoryDAO;
 import roomie.models.tenant.Tenant;
-
-import java.util.Date;
 
 
 /**

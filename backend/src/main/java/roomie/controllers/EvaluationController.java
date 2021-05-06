@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import roomie.exception.ErrorDetails;
 import roomie.exception.ResourceNotFoundException;
 import roomie.helpers.UserSecurity;
-import roomie.models.auth.AcceptRejectApplication;
 import roomie.models.auth.LandlordEvaluationRequest;
 import roomie.models.auth.MyUser;
 import roomie.models.auth.TenantEvaluationRequest;
@@ -53,44 +52,45 @@ public class EvaluationController {
 	private UserSecurity userSecurity;
 	
 	@PreAuthorize("hasRole('TENANT')")
-	@PostMapping(value = "/tenant/{idEvaluated}")
-	public TenantEvaluation evaluateTenant(@PathVariable int idEvaluated, Authentication auth, @Valid @RequestBody TenantEvaluationRequest body) throws PersistentException, ResourceNotFoundException {
+	@PostMapping(value = "/tenant/{evaluatedTenantId}")
+	public TenantEvaluation evaluateTenant(@PathVariable int evaluatedTenantId, Authentication auth, @Valid @RequestBody TenantEvaluationRequest body) throws PersistentException, ResourceNotFoundException {
 		
-		if(!userSecurity.wereRoommates(auth,body.getHouseId(),idEvaluated))
+		if (!userSecurity.wereRoommates(auth, body.getHouseId(), evaluatedTenantId))
 			throw new AccessDeniedException("Tenants were not roommates on that house. If they were, they never met!");
 		
 		Tenant evaluator = tenantService.getById(((MyUser) auth.getPrincipal()).getId());
-		Tenant evaluated = tenantService.getById(idEvaluated);
+		Tenant evaluated = tenantService.getById(evaluatedTenantId);
 		
 		double tidiness = body.getTidiness();
 		double cleanliness = body.getCleanliness();
 		double privacy = body.getPrivacy();
 		double friendliness = body.getFriendliness();
-		return evaluationService.createTenantEvaluation(evaluator,evaluated,tidiness,cleanliness,privacy,friendliness);
+		return evaluationService
+				.createTenantEvaluation(evaluator, evaluated, tidiness, cleanliness, privacy, friendliness);
 	}
 	
 	@PreAuthorize("hasRole('LANDLORD')")
-	@PostMapping(value = "/landlord/{idTenant}")
-	public LandlordEvaluation evaluateLandlord(@PathVariable int idTenant, Authentication auth, @Valid @RequestBody LandlordEvaluationRequest body) throws PersistentException, ResourceNotFoundException {
+	@PostMapping(value = "/landlord/{tenantId}")
+	public LandlordEvaluation evaluateLandlord(@PathVariable int tenantId, Authentication auth, @Valid @RequestBody LandlordEvaluationRequest body) throws PersistentException, ResourceNotFoundException {
 		
-		int idHouse = body.getHouseId();
+		int houseId = body.getHouseId();
 		
-		if(!userSecurity.isOwner(auth,idHouse))
+		if (!userSecurity.isOwner(auth, houseId))
 			throw new AccessDeniedException("Landlord isn't the owner of this house!");
 		
 		Landlord landlord = landlordService.getById(((MyUser) auth.getPrincipal()).getId());
-		Tenant tenant = tenantService.getById(idTenant);
+		Tenant tenant = tenantService.getById(tenantId);
 		
 		double cleanliness = body.getCleanliness();
 		double payment = body.getPayment();
 		double care = body.getCare();
 		
-		House house = houseService.getById(idHouse);
-		RentHistory rh = RentHistoryDAO.getRentHistoryByORMID(house,tenant);
+		House house = houseService.getById(houseId);
+		RentHistory rh = RentHistoryDAO.getRentHistoryByORMID(house, tenant);
 		
-		if(rh.getbDate().getTime() > new Date().getTime())
+		if (rh.getbDate().getTime() > new Date().getTime())
 			throw new ErrorDetails("Tenant doesn't live in this house yet!");
 		
-		return evaluationService.createTenantEvaluation(landlord,tenant,cleanliness,payment,care);
+		return evaluationService.createTenantEvaluation(landlord, tenant, cleanliness, payment, care);
 	}
 }

@@ -7,7 +7,6 @@ package roomie.models.evaluation;
 
 import roomie.models.tenant.Tenant;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class TenantEvaluation implements Serializable {
