@@ -1,45 +1,51 @@
 <template>
-  <div>
     <div class="card-carousel">
-      <ZDMArrowButton
-        arrowType="left"
-        @click.native="showPrevElement"
-        :disabled="this.reachedMaxLeft"
-      />
-      <ZDMHousePanel
-        class="current-element"
-        :headline1="currentElement.headline1"
-        :headline2="currentElement.headline2"
-        :headline3="currentElement.headline3"
-        :headline4="currentElement.headline4"
-        :headline5="currentElement.headline5"
-        :headline6="currentElement.headline6"
-        :text1="currentElement.text1"
-        :text2="currentElement.text2"
-        :text3="currentElement.text3"
-        :text4="currentElement.text4"
-        :text5="currentElement.text5"
-        :text6="currentElement.text6"
-        :imgName1="currentElement.imgName1"
-        :imgName2="currentElement.imgName2"
-        :imgName3="currentElement.imgName3"
-        :imgName4="currentElement.imgName4"
-        :imgName5="currentElement.imgName5"
-        :imgName6="currentElement.imgName6"
-        :link1="currentElement.link1"
-        :link2="currentElement.link2"
-        :link3="currentElement.link3"
-        :link4="currentElement.link4"
-        :link5="currentElement.link5"
-        :link6="currentElement.link6"
-      />
-      <ZDMArrowButton
-        arrowType="right"
-        @click.native="showNextElement"
-        :disabled="this.reachedMaxRight"
-      />
+        <div class="columns is-desktop is-tablet is-mobile">
+            <div class="column is-1">
+                <ZDMArrowButton
+                  arrowType="left"
+                  @click.native="showPrevElement"
+                  :disabled="this.reachedMaxLeft"
+                />
+            </div>
+            <div class="column is-10">
+                <ZDMHousePanel
+                  class="current-element"
+                  :headline1="currentElement.headline1"
+                  :headline2="currentElement.headline2"
+                  :headline3="currentElement.headline3"
+                  :headline4="currentElement.headline4"
+                  :headline5="currentElement.headline5"
+                  :headline6="currentElement.headline6"
+                  :text1="currentElement.text1"
+                  :text2="currentElement.text2"
+                  :text3="currentElement.text3"
+                  :text4="currentElement.text4"
+                  :text5="currentElement.text5"
+                  :text6="currentElement.text6"
+                  :imgName1="currentElement.imgName1"
+                  :imgName2="currentElement.imgName2"
+                  :imgName3="currentElement.imgName3"
+                  :imgName4="currentElement.imgName4"
+                  :imgName5="currentElement.imgName5"
+                  :imgName6="currentElement.imgName6"
+                  :link1="currentElement.link1"
+                  :link2="currentElement.link2"
+                  :link3="currentElement.link3"
+                  :link4="currentElement.link4"
+                  :link5="currentElement.link5"
+                  :link6="currentElement.link6"
+                />
+            </div>
+            <div class="column is-1">
+                <ZDMArrowButton
+                  arrowType="right"
+                  @click.native="showNextElement"
+                  :disabled="this.reachedMaxRight"
+                />
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 <script>
 import ZDMHousePanel from "./ZDMHousePanel.vue";
@@ -80,4 +86,33 @@ export default {
 };
 </script>
 
-<style src="../assets/styles/Carousel.css" scoped/>
+<style scoped>
+
+.card-carousel {
+  align-items: center;
+  margin-bottom: 6%;
+  margin-top: 2%;
+}
+
+.btn {
+  height: auto;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+.btn:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+</style>

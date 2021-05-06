@@ -1,121 +1,156 @@
 <template>
-  <div class="box">
-    <div class="columns">
+    <div class="columns is-desktop is-mobile is-tablet">
 
-        <div class="column">
+        <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
 
-            <div>
-                <img
-                  class="card-icon-right"
-                  :src="require(`@/assets/svg/${imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                    <div class="buttons is-centered">
-                      <a class="button is-small is-green is-rounded is-static vm">
-                        {{headline1}}
-                      </a>
-                      <a class="button is-small is-green is-rounded vm" :href="link1">
-                        Check House
-                      </a>
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName1}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline1}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text1}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link1">
+                                Check House
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div>
-                <img
-                  class="card-icon-right"
-                  :src="require(`@/assets/svg/${imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                    <div class="buttons is-centered">
-                      <a class="button is-small is-green is-rounded is-static vm">
-                        {{headline1}}
-                      </a>
-                      <a class="button is-small is-green is-rounded vm" :href="link1">
-                        Check House
-                      </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="column">
-
-            <div>
-                <img
-                  class="card-icon-right"
-                  :src="require(`@/assets/svg/${imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                    <div class="buttons is-centered">
-                      <a class="button is-small is-green is-rounded is-static vm">
-                        {{headline1}}
-                      </a>
-                      <a class="button is-small is-green is-rounded vm" :href="link1">
-                        Check House
-                      </a>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <img
-                  class="card-icon-right"
-                  :src="require(`@/assets/svg/${imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                    <div class="buttons is-centered">
-                      <a class="button is-small is-green is-rounded is-static vm">
-                        {{headline1}}
-                      </a>
-                      <a class="button is-small is-green is-rounded vm" :href="link1">
-                        Check House
-                      </a>
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName4}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline4}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text4}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link4">
+                                Check House
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="column">
-
-            <div>
-                <img
-                  class="card-icon-right"
-                  :src="require(`@/assets/svg/${imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                    <div class="buttons is-centered">
-                      <a class="button is-small is-green is-rounded is-static vm">
-                        {{headline1}}
-                      </a>
-                      <a class="button is-small is-green is-rounded vm" :href="link1">
-                        Check House
-                      </a>
+        <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
+            
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName2}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline2}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text2}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link2">
+                                Check House
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div>
-                <img
-                  class="card-icon-right"
-                  :src="require(`@/assets/svg/${imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                    <div class="buttons is-centered">
-                      <a class="button is-small is-green is-rounded is-static vm">
-                        {{headline1}}
-                      </a>
-                      <a class="button is-small is-green is-rounded vm" :href="link1">
-                        Check House
-                      </a>
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName5}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline5}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text5}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link5">
+                                Check House
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile">
+
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName3}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                        <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline3}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text3}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link3">
+                                Check House
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="card">
+                    <img
+                      object-fit="cover"
+                      class="card-icon"
+                      :src="require(`@/assets/svg/${imgName6}`)"
+                      alt="card icon"
+                    />
+                    <div class="card-content">
+                       <div class="buttons is-centered">
+                            <a class="button is-normal is-fullwidth is-green is-rounded is-static headline">
+                                {{headline6}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded is-static">
+                                {{text6}}
+                            </a>
+                            <a class="button is-small is-fullwidth is-green is-rounded" :href="link6">
+                                Check House
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,7 +158,6 @@
         </div>
 
     </div>
-  </div>
 </template>
 
 <script>
@@ -140,4 +174,35 @@ export default {
 };
 </script>
 
-<style src="../assets/styles/Card.css" scoped>
+<style scoped>
+.card {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 2% 2% 2% 2% rgba(41, 67, 100, 0.21);
+  width: 300px;
+  height: auto;
+  padding: 10% 10% 10% 10%;
+}
+
+.headline {
+  font-weight: bold;
+}
+
+.card-icon {
+  border-radius: 20px;
+  pointer-events: none;
+  width:auto;
+  height: auto;
+  padding: 2% 2% 2% 2%;
+}
+
+.card-content {
+  width:auto;
+  height: auto;
+  padding: 2% 2% 2% 2%;
+}
+
+.vm {
+    min-width: 130px;
+}
+</style>
