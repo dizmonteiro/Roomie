@@ -49,7 +49,7 @@
                   @click.native="showPrevElement"
                   :disabled="this.reachedMaxLeft"
                 />
-                <ZDMIndicators
+                <ZDMHouseIndicators
                   :elements="this.panels"
                   :currentElementIndex="this.currentElementIndex"
                   :showElement="this.showElement"
@@ -67,12 +67,12 @@
 <script>
 import ZDMHousePanel from "./ZDMHousePanel.vue";
 import ZDMArrowButton from "./ZDMArrowButton.vue";
-import ZDMIndicators from "./ZDMIndicators.vue";
+import ZDMHouseIndicators from "./ZDMHouseIndicators.vue";
 
 export default {
   name: "ZDMHousePages",
   props: { panels: Array },
-  components: { ZDMHousePanel, ZDMArrowButton, ZDMIndicators},
+  components: { ZDMHousePanel, ZDMArrowButton, ZDMHouseIndicators},
 
   data() {
     return {
