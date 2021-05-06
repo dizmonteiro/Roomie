@@ -95,7 +95,7 @@ export default {
 }
 
 .btn {
-  height: auto;
+  height: 100%;
   border: none;
   background: transparent;
   cursor: pointer;
