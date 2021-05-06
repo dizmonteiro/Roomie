@@ -22,8 +22,8 @@ License Type: Academic
         <property name="bathRooms" column="BathRooms" type="integer" length="10" not-null="true" lazy="false"/>
         <property name="minPrice" column="MinPrice" type="double" not-null="true" lazy="false"/>
         <property name="maxPrice" column="MaxPrice" type="double" not-null="true" lazy="false"/>
-        <property name="description" column="Description" type="string" length="255" not-null="false" lazy="false"/>
-        <property name="features" column="Features" type="string" length="255" not-null="false" lazy="false"/>
+        <property name="description" column="Description" type="text" not-null="false" lazy="false"/>
+        <property name="features" column="Features" type="text" not-null="false" lazy="false"/>
         <list name="ORM_Photos" lazy="true" cascade="all-delete-orphan" inverse="false">
             <key column="HouseID" not-null="true"/>
             <index column="HouseIndex" type="integer"/>

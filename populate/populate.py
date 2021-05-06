@@ -72,8 +72,8 @@ def post_house(token):
         "bathRooms": fake.random_int(0, 100),
         "minPrice": 250,
         "maxPrice": 300,
-        "description": fake.text(),
-        "features": "feat1,feat2,feat3",
+        "description": fake.text(max_nb_chars=500).replace("\n", " "),
+        "features": "feat1,feat2,feat3,feat4",
         "address": "Av Test B1 2E, Viseu",
     }
 
