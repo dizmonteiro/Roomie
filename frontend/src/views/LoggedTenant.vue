@@ -4,77 +4,79 @@
     <div
       class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
     >
-      <div class="column is-11-mobile is-11-tablet is-11-desktop">
-        <div class="columns is-desktop is-mobile is-tablet">
-          <div
-            class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
-          >
-            <div v-for="h in column1" :key="h.id" class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/${h.imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">
-                    {{ h.headline1 }}
-                  </p>
-                  <div class="content has-text-centered">{{ h.text1 }}</div>
+      <div class="column is-10-mobile is-10-tablet is-10-desktop">
+        <div class="card-pages">
+          <div class="columns is-desktop is-mobile is-tablet">
+            <div
+              class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
+            >
+              <div v-for="h in column1" :key="h.id" class="block">
+                <div class="card">
+                  <img
+                    object-fit="cover"
+                    class="card-icon"
+                    :src="require(`@/assets/svg/${h.imgName1}`)"
+                    alt="card icon"
+                  />
+                  <div class="card-content">
+                    <p class="title has-text-centered is-one-third">
+                      {{ h.headline1 }}
+                    </p>
+                    <div class="content has-text-centered">{{ h.text1 }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
+            >
+              <div v-for="h in column2" :key="h.id" class="block">
+                <div class="card">
+                  <img
+                    object-fit="cover"
+                    class="card-icon"
+                    :src="require(`@/assets/svg/${h.imgName1}`)"
+                    alt="card icon"
+                  />
+                  <div class="card-content">
+                    <p class="title has-text-centered is-one-third">
+                      {{ h.headline1 }}
+                    </p>
+                    <div class="content has-text-centered">{{ h.text1 }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
+            >
+              <div v-for="h in column3" :key="h.id" class="block">
+                <div class="card">
+                  <img
+                    object-fit="cover"
+                    class="card-icon"
+                    :src="require(`@/assets/svg/${h.imgName1}`)"
+                    alt="card icon"
+                  />
+                  <div class="card-content">
+                    <p class="title has-text-centered is-one-third">
+                      {{ h.headline1 }}
+                    </p>
+                    <div class="content has-text-centered">{{ h.text1 }}</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
-          >
-            <div v-for="h in column2" :key="h.id" class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/${h.imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">
-                    {{ h.headline1 }}
-                  </p>
-                  <div class="content has-text-centered">{{ h.text1 }}</div>
-                </div>
-              </div>
-            </div>
+          <div class="block">
+            <pagination
+              :selectedPage="1"
+              :numberOfPages="10"
+              @goBack="pageBack"
+              @goForward="pageForward"
+            >
+            </pagination>
           </div>
-          <div
-            class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
-          >
-            <div v-for="h in column3" :key="h.id" class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/${h.imgName1}`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">
-                    {{ h.headline1 }}
-                  </p>
-                  <div class="content has-text-centered">{{ h.text1 }}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="block">
-          <pagination
-            :selectedPage="1"
-            :numberOfPages="10"
-            @goBack="pageBack"
-            @goForward="pageForward"
-          >
-          </pagination>
         </div>
       </div>
     </div>
@@ -222,7 +224,7 @@ export default {
       column1: [],
       column2: [],
       column3: [],
-      indiceatual: 0
+      indiceatual: 0,
     };
   },
 
@@ -258,13 +260,12 @@ export default {
     onChange(page) {
       console.log(`Getting page ${page}`);
       console.log(page);
-    }
+    },
   },
 
   created() {
     this.fillColumns(0);
-  }
-
+  },
 };
 </script>
 
@@ -274,16 +275,10 @@ export default {
   width: 100%;
 }
 
-#checkhouse-card {
-  min-height: 80vh;
-  margin-top: 2%;
-  margin-bottom: 5%;
-}
-
 .card-pages {
   align-items: center;
-  margin-bottom: 6%;
-  margin-top: 4%;
+  margin-bottom: 5%;
+  margin-top: 3%;
 }
 
 .card {
