@@ -1,14 +1,6 @@
 <template>
   <div>
     <TenantNavbar />
-
-    <pagination
-      :selectedPage="1"
-      :numberOfPages="2"
-      @goBack="pageBack"
-      @goForward="pageForward"
-    >
-    </pagination>
     <div
       class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
     >
@@ -26,8 +18,10 @@
                   alt="card icon"
                 />
                 <div class="card-content">
-                  <p class="title has-text-centered is-one-third">{{h.headline1}}</p>
-                  <div class="content has-text-centered">{{h.text1}}</div>
+                  <p class="title has-text-centered is-one-third">
+                    {{ h.headline1 }}
+                  </p>
+                  <div class="content has-text-centered">{{ h.text1 }}</div>
                 </div>
               </div>
             </div>
@@ -44,8 +38,10 @@
                   alt="card icon"
                 />
                 <div class="card-content">
-                  <p class="title has-text-centered is-one-third">{{h.headline1}}</p>
-                  <div class="content has-text-centered">{{h.text1}}</div>
+                  <p class="title has-text-centered is-one-third">
+                    {{ h.headline1 }}
+                  </p>
+                  <div class="content has-text-centered">{{ h.text1 }}</div>
                 </div>
               </div>
             </div>
@@ -62,12 +58,23 @@
                   alt="card icon"
                 />
                 <div class="card-content">
-                  <p class="title has-text-centered is-one-third">{{h.headline1}}</p>
-                  <div class="content has-text-centered">{{h.text1}}</div>
+                  <p class="title has-text-centered is-one-third">
+                    {{ h.headline1 }}
+                  </p>
+                  <div class="content has-text-centered">{{ h.text1 }}</div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="block">
+          <pagination
+            :selectedPage="1"
+            :numberOfPages="10"
+            @goBack="pageBack"
+            @goForward="pageForward"
+          >
+          </pagination>
         </div>
       </div>
     </div>
@@ -77,12 +84,6 @@
 <script>
 import Pagination from "@/components/Pagination.vue";
 import TenantNavbar from "@/components/TenantNavbar.vue";
-
-let pagination = {
-  current: 1, // Current page
-  total: 0, // Items total count
-  itemsPerPage: 9, // Items per page
-};
 
 export default {
   name: "LoggedTenant",
@@ -221,10 +222,7 @@ export default {
       column1: [],
       column2: [],
       column3: [],
-      indiceatual: 0,
-      countries: [],
-      pagination: pagination,
-      error: "",
+      indiceatual: 0
     };
   },
 
@@ -232,17 +230,19 @@ export default {
     pageBack() {
       this.indiceatual -= 9;
       this.fillColumns(this.indiceatual);
-      console.log(this.column1)
+      console.log(this.column1);
     },
+
     pageForward() {
       this.indiceatual += 9;
       this.fillColumns(this.indiceatual);
-      console.log(this.column1)
+      console.log(this.column1);
     },
+
     fillColumns(start) {
-      this.column1=[]
-      this.column2=[]
-      this.column3=[]
+      this.column1 = [];
+      this.column2 = [];
+      this.column3 = [];
       var i;
       for (i = start; i < start + 3 && i < this.allinfo.length; i++) {
         this.column1.push(this.allinfo[i]);
@@ -258,12 +258,13 @@ export default {
     onChange(page) {
       console.log(`Getting page ${page}`);
       console.log(page);
-    },
+    }
   },
 
   created() {
     this.fillColumns(0);
-  },
+  }
+
 };
 </script>
 
@@ -279,44 +280,10 @@ export default {
   margin-bottom: 5%;
 }
 
-#scroll-area-1 {
-  height: 34vh;
-}
-
-#scroll-area-2 {
-  height: 58vh;
-  margin-bottom: 10px;
-}
-
-.price-range {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.spacer {
-  width: 5px;
-}
-
-.vm {
-  width: 25%;
-  min-width: 70px;
-}
-
-.bordera {
-  background-color: lightseagreen;
-}
-
-.borderb {
-  background-color: pink;
-}
-
-.borderc {
-  background-color: orange;
-}
-
-.custom-height {
-  min-height: 80vh;
+.card-pages {
+  align-items: center;
+  margin-bottom: 6%;
+  margin-top: 4%;
 }
 
 .card {
