@@ -1,244 +1,404 @@
 <template>
   <div>
     <TenantNavbar />
-    <div class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline">
+    
+    <pagination
+      :current="pagination.current"
+      :total="pagination.total"
+      :itemsPerPage="pagination.itemsPerPage"
+      :onChange="onChange"
+      :step="1"
+    >
+    </pagination>
+    <div
+      class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
+    >
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
-
-        <div class="block">
-              <ZDMHousePages :panels="panels" />
+        <div class="columns is-desktop is-mobile is-tablet">
+          <div
+            class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
+          >
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house1.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">1</p>
+                  <div class="content has-text-centered">1</div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house2.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">4</p>
+                  <div class="content has-text-centered">4</div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house2.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">7</p>
+                  <div class="content has-text-centered">7</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
+          >
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house3.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">2</p>
+                  <div class="content has-text-centered">2</div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house2.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">5</p>
+                  <div class="content has-text-centered">5</div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house2.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">8</p>
+                  <div class="content has-text-centered">8</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
+          >
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house2.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">3</p>
+                  <div class="content has-text-centered">3</div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house2.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">6</p>
+                  <div class="content has-text-centered">6</div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="card">
+                <img
+                  object-fit="cover"
+                  class="card-icon"
+                  :src="require(`@/assets/svg/house2.jpg`)"
+                  alt="card icon"
+                />
+                <div class="card-content">
+                  <p class="title has-text-centered is-one-third">9</p>
+                  <div class="content has-text-centered">9</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-          
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import TenantNavbar from '@/components/TenantNavbar.vue';
-import ZDMHousePages from "@/components/ZDMHousePages.vue";
+import Pagination from "@/components/Pagination.vue";
+import TenantNavbar from "@/components/TenantNavbar.vue";
+
+let pagination = {
+  current: 1, // Current page
+  total: 0, // Items total count
+  itemsPerPage: 9, // Items per page
+};
 
 export default {
-  data(){
-    return {
+  name: "LoggedTenant",
+  components: { Pagination, TenantNavbar },
 
-      panels: [
+  data() {
+    return {
+      allinfo: [
         {
           headline1: "Name Template 1",
           text1: "Template 1",
           imgName1: "house1.jpg",
-          link1:"/",
-          headline2: "Name Template 2",
-          text2: "Template 2",
-          imgName2: "house2.jpg",
-          link2:"/",
-          headline3: "Name Template 3",
-          text3: "Template 3",
-          imgName3: "house3.jpg",
-          link3:"/",
-          headline4: "Name Template 4",
-          text4: "Template 4",
-          imgName4: "house4.jpg",
-          link4:"/",
-          headline5: "Name Template 5",
-          text5: "Template 5",
-          imgName5: "house5.jpg",
-          link5:"/",
-          headline6: "Name Template 6",
-          text6: "Template 6",
-          imgName6: "house6.jpg",
-          link6:"/",
-          headline7: "Name Template 7",
-          text7: "Template 7",
-          imgName7: "house7.jpg",
-          link7:"/",
-          headline8: "Name Template 8",
-          text8: "Template 8",
-          imgName8: "house8.jpg",
-          link8:"/",
-          headline9: "Name Template 9",
-          text9: "Template 9",
-          imgName9: "house9.jpg",
-          link9:"/"
+          link1: "/",
         },
         {
-          headline1: "Name Template 7",
-          text1: "Template 7",
-          imgName1: "house7.jpg",
-          link1:"/",
-          headline2: "Name Template 8",
-          text2: "Template 8",
-          imgName2: "house8.jpg",
-          link2:"/",
-          headline3: "Name Template 9",
-          text3: "Template 9",
-          imgName3: "house9.jpg",
-          link3:"/",
-          headline4: "Name Template 10",
-          text4: "Template 10",
-          imgName4: "house10.jpg",
-          link4:"/",
-          headline5: "Name Template 11",
-          text5: "Template 11",
-          imgName5: "house11.jpg",
-          link5:"/",
-          headline6: "Name Template 12",
-          text6: "Template 12",
-          imgName6: "house12.jpg",
-          link6:"/",
-          headline7: "Name Template 13",
-          text7: "Template 13",
-          imgName7: "house4.jpg",
-          link7:"/",
-          headline8: "Name Template 14",
-          text8: "Template 14",
-          imgName8: "house5.jpg",
-          link8:"/",
-          headline9: "Name Template 15",
-          text9: "Template 15",
-          imgName9: "house6.jpg",
-          link9:"/"
+          headline1: "Name Template 2",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
         },
         {
-          headline1: "Name Template 13",
-          text1: "Template 13",
-          imgName1: "house13.jpg",
-          link1:"/",
-          headline2: "Name Template 14",
-          text2: "Template 14",
-          imgName2: "house14.jpg",
-          link2:"/",
-          headline3: "Name Template 15",
-          text3: "Template 15",
-          imgName3: "house15.jpg",
-          link3:"/",
-          headline4: "Name Template 16",
-          text4: "Template 16",
-          imgName4: "house16.jpg",
-          link4:"/",
-          headline5: "Name Template 17",
-          text5: "Template 17",
-          imgName5: "house17.jpg",
-          link5:"/",
-          headline6: "Name Template 18",
-          text6: "Template 18",
-          imgName6: "house18.jpg",
-          link6:"/",
-          headline7: "Name Template 19",
-          text7: "Template 19",
-          imgName7: "house4.jpg",
-          link7:"/",
-          headline8: "Name Template 20",
-          text8: "Template 20",
-          imgName8: "house5.jpg",
-          link8:"/",
-          headline9: "Name Template 21",
-          text9: "Template 21",
-          imgName9: "house6.jpg",
-          link9:"/"
+          headline1: "Name Template 1as",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
         },
         {
-          headline1: "Name Template 7",
-          text1: "Template 7",
-          imgName1: "house7.jpg",
-          link1:"/",
-          headline2: "Name Template 8",
-          text2: "Template 8",
-          imgName2: "house8.jpg",
-          link2:"/",
-          headline3: "Name Template 9",
-          text3: "Template 9",
-          imgName3: "house9.jpg",
-          link3:"/",
-          headline4: "Name Template 10",
-          text4: "Template 10",
-          imgName4: "house10.jpg",
-          link4:"/",
-          headline5: "Name Template 11",
-          text5: "Template 11",
-          imgName5: "house11.jpg",
-          link5:"/",
-          headline6: "Name Template 12",
-          text6: "Template 12",
-          imgName6: "house12.jpg",
-          link6:"/",
-          headline7: "Name Template 13",
-          text7: "Template 13",
-          imgName7: "house4.jpg",
-          link7:"/",
-          headline8: "Name Template 14",
-          text8: "Template 14",
-          imgName8: "house5.jpg",
-          link8:"/",
-          headline9: "Name Template 15",
-          text9: "Template 15",
-          imgName9: "house6.jpg",
-          link9:"/"
-        }
-      ]
-    }
+          headline1: "Name Template 1csa",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1cdsa",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template sda1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template csdac1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1cdsacds",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1cdasc",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template cdas1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template cdsa1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1csda",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1cdas",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1cdas",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          headline1: "Name Template 1",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+      ],
+      column1: [],
+      column2: [],
+      column3: [],
+      indiceatual: 0,
+      countries: [],
+      pagination: pagination,
+      error: "",
+    };
   },
 
-  name: 'Logged Tenant',
+  methods: {
+    fillColumns(start) {
+      var i;
+      for (i = start; i < start + 3 && i < this.allinfo.length; i++) {
+        this.column1.push(this.allinfo[i]);
+      }
+      for (i = start + 3; i < start + 6 && i < this.allinfo.length; i++) {
+        this.column2.push(this.allinfo[i]);
+      }
+      for (i = start + 6; i < start + 9 && i < this.allinfo.length; i++) {
+        this.column3.push(this.allinfo[i]);
+      }
+    },
 
-  components: {
-    TenantNavbar,
-    ZDMHousePages
+    onChange(page) {
+      console.log(`Getting page ${page}`);
+      console.log(page);
+    },
   },
-    
-}
+
+  created() {
+    this.fillColumns(0);
+  },
+};
 </script>
 
 <style scoped>
+#content {
+  margin: 3% auto 2% auto;
+  width: 100%;
+}
 
-  #content {
-    margin: 3% auto 2% auto;
-    width: 100%;
-  } 
-  
-  #checkhouse-card {
-      min-height: 80vh;
-      margin-top: 2%;
-      margin-bottom: 5%;
-  }
+#checkhouse-card {
+  min-height: 80vh;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
 
-  #scroll-area-1 {
-      height: 34vh;
-  }
+#scroll-area-1 {
+  height: 34vh;
+}
 
-  #scroll-area-2 {
-      height: 58vh;
-      margin-bottom: 10px;
-  }
-  
-  .price-range {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-  }
+#scroll-area-2 {
+  height: 58vh;
+  margin-bottom: 10px;
+}
 
-  .spacer {
-      width: 5px;
-  }
+.price-range {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
-  .vm {
-    width: 25%;
-    min-width: 70px;
-  }
+.spacer {
+  width: 5px;
+}
 
-  .bordera {
+.vm {
+  width: 25%;
+  min-width: 70px;
+}
+
+.bordera {
   background-color: lightseagreen;
-  }
-  
-  .borderb {
+}
+
+.borderb {
   background-color: pink;
-  }
+}
 
-  .borderc {
+.borderc {
   background-color: orange;
-  }
+}
 
-  .custom-height {
-    min-height: 80vh;
-  }
+.custom-height {
+  min-height: 80vh;
+}
 
+.card {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 10% rgba(41, 67, 100, 0.21);
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  padding: 10% 10% 10% 10%;
+}
+
+.headline {
+  font-weight: bold;
+}
+
+.card-icon {
+  pointer-events: none;
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  padding: 2% 2% 2% 2%;
+}
+
+.card-content {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  padding: 2% 2% 2% 2%;
+}
 </style>

@@ -1,21 +1,19 @@
 <template>
+
   <div id="pagination">
-    <nav class="pagination is-centered">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
       <a class="pagination-previous" v-if="current > 1" @click="onChange(current - 1)">&larr; Previous</a>
       <a class="pagination-next" v-if="size > 1 && current < size" @click="onChange(current + 1)">Next &rarr;</a>
-      <ul class="pagination-list">
-        <component v-for="element in elements" :key="element.page"  :is="element.type" :page="element.page" :current="current" :onChange="onChange"/>
-      </ul>
     </nav>
   </div>
 </template>
 
 <script>
-import Page from './Page.vue'
-import EllipseBreak from './EllipseBreak.vue'
+
+
 export default {
   name: 'pagination',
-  components: { Page, EllipseBreak },
+  components: {},
   props: {
     current: {
       type: Number
@@ -43,12 +41,6 @@ export default {
   },
   mounted () {
     this.paginate()
-    // Check for changes in props resulting from asynchronous operations
-    Object.keys(this._props).forEach(event => {
-      this.$watch(event, (val, oldVal) => {
-        this.paginate()
-      });
-    })
   },
   methods: {
     add (s, f) {
@@ -75,6 +67,7 @@ export default {
     paginate () {
       this.elements = []
       this.size = Math.ceil(this.total/this.itemsPerPage)
+
       if (this.size < this.step * 2 + 6) {
         // Case without any ellipse breaks
         this.add(1, this.size + 1);

@@ -1,13 +1,11 @@
+
 <template>
   <li><span class="pagination-ellipsis">&hellip;</span></li>
 </template>
 
 <script>
 export default {
-
-  name: 'ZDMElipseBreak',
-
+  name: 'ellipse-break',
   props: ['page', 'current', 'onChange']
-  
 }
 </script>
