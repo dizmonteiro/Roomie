@@ -142,6 +142,12 @@ export default new Router({
       beforeEnter: ifAuthenticatedLandlord
     },
     {
+      name: 'LandlordSarch',
+      path: '/landlord/search',
+      component: () => import('@/views/LandlordSearch'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
       name: 'LoggedTenant',
       path: '/tenant',
       component: () => import('@/views/LoggedTenant'),
