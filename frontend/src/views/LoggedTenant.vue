@@ -1,13 +1,12 @@
 <template>
   <div>
     <TenantNavbar />
-    
+
     <pagination
-      :current="pagination.current"
-      :total="pagination.total"
-      :itemsPerPage="pagination.itemsPerPage"
-      :onChange="onChange"
-      :step="1"
+      :selectedPage="1"
+      :numberOfPages="2"
+      @goBack="pageBack"
+      @goForward="pageForward"
     >
     </pagination>
     <div
@@ -18,45 +17,17 @@
           <div
             class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
           >
-            <div class="block">
+            <div v-for="h in column1" :key="h.id" class="block">
               <div class="card">
                 <img
                   object-fit="cover"
                   class="card-icon"
-                  :src="require(`@/assets/svg/house1.jpg`)"
+                  :src="require(`@/assets/svg/${h.imgName1}`)"
                   alt="card icon"
                 />
                 <div class="card-content">
-                  <p class="title has-text-centered is-one-third">1</p>
-                  <div class="content has-text-centered">1</div>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/house2.jpg`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">4</p>
-                  <div class="content has-text-centered">4</div>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/house2.jpg`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">7</p>
-                  <div class="content has-text-centered">7</div>
+                  <p class="title has-text-centered is-one-third">{{h.headline1}}</p>
+                  <div class="content has-text-centered">{{h.text1}}</div>
                 </div>
               </div>
             </div>
@@ -64,45 +35,17 @@
           <div
             class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
           >
-            <div class="block">
+            <div v-for="h in column2" :key="h.id" class="block">
               <div class="card">
                 <img
                   object-fit="cover"
                   class="card-icon"
-                  :src="require(`@/assets/svg/house3.jpg`)"
+                  :src="require(`@/assets/svg/${h.imgName1}`)"
                   alt="card icon"
                 />
                 <div class="card-content">
-                  <p class="title has-text-centered is-one-third">2</p>
-                  <div class="content has-text-centered">2</div>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/house2.jpg`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">5</p>
-                  <div class="content has-text-centered">5</div>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/house2.jpg`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">8</p>
-                  <div class="content has-text-centered">8</div>
+                  <p class="title has-text-centered is-one-third">{{h.headline1}}</p>
+                  <div class="content has-text-centered">{{h.text1}}</div>
                 </div>
               </div>
             </div>
@@ -110,45 +53,17 @@
           <div
             class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
           >
-            <div class="block">
+            <div v-for="h in column3" :key="h.id" class="block">
               <div class="card">
                 <img
                   object-fit="cover"
                   class="card-icon"
-                  :src="require(`@/assets/svg/house2.jpg`)"
+                  :src="require(`@/assets/svg/${h.imgName1}`)"
                   alt="card icon"
                 />
                 <div class="card-content">
-                  <p class="title has-text-centered is-one-third">3</p>
-                  <div class="content has-text-centered">3</div>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/house2.jpg`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">6</p>
-                  <div class="content has-text-centered">6</div>
-                </div>
-              </div>
-            </div>
-            <div class="block">
-              <div class="card">
-                <img
-                  object-fit="cover"
-                  class="card-icon"
-                  :src="require(`@/assets/svg/house2.jpg`)"
-                  alt="card icon"
-                />
-                <div class="card-content">
-                  <p class="title has-text-centered is-one-third">9</p>
-                  <div class="content has-text-centered">9</div>
+                  <p class="title has-text-centered is-one-third">{{h.headline1}}</p>
+                  <div class="content has-text-centered">{{h.text1}}</div>
                 </div>
               </div>
             </div>
@@ -177,109 +92,127 @@ export default {
     return {
       allinfo: [
         {
+          id: 1,
           headline1: "Name Template 1",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
+          id: 2,
           headline1: "Name Template 2",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1as",
+          id: 3,
+          headline1: "Name Template 3",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1csa",
+          id: 4,
+          headline1: "Name Template 4",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1cdsa",
+          id: 5,
+          headline1: "Name Template 5",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template sda1",
+          id: 6,
+          headline1: "Name Template 6",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template csdac1",
+          id: 7,
+          headline1: "Name Template 7",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1cdsacds",
+          id: 8,
+          headline1: "Name Template 8",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1cdasc",
+          id: 9,
+          headline1: "Name Template 9",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template cdas1",
+          id: 10,
+          headline1: "Name Template 10",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template cdsa1",
+          id: 11,
+          headline1: "Name Template 11",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1csda",
+          id: 12,
+          headline1: "Name Template 12",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1cdas",
+          id: 13,
+          headline1: "Name Template 13",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1cdas",
+          id: 14,
+          headline1: "Name Template 14",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1",
+          id: 15,
+          headline1: "Name Template 15",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1",
+          id: 16,
+          headline1: "Name Template 16",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1",
+          id: 17,
+          headline1: "Name Template 17",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
         },
         {
-          headline1: "Name Template 1",
+          id: 18,
+          headline1: "Name Template 18",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
@@ -296,7 +229,20 @@ export default {
   },
 
   methods: {
+    pageBack() {
+      this.indiceatual -= 9;
+      this.fillColumns(this.indiceatual);
+      console.log(this.column1)
+    },
+    pageForward() {
+      this.indiceatual += 9;
+      this.fillColumns(this.indiceatual);
+      console.log(this.column1)
+    },
     fillColumns(start) {
+      this.column1=[]
+      this.column2=[]
+      this.column3=[]
       var i;
       for (i = start; i < start + 3 && i < this.allinfo.length; i++) {
         this.column1.push(this.allinfo[i]);
