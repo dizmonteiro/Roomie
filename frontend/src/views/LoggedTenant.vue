@@ -4,9 +4,9 @@
     <div
       class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
     >
-      <div class="column is-10-mobile is-10-tablet is-10-desktop">
+      <div class="column is-9-mobile is-9-tablet is-9-desktop">
         <div class="card-pages">
-          <div class="columns is-desktop is-mobile is-tablet">
+          <div class="columns">
             <div
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
@@ -71,7 +71,7 @@
           <div class="block">
             <pagination
               :selectedPage="1"
-              :numberOfPages="10"
+              :numberOfPages="6"
               @goBack="pageBack"
               @goForward="pageForward"
             >
@@ -105,35 +105,35 @@ export default {
           id: 2,
           headline1: "Name Template 2",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house3.jpg",
           link1: "/",
         },
         {
           id: 3,
           headline1: "Name Template 3",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house2.jpg",
           link1: "/",
         },
         {
           id: 4,
           headline1: "Name Template 4",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house6.jpg",
           link1: "/",
         },
         {
           id: 5,
           headline1: "Name Template 5",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house7.jpg",
           link1: "/",
         },
         {
           id: 6,
           headline1: "Name Template 6",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house8.jpg",
           link1: "/",
         },
         {
@@ -154,14 +154,14 @@ export default {
           id: 9,
           headline1: "Name Template 9",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house5.jpg",
           link1: "/",
         },
         {
           id: 10,
           headline1: "Name Template 10",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house8.jpg",
           link1: "/",
         },
         {
@@ -175,21 +175,21 @@ export default {
           id: 12,
           headline1: "Name Template 12",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house5.jpg",
           link1: "/",
         },
         {
           id: 13,
           headline1: "Name Template 13",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house8.jpg",
           link1: "/",
         },
         {
           id: 14,
           headline1: "Name Template 14",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house8.jpg",
           link1: "/",
         },
         {
@@ -203,7 +203,7 @@ export default {
           id: 16,
           headline1: "Name Template 16",
           text1: "Template 1",
-          imgName1: "house1.jpg",
+          imgName1: "house5.jpg",
           link1: "/",
         },
         {
@@ -216,6 +216,258 @@ export default {
         {
           id: 18,
           headline1: "Name Template 18",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 19,
+          headline1: "Name Template 19",
+          text1: "Template 1",
+          imgName1: "house8.jpg",
+          link1: "/",
+        },
+        {
+          id: 20,
+          headline1: "Name Template 20",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 21,
+          headline1: "Name Template 21",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 22,
+          headline1: "Name Template 22",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 23,
+          headline1: "Name Template 23",
+          text1: "Template 1",
+          imgName1: "house8.jpg",
+          link1: "/",
+        },
+        {
+          id: 24,
+          headline1: "Name Template 24",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 25,
+          headline1: "Name Template 25",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 26,
+          headline1: "Name Template 26",
+          text1: "Template 1",
+          imgName1: "house8.jpg",
+          link1: "/",
+        },
+        {
+          id: 27,
+          headline1: "Name Template 27",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 28,
+          headline1: "Name Template 28",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 29,
+          headline1: "Name Template 29",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 30,
+          headline1: "Name Template 30",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 31,
+          headline1: "Name Template 31",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 32,
+          headline1: "Name Template 32",
+          text1: "Template 1",
+          imgName1: "house8.jpg",
+          link1: "/",
+        },
+        {
+          id: 33,
+          headline1: "Name Template 33",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 34,
+          headline1: "Name Template 34",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 35,
+          headline1: "Name Template 35",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 36,
+          headline1: "Name Template 36",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 37,
+          headline1: "Name Template 37",
+          text1: "Template 1",
+          imgName1: "house8.jpg",
+          link1: "/",
+        },
+        {
+          id: 38,
+          headline1: "Name Template 38",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 39,
+          headline1: "Name Template 39",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 40,
+          headline1: "Name Template 40",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 41,
+          headline1: "Name Template 41",
+          text1: "Template 1",
+          imgName1: "house8.jpg",
+          link1: "/",
+        },
+        {
+          id: 42,
+          headline1: "Name Template 42",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 43,
+          headline1: "Name Template 43",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 44,
+          headline1: "Name Template 44",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 45,
+          headline1: "Name Template 45",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 46,
+          headline1: "Name Template 46",
+          text1: "Template 1",
+          imgName1: "house8.jpg",
+          link1: "/",
+        },
+        {
+          id: 47,
+          headline1: "Name Template 47",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 48,
+          headline1: "Name Template 48",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 49,
+          headline1: "Name Template 49",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 50,
+          headline1: "Name Template 50",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 51,
+          headline1: "Name Template 51",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 52,
+          headline1: "Name Template 52",
+          text1: "Template 1",
+          imgName1: "house1.jpg",
+          link1: "/",
+        },
+        {
+          id: 53,
+          headline1: "Name Template 53",
+          text1: "Template 1",
+          imgName1: "house5.jpg",
+          link1: "/",
+        },
+        {
+          id: 54,
+          headline1: "Name Template 54",
           text1: "Template 1",
           imgName1: "house1.jpg",
           link1: "/",
