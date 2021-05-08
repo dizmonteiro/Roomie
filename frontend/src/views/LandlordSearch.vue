@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TenantNavbar />
+    <LandlordNavbar />
     <div class="card-pages">
       <div
         class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
@@ -141,12 +141,12 @@
 
 <script>
 import Pagination from "@/components/Pagination.vue";
-import TenantNavbar from "@/components/TenantNavbar.vue";
+import LandlordNavbar from "@/components/LandlordNavbar.vue";
 import SearchOptions from "@/components/SearchOptions.vue";
 
 export default {
-  name: "LoggedTenant",
-  components: { Pagination, TenantNavbar, SearchOptions },
+  name: "LandlordSearch",
+  components: { Pagination, LandlordNavbar, SearchOptions },
 
   data() {
     return {
@@ -710,33 +710,3 @@ export default {
   margin-top: 3%;
 }
 </style>
-
-.card {
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 10% rgba(41, 67, 100, 0.21);
-  width: 100%;
-  height: 70%;
-  padding: 10% 10% 10% 10%;
-}
-
-.headline {
-  font-weight: bold;
-}
-
-.card-icon {
-  pointer-events: none;
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  min-height: 100px;
-  padding: 2% 2% 2% 2%;
-}
-
-.card-content {
-  width: 100%;
-  height: 50%;
-  max-height: 200px;
-  min-height: 100px;
-  padding: 2% 2% 2% 2%;
-}
