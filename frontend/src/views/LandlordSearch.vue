@@ -778,7 +778,24 @@ export default {
   created() {
     axios.get(api_url + '/api/houses/total').then(response => {
       this.pages = Math.ceil(response.data/9)
-      axios.get(api_url + '/api/houses/').then(response => {
+      var queryParam = "";
+
+      if(this.$route.query.bedrooms)
+        queryParam = "?rooms=" + this.$route.query.bedrooms
+
+      if(this.$route.query.bedrooms && this.$route.query.price)
+        queryParam += "&price=" + this.$route.query.price
+      else if(!this.$route.query.bedrooms && this.$route.query.price)
+        queryParam += "?price=" + this.$route.query.price
+
+      if((this.$route.query.bedrooms || this.$route.query.price) && this.$route.query.city)
+        queryParam += "&city=" + this.$route.query.location
+      else if((!this.$route.query.bedrooms && !this.$route.query.price) && this.$route.query.city)
+        queryParam += "?city=" + this.$route.query.city
+
+      console.log(queryParam)
+
+      axios.get(api_url + '/api/houses'+queryParam).then(response => {
         console.log(response.data)
         for (var entry in response.data){
           if(response.data[entry] != null){

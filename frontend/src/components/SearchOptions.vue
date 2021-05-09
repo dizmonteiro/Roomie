@@ -4,12 +4,14 @@
       class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
     >
       <div class="field">
+        <form v-on:submit.prevent="noop">
         <p class="control has-icons-left">
-          <input class="input" type="search" placeholder="Search" />
+          <input class="input" id="city_input" type="search" placeholder="City" v-on:keyup.enter="cityParam"/>
           <span class="icon is-small is-left">
             <i class="fas fa-search"></i>
           </span>
         </p>
+        </form>
       </div>
     </div>
     <div
@@ -30,10 +32,11 @@
         </div>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
           <div class="dropdown-content">
-            <a class="dropdown-item"> T1 </a>
-            <a class="dropdown-item"> T2 </a>
-            <a class="dropdown-item"> T3 </a>
-            <a class="dropdown-item"> ... </a>
+            <a class="dropdown-item" @click="bedroomParam(1)">1</a>
+            <a class="dropdown-item" @click="bedroomParam(2)">2</a>
+            <a class="dropdown-item" @click="bedroomParam(3)">3</a>
+            <a class="dropdown-item" @click="bedroomParam(4)">4</a>
+            <a class="dropdown-item" @click="bedroomParam(5)">5</a>
           </div>
         </div>
       </div>
@@ -52,10 +55,13 @@
         </div>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
           <div class="dropdown-content">
-            <a class="dropdown-item"> 200€ </a>
-            <a class="dropdown-item"> 300€ </a>
-            <a class="dropdown-item"> 400€ </a>
-            <a class="dropdown-item"> ... </a>
+            <a class="dropdown-item" @click="priceParam(100)">100€</a>
+            <a class="dropdown-item" @click="priceParam(200)">200€</a>
+            <a class="dropdown-item" @click="priceParam(300)">300€</a>
+            <a class="dropdown-item" @click="priceParam(400)">400€</a>
+            <a class="dropdown-item" @click="priceParam(500)">500€</a>
+            <a class="dropdown-item" @click="priceParam(750)">750€</a>
+            <a class="dropdown-item" @click="priceParam(1000)">1000€</a>
           </div>
         </div>
       </div>
@@ -64,6 +70,8 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex';
+
 export default {
   name: "SearchOptions",
 
@@ -73,11 +81,82 @@ export default {
       pricesActive: 0,
     };
   },
-
+  computed: {
+    ...mapGetters(["getType","getId"]),
+    ...mapState({
+      type: (state) => `${state.user.type}`
+    }),
+  },
   mounted() {
     this.paginate();
   },
   methods: {
+    bedroomParam(b){
+      var p;
+
+      if(this.type == "landlord")
+       p = "/landlord/search"
+      else if(this.type == "tenant")
+       p = "/tenant/search"
+
+      var q = {}
+
+      if(this.$route.query.price)
+        q.price = this.$route.query.price
+
+      if(this.$route.query.city)
+        q.city = this.$route.query.city
+
+      q.bedrooms = b
+
+      this.$router.push({ path: p, query: q})
+      this.$router.go()
+    },
+    priceParam(b){
+      var p;
+
+      if(this.type == "landlord")
+       p = "/landlord/search"
+      else if(this.type == "tenant")
+       p = "/tenant/search"
+
+      var q = {}
+
+      if(this.$route.query.bedrooms)
+        q.bedrooms = this.$route.query.bedrooms
+
+      if(this.$route.query.city)
+        q.city = this.$route.query.city
+      
+      q.price = b
+
+      console.log("query: " + JSON.stringify(q))
+
+      this.$router.push({ path: p, query: q})
+      this.$router.go()
+    },
+    cityParam(){
+      var c = document.getElementById("city_input").value;
+      var p;
+
+      if(this.type == "landlord")
+       p = "/landlord/search"
+      else if(this.type == "tenant")
+       p = "/tenant/search"
+
+      var q = {}
+
+      if(this.$route.query.price)
+        q.price = this.$route.query.price
+
+      if(this.$route.query.bedrooms)
+        q.bedrooms = this.$route.query.bedrooms
+
+      q.city = c
+
+      this.$router.push({ path: p, query: q})
+      this.$router.go()
+    },
     clickedBedroom() {
       if (this.bedroomsActive === 0) {
         this.bedroomsActive = 1;
