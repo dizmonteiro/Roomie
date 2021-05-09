@@ -14,118 +14,124 @@
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column1" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="require(`@/assets/svg/${h.imgName1}`)"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="require(`@/assets/svg/${h.imgName2}`)"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column2" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="require(`@/assets/svg/${h.imgName1}`)"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="require(`@/assets/svg/${h.imgName2}`)"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column3" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="require(`@/assets/svg/${h.imgName1}`)"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="require(`@/assets/svg/${h.imgName2}`)"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
           <div class="block">
             <pagination
               :selectedPage="1"
-              :numberOfPages="6"
+              :numberOfPages="pages"
               @goBack="pageBack"
               @goForward="pageForward"
               @goStart="pageStart"
@@ -143,6 +149,8 @@
 import Pagination from "@/components/Pagination.vue";
 import LandlordNavbar from "@/components/LandlordNavbar.vue";
 import SearchOptions from "@/components/SearchOptions.vue";
+import axios from 'axios';
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "LandlordSearch",
@@ -150,7 +158,8 @@ export default {
 
   data() {
     return {
-      allinfo: [
+      allinfo: [],
+      copy_allinfo: [
         {
           id: 1,
           headline1: "House Name 1",
@@ -642,47 +651,121 @@ export default {
       column2: [],
       column3: [],
       indiceatual: 0,
+      pages: 1,
+      total: 0
     };
   },
 
   methods: {
     pageBack() {
       this.indiceatual -= 9;
-      this.fillColumns(this.indiceatual);
-      console.log(this.column1);
+      this.allinfo = [];
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+        console.log(response.data)
+        for (var entry in response.data){
+          if(response.data[entry] != null){
+              this.allinfo.push({
+                id: response.data[entry].id,
+                headline1: response.data[entry].title.substring(0,17),
+                text1: response.data[entry].landlord.name,
+                imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
+                link1: `/landlord/house/${response.data[entry].id}`,
+                imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
+                text2: response.data[entry].description.substring(0,30) + "..."
+              });
+          }
+        }
+        this.fillColumns();
+      }).catch(e => {
+        console.log(e)
+      }); 
     },
 
     pageForward() {
       this.indiceatual += 9;
-      this.fillColumns(this.indiceatual);
-      console.log(this.column1);
+      this.allinfo = [];
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+        console.log(response.data)
+        for (var entry in response.data){
+          if(response.data[entry] != null){
+              this.allinfo.push({
+                id: response.data[entry].id,
+                headline1: response.data[entry].title.substring(0,17),
+                text1: response.data[entry].landlord.name,
+                imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
+                link1: `/landlord/house/${response.data[entry].id}`,
+                imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
+                text2: response.data[entry].description.substring(0,30) + "..."
+              });
+          }
+        }
+        this.fillColumns();
+      }).catch(e => {
+        console.log(e)
+      }); 
     },
 
     pageStart() {
       this.indiceatual = 0;
-      this.fillColumns(this.indiceatual);
-      console.log(this.column1);
+      this.allinfo = [];
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+        console.log(response.data)
+        for (var entry in response.data){
+          if(response.data[entry] != null){
+              this.allinfo.push({
+                id: response.data[entry].id,
+                headline1: response.data[entry].title.substring(0,17),
+                text1: response.data[entry].landlord.name,
+                imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
+                link1: `/landlord/house/${response.data[entry].id}`,
+                imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
+                text2: response.data[entry].description.substring(0,30) + "..."
+              });
+          }
+        }
+        this.fillColumns();
+      }).catch(e => {
+        console.log(e)
+      }); 
     },
 
     pageEnd() {
-      this.indiceatual = this.allinfo.length - 9;
-      this.fillColumns(this.indiceatual);
-      console.log(this.column1);
+      this.indiceatual = this.total - (this.total - ((this.pages - 1) * 9));
+      this.allinfo = [];
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+        console.log(response.data)
+        for (var entry in response.data){
+          if(response.data[entry] != null){
+              this.allinfo.push({
+                id: response.data[entry].id,
+                headline1: response.data[entry].title.substring(0,17),
+                text1: response.data[entry].landlord.name,
+                imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
+                link1: `/landlord/house/${response.data[entry].id}`,
+                imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
+                text2: response.data[entry].description.substring(0,30) + "..."
+              });
+          }
+        }
+        this.fillColumns();
+      }).catch(e => {
+        console.log(e)
+      }); 
     },
 
-    fillColumns(start) {
+    fillColumns() {
       this.column1 = [];
       this.column2 = [];
       this.column3 = [];
       var i;
-      for (i = start; i < start + 3 && i < this.allinfo.length; i++) {
-        this.column1.push(this.allinfo[i]);
-      }
-      for (i = start + 3; i < start + 6 && i < this.allinfo.length; i++) {
-        this.column2.push(this.allinfo[i]);
-      }
-      for (i = start + 6; i < start + 9 && i < this.allinfo.length; i++) {
-        this.column3.push(this.allinfo[i]);
+      console.log("length " + this.allinfo.length)
+      for(i = 0; i < 9; i = i+3){
+        if(i < this.allinfo.length)
+          this.column1.push(this.allinfo[i]);
+        if(i + 1 < this.allinfo.length)
+          this.column2.push(this.allinfo[i+1]);
+        if(i + 2 < this.allinfo.length)
+          this.column3.push(this.allinfo[i+2]);
       }
     },
 
@@ -693,7 +776,30 @@ export default {
   },
 
   created() {
-    this.fillColumns(0);
+    axios.get(api_url + '/api/houses/total').then(response => {
+      this.pages = Math.ceil(response.data/9)
+      axios.get(api_url + '/api/houses/').then(response => {
+        console.log(response.data)
+        for (var entry in response.data){
+          if(response.data[entry] != null){
+              this.allinfo.push({
+                id: response.data[entry].id,
+                headline1: response.data[entry].title.substring(0,17),
+                text1: response.data[entry].landlord.name,
+                imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
+                link1: `/landlord/house/${response.data[entry].id}`,
+                imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
+                text2: response.data[entry].description.substring(0,30) + "..."
+              });
+          }
+        }
+        this.fillColumns();
+      }).catch(e => {
+        console.log(e)
+      }); 
+    }).catch(e => {
+      console.log(e)
+    }); 
   },
 };
 </script>
