@@ -97,7 +97,7 @@ export default {
       if(this.type == "landlord")
        p = "/landlord/search"
       else if(this.type == "tenant")
-       p = "/tenant/search"
+       p = "/tenant"
 
       var q = {}
 
@@ -118,7 +118,7 @@ export default {
       if(this.type == "landlord")
        p = "/landlord/search"
       else if(this.type == "tenant")
-       p = "/tenant/search"
+       p = "/tenant"
 
       var q = {}
 
@@ -142,7 +142,7 @@ export default {
       if(this.type == "landlord")
        p = "/landlord/search"
       else if(this.type == "tenant")
-       p = "/tenant/search"
+       p = "/tenant"
 
       var q = {}
 
