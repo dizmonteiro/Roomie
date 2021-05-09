@@ -159,494 +159,7 @@ export default {
   data() {
     return {
       allinfo: [],
-      copy_allinfo: [
-        {
-          id: 1,
-          headline1: "House Name 1",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 2,
-          headline1: "House Name 2",
-          text1: "Landlord Name",
-          imgName1: "house3.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 3,
-          headline1: "House Name 3",
-          text1: "Landlord Name",
-          imgName1: "house2.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 4,
-          headline1: "House Name 4",
-          text1: "Landlord Name",
-          imgName1: "house6.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 5,
-          headline1: "House Name 5",
-          text1: "Landlord Name",
-          imgName1: "house7.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 6,
-          headline1: "House Name 6",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 7,
-          headline1: "House Name 7",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 8,
-          headline1: "House Name 8",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 9,
-          headline1: "House Name 9",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 10,
-          headline1: "House Name 10",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 11,
-          headline1: "House Name 11",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 12,
-          headline1: "House Name 12",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 13,
-          headline1: "House Name 13",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 14,
-          headline1: "House Name 14",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 15,
-          headline1: "House Name 15",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 16,
-          headline1: "House Name 16",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 17,
-          headline1: "House Name 17",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 18,
-          headline1: "House Name 18",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 19,
-          headline1: "House Name 19",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 20,
-          headline1: "House Name 20",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 21,
-          headline1: "House Name 21",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 22,
-          headline1: "House Name 22",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 23,
-          headline1: "House Name 23",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 24,
-          headline1: "House Name 24",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 25,
-          headline1: "House Name 25",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 26,
-          headline1: "House Name 26",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 27,
-          headline1: "House Name 27",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 28,
-          headline1: "House Name 28",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 29,
-          headline1: "House Name 29",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 30,
-          headline1: "House Name 30",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 31,
-          headline1: "House Name 31",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 32,
-          headline1: "House Name 32",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 33,
-          headline1: "House Name 33",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 34,
-          headline1: "House Name 34",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 35,
-          headline1: "House Name 35",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 36,
-          headline1: "House Name 36",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 37,
-          headline1: "House Name 37",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 38,
-          headline1: "House Name 38",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 39,
-          headline1: "House Name 39",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 40,
-          headline1: "House Name 40",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 41,
-          headline1: "House Name 41",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 42,
-          headline1: "House Name 42",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 43,
-          headline1: "House Name 43",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 44,
-          headline1: "House Name 44",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 45,
-          headline1: "House Name 45",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 46,
-          headline1: "House Name 46",
-          text1: "Landlord Name",
-          imgName1: "house8.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 47,
-          headline1: "House Name 47",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 48,
-          headline1: "House Name 48",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 49,
-          headline1: "House Name 49",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 50,
-          headline1: "House Name 50",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 51,
-          headline1: "House Name 51",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 52,
-          headline1: "House Name 52",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 53,
-          headline1: "House Name 53",
-          text1: "Landlord Name",
-          imgName1: "house5.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-        {
-          id: 54,
-          headline1: "House Name 54",
-          text1: "Landlord Name",
-          imgName1: "house1.jpg",
-          link1: "/",
-          imgName2: "face1.svg",
-          text2: "House Description Template",
-        },
-      ],
+      queryParam: "",
       column1: [],
       column2: [],
       column3: [],
@@ -660,7 +173,20 @@ export default {
     pageBack() {
       this.indiceatual -= 9;
       this.allinfo = [];
-      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+
+      this.queryParam = "";
+
+      if(this.$route.query.bedrooms)
+        this.queryParam += "&rooms=" + this.$route.query.bedrooms
+
+      if(this.$route.query.price)
+        this.queryParam += "&price=" + this.$route.query.price
+
+      if(this.$route.query.city)
+        this.queryParam += "&city=" + this.$route.query.city
+
+
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual + this.queryParam).then(response => {
         console.log(response.data)
         for (var entry in response.data){
           if(response.data[entry] != null){
@@ -684,7 +210,19 @@ export default {
     pageForward() {
       this.indiceatual += 9;
       this.allinfo = [];
-      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+
+      this.queryParam = "";
+
+      if(this.$route.query.bedrooms)
+        this.queryParam += "&rooms=" + this.$route.query.bedrooms
+
+      if(this.$route.query.price)
+        this.queryParam += "&price=" + this.$route.query.price
+
+      if(this.$route.query.city)
+        this.queryParam += "&city=" + this.$route.query.city
+
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual + this.queryParam).then(response => {
         console.log(response.data)
         for (var entry in response.data){
           if(response.data[entry] != null){
@@ -708,7 +246,19 @@ export default {
     pageStart() {
       this.indiceatual = 0;
       this.allinfo = [];
-      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+
+      this.queryParam = "";
+
+      if(this.$route.query.bedrooms)
+        this.queryParam += "&rooms=" + this.$route.query.bedrooms
+
+      if(this.$route.query.price)
+        this.queryParam += "&price=" + this.$route.query.price
+
+      if(this.$route.query.city)
+        this.queryParam += "&city=" + this.$route.query.city
+
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual + this.queryParam).then(response => {
         console.log(response.data)
         for (var entry in response.data){
           if(response.data[entry] != null){
@@ -732,7 +282,19 @@ export default {
     pageEnd() {
       this.indiceatual = this.total - (this.total - ((this.pages - 1) * 9));
       this.allinfo = [];
-      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual).then(response => {
+
+      this.queryParam = "";
+
+      if(this.$route.query.bedrooms)
+        this.queryParam += "&rooms=" + this.$route.query.bedrooms
+
+      if(this.$route.query.price)
+        this.queryParam += "&price=" + this.$route.query.price
+
+      if(this.$route.query.city)
+        this.queryParam += "&city=" + this.$route.query.city
+
+      axios.get(api_url + '/api/houses/?offset=' + this.indiceatual + this.queryParam).then(response => {
         console.log(response.data)
         for (var entry in response.data){
           if(response.data[entry] != null){
@@ -776,26 +338,26 @@ export default {
   },
 
   created() {
+    this.queryParam = "";
+
+    if(this.$route.query.bedrooms)
+      this.queryParam = "?rooms=" + this.$route.query.bedrooms
+
+    if(this.$route.query.bedrooms && this.$route.query.price)
+      this.queryParam += "&price=" + this.$route.query.price
+    else if(!this.$route.query.bedrooms && this.$route.query.price)
+      this.queryParam += "?price=" + this.$route.query.price
+
+    if((this.$route.query.bedrooms || this.$route.query.price) && this.$route.query.city)
+      this.queryParam += "&city=" + this.$route.query.city
+    else if((!this.$route.query.bedrooms && !this.$route.query.price) && this.$route.query.city)
+      this.queryParam += "?city=" + this.$route.query.city
+
     axios.get(api_url + '/api/houses/total').then(response => {
       this.pages = Math.ceil(response.data/9)
-      var queryParam = "";
+      console.log(this.queryParam)
 
-      if(this.$route.query.bedrooms)
-        queryParam = "?rooms=" + this.$route.query.bedrooms
-
-      if(this.$route.query.bedrooms && this.$route.query.price)
-        queryParam += "&price=" + this.$route.query.price
-      else if(!this.$route.query.bedrooms && this.$route.query.price)
-        queryParam += "?price=" + this.$route.query.price
-
-      if((this.$route.query.bedrooms || this.$route.query.price) && this.$route.query.city)
-        queryParam += "&city=" + this.$route.query.location
-      else if((!this.$route.query.bedrooms && !this.$route.query.price) && this.$route.query.city)
-        queryParam += "?city=" + this.$route.query.city
-
-      console.log(queryParam)
-
-      axios.get(api_url + '/api/houses'+queryParam).then(response => {
+      axios.get(api_url + '/api/houses'+this.queryParam).then(response => {
         console.log(response.data)
         for (var entry in response.data){
           if(response.data[entry] != null){
