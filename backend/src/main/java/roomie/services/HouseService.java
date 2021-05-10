@@ -62,8 +62,28 @@ public class HouseService {
 		return houses.subList(offset, offset + limit);
 	}
 	
-	public int getTotalHouses() throws PersistentException {
-		return HouseDAO.getTotalNOfHouses();
+	public int getTotalHouses(String title, String city, Integer rooms, Double price) throws PersistentException {
+		HouseCriteria houseCriteria = new HouseCriteria();
+		
+		if (title != null && title.trim().length() != 0) {
+			houseCriteria.add(Restrictions.ilike("title", "%" + title + "%"));
+		}
+		
+		if (city != null && city.trim().length() != 0) {
+			houseCriteria.add(Restrictions.ilike("address", "%" + city + "%"));
+		}
+		
+		if (rooms != null) {
+			houseCriteria.add(Restrictions.eq("rooms", rooms));
+		}
+		
+		if (price != null) {
+			// minPrice <= price <= maxPrice
+			houseCriteria.add(Restrictions.le("minPrice", price));
+			houseCriteria.add(Restrictions.ge("maxPrice", price));
+		}
+		
+		return 	houseCriteria.list().size();
 	}
 	
 	public House getById(int id) throws ResourceNotFoundException, PersistentException {

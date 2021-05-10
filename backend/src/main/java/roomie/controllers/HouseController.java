@@ -74,8 +74,8 @@ public class HouseController {
 	}
 	
 	@GetMapping(("/total"))
-	public Integer getTotalHouses() throws PersistentException {
-		return houseService.getTotalHouses();
+	public Integer getTotalHouses(@RequestParam(required = false) String title, @RequestParam(required = false) String city, @RequestParam(required = false) Integer rooms, @RequestParam(required = false) Double price) throws PersistentException {
+		return houseService.getTotalHouses(title, city, rooms, price);
 	}
 	
 	@GetMapping(value = "/{id}")
