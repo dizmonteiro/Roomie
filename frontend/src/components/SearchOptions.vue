@@ -6,6 +6,20 @@
       <div class="field">
         <form v-on:submit.prevent="noop">
         <p class="control has-icons-left">
+          <input class="input" id="title_input" type="search" placeholder="Title" v-on:keyup.enter="titleParam"/>
+          <span class="icon is-small is-left">
+            <i class="fas fa-search"></i>
+          </span>
+        </p>
+        </form>
+      </div>
+    </div>
+    <div
+      class="column is-one-fifth-desktop is-one-fifth-tablet is-one-fifth-mobile"
+    >
+      <div class="field">
+        <form v-on:submit.prevent="noop">
+        <p class="control has-icons-left">
           <input class="input" id="city_input" type="search" placeholder="City" v-on:keyup.enter="cityParam"/>
           <span class="icon is-small is-left">
             <i class="fas fa-search"></i>
@@ -66,6 +80,11 @@
         </div>
       </div>
     </div>
+    <div
+      class="column is-tenth-desktop is-tenth-tablet is-tenth-mobile"
+    >
+      <button class="button button-spacer" v-on:click="clearQuery"><i class="fas fa-times fa-lg spacer"></i>Clear</button>
+    </div>
   </div>
 </template>
 
@@ -91,6 +110,17 @@ export default {
     this.paginate();
   },
   methods: {
+    clearQuery(){
+      var p;
+
+      if(this.type == "landlord")
+       p = "/landlord/search"
+      else if(this.type == "tenant")
+       p = "/tenant"
+
+      this.$router.push({ path: p})
+      this.$router.go()
+    },
     bedroomParam(b){
       var p;
 
@@ -179,5 +209,15 @@ export default {
 
 .dropdown {
     padding: 0% 6.5% 0% 0%;
+}
+
+.spacer {
+  margin-right: 5px;
+  color: red;
+}
+
+.button-spacer {
+  width: 60%;
+  margin-left: 40%;
 }
 </style>

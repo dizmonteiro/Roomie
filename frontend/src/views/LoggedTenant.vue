@@ -128,7 +128,8 @@
               </div>
             </div>
           </div>
-          <div class="block">
+          <div id="result"></div>
+          <div class="block" id="pagination">
             <pagination
               :selectedPage="1"
               :numberOfPages="pages"
@@ -372,7 +373,14 @@ export default {
               });
           }
         }
+
         this.fillColumns();
+
+
+        if(this.allinfo.length == 0){
+          document.getElementById("pagination").innerHTML = "";
+          document.getElementById("result").innerHTML = '<h1 class="title">No results found!</h1>';
+        }
       }).catch(e => {
         console.log(e)
       }); 
