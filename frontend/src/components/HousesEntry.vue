@@ -27,13 +27,23 @@
         >
           <label class="label">Tenants living in this house:</label>
           <div class="otherTenants">
-            <div class="sTenant" v-for="tenant in tenants" :key="tenant.photo">
-              <figure class="image center is-128x128">
-                <img class="is-rounded" :src="tenant.photo" />
+            <div class="sTenant" v-for="tenant in tenants" :key="tenant.id">
+              <figure class="image avatar">
+                <img
+                  class="is-rounded"
+                  id="profile-pic"
+                  v-bind:src="tenant.photo"
+                />
               </figure>
               <label class="label center">{{ tenant.name }}</label>
-              <button class="button is-green">Rate Roommate</button>
-              <button class="button is-green">No longer lives here</button>
+              <button id="rate" class="button is-green">Rate Tenant</button>
+              <button
+                :id="tenant.id"
+                class="button is-green"
+                @click="noLonger(tenant.id)"
+              >
+                Remove Tenant
+              </button>
             </div>
           </div>
         </div>
@@ -42,8 +52,12 @@
         >
           <div class="sButtons">
             <a class="button is-green rightButtons" :href="link">View House</a>
-            <a class="button is-green rightButtons" :href="update">Update House</a>
-            <button class="button is-green rightButtons">Remove House</button>
+            <a class="button is-green rightButtons" :href="update"
+              >Update House</a
+            >
+            <button class="button is-green rightButtons" @click="removeHouse">
+              Remove House
+            </button>
           </div>
         </div>
       </div>
@@ -53,22 +67,76 @@
 
 <script>
 import { VueAgile } from "vue-agile";
+
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
 export default {
-  props: ["houseSlides", "houseName", "houseLocation", "tenants", "since","link","update"],
+  props: [
+    "houseSlides",
+    "houseName",
+    "houseLocation",
+    "tenants",
+    "since",
+    "link",
+    "update",
+    "houseId",
+  ],
   components: { agile: VueAgile },
   data() {
     return {};
+  },
+
+  methods: {
+    removeHouse() {
+      this.$emit("removeHouse", this.houseId);
+      console.log("removeHouse" + this.houseId);
+    },
+    async noLonger(id) {
+      if (document.getElementById(id).innerHTML !== "Already Left!") {
+        var tenantInfo = {
+          tenantId: id,
+        };
+
+        await axios
+          .put(api_url + "/api/rentHistory/" + this.houseId, tenantInfo)
+          .then(() => {
+            console.log("sucess!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+        document.getElementById(id).innerHTML = "Already Left!";
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
+.avatar {
+  width: 8vmax;
+  height: 8vmax;
+  position: relative;
+  display: block;
+  margin: 15% auto 8% auto;
+}
+#profile-pic {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
 .rightButtons {
   width: 90%;
 }
 
-.sButtons{
-    margin: 30% auto;
+.sButtons {
+  margin: 30% auto;
 }
 
 .button {
