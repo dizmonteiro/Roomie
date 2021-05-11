@@ -91,10 +91,17 @@ import axios from "axios";
 import { url as api_url } from "@/assets/scripts/api";
 
 export default {
-  props: ["houseSlides", "houseName", "houseLocation", "tenant", "houseId","decision"],
+  props: [
+    "houseSlides",
+    "houseName",
+    "houseLocation",
+    "tenant",
+    "houseId",
+    "decision",
+  ],
   components: { agile: VueAgile, CheckRates },
   data() {
-    return {  };
+    return {};
   },
   methods: {
     checkProfile() {
@@ -106,7 +113,7 @@ export default {
           tenantId: this.tenant.id,
           accept: true,
         };
-        axios
+        await axios
           .put(api_url + "/api/applications/" + this.houseId, tenantInfo)
           .then(() => {
             this.decision = "accepted";
@@ -116,10 +123,21 @@ export default {
           });
       }
     },
-    rejected() {
-      //TO DO reject
-      if (this.decision === "rejected") this.decision = "toDecide";
-      else this.decision = "rejected";
+    async rejected() {
+      if (this.decision === "toDecide") {
+        var tenantInfo = {
+          tenantId: this.tenant.id,
+          accept: false,
+        };
+        await axios
+          .put(api_url + "/api/applications/" + this.houseId, tenantInfo)
+          .then(() => {
+            this.decision = "rejected";
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
     },
   },
 };
@@ -127,8 +145,8 @@ export default {
 
 <style scoped>
 .avatar {
-  width: 200px;
-  height: 200px;
+  width: 15vmax;
+  height: 15vmax;
   position: relative;
   display: block;
   margin: 11% auto 8% auto;
