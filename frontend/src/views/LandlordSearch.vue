@@ -353,7 +353,7 @@ export default {
     else if((!this.$route.query.bedrooms && !this.$route.query.price) && this.$route.query.city)
       this.queryParam += "?city=" + this.$route.query.city
 
-    axios.get(api_url + '/api/houses/total').then(response => {
+    axios.get(api_url + '/api/houses/total'+this.queryParam).then(response => {
       this.pages = Math.ceil(response.data/9)
       console.log(this.queryParam)
 
