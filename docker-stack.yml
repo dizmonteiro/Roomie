@@ -7,7 +7,7 @@ services:
             - 80:80
         depends_on:
             - postgres
-            - backend
+            - app-server
         deploy:
             replicas: 3
             restart_policy:
