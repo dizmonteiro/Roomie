@@ -32,6 +32,9 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+            <a class="button navb" href="/tenant">
+              <strong>Search</strong>
+            </a>
             <a class="button navb" href="/tenant/rhistory">
               <strong>My Rent History</strong>
             </a>
