@@ -77,9 +77,11 @@ def post_house(token):
         "address": "Av Test B1 2E, Viseu",
     }
 
-    files = {}
+    files = []
     for _i in range(0, random.randint(1, 7)):
-        files["files"] = open("./houses/" + random.choice(os.listdir("./houses")), "rb")
+        files.append(
+            ("files", open("./houses/" + random.choice(os.listdir("./houses")), "rb"))
+        )
 
     response = requests.post(
         f"{BASE_URL}/houses",

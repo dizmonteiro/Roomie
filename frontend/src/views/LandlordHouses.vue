@@ -10,13 +10,16 @@
       <smooth-scrollbar>
         <div>
           <div v-for="h in formData" :key="h.id">
-            <houses-entry
+            <houses-entry v-if="toPrint[h.id]"
+              :campo="teste"
               :houseSlides="h.housePhotos"
               :houseLocation="h.address"
               :houseName="h.title"
+              :houseId="h.id"
               :link="h.houseLink"
               :update="h.updateLink"
-              :tenants="tenantsHouse1"
+              :tenants="tenantInfo[h.tiId]"
+              @removeHouse="removeHouse"
             />
           </div>
         </div>
@@ -38,24 +41,21 @@ export default {
     axios
       .get(api_url + "/api/landlords/" + store.getters.getId + "/houses")
       .then((response) => {
-        this.formData = response.data.splice(0, 3);
-        for (var j = 0; j < this.formData.length; j++)
-        {
-          var slides = []
+        this.formData = response.data;
+        for (var j = 0; j < this.formData.length; j++) {
+          var slides = [];
           for (var i in this.formData[j].photos)
             slides.push(
               `${api_url}/api/houses/photos/${this.formData[j].photos[i]}`
             );
-            this.formData[j].housePhotos=slides;
-            this.formData[j].houseLink='/landlord/house/'+this.formData[j].id;
-            this.formData[j].updateLink='/landlord/house/'+this.formData[j].id+'/update';
+          this.formData[j].housePhotos = slides;
+          this.formData[j].houseLink = "/landlord/house/" + this.formData[j].id;
+          this.formData[j].updateLink =
+            "/landlord/house/" + this.formData[j].id + "/update";
+          this.formData[j].tiId = j;
+          this.toPrint[this.formData[j].id]=true;
+          this.getTenantsInHouse(this.formData[j].id, j);
         }
-        for (var x = 0; x < this.formData.length; x++)
-        {
-          console.log(this.formData[x])
-        }
-
-
       })
       .catch((e) => {
         console.log(e);
@@ -63,8 +63,10 @@ export default {
   },
   data() {
     return {
-      teste: [1, 2, 3],
+      toPrint: [],
+      teste: 0,
       formData: undefined,
+      tenantInfo: [],
       wh: window.innerHeight,
       landlordHouse1: {
         photo: "https://randomuser.me/api/portraits/men/54.jpg",
@@ -94,6 +96,32 @@ export default {
         "https://picsum.photos/id/398/1080/720",
       ],
     };
+  },
+  methods: {
+    removeHouse(h){
+        this.toPrint[h]=false;
+        this.teste--;
+        //TODO fazer o delete para a base de dados
+    },
+    async getTenantsInHouse(hid, j) {
+      await axios
+        //TODO por intervalo de tempo
+        .get(api_url + "/api/houses/" + hid + "/tenants")
+        .then((res) => {
+          this.tenantInfo[j] = [];
+          for (var t = 0; t < res.data.length; t++)
+              this.tenantInfo[j].push({
+                photo: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
+                name: res.data[t].name,
+                id: res.data[t].id,
+              });
+          this.teste++;
+          console.log("J="+j+" Tenant Info "+JSON.stringify(this.tenantInfo));
+        })
+        .catch((ex) => {
+          console.log(ex);
+        });
+    },
   },
   computed: {
     userStyle() {
