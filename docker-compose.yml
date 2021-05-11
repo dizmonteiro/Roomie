@@ -1,16 +1,16 @@
 version: "3.8"
 
 services:
-    frontend:
-        image: vascoalramos/roomie-frontend
+    web-server:
+        image: vascoalramos/roomie-web
         ports:
             - 80:80
         depends_on:
             - postgres
             - backend
 
-    backend:
-        image: vascoalramos/roomie-backend
+    app-server:
+        image: vascoalramos/roomie-app
         ports:
             - 8083:8083
         depends_on:

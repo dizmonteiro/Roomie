@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     web-server:
-        image: vascoalramos/roomie-frontend
+        image: vascoalramos/roomie-web
         ports:
             - 80:80
         depends_on:
@@ -14,7 +14,7 @@ services:
                 condition: any
 
     app-server:
-        image: vascoalramos/roomie-backend
+        image: vascoalramos/roomie-app
         ports:
             - 8083:8083
         depends_on:
