@@ -6,7 +6,7 @@
       <div class="field">
         <form v-on:submit.prevent="noop">
         <p class="control has-icons-left">
-          <input class="input" id="title_input" type="search" placeholder="Title" v-on:keyup.enter="titleParam"/>
+          <input class="input" id="title_input" type="search" placeholder="Title" :value="title" v-on:keyup.enter="titleParam"/>
           <span class="icon is-small is-left">
             <i class="fas fa-search"></i>
           </span>
@@ -20,7 +20,7 @@
       <div class="field">
         <form v-on:submit.prevent="noop">
         <p class="control has-icons-left">
-          <input class="input" id="city_input" type="search" placeholder="City" v-on:keyup.enter="cityParam"/>
+          <input class="input" id="city_input" type="search" placeholder="City" :value="city" v-on:keyup.enter="cityParam"/>
           <span class="icon is-small is-left">
             <i class="fas fa-search"></i>
           </span>
@@ -98,6 +98,8 @@ export default {
     return {
       bedroomsActive: 0,
       pricesActive: 0,
+      title: "",
+      city: "",
     };
   },
   computed: {
@@ -106,8 +108,15 @@ export default {
       type: (state) => `${state.user.type}`
     }),
   },
+  created() {
+    if(this.$route.query.title)
+      this.title = this.$route.query.title;
+    if(this.$route.query.city)
+      this.city = this.$route.query.city;
+  },
   mounted() {
     this.paginate();
+
   },
   methods: {
     clearQuery(){
@@ -137,6 +146,9 @@ export default {
       if(this.$route.query.city)
         q.city = this.$route.query.city
 
+      if(this.$route.query.title)
+        q.title = this.$route.query.title
+
       q.bedrooms = b
 
       this.$router.push({ path: p, query: q})
@@ -158,6 +170,9 @@ export default {
       if(this.$route.query.city)
         q.city = this.$route.query.city
       
+      if(this.$route.query.title)
+        q.title = this.$route.query.title
+
       q.price = b
 
       console.log("query: " + JSON.stringify(q))
@@ -182,7 +197,38 @@ export default {
       if(this.$route.query.bedrooms)
         q.bedrooms = this.$route.query.bedrooms
 
+      if(this.$route.query.title)
+        q.title = this.$route.query.title
+
       q.city = c
+
+      this.$router.push({ path: p, query: q})
+      this.$router.go()
+    },
+    titleParam(){
+      var c = document.getElementById("title_input").value;
+      var p;
+
+      if(this.type == "landlord")
+       p = "/landlord/search"
+      else if(this.type == "tenant")
+       p = "/tenant"
+
+      var q = {}
+
+      if(this.$route.query.price)
+        q.price = this.$route.query.price
+
+      if(this.$route.query.bedrooms)
+        q.bedrooms = this.$route.query.bedrooms
+
+      if(this.$route.query.city)
+        q.city = this.$route.query.price
+
+      if(this.$route.query.bedrooms)
+        q.bedrooms = this.$route.query.bedrooms
+
+      q.title = c
 
       this.$router.push({ path: p, query: q})
       this.$router.go()

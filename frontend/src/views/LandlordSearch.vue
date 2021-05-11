@@ -128,7 +128,8 @@
               </div>
             </div>
           </div>
-          <div class="block">
+          <div id="result"></div>
+          <div class="block" id="pagination">
             <pagination
               :selectedPage="1"
               :numberOfPages="pages"
@@ -353,6 +354,11 @@ export default {
     else if((!this.$route.query.bedrooms && !this.$route.query.price) && this.$route.query.city)
       this.queryParam += "?city=" + this.$route.query.city
 
+    if((this.$route.query.bedrooms || this.$route.query.price || this.$route.query.city) && this.$route.query.title)
+      this.queryParam += "&title=" + this.$route.query.title
+    else if((!this.$route.query.bedrooms && !this.$route.query.price && !this.$route.query.city) && this.$route.query.title)
+      this.queryParam += "?title=" + this.$route.query.title
+
     axios.get(api_url + '/api/houses/total'+this.queryParam).then(response => {
       this.pages = Math.ceil(response.data/9)
       console.log(this.queryParam)
@@ -373,6 +379,11 @@ export default {
           }
         }
         this.fillColumns();
+
+        if(this.allinfo.length == 0){
+          document.getElementById("pagination").innerHTML = "";
+          document.getElementById("result").innerHTML = '<h1 class="title">No results found!</h1>';
+        }
       }).catch(e => {
         console.log(e)
       }); 
