@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-    frontend:
+    web-server:
         image: vascoalramos/roomie-frontend
         ports:
             - 80:80
@@ -13,7 +13,7 @@ services:
             restart_policy:
                 condition: any
 
-    backend:
+    app-server:
         image: vascoalramos/roomie-backend
         ports:
             - 8083:8083
