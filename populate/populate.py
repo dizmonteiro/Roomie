@@ -83,8 +83,6 @@ def post_house(token):
             ("files", open("./houses/" + random.choice(os.listdir("./houses")), "rb"))
         )
 
-    print(files)
-
     response = requests.post(
         f"{BASE_URL}/houses",
         data=payload,
