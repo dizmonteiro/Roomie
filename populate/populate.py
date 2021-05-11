@@ -67,9 +67,9 @@ def post_house(token):
     headers = {"Authorization": "Bearer " + token}
     payload = {
         "title": fake.text(),
-        "rooms": fake.random_int(0, 100),
-        "availableRooms": fake.random_int(0, 100),
-        "bathRooms": fake.random_int(0, 100),
+        "rooms": fake.random_int(0, 6),
+        "availableRooms": fake.random_int(0, 5),
+        "bathRooms": fake.random_int(0, 3),
         "minPrice": 250,
         "maxPrice": 300,
         "description": fake.text(max_nb_chars=500).replace("\n", " "),

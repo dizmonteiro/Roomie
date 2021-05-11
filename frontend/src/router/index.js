@@ -127,6 +127,7 @@ export default new Router({
       name: 'Landlord Update House',
       path: '/landlord/house/:id/update',
       component: () => import('@/views/UpdateHouse'),
+      beforeEnter: ifAuthenticatedLandlord
     },
     {
       name: 'Landlord Houses',
@@ -145,6 +146,12 @@ export default new Router({
       name: 'Landlord Check House',
       path: '/landlord/house/:id',
       component: ()=>import('@/views/LandlordCheckHouse'),
+      beforeEnter: ifAuthenticatedLandlord
+    },
+    {
+      name: 'LandlordSarch',
+      path: '/landlord/search',
+      component: () => import('@/views/LandlordSearch'),
       beforeEnter: ifAuthenticatedLandlord
     },
     {
@@ -167,7 +174,7 @@ export default new Router({
     },
     {
       name: 'Tenant Tenant Profile',
-      path: '/tenant/tprofile',
+      path: '/tenant/tprofile/:id',
       component: () => import('@/views/TenantProfileCheck'),
       beforeEnter: ifAuthenticated
     },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TenantNavbar />
+    <LandlordNavbar />
     <div class="card-pages">
       <div
         class="columns is-centered is-vcentered is-mobile is-tablet is-desktop is-multiline"
@@ -14,111 +14,117 @@
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column1" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="h.imgName1"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="h.imgName2"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column2" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="h.imgName1"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="h.imgName2"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column3" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="h.imgName1"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="h.imgName2"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -141,14 +147,14 @@
 
 <script>
 import Pagination from "@/components/Pagination.vue";
-import TenantNavbar from "@/components/TenantNavbar.vue";
+import LandlordNavbar from "@/components/LandlordNavbar.vue";
 import SearchOptions from "@/components/SearchOptions.vue";
 import axios from 'axios';
 import { url as api_url } from "@/assets/scripts/api";
 
 export default {
-  name: "LoggedTenant",
-  components: { Pagination, TenantNavbar, SearchOptions },
+  name: "LandlordSearch",
+  components: { Pagination, LandlordNavbar, SearchOptions },
 
   data() {
     return {
@@ -389,33 +395,3 @@ export default {
   margin-top: 3%;
 }
 </style>
-
-.card {
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 10% rgba(41, 67, 100, 0.21);
-  width: 100%;
-  height: 70%;
-  padding: 10% 10% 10% 10%;
-}
-
-.headline {
-  font-weight: bold;
-}
-
-.card-icon {
-  pointer-events: none;
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  min-height: 100px;
-  padding: 2% 2% 2% 2%;
-}
-
-.card-content {
-  width: 100%;
-  height: 50%;
-  max-height: 200px;
-  min-height: 100px;
-  padding: 2% 2% 2% 2%;
-}

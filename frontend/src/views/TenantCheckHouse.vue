@@ -1,9 +1,11 @@
 <template>
   <div>
     <TenantNavbar />
-    <slider-navigation>
+    <slider-navigation class="cp">
       <swiper-slide v-for="slide in slides" :key="slide">
-        <img class="imgSlide" object-fit="cover" :src="slide" :alt="slide" />
+        <div class="column has-text-centered fillSpace">
+          <img class="imgSlide" object-fit="cover" :src="slide" :alt="slide" />
+        </div>
       </swiper-slide>
     </slider-navigation>
     <div
@@ -128,17 +130,13 @@ export default {
   methods: {
     async apply() {
       if (this.buttonText !== "Already Applied") {
-
         var sendApplication = {
-          houseId: this.$route.params.id
+          houseId: this.$route.params.id,
         };
-        console.log(JSON.stringify(sendApplication))
+        console.log(JSON.stringify(sendApplication));
 
         await axios
-          .post(
-            api_url + "/api/applications/",
-            sendApplication
-          )
+          .post(api_url + "/api/applications/", sendApplication)
           .then(() => {
             console.log("done");
           })
@@ -172,18 +170,21 @@ export default {
           this.slides.push(
             `${api_url}/api/houses/photos/${this.formData.photos[i]}`
           );
-        axios.get(api_url+"/api/tenants/"+store.getters.getId+"/applications").then((r)=>{
-          for(let aux=0;aux<r.data.length;aux++)
-          {
-            if(r.data[aux].house.id==this.id)
-            {
-              this.buttonText="Already Applied";
-              break;
+        axios
+          .get(
+            api_url + "/api/tenants/" + store.getters.getId + "/applications"
+          )
+          .then((r) => {
+            for (let aux = 0; aux < r.data.length; aux++) {
+              if (r.data[aux].house.id == this.id) {
+                this.buttonText = "Already Applied";
+                break;
+              }
             }
-          }
-        }).catch((ex)=>{
-          console.log(ex)
-        })
+          })
+          .catch((ex) => {
+            console.log(ex);
+          });
       })
       .catch((e) => {
         console.log(e);
@@ -215,6 +216,13 @@ export default {
 </script>
 
 <style scoped>
+.cp{
+  width: 70%;
+}
+.fillSpace {
+  margin: 0;
+  padding: 0;
+}
 .inf {
   margin: 1% auto 1% auto;
   width: 100%;
@@ -224,8 +232,9 @@ export default {
   width: 100%;
 }
 .imgSlide {
-  width: 100%;
-  height: 40vh;
+  margin: 0 auto;
+  width: auto;
+  height: 33vh;
 }
 #checkhouse-card {
   min-height: 80vh;
