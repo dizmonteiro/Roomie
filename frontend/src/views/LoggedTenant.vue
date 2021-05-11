@@ -196,7 +196,7 @@ export default {
                 headline1: response.data[entry].title.substring(0,17),
                 text1: response.data[entry].landlord.name,
                 imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
-                link1: `/landlord/house/${response.data[entry].id}`,
+                link1: `/tenant/house/${response.data[entry].id}`,
                 imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
                 text2: response.data[entry].description.substring(0,30) + "..."
               });
@@ -232,7 +232,7 @@ export default {
                 headline1: response.data[entry].title.substring(0,17),
                 text1: response.data[entry].landlord.name,
                 imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
-                link1: `/landlord/house/${response.data[entry].id}`,
+                link1: `/tenant/house/${response.data[entry].id}`,
                 imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
                 text2: response.data[entry].description.substring(0,30) + "..."
               });
@@ -268,7 +268,7 @@ export default {
                 headline1: response.data[entry].title.substring(0,17),
                 text1: response.data[entry].landlord.name,
                 imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
-                link1: `/landlord/house/${response.data[entry].id}`,
+                link1: `/tenant/house/${response.data[entry].id}`,
                 imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
                 text2: response.data[entry].description.substring(0,30) + "..."
               });
@@ -304,7 +304,7 @@ export default {
                 headline1: response.data[entry].title.substring(0,17),
                 text1: response.data[entry].landlord.name,
                 imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
-                link1: `/landlord/house/${response.data[entry].id}`,
+                link1: `/tenant/house/${response.data[entry].id}`,
                 imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
                 text2: response.data[entry].description.substring(0,30) + "..."
               });
