@@ -14,111 +14,117 @@
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column1" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="h.imgName1"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="h.imgName2"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column2" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="h.imgName1"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="h.imgName2"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             <div
               class="column is-one-third-desktop is-one-third-tablet is-one-third-mobile"
             >
               <div v-for="h in column3" :key="h.id" class="block">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img
-                        :src="h.imgName1"
-                        alt="Placeholder image"
-                      />
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-64x64">
-                          <img
-                            class="is-rounded"
-                            :src="h.imgName2"
-                            alt="Placeholder image"
-                          />
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">{{ h.headline1 }}</p>
-                        <p class="subtitle is-6">{{ h.text1 }}</p>
-                      </div>
+                <a :href="h.link1">
+                  <div class="card">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          :src="h.imgName1"
+                          alt="Placeholder image"
+                        />
+                      </figure>
                     </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-left">
+                          <figure class="image is-64x64">
+                            <img
+                              class="is-rounded"
+                              :src="h.imgName2"
+                              alt="Placeholder image"
+                            />
+                          </figure>
+                        </div>
+                        <div class="media-content">
+                          <p class="title is-4">{{ h.headline1 }}</p>
+                          <p class="subtitle is-6">{{ h.text1 }}</p>
+                        </div>
+                      </div>
 
-                    <div class="content">
-                      {{ h.text2 }}
+                      <div class="content">
+                        {{ h.text2 }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -360,7 +366,7 @@ export default {
                 headline1: response.data[entry].title.substring(0,17),
                 text1: response.data[entry].landlord.name,
                 imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
-                link1: `/landlord/house/${response.data[entry].id}`,
+                link1: `/tenant/house/${response.data[entry].id}`,
                 imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
                 text2: response.data[entry].description.substring(0,30) + "..."
               });
