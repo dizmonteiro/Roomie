@@ -397,11 +397,11 @@ strong {
 }
 
 .avatar {
-  width: 200px;
-  height: 200px;
+  width: 20vw;
+  height: 20vw;
   position: relative;
   display: block;
-  margin: 25% auto 8% auto;
+  margin: 15% auto 8% auto;
 }
 
 label {

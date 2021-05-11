@@ -203,8 +203,8 @@ strong {
   color: white;
 }
 .avatar {
-  width: 400px;
-  height: 400px;
+  width: 20vw;
+  height: 20vw;
   position: relative;
   display: block;
   margin: 5% auto 8% auto;

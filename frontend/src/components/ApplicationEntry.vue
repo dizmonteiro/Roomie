@@ -117,6 +117,7 @@ export default {
       }
     },
     rejected() {
+      //TO DO reject
       if (this.decision === "rejected") this.decision = "toDecide";
       else this.decision = "rejected";
     },

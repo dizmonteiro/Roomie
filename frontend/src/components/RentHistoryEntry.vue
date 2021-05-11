@@ -27,10 +27,15 @@
         >
           <label class="label">You were here with:</label>
           <div class="otherTenants">
-            <div class="sTenant" v-for="tenant in tenants" :key="tenant">
-              <figure class="image center is-128x128">
-                <img class="is-rounded" :src="tenant.photo" @click="checkProfile"/>
-              </figure>
+            <div class="sTenant" v-for="tenant in tenants" :key="tenant.id">
+              <figure class="image avatar2">
+            <img
+            id="profile-pic"
+              class="hoverable is-rounded"
+              :src="tenant.photo"
+              @click="checkProfile(tenant.id)"
+            />
+          </figure>
               <label class="label center">{{ tenant.name }}</label>
               <button class="button is-green">Rate Roommate</button>
             </div>
@@ -42,11 +47,16 @@
           class="column adjust-hero is-one-fifth-desktop is-full-mobile is-full-tablet has-text-centered"
         >
           <label class="label">Landlord</label>
-          <figure class="image center">
-            <img class="is-rounded center llp" :src="landlord.photo" />
+           <figure class="image avatar">
+            <img
+            id="profile-pic"
+              class="is-rounded hoverable"
+              :src="landlord.photo"
+              @click="checkLandlord(landlord.id)"
+            />
           </figure>
           <label class="label">{{ landlord.name }}</label>
-          <button class="button is-green">Check House</button>
+          <a class="button is-green" :href="'/tenant/house/'+houseId">Check House</a>
         </div>
       </div>
     </div>
@@ -62,6 +72,7 @@ export default {
     "houseLocation",
     "tenants",
     "from",
+    "houseId",
     "to",
     "landlord",
   ],
@@ -70,14 +81,20 @@ export default {
     return {};
   },
   methods:{
-    checkProfile(){
-      this.$router.push("/tenant/tprofile")
+    checkProfile(id){
+      this.$router.push("/tenant/tprofile/"+id)
+    },
+    checkLandlord(id){
+      this.$router.push("/tenant/llprofile/"+id)
     }
   }
 };
 </script>
 
 <style scoped>
+.hoverable:hover{
+  cursor:pointer;
+}
 .sBox {
   margin: 6% auto;
 }
@@ -100,6 +117,31 @@ export default {
   width: 60%;
   margin-bottom: 5%;
   margin-top: 5%;
+}
+.avatar {
+  width: 10vmax;
+  height: 10vmax;
+  position: relative;
+  display: block;
+  margin: 5% auto 8% auto;
+}
+.avatar2{
+  width: 8vmax;
+  height: 8vmax;
+  position: relative;
+  display: block;
+  margin: 5% auto 8% auto;
+}
+#profile-pic {
+  position: absolute; 
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 .sCard {
   margin: 0 auto 1% auto;

@@ -174,7 +174,7 @@ export default new Router({
     },
     {
       name: 'Tenant Tenant Profile',
-      path: '/tenant/tprofile',
+      path: '/tenant/tprofile/:id',
       component: () => import('@/views/TenantProfileCheck'),
       beforeEnter: ifAuthenticated
     },

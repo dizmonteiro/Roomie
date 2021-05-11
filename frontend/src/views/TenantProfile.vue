@@ -437,8 +437,8 @@ strong {
   color: white;
 }
 .avatar {
-  width: 350px;
-  height: 350px;
+  width: 20vw;
+  height: 20vw;
   position: relative;
   display: block;
   margin: 15% auto 8% auto;
