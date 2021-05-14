@@ -4,7 +4,7 @@ import os, random, requests, json
 
 fake = Faker()
 
-BASE_URL = "http://localhost:8083/api"
+BASE_URL = "http://146.148.27.190:8083/api"
 
 
 def register_landlord():
