@@ -91,20 +91,6 @@ export default {
       .then((response) => {
         this.formData = response.data;
         this.profilePic = `${api_url}/api/tenants/${this.id}/avatar`;
-        switch (this.formData.sex) {
-          case "male":
-            this.isMale = true;
-            break;
-          case "female":
-            this.isFemale = true;
-            break;
-          case "other":
-            this.isOther = true;
-            break;
-          default:
-            console.log(this.formData.sex);
-            break;
-        }
       })
       .catch((e) => {
         console.log(e);
@@ -119,9 +105,6 @@ export default {
   data() {
     return {
       profilePic: undefined,
-      isMale: false,
-      isFemale: false,
-      isOther: false,
       formData: undefined,
       id: this.$route.params.id,
       checkr: "tenant",
