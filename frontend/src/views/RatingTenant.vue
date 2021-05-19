@@ -7,52 +7,27 @@
       <landlord-navbar />
     </div>
     <div id="ratetenantcard">
-      <div
-        class="columns is-centered is-vcentered is-mobile is-tablet is-desktop"
-      >
-        <div class="column is-3-desktop is-3-mobile is-3-tablet">
+      <div class="columns is-centered is-mobile is-tablet is-desktop">
+        <div
+          class="column has-text-centered is-3-desktop is-3-mobile is-3-tablet"
+        >
           <div class="box">
+            <div v-if="type === 'tenant'">
+              <div class="title is-1">Roomate</div>
+            </div>
+
+            <div v-else-if="type === 'landlord'">
+              <div class="title is-1">Tenant</div>
+            </div>
+
             <div class="block">
               <figure class="image avatar">
                 <img id="profile-pic" class="is-rounded" :src="profilePic" />
               </figure>
             </div>
-            <div class="field">
-              <label class="label">Name</label>
-              <div class="control">
-                <input
-                  class="input"
-                  type="text"
-                  :value="formData.name"
-                  name="name"
-                  readonly
-                />
-              </div>
-            </div>
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control is-expanded">
-                <input
-                  class="input"
-                  type="email"
-                  :value="formData.email"
-                  name="email"
-                  readonly
-                />
-              </div>
-            </div>
-            <div class="field">
-              <label class="label">Phone Number</label>
-              <p class="control">
-                <input
-                  class="input"
-                  type="tel"
-                  :value="formData.phone"
-                  name="phone"
-                  readonly
-                />
-              </p>
-            </div>
+
+            <div class="title is-3">{{ formData.name }}</div>
+            
           </div>
         </div>
         <div class="column is-7-desktop is-7-mobile is-7-tablet">
@@ -101,6 +76,12 @@ export default {
       formData: undefined,
       id: this.$route.params.id,
       checkr: "tenant",
+      rcleanliness: 0,
+      rpayment: 0,
+      rcare: 0,
+      rtidiness: 0,
+      rprivacy: 0,
+      rfriendliness: 0,
     };
   },
 };

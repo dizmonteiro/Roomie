@@ -136,7 +136,7 @@ export default {
 
 <style scoped>
 .rates {
-  padding: 3% 5% 3% 5%;
+  padding: 2% 2% 4% 2%;
 }
 .stars {
   margin: 3% auto;
