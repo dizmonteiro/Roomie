@@ -1,37 +1,48 @@
 <template>
-  <div class="card">
-    <div class="columns">
-      <div class="column">
-        <img class="card-icon-left" :src="imgName1" alt="card icon" />
-      </div>
-      <div class="column">
-        <img
-          class="card-icon-right"
-          :src="require(`@/assets/svg/${imgName2}`)"
-          alt="card icon"
-        />
-      </div>
-    </div>
-    <div class="card-content">
-      <div class="buttons is-centered">
-        <a class="button is-small is-green is-rounded is-static vm">
-          {{ headline }}
-        </a>
-        <a class="button is-small is-green is-rounded vm" :href="link">
-          Check Profile
-        </a>
-      </div>
-    </div>
+  <div class="card llcard has-text-centered">
+    <figure class="image avatar">
+      <img id="profile-pic" class="is-rounded" :src="ppic" />
+    </figure>
+            <div class="label lname">
+          {{ name }}
+        </div>
+        <a class="button is-green tm" :href="'/tenant/llprofile/' + id"
+          >View Profile</a
+        >
   </div>
 </template>
 
 <script>
 export default {
   name: "ZDMCard",
-  props: [
-    "headline","imgName1","imgName2","text","link"
-  ]
+  props: ["ppic", "name", "id"],
 };
 </script>
 
-<style src="../assets/styles/Card.css" scoped>
+<style scoped>
+.tm{
+  margin-bottom: 5%;
+}
+.llcard {
+  width: 90%;
+  margin: 5% auto;
+}
+.avatar {
+  width: 8vmax;
+  height: 8vmax;
+  position: relative;
+  display: block;
+  margin: 5% auto 8% auto;
+}
+#profile-pic {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>

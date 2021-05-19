@@ -8,11 +8,9 @@
       />
       <ZDMCard
         class="current-element"
-        :headline="currentElement.headline"
-        :text="currentElement.text"
-        :imgName1="currentElement.imgName1"
-        :imgName2="currentElement.imgName2"
-        :link="currentElement.link"
+        :ppic="currentElement.ppic"
+        :name="currentElement.name"
+        :id="currentElement.id"
       />
       <ZDMArrowButton
         arrowType="right"
