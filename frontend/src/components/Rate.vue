@@ -9,7 +9,7 @@
       >
         <div class="block">
           <figure class="image feature">
-            <img src="@/assets/svg/sweeping.svg" />
+            <img src="@/assets/svg/tidiness.png" />
             <label class="label">Tidiness</label>
           </figure>
           <StarRating
@@ -21,7 +21,7 @@
         </div>
         <div class="block">
           <figure class="image feature">
-            <img src="@/assets/svg/washing-hands.png" />
+            <img src="@/assets/svg/cleanliness.png" />
             <label class="label">Cleanliness</label>
           </figure>
           <StarRating
@@ -37,7 +37,7 @@
       >
         <div class="block">
           <figure class="image feature">
-            <img src="@/assets/svg/padlock.png" />
+            <img src="@/assets/svg/privacy.png" />
             <label class="label">Privacy</label>
           </figure>
           <StarRating
@@ -49,7 +49,7 @@
         </div>
         <div class="block">
           <figure class="image feature">
-            <img src="@/assets/svg/support.png" />
+            <img src="@/assets/svg/friendliness.png" />
             <label class="label">Friendliness</label>
           </figure>
           <StarRating
@@ -64,42 +64,55 @@
 
     <div class="columns is-desktop" v-if="checkr === 'landlord'">
       <div
-        class="column has-text-centered is-one-quarter-desktop is-full-mobile is-full-tablet form"
+        class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form"
       >
-        <figure class="image feature">
-          <img
-            src="https://www.flaticon.com/svg/vstatic/svg/995/995053.svg?token=exp=1619450061~hmac=322835d6cba382d1123a60fa8eac3f00"
+        <div class="block">
+          <figure class="image feature">
+            <img src="@/assets/svg/payment.png" />
+            <label class="label">Payment</label>
+          </figure>
+          <StarRating
+            class="stars"
+            id="stars0"
+            :initialValue="1"
+            :editable="true"
           />
-          <label class="label">Cleanliness</label>
-        </figure>
-        <StarRating class="stars" id="sl1" :initialValue="1" :editable="true" />
+        </div>
+        <div class="block">
+          <figure class="image feature">
+            <img src="@/assets/svg/cleanliness.png" />
+            <label class="label">Cleanliness</label>
+          </figure>
+          <StarRating
+            class="stars"
+            id="stars1"
+            :initialValue="1"
+            :editable="true"
+          />
+        </div>
       </div>
       <div
-        class="column has-text-centered is-one-quarter-desktop is-full-mobile is-full-tablet form"
+        class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form"
       >
-        <figure class="image feature">
-          <img
-            src="https://www.flaticon.com/svg/vstatic/svg/1077/1077976.svg?token=exp=1619452267~hmac=4c0d73bd889ea71b90090bab54052470"
+        <div class="block">
+          <figure class="image feature">
+            <img src="@/assets/svg/tidiness.png" />
+            <label class="label">Care</label>
+          </figure>
+          <StarRating
+            class="stars"
+            id="stars2"
+            :initialValue="1"
+            :editable="true"
           />
-          <label class="label">Payment</label>
-        </figure>
-        <StarRating class="stars" id="sl2" :initialValue="3" :editable="true" />
-      </div>
-      <div
-        class="column has-text-centered is-one-quarter-desktop is-full-mobile is-full-tablet form"
-      >
-        <figure class="image feature">
-          <img
-            src="https://www.flaticon.com/svg/vstatic/svg/2797/2797659.svg?token=exp=1619452340~hmac=ee7fc2d860e4e94947777d8428792449"
-          />
-          <label class="label">Care</label>
-        </figure>
-        <StarRating class="stars" id="sl3" :initialValue="2" :editable="true" />
+        </div>
       </div>
     </div>
 
-    <div class="buttons is-centered">
-      <a class="button is-medium is-green is-rounded vm"> Submit Ratings </a>
+    <div class="block">
+      <div class="buttons is-centered">
+        <a class="button is-medium is-green is-rounded vm"> Submit Rating </a>
+      </div>
     </div>
   </div>
 </template>
@@ -123,7 +136,7 @@ export default {
 
 <style scoped>
 .rates {
-  padding: 1% 5% 1% 5%;
+  padding: 3% 5% 3% 5%;
 }
 .stars {
   margin: 3% auto;
