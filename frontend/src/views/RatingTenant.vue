@@ -6,13 +6,11 @@
     <div v-else-if="type === 'landlord'">
       <landlord-navbar />
     </div>
-    <div class="ratetenantcard">
+    <div id="ratetenantcard">
       <div
         class="columns is-centered is-vcentered is-mobile is-tablet is-desktop"
       >
-        <div
-          class="column is-3-desktop is-3-mobile is-3-tablet"
-        >
+        <div class="column is-3-desktop is-3-mobile is-3-tablet">
           <div class="box">
             <div class="block">
               <figure class="image avatar">
@@ -57,13 +55,8 @@
             </div>
           </div>
         </div>
-        <div
-          class="column is-7-desktop is-7-mobile is-7-tablet"
-        >
-            <rate
-              :usert="type"
-            >
-            </rate>
+        <div class="column is-7-desktop is-7-mobile is-7-tablet">
+          <rate :usert="type"> </rate>
         </div>
       </div>
     </div>
@@ -117,16 +110,14 @@ export default {
 <style scoped>
 #ratetenantcard {
   min-height: 80vh;
-  margin-top: 6%;
+  margin-top: 3%;
   margin-bottom: 6%;
 }
 
 .center {
   font-size: 1vmax;
 }
-strong {
-  color: white;
-}
+
 .avatar {
   width: 20vw;
   height: 20vw;
@@ -134,6 +125,7 @@ strong {
   display: block;
   margin: 5% auto 8% auto;
 }
+
 #profile-pic {
   position: absolute;
   object-fit: cover;
@@ -145,32 +137,8 @@ strong {
   width: 100%;
   height: 100%;
 }
-.gender {
-  margin: auto 22%;
-}
-.adjust-gender {
-  width: 50%;
-  margin: 0 auto;
-}
-.gender-label {
-  text-align: center;
-  margin: 0 auto 10% auto;
-}
 
-.pad {
-  background-color: white;
-  width: 90%;
-  margin: 6% auto;
-}
 .bs {
   background-color: #2d6a4f;
-}
-
-.toMargin {
-  margin: 4% auto;
-}
-
-.llr {
-  margin: 0 5% 0 auto;
 }
 </style>

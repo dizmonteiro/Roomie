@@ -1,6 +1,9 @@
 <template>
   <div class="card rates">
-    <div class="columns is-desktop is-mobile is-tablet" v-if="checkr === 'tenant'">
+    <div
+      class="columns is-desktop is-mobile is-tablet"
+      v-if="checkr === 'tenant'"
+    >
       <div
         class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form"
       >
@@ -12,7 +15,7 @@
           <StarRating
             class="stars"
             id="stars0"
-            :initialValue="4"
+            :initialValue="1"
             :editable="true"
           />
         </div>
@@ -40,19 +43,19 @@
           <StarRating
             class="stars"
             id="stars2"
-            :initialValue="3"
+            :initialValue="1"
             :editable="true"
           />
         </div>
         <div class="block">
           <figure class="image feature">
             <img src="@/assets/svg/support.png" />
-            <label class="label">Friendly</label>
+            <label class="label">Friendliness</label>
           </figure>
           <StarRating
             class="stars"
             id="stars3"
-            :initialValue="2"
+            :initialValue="1"
             :editable="true"
           />
         </div>
@@ -104,7 +107,7 @@
 <script>
 import StarRating from "@/components/StarRating";
 export default {
-  name:"rate",
+  name: "rate",
   components: {
     StarRating,
   },
@@ -114,8 +117,7 @@ export default {
       checkr: this.usert,
     };
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
