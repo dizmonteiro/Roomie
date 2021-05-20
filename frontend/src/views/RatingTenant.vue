@@ -27,11 +27,19 @@
             </div>
 
             <div class="title is-3">{{ formData.name }}</div>
-            
           </div>
         </div>
         <div class="column is-7-desktop is-7-mobile is-7-tablet">
-          <rate :usert="type"> </rate>
+          <rate
+            :usert="type"
+            :rcleanliness="rateData.cleanliness"
+            :rpayment="rateData.payment"
+            :rcare="rateData.care"
+            :rtidiness="rateData.tidiness"
+            :rprivacy="rateData.privacy"
+            :rfriendliness="rateData.friendliness"
+          >
+          </rate>
         </div>
       </div>
     </div>
@@ -59,6 +67,7 @@ export default {
       .then((response) => {
         this.formData = response.data;
         this.profilePic = `${api_url}/api/tenants/${this.id}/avatar`;
+        this.rateData = `${api_url}/api/tenants/${this.id}/rating`;
       })
       .catch((e) => {
         console.log(e);
@@ -74,14 +83,9 @@ export default {
     return {
       profilePic: undefined,
       formData: undefined,
+      rateDate: undefined,
       id: this.$route.params.id,
-      checkr: "tenant",
-      rcleanliness: 0,
-      rpayment: 0,
-      rcare: 0,
-      rtidiness: 0,
-      rprivacy: 0,
-      rfriendliness: 0,
+      checkr: "tenant"
     };
   },
 };

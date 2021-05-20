@@ -15,7 +15,7 @@
           <StarRating
             class="stars"
             id="stars0"
-            :initialValue="1"
+            :initialValue="ttidiness"
             :editable="true"
           />
         </div>
@@ -27,7 +27,7 @@
           <StarRating
             class="stars"
             id="stars1"
-            :initialValue="1"
+            :initialValue="tcleanliness"
             :editable="true"
           />
         </div>
@@ -43,7 +43,7 @@
           <StarRating
             class="stars"
             id="stars2"
-            :initialValue="1"
+            :initialValue="tprivacy"
             :editable="true"
           />
         </div>
@@ -55,7 +55,7 @@
           <StarRating
             class="stars"
             id="stars3"
-            :initialValue="1"
+            :initialValue="tfriendliness"
             :editable="true"
           />
         </div>
@@ -74,7 +74,7 @@
           <StarRating
             class="stars"
             id="stars0"
-            :initialValue="1"
+            :initialValue="tpayment"
             :editable="true"
           />
         </div>
@@ -86,7 +86,7 @@
           <StarRating
             class="stars"
             id="stars1"
-            :initialValue="1"
+            :initialValue="tcleanliness"
             :editable="true"
           />
         </div>
@@ -102,7 +102,7 @@
           <StarRating
             class="stars"
             id="stars2"
-            :initialValue="1"
+            :initialValue="tcare"
             :editable="true"
           />
         </div>
@@ -124,10 +124,16 @@ export default {
   components: {
     StarRating,
   },
-  props: ["usert"],
+  props: ["usert","rcleanliness","rpayment","rcare","rtidiness","rprivacy","rfriendliness"],
   data() {
     return {
       checkr: this.usert,
+      tcleanliness: this.rcleanliness,
+      tpayment: this.rpayment,
+      tcare: this.rcare,
+      ttidiness: this.rtidiness,
+      tprivacy: this.rprivacy,
+      tfriendliness: this.rfriendliness
     };
   },
   methods: {},
