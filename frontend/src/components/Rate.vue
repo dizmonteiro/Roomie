@@ -111,7 +111,7 @@
 
     <div class="block">
       <div class="buttons is-centered">
-        <a class="button is-medium is-green is-rounded vm"> Submit Rating </a>
+        <a class="button is-medium is-green is-rounded vm"> {{this.tbuttonText}} </a>
       </div>
     </div>
   </div>
@@ -119,12 +119,22 @@
 
 <script>
 import StarRating from "@/components/StarRating";
+
 export default {
   name: "rate",
   components: {
     StarRating,
   },
-  props: ["usert","rcleanliness","rpayment","rcare","rtidiness","rprivacy","rfriendliness"],
+  props: [
+    "usert",
+    "rcleanliness",
+    "rpayment",
+    "rcare",
+    "rtidiness",
+    "rprivacy",
+    "rfriendliness",
+    "rbuttonText"
+  ],
   data() {
     return {
       checkr: this.usert,
@@ -133,7 +143,8 @@ export default {
       tcare: this.rcare,
       ttidiness: this.rtidiness,
       tprivacy: this.rprivacy,
-      tfriendliness: this.rfriendliness
+      tfriendliness: this.rfriendliness,
+      tbuttonText: this.rbuttonText
     };
   },
   methods: {},

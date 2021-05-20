@@ -38,6 +38,7 @@
             :rtidiness="rateData.tidiness"
             :rprivacy="rateData.privacy"
             :rfriendliness="rateData.friendliness"
+            :rbuttonText="this.newbuttonText"
           >
           </rate>
         </div>
@@ -61,13 +62,29 @@ export default {
     Rate,
     LandlordNavbar,
   },
+  methods: {
+    async submitRating() {
+      if (this.newbuttonText !== "Already Submited") {
+
+        await axios
+          .post(api_url + "/api/evaluations/", this.submitRating)
+          .then(() => {
+            console.log("done");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+      this.newbuttonText = "Already Submited";
+    },
+  },
   created() {
     axios
-      .get(api_url + "/api/tenants/" + this.id)
+      .get(api_url + "/api/tenants/" + this.iduser)
       .then((response) => {
         this.formData = response.data;
-        this.profilePic = `${api_url}/api/tenants/${this.id}/avatar`;
-        this.rateData = `${api_url}/api/tenants/${this.id}/rating`;
+        this.profilePic = `${api_url}/api/tenants/${this.iduser}/avatar`;
+        this.rateData = `${api_url}/api/tenants/${this.iduser}/rating`;
       })
       .catch((e) => {
         console.log(e);
@@ -84,8 +101,10 @@ export default {
       profilePic: undefined,
       formData: undefined,
       rateDate: undefined,
-      id: this.$route.params.id,
-      checkr: "tenant"
+      iduser: this.$route.params.id,
+      idhouse: this.$route.params.id2,
+      checkr: "tenant",
+      newbuttonText: "Submit Rating"
     };
   },
 };

@@ -113,7 +113,7 @@ export default new Router({
     },
     {
       name: 'Landlord Rate Tenant',
-      path: '/landlord/rate/:id',
+      path: '/landlord/rate/:id/:id2',
       component: () => import('@/views/RatingTenant'),
       beforeEnter: ifAuthenticated
     },
@@ -180,7 +180,7 @@ export default new Router({
     },
     {
       name: 'Tenant Rate Tenant',
-      path: '/tenant/rate/:id',
+      path: '/tenant/rate/:id/:id2',
       component: () => import('@/views/RatingTenant'),
       beforeEnter: ifAuthenticated
     },
