@@ -113,14 +113,14 @@
       <div class="buttons is-centered">
         <a
           class="button is-medium is-green is-rounded vm"
-          @click="submitRL(4, 4, 4)"
+          @click="submitRL"
           v-if="checkr === 'landlord'"
         >
           {{ this.tbuttonText }}
         </a>
         <a
           class="button is-medium is-green is-rounded vm"
-          @click="submitRT(4, 4, 4, 4)"
+          @click="submitRT"
           v-if="checkr === 'tenant'"
         >
           {{ this.tbuttonText }}
@@ -167,17 +167,17 @@ export default {
     };
   },
   methods: {
-    async submitRL(r1, r2, r3) {
+    async submitRL() {
       if (this.tbuttonText !== "Already Submited") {
         var rateInfoL = {
-          houseId: this.thouseid,
-          cleanliness: r1,
-          payment: r2,
-          care: r3,
+          "houseId": 1,
+          "cleanliness": 1,
+          "payment": 1,
+          "care": 1,
         };
 
         await axios
-          .put(api_url + "/api/evaluations/1" + this.ttenantid, rateInfoL)
+          .post(api_url + "/api/evaluations/landlord/" + 2, rateInfoL)
           .then(() => {
             console.log("sucess!");
           })
@@ -187,19 +187,18 @@ export default {
         this.tbuttonText = "Already Submited";
       }
     },
-    async submitRT(r4, r5, r6, r7) {
+    async submitRT() {
       if (this.tbuttonText !== "Already Submited") {
         var rateInfoT = {
-          houseId: this.thouseid,
-          tidiness: r4,
-          cleanliness: r5,
-          privacy: r6,
-          friendliness: r7
-          
+          "houseId": 1,
+          "tidiness": 1,
+          "cleanliness": 1,
+          "privacy": 1,
+          "friendliness": 1,
         };
 
         await axios
-          .put(api_url + "/api/evaluations/1" + this.ttenantid, rateInfoT)
+          .post(api_url + "/api/evaluations/tenant/" + 2, rateInfoT)
           .then(() => {
             console.log("sucess!");
           })
