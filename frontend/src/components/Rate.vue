@@ -111,7 +111,20 @@
 
     <div class="block">
       <div class="buttons is-centered">
-        <a class="button is-medium is-green is-rounded vm"> {{this.tbuttonText}} </a>
+        <a
+          class="button is-medium is-green is-rounded vm"
+          @click="submitRL(4, 4, 4)"
+          v-if="checkr === 'landlord'"
+        >
+          {{ this.tbuttonText }}
+        </a>
+        <a
+          class="button is-medium is-green is-rounded vm"
+          @click="submitRT(4, 4, 4, 4)"
+          v-if="checkr === 'tenant'"
+        >
+          {{ this.tbuttonText }}
+        </a>
       </div>
     </div>
   </div>
@@ -119,6 +132,8 @@
 
 <script>
 import StarRating from "@/components/StarRating";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   name: "rate",
@@ -133,7 +148,9 @@ export default {
     "rtidiness",
     "rprivacy",
     "rfriendliness",
-    "rbuttonText"
+    "rbuttonText",
+    "tenantid",
+    "houseid",
   ],
   data() {
     return {
@@ -144,10 +161,55 @@ export default {
       ttidiness: this.rtidiness,
       tprivacy: this.rprivacy,
       tfriendliness: this.rfriendliness,
-      tbuttonText: this.rbuttonText
+      tbuttonText: this.rbuttonText,
+      ttenantid: this.tenantid,
+      thouseid: this.houseid,
     };
   },
-  methods: {},
+  methods: {
+    async submitRL(r1, r2, r3) {
+      if (this.tbuttonText !== "Already Submited") {
+        var rateInfoL = {
+          houseId: this.thouseid,
+          cleanliness: r1,
+          payment: r2,
+          care: r3,
+        };
+
+        await axios
+          .put(api_url + "/api/evaluations/1" + this.ttenantid, rateInfoL)
+          .then(() => {
+            console.log("sucess!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+        this.tbuttonText = "Already Submited";
+      }
+    },
+    async submitRT(r4, r5, r6, r7) {
+      if (this.tbuttonText !== "Already Submited") {
+        var rateInfoT = {
+          houseId: this.thouseid,
+          tidiness: r4,
+          cleanliness: r5,
+          privacy: r6,
+          friendliness: r7
+          
+        };
+
+        await axios
+          .put(api_url + "/api/evaluations/1" + this.ttenantid, rateInfoT)
+          .then(() => {
+            console.log("sucess!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+        this.tbuttonText = "Already Submited";
+      }
+    },
+  },
 };
 </script>
 
