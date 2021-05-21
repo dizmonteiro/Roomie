@@ -142,25 +142,26 @@
           <div
             class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
           >
-            <SideMenuEditable title="Houses">
-            <div v-for="house in houseData" :key="house.i">
+            <SideMenuEditable link="/landlord/houses" title="Houses">
+              <div v-for="house in houseData" :key="house.i">
+                <br />
+                <SideMenuEntry
+                  :imgSource="house.img"
+                  :link="'/landlord/house/' + house.id"
+                  :args="[
+                    {
+                      k1: 'house_name',
+                      v1: house.title,
+                      k2: 'house_location',
+                      v2: house.address,
+                      k3: 'house_slot',
+                      v3: house.slots,
+                    },
+                  ]"
+                />
+              </div>
               <br />
-              <SideMenuEntry
-                :imgSource="house.img"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: house.title,
-                    k2: 'house_location',
-                    v2: house.address,
-                    k3: 'house_slot',
-                    v3: house.slots,
-                  },
-                ]"
-              />
-            </div>
-            <br />
-          </SideMenuEditable>
+            </SideMenuEditable>
           </div>
         </div>
       </div>
@@ -221,7 +222,7 @@ export default {
   },
   data: function () {
     return {
-      houseData:undefined,
+      houseData: undefined,
       editable: false,
       edit_text: "Edit",
       modal_active: "modal",

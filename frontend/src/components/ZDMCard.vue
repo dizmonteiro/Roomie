@@ -6,7 +6,7 @@
             <div class="label lname">
           {{ name }}
         </div>
-        <a class="button is-green tm" :href="'/tenant/llprofile/' + id"
+        <a class="button is-green tm" :href="link"
           >View Profile</a
         >
   </div>
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "ZDMCard",
-  props: ["ppic", "name", "id"],
+  props: ["ppic", "name", "id","link"],
 };
 </script>
 

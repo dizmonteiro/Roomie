@@ -11,6 +11,7 @@
         :ppic="currentElement.ppic"
         :name="currentElement.name"
         :id="currentElement.id"
+        :link="currentElement.link"
       />
       <ZDMArrowButton
         arrowType="right"

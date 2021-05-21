@@ -5,16 +5,16 @@
     </label>
     <div class="mtop">
       <slot></slot>
-      <button class="button pad" value="more">
+      <a class="button is-green pad" value="more" :href="link">
         <strong>More</strong>
-      </button>
+      </a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title"],
+  props: ["title","link"],
   data() {
     return {};
   },

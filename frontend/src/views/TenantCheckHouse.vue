@@ -168,6 +168,7 @@ export default {
               ppic: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
               name: res.data[t].name,
               id: res.data[t].id,
+              link: "/tenant/tprofile/"+res.data[t].id
             });
           this.teste++;
         })
