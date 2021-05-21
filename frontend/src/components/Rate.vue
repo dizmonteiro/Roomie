@@ -14,8 +14,9 @@
           </figure>
           <StarRating
             class="stars"
-            id="stars0"
-            :initialValue="ttidiness"
+            :toSubmit="true"
+            id="ti"
+            :initialValue="0"
             :editable="true"
           />
         </div>
@@ -26,8 +27,9 @@
           </figure>
           <StarRating
             class="stars"
-            id="stars1"
-            :initialValue="tcleanliness"
+            :toSubmit="true"
+            id="cl1"
+            :initialValue="0"
             :editable="true"
           />
         </div>
@@ -42,8 +44,9 @@
           </figure>
           <StarRating
             class="stars"
-            id="stars2"
-            :initialValue="tprivacy"
+            :toSubmit="true"
+            id="pr"
+            :initialValue="0"
             :editable="true"
           />
         </div>
@@ -54,8 +57,9 @@
           </figure>
           <StarRating
             class="stars"
-            id="stars3"
-            :initialValue="tfriendliness"
+            :toSubmit="true"
+            id="fr"
+            :initialValue="0"
             :editable="true"
           />
         </div>
@@ -73,8 +77,9 @@
           </figure>
           <StarRating
             class="stars"
-            id="stars0"
-            :initialValue="tpayment"
+            :toSubmit="true"
+            id="pa"
+            :initialValue="0"
             :editable="true"
           />
         </div>
@@ -85,8 +90,9 @@
           </figure>
           <StarRating
             class="stars"
-            id="stars1"
-            :initialValue="tcleanliness"
+            :toSubmit="true"
+            id="cl2"
+            :initialValue="0"
             :editable="true"
           />
         </div>
@@ -101,8 +107,9 @@
           </figure>
           <StarRating
             class="stars"
-            id="stars2"
-            :initialValue="tcare"
+            :toSubmit="true"
+            id="ca"
+            :initialValue="0"
             :editable="true"
           />
         </div>
@@ -169,15 +176,20 @@ export default {
   methods: {
     async submitRL() {
       if (this.tbuttonText !== "Already Submited") {
+        console.log()
+        var vclan = document.getElementById("cl2").outerHTML.split("value=")[1].split("\"")[1]
+        var vpay = document.getElementById("pa").outerHTML.split("value=")[1].split("\"")[1]
+        var vcar = document.getElementById("ca").outerHTML.split("value=")[1].split("\"")[1]
         var rateInfoL = {
-          "houseId": 1,
-          "cleanliness": 1,
-          "payment": 1,
-          "care": 1,
+          houseId: 1,
+          cleanliness: parseInt(vclan),
+          payment: parseInt(vpay),
+          care: parseInt(vcar),
         };
+        console.log(rateInfoL)
 
         await axios
-          .post(api_url + "/api/evaluations/landlord/" + 2, rateInfoL)
+          .post(api_url + "/api/evaluations/landlord/" + this.ttenantid, rateInfoL)
           .then(() => {
             console.log("sucess!");
           })
@@ -190,15 +202,15 @@ export default {
     async submitRT() {
       if (this.tbuttonText !== "Already Submited") {
         var rateInfoT = {
-          "houseId": 1,
-          "tidiness": 1,
-          "cleanliness": 1,
-          "privacy": 1,
-          "friendliness": 1,
+          houseId: 1,
+          tidiness: 1,
+          cleanliness: 1,
+          privacy: 1,
+          friendliness: 1,
         };
 
         await axios
-          .post(api_url + "/api/evaluations/tenant/" + 2, rateInfoT)
+          .post(api_url + "/api/evaluations/tenant/" + this.ttenantid, rateInfoT)
           .then(() => {
             console.log("sucess!");
           })

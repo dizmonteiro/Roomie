@@ -32,12 +32,6 @@
         <div class="column is-7-desktop is-7-mobile is-7-tablet">
           <rate
             :usert="type"
-            :rcleanliness="rateData.cleanliness"
-            :rpayment="rateData.payment"
-            :rcare="rateData.care"
-            :rtidiness="rateData.tidiness"
-            :rprivacy="rateData.privacy"
-            :rfriendliness="rateData.friendliness"
             :rbuttonText="this.newbuttonText"
             :tenantid="this.iduser"
             :houseid="this.idhouse"
@@ -71,7 +65,6 @@ export default {
       .then((response) => {
         this.formData = response.data;
         this.profilePic = `${api_url}/api/tenants/${this.iduser}/avatar`;
-        this.rateData = `${api_url}/api/tenants/${this.iduser}/rating`;
       })
       .catch((e) => {
         console.log(e);
@@ -87,7 +80,7 @@ export default {
     return {
       profilePic: undefined,
       formData: undefined,
-      rateDate: undefined,
+      rateData: undefined,
       iduser: this.$route.params.id,
       idhouse: this.$route.params.id2,
       checkr: "tenant",
