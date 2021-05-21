@@ -1,9 +1,11 @@
 <template>
   <div>
-    <landlord-navbar />
-    <slider-navigation>
+    <LandlordNavbar />
+    <slider-navigation class="cp">
       <swiper-slide v-for="slide in slides" :key="slide">
-        <img class="imgSlide" object-fit="cover" :src="slide" :alt="slide" />
+        <div class="column has-text-centered fillSpace">
+          <img class="imgSlide" object-fit="cover" :src="slide" :alt="slide" />
+        </div>
       </swiper-slide>
     </slider-navigation>
     <div
@@ -12,15 +14,11 @@
       <div class="column is-11-mobile is-11-tablet is-11-desktop">
         <div id="checkhouse-card">
           <div class="block">
-            <div class="card-image"></div>
-          </div>
-
-          <div class="block">
             <div class="columns is-centered is-mobile is-tablet is-desktop">
               <div
                 class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
               >
-                <div class="box custom-height">
+                <div class="box custom-height-info">
                   <p class="title has-text-centered is-one-third">Main Info</p>
                   <div
                     class="columns has-text-centered is-centered is-vcentered is-mobile is-tablet is-desktop"
@@ -90,7 +88,7 @@
                   </p>
                   <div class="content has-text-justified">
                     <p>
-                      {{ formData.description }}
+                      {{formData.description}}
                     </p>
                   </div>
                 </div>
@@ -99,8 +97,35 @@
               <div
                 class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
               >
-                <div class="box custom-height">
-                  <ZDMCarousel :cards="cards" />
+                <div class="box mb custom-height-info has-text-centered">
+                  <div class="card llcard has-text-centered">
+                    <div class="title is-4 ll">Landlord</div>
+                    <div
+                      class="columns is-centered is-mobile is-tablet is-desktop"
+                    >
+                      <div class="column is-one-quarter">
+                        <figure class="image avatar">
+                          <img
+                            id="profile-pic"
+                            class="is-rounded"
+                            :src="llPic"
+                          />
+                        </figure>
+                      </div>
+                      <div class="column is-three-quarters has-text-centered">
+                        <div class="label lname">
+                          {{ llName }}
+                        </div>
+                        <a
+                          class="button is-green"
+                          :href="(myId==llId)?'/landlord/profile':'/landlord/llprofile/'+llId"
+                          >View Profile</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="title is-4 ll">Other Tenants:</div>
+                  <ZDMCarousel :id="teste" :cards="tenantInfo" />
                 </div>
               </div>
             </div>
@@ -112,15 +137,54 @@
 </template>
 
 <script>
-import {SwiperSlide } from 'vue-awesome-swiper'
+import { SwiperSlide } from "vue-awesome-swiper";
+import LandlordNavbar from "@/components/LandlordNavbar.vue";
+import SliderNavigation from "@/components/SliderNavigation.vue";
 import ZDMCarousel from "@/components/ZDMCarousel.vue";
 import axios from "axios";
+import store from "@/store";
 import { url as api_url } from "@/assets/scripts/api";
-import LandlordNavbar from "../components/LandlordNavbar.vue";
-import SliderNavigation from "../components/SliderNavigation.vue";
 
 export default {
-  methods: {},
+  methods: {
+    async getTenantsInHouse(hid) {
+      await axios
+        //TODO por intervalo de tempo
+        .get(api_url + "/api/houses/" + hid + "/tenants")
+        .then((res) => {
+          this.tenantInfo = [];
+          for (var t = 0; t < res.data.length; t++)
+            this.tenantInfo.push({
+              ppic: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
+              name: res.data[t].name,
+              id: res.data[t].id,
+              link: "/landlord/tprofile/"+res.data[t].id
+            });
+          this.teste++;
+        })
+        .catch((ex) => {
+          console.log(ex);
+        });
+    },
+    async apply() {
+      if (this.buttonText !== "Already Applied") {
+        var sendApplication = {
+          houseId: this.$route.params.id,
+        };
+        console.log(JSON.stringify(sendApplication));
+
+        await axios
+          .post(api_url + "/api/applications/", sendApplication)
+          .then(() => {
+            console.log("done");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      }
+      this.buttonText = "Already Applied";
+    },
+  },
   created() {
     axios
       .get(api_url + "/api/houses/" + this.id)
@@ -130,15 +194,11 @@ export default {
         const half = Math.ceil(features.length / 2);
         this.featuresLeft = features.splice(0, half);
         this.featuresRight = features.splice(-half);
-        this.cards = [
-          {
-            headline: this.formData.landlord.name,
-            text: "962956721",
-            link: "/landlord/llprofile/" + this.formData.landlord.id,
-            imgName1: `${api_url}/api/landlords/${this.formData.landlord.id}/avatar`,
-            imgName2: "landlord.svg",
-          },
-        ];
+        (this.llPic = `${api_url}/api/landlords/${this.formData.landlord.id}/avatar`),
+          (this.llName = this.formData.landlord.name),
+          (this.llId = this.formData.landlord.id),
+          this.getTenantsInHouse(this.id);
+        this.slides = [];
         for (var i in this.formData.photos)
           this.slides.push(
             `${api_url}/api/houses/photos/${this.formData.photos[i]}`
@@ -151,47 +211,72 @@ export default {
   data() {
     return {
       llPic: "",
+      myId: store.getters.getId,
+      llName: undefined,
+      llId: undefined,
       featuresLeft: [],
       featuresRight: [],
       formData: {},
       id: this.$route.params.id,
+      buttonText: "Apply for House",
       slides: [],
 
-      cards: [],
+      tenantInfo: [],
     };
   },
 
-  name: "LanlordCheckHouse",
+  name: "Lanlord Check House",
 
   components: {
     SwiperSlide,
+    LandlordNavbar,
     SliderNavigation,
     ZDMCarousel,
-    LandlordNavbar,
   },
 };
 </script>
 
 <style scoped>
-.imgSlide{
-    width: 100%;
-    height: 40vh;
+.cp {
+  width: 70%;
+}
+.fillSpace {
+  margin: 0;
+  padding: 0;
+}
+.llcard {
+  width: 90%;
+  margin: 1% auto;
+}
+.mb {
+  padding: 1px;
+}
+.ll {
+  margin: 5% auto 0% auto;
 }
 .inf {
   margin: 1% auto 1% auto;
   width: 100%;
 }
+.lname {
+  margin: 5% auto;
+}
 #content {
   margin: 3% auto 2% auto;
   width: 100%;
 }
-
-#checkhouse-card {
-  min-height: 80vh;
-  margin-top: 2%;
-  margin-bottom: 5%;
+.imgSlide {
+  margin: 0 auto;
+  width: auto;
+  height: 33vh;
 }
-
+.avatar {
+  width: 5vmax;
+  height: 5vmax;
+  position: relative;
+  display: block;
+  margin: 15% auto 8% auto;
+}
 #scroll-area-1 {
   height: 34vh;
 }
@@ -232,9 +317,25 @@ export default {
   min-height: 40vh;
 }
 
+.custom-height-info {
+  min-height: 50vh;
+}
+#profile-pic {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 10%;
+  width: 100%;
+  height: 100%;
+}
+
 #scroll-area {
   margin: 2% auto;
   width: 100%;
-  height: 10vh;
+  height: 20vh;
 }
 </style>
