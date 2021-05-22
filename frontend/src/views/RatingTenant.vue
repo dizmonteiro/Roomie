@@ -80,7 +80,6 @@ export default {
     return {
       profilePic: undefined,
       formData: undefined,
-      rateData: undefined,
       iduser: this.$route.params.id,
       idhouse: this.$route.params.id2,
       checkr: "tenant",

@@ -147,49 +147,48 @@ export default {
   components: {
     StarRating,
   },
-  props: [
-    "usert",
-    "rcleanliness",
-    "rpayment",
-    "rcare",
-    "rtidiness",
-    "rprivacy",
-    "rfriendliness",
-    "rbuttonText",
-    "tenantid",
-    "houseid",
-  ],
+  props: ["usert", "rbuttonText", "tenantid", "houseid"],
   data() {
     return {
       checkr: this.usert,
-      tcleanliness: this.rcleanliness,
-      tpayment: this.rpayment,
-      tcare: this.rcare,
-      ttidiness: this.rtidiness,
-      tprivacy: this.rprivacy,
-      tfriendliness: this.rfriendliness,
       tbuttonText: this.rbuttonText,
       ttenantid: this.tenantid,
       thouseid: this.houseid,
     };
   },
   methods: {
-    async submitRL() {
+    async submitRT() {
       if (this.tbuttonText !== "Already Submited") {
-        console.log()
-        var vclan = document.getElementById("cl2").outerHTML.split("value=")[1].split("\"")[1]
-        var vpay = document.getElementById("pa").outerHTML.split("value=")[1].split("\"")[1]
-        var vcar = document.getElementById("ca").outerHTML.split("value=")[1].split("\"")[1]
-        var rateInfoL = {
-          houseId: 1,
-          cleanliness: parseInt(vclan),
-          payment: parseInt(vpay),
-          care: parseInt(vcar),
+        var vti = document
+          .getElementById("ti")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vcl = document
+          .getElementById("cl1")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vpr = document
+          .getElementById("pr")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vfr = document
+          .getElementById("fr")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var rateInfoT = {
+          houseId: parseInt(this.thouseid),
+          tidiness: parseInt(vti),
+          cleanliness: parseInt(vcl),
+          privacy: parseInt(vpr),
+          friendliness: parseInt(vfr),
         };
-        console.log(rateInfoL)
+        console.log(rateInfoT);
 
         await axios
-          .post(api_url + "/api/evaluations/landlord/" + this.ttenantid, rateInfoL)
+          .post(
+            api_url + "/api/evaluations/tenant/" + this.ttenantid,
+            rateInfoT
+          )
           .then(() => {
             console.log("sucess!");
           })
@@ -199,18 +198,33 @@ export default {
         this.tbuttonText = "Already Submited";
       }
     },
-    async submitRT() {
+    async submitRL() {
       if (this.tbuttonText !== "Already Submited") {
-        var rateInfoT = {
-          houseId: 1,
-          tidiness: 1,
-          cleanliness: 1,
-          privacy: 1,
-          friendliness: 1,
+        var vclan = document
+          .getElementById("cl2")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vpay = document
+          .getElementById("pa")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vcar = document
+          .getElementById("ca")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var rateInfoL = {
+          houseId: parseInt(this.thouseid),
+          cleanliness: parseInt(vclan),
+          payment: parseInt(vpay),
+          care: parseInt(vcar),
         };
+        console.log(rateInfoL);
 
         await axios
-          .post(api_url + "/api/evaluations/tenant/" + this.ttenantid, rateInfoT)
+          .post(
+            api_url + "/api/evaluations/landlord/" + this.ttenantid,
+            rateInfoL
+          )
           .then(() => {
             console.log("sucess!");
           })
