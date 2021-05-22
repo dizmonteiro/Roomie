@@ -36,7 +36,11 @@
                 />
               </figure>
               <label class="label center">{{ tenant.name }}</label>
-              <button id="rate" class="button is-green">Rate Tenant</button>
+              <div class="buttons is-centered">
+                <a class="button is-green" :href="`/landlord/rate/${tenant.id}/${houseId}`">
+                  Rate Tenant
+                </a>
+              </div>
               <button
                 :id="tenant.id"
                 class="button is-green"
