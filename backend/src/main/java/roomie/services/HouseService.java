@@ -83,7 +83,7 @@ public class HouseService {
 			houseCriteria.add(Restrictions.ge("maxPrice", price));
 		}
 		
-		return 	houseCriteria.list().size();
+		return houseCriteria.list().size();
 	}
 	
 	public House getById(int id) throws ResourceNotFoundException, PersistentException {
