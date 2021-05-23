@@ -55,9 +55,6 @@
             <a class="button is-green rightButtons" :href="update"
               >Update House</a
             >
-            <button class="button is-green rightButtons" @click="removeHouse">
-              Remove House
-            </button>
           </div>
         </div>
       </div>
@@ -87,10 +84,6 @@ export default {
   },
 
   methods: {
-    removeHouse() {
-      this.$emit("removeHouse", this.houseId);
-      console.log("removeHouse" + this.houseId);
-    },
     async noLonger(id) {
       if (document.getElementById(id).innerHTML !== "Already Left!") {
         var tenantInfo = {

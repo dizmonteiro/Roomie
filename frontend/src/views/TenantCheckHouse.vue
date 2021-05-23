@@ -18,7 +18,7 @@
               <div
                 class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
               >
-                <div class="box custom-height">
+                <div class="box custom-height-info">
                   <p class="title has-text-centered is-one-third">Main Info</p>
                   <div
                     class="columns has-text-centered is-centered is-vcentered is-mobile is-tablet is-desktop"
@@ -92,23 +92,52 @@
                     </p>
                   </div>
                 </div>
+                <div class="block">
+                  <div class="buttons is-centered">
+                    <a
+                      class="button is-large is-green is-rounded vm"
+                      @click="apply"
+                    >
+                      {{ buttonText }}
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <div
                 class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
               >
-                <div class="box custom-height">
-                  <ZDMCarousel :cards="cards" />
+                <div class="box mb custom-height-info has-text-centered">
+                  <div class="card llcard has-text-centered">
+                    <div class="title is-4 ll">Landlord</div>
+                    <div
+                      class="columns is-centered is-mobile is-tablet is-desktop"
+                    >
+                      <div class="column is-one-quarter">
+                        <figure class="image avatar">
+                          <img
+                            id="profile-pic"
+                            class="is-rounded"
+                            :src="llPic"
+                          />
+                        </figure>
+                      </div>
+                      <div class="column is-three-quarters has-text-centered">
+                        <div class="label lname">
+                          {{ llName }}
+                        </div>
+                        <a
+                          class="button is-green"
+                          :href="'/tenant/llprofile/' + llId"
+                          >View Profile</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="title is-4 ll">Other Tenants:</div>
+                  <ZDMCarousel :id="teste" :cards="tenantInfo" />
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="block">
-            <div class="buttons is-centered">
-              <a class="button is-large is-green is-rounded vm" @click="apply">
-                {{ buttonText }}
-              </a>
             </div>
           </div>
         </div>
@@ -128,6 +157,25 @@ import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   methods: {
+    async getTenantsInHouse(hid) {
+      await axios
+        //TODO por intervalo de tempo
+        .get(api_url + "/api/houses/" + hid + "/tenants")
+        .then((res) => {
+          this.tenantInfo = [];
+          for (var t = 0; t < res.data.length; t++)
+            this.tenantInfo.push({
+              ppic: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
+              name: res.data[t].name,
+              id: res.data[t].id,
+              link: "/tenant/tprofile/"+res.data[t].id
+            });
+          this.teste++;
+        })
+        .catch((ex) => {
+          console.log(ex);
+        });
+    },
     async apply() {
       if (this.buttonText !== "Already Applied") {
         var sendApplication = {
@@ -156,15 +204,10 @@ export default {
         const half = Math.ceil(features.length / 2);
         this.featuresLeft = features.splice(0, half);
         this.featuresRight = features.splice(-half);
-        this.cards = [
-          {
-            headline: this.formData.landlord.name,
-            text: "962956721",
-            link: "/tenant/llprofile/" + this.formData.landlord.id,
-            imgName1: `${api_url}/api/landlords/${this.formData.landlord.id}/avatar`,
-            imgName2: "landlord.svg",
-          },
-        ];
+        (this.llPic = `${api_url}/api/landlords/${this.formData.landlord.id}/avatar`),
+          (this.llName = this.formData.landlord.name),
+          (this.llId = this.formData.landlord.id),
+          this.getTenantsInHouse(this.id);
         this.slides = [];
         for (var i in this.formData.photos)
           this.slides.push(
@@ -193,6 +236,8 @@ export default {
   data() {
     return {
       llPic: "",
+      llName: undefined,
+      llId: undefined,
       featuresLeft: [],
       featuresRight: [],
       formData: {},
@@ -200,7 +245,7 @@ export default {
       buttonText: "Apply for House",
       slides: [],
 
-      cards: [],
+      tenantInfo: [],
     };
   },
 
@@ -216,16 +261,29 @@ export default {
 </script>
 
 <style scoped>
-.cp{
+.cp {
   width: 70%;
 }
 .fillSpace {
   margin: 0;
   padding: 0;
 }
+.llcard {
+  width: 90%;
+  margin: 1% auto;
+}
+.mb {
+  padding: 1px;
+}
+.ll {
+  margin: 5% auto 0% auto;
+}
 .inf {
   margin: 1% auto 1% auto;
   width: 100%;
+}
+.lname {
+  margin: 5% auto;
 }
 #content {
   margin: 3% auto 2% auto;
@@ -236,12 +294,13 @@ export default {
   width: auto;
   height: 33vh;
 }
-#checkhouse-card {
-  min-height: 80vh;
-  margin-top: 2%;
-  margin-bottom: 5%;
+.avatar {
+  width: 5vmax;
+  height: 5vmax;
+  position: relative;
+  display: block;
+  margin: 15% auto 8% auto;
 }
-
 #scroll-area-1 {
   height: 34vh;
 }
@@ -282,9 +341,25 @@ export default {
   min-height: 40vh;
 }
 
+.custom-height-info {
+  min-height: 50vh;
+}
+#profile-pic {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 10%;
+  width: 100%;
+  height: 100%;
+}
+
 #scroll-area {
   margin: 2% auto;
   width: 100%;
-  height: 10vh;
+  height: 20vh;
 }
 </style>

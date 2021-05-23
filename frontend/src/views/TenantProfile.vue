@@ -153,57 +153,33 @@
                 />
               </div>
             </div>
-            <check-rates />
+            <check-rates :tid="id" />
           </div>
           <div
             class="column is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
           >
-            <SideMenuEditable class="toMargin" title="My Rent History">
-              <template v-slot:firstEntry>
+            <SideMenuEditable
+              link="/tenant/rhistory"
+              class="toMargin"
+              title="My Rent History"
+            >
+              <div v-for="rh in rentHistory" :key="rh.id">
+                <br />
                 <SideMenuEntry
-                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
+                  :imgSource="rh.photo"
+                  :link="'/tenant/house/'+rh.id"
                   :args="[
                     {
-                      k1: 'from_date',
-                      v1: 'From:01/01/2021',
-                      k2: 'to_date',
-                      v2: 'To:01/02/2021',
-                      k3: 'landlord',
-                      v3: 'Landord1',
+                      k1: 'house_name',
+                      v1: rh.name,
+                      k2: 'house_location',
+                      v2: rh.bdate,
+                      k3: 'house_slot',
+                      v3: rh.edate,
                     },
                   ]"
                 />
-              </template>
-              <template v-slot:secondEntry>
-                <SideMenuEntry
-                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                  :args="[
-                    {
-                      k1: 'from_date',
-                      v1: 'From:01/03/2021',
-                      k2: 'to_date',
-                      v2: 'To:01/04/2021',
-                      k3: 'landlord',
-                      v3: 'Landord2',
-                    },
-                  ]"
-                />
-              </template>
-              <template v-slot:thirdEntry>
-                <SideMenuEntry
-                  imgSource="https://thisrentaldoesnotexist.com/img-new/hero.jpg"
-                  :args="[
-                    {
-                      k1: 'from_date',
-                      v1: 'From:01/05/2021',
-                      k2: 'to_date',
-                      v2: 'To:01/06/2021',
-                      k3: 'landlord',
-                      v3: 'Landord3',
-                    },
-                  ]"
-                />
-              </template>
+              </div>
             </SideMenuEditable>
           </div>
         </div>
@@ -268,6 +244,8 @@ export default {
   },
   data() {
     return {
+      teste: 0,
+      id: store.getters.getId,
       rentHistory: [],
       checkRates: "tenant",
       url: api_url,
@@ -298,21 +276,24 @@ export default {
       });
     axios
       .get(api_url + "/api/tenants/" + store.getters.getId + "/rentHistory")
-      .then((response) => {
-        for (var i = 0; i < response.length && i < 3; i++) {
+      .then((res) => {
+        for (var i = 0; i < res.data.length && i < 3; i++) {
           var rhentry = {
-            photo: response.data[i].house.photos[0],
-            name: response.data[i].house.title,
-            bdate: response.data[i].getbDate,
-            edate: response.data[i].geteDate,
-            landlord: response.data[i].house.landlord.name,
+            photo: `${api_url}/api/houses/photos/${res.data[i].house.photos[0]}`,
+            name: res.data[i].house.title,
+            bdate: 'from: '+res.data[i].bDate,
+            edate: (res.data[i].eDate==undefined)?"to: Present":"to: "+res.data[i].eDate,
+            id: res.data[i].house.id,
+            landlord: res.data[i].house.landlord.name,
           };
+          console.log(res.data[i]);
           this.rentHistory.push(rhentry);
         }
-        console.log(this.rentHistory);
+        this.teste++;
+        console.log("renthistory "+JSON.stringify(this.rentHistory));
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((ex) => {
+        console.log(ex);
       });
   },
   computed: {
@@ -329,7 +310,6 @@ export default {
       this.formData.file = file;
     },
     edit() {
-      console.log(document.getElementById("stars3").getAttribute("value"));
       this.editable = !this.editable;
       var inputs, select;
       var f = document.getElementById("profile-pic-field");

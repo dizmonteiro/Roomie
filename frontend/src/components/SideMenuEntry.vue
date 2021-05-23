@@ -12,9 +12,9 @@
         <label :name="args[0].k1">{{ args[0].v1 }}</label>
         <label :name="args[0].k2">{{ args[0].v2 }}</label>
         <label :name="args[0].k3">{{ args[0].v3 }}</label>
-        <button class="button vm" value="view-more">
+        <a class="button is-green vm" value="view-more" :href="link">
           <strong>View More</strong>
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  props: ["args", "imgSource"],
+  props: ["args", "imgSource","link"],
   data() {
     return {};
   },
@@ -30,7 +30,6 @@ export default {
 </script>
 
 <style scoped>
-
 label{
     display: block;
 }
