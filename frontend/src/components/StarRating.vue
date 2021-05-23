@@ -12,41 +12,43 @@
 import { url as api_url } from "@/assets/scripts/api";
 import axios from "axios";
 export default {
-  props: ["initialValue", "editable", "feature","tid"],
+  props: ["initialValue", "editable", "feature", "tid", "toSubmit"],
   created() {
-    var i = 0;
-    axios
-      .get(api_url + "/api/tenants/" + this.tid + "/rating")
-      .then((res) => {
-        switch (this.feature) {
-          case "cleanliness":
-            this.iv = res.data.cleanliness;
-            break;
-          case "friendly":
-            this.iv = res.data.friendliness;
-            break;
-          case "payment":
-            this.iv = res.data.payment;
-            break;
-          case "care":
-            this.iv = res.data.care;
-            break;
-          case "tidiness":
-            this.iv = res.data.tidiness;
-            break;
+    if (!this.toSubmit) {
+      var i = 0;
+      axios
+        .get(api_url + "/api/tenants/" + this.tid + "/rating")
+        .then((res) => {
+          switch (this.feature) {
+            case "cleanliness":
+              this.iv = res.data.cleanliness;
+              break;
+            case "friendly":
+              this.iv = res.data.friendliness;
+              break;
+            case "payment":
+              this.iv = res.data.payment;
+              break;
+            case "care":
+              this.iv = res.data.care;
+              break;
+            case "tidiness":
+              this.iv = res.data.tidiness;
+              break;
             case "privacy":
-            this.iv = res.data.privacy;
-            break;  
-        }
-        for (; i < this.iv; i++) {
-          this.src[i] = "https://i.ibb.co/Dz4RB8x/imageedit-1-6482434810.png";
-          this.starState[i] = true;
-        }
-        this.total = i;
-      })
-      .catch((ex) => {
-        console.log(ex);
-      });
+              this.iv = res.data.privacy;
+              break;
+          }
+          for (; i < this.iv; i++) {
+            this.src[i] = "https://i.ibb.co/Dz4RB8x/imageedit-1-6482434810.png";
+            this.starState[i] = true;
+          }
+          this.total = i;
+        })
+        .catch((ex) => {
+          console.log(ex);
+        });
+    }
   },
   data() {
     return {

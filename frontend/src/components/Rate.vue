@@ -1,147 +1,246 @@
 <template>
   <div class="card rates">
-
-    <div class="columns is-desktop" v-if="checkRates === 'tenant'">
-      <div class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form">
+    <div
+      class="columns is-desktop is-mobile is-tablet"
+      v-if="checkr === 'tenant'"
+    >
+      <div
+        class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form"
+      >
         <div class="block">
           <figure class="image feature">
-          <img
-            src="@/assets/svg/sweeping.svg"
-          />
-          <label class="label">Tidiness</label>
+            <img src="@/assets/svg/tidiness.png" />
+            <label class="label">Tidiness</label>
           </figure>
           <StarRating
             class="stars"
-            id="stars0"
-            :initialValue="4"
+            :toSubmit="true"
+            id="ti"
+            :initialValue="0"
             :editable="true"
           />
         </div>
         <div class="block">
           <figure class="image feature">
-            <img
-              src="@/assets/svg/washing-hands.png"
-            />
+            <img src="@/assets/svg/cleanliness.png" />
             <label class="label">Cleanliness</label>
           </figure>
           <StarRating
             class="stars"
-            id="stars1"
-            :initialValue="1"
+            :toSubmit="true"
+            id="cl1"
+            :initialValue="0"
             :editable="true"
           />
         </div>
       </div>
-      <div class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form">
+      <div
+        class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form"
+      >
         <div class="block">
           <figure class="image feature">
-            <img
-              src="@/assets/svg/padlock.png"
-            />
+            <img src="@/assets/svg/privacy.png" />
             <label class="label">Privacy</label>
           </figure>
           <StarRating
             class="stars"
-            id="stars2"
-            :initialValue="3"
+            :toSubmit="true"
+            id="pr"
+            :initialValue="0"
             :editable="true"
           />
         </div>
         <div class="block">
           <figure class="image feature">
-            <img
-              src="@/assets/svg/support.png"
-            />
-            <label class="label">Friendly</label>
+            <img src="@/assets/svg/friendliness.png" />
+            <label class="label">Friendliness</label>
           </figure>
           <StarRating
             class="stars"
-            id="stars3"
-            :initialValue="2"
+            :toSubmit="true"
+            id="fr"
+            :initialValue="0"
             :editable="true"
           />
         </div>
       </div>
     </div>
 
-    <div class="columns is-desktop" v-if="checkRates === 'landlord'">
-      <div class="column has-text-centered is-one-quarter-desktop is-full-mobile is-full-tablet form">
-        <figure class="image feature">
-          <img
-            src="https://www.flaticon.com/svg/vstatic/svg/995/995053.svg?token=exp=1619450061~hmac=322835d6cba382d1123a60fa8eac3f00"
+    <div class="columns is-desktop" v-if="checkr === 'landlord'">
+      <div
+        class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form"
+      >
+        <div class="block">
+          <figure class="image feature">
+            <img src="@/assets/svg/payment.png" />
+            <label class="label">Payment</label>
+          </figure>
+          <StarRating
+            class="stars"
+            :toSubmit="true"
+            id="pa"
+            :initialValue="0"
+            :editable="true"
           />
-          <label class="label">Cleanliness</label>
-        </figure>
-        <StarRating
-          class="stars"
-          id="sl1"
-          :initialValue="1"
-          :editable="true"
-        />
+        </div>
+        <div class="block">
+          <figure class="image feature">
+            <img src="@/assets/svg/cleanliness.png" />
+            <label class="label">Cleanliness</label>
+          </figure>
+          <StarRating
+            class="stars"
+            :toSubmit="true"
+            id="cl2"
+            :initialValue="0"
+            :editable="true"
+          />
+        </div>
       </div>
-      <div class="column has-text-centered is-one-quarter-desktop is-full-mobile is-full-tablet form">
-        <figure class="image feature">
-          <img
-            src="https://www.flaticon.com/svg/vstatic/svg/1077/1077976.svg?token=exp=1619452267~hmac=4c0d73bd889ea71b90090bab54052470"
+      <div
+        class="column has-text-centered is-half-desktop is-half-mobile is-half-tablet form"
+      >
+        <div class="block">
+          <figure class="image feature">
+            <img src="@/assets/svg/tidiness.png" />
+            <label class="label">Care</label>
+          </figure>
+          <StarRating
+            class="stars"
+            :toSubmit="true"
+            id="ca"
+            :initialValue="0"
+            :editable="true"
           />
-          <label class="label">Payment</label>
-        </figure>
-        <StarRating
-          class="stars"
-          id="sl2"
-          :initialValue="3"
-          :editable="true"
-        />
-      </div>
-      <div class="column has-text-centered is-one-quarter-desktop is-full-mobile is-full-tablet form">
-        <figure class="image feature">
-          <img
-            src="https://www.flaticon.com/svg/vstatic/svg/2797/2797659.svg?token=exp=1619452340~hmac=ee7fc2d860e4e94947777d8428792449"
-          />
-          <label class="label">Care</label>
-        </figure>
-        <StarRating
-          class="stars"
-          id="sl3"
-          :initialValue="2"
-          :editable="true"
-        />
+        </div>
       </div>
     </div>
 
-    <div class="buttons is-centered">
-      <a class="button is-medium is-green is-rounded vm">
-        Submit Ratings
-      </a>
+    <div class="block">
+      <div class="buttons is-centered">
+        <a
+          class="button is-medium is-green is-rounded vm"
+          @click="submitRL"
+          v-if="checkr === 'landlord'"
+        >
+          {{ this.tbuttonText }}
+        </a>
+        <a
+          class="button is-medium is-green is-rounded vm"
+          @click="submitRT"
+          v-if="checkr === 'tenant'"
+        >
+          {{ this.tbuttonText }}
+        </a>
+      </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import StarRating from "@/components/StarRating";
+import axios from "axios";
+import { url as api_url } from "@/assets/scripts/api";
+
 export default {
-    components:{
-        StarRating
+  name: "rate",
+  components: {
+    StarRating,
+  },
+  props: ["usert", "rbuttonText", "tenantid", "houseid"],
+  data() {
+    return {
+      checkr: this.usert,
+      tbuttonText: this.rbuttonText,
+      ttenantid: this.tenantid,
+      thouseid: this.houseid,
+    };
+  },
+  methods: {
+    async submitRT() {
+      if (this.tbuttonText !== "Already Submited") {
+        var vti = document
+          .getElementById("ti")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vcl = document
+          .getElementById("cl1")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vpr = document
+          .getElementById("pr")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vfr = document
+          .getElementById("fr")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var rateInfoT = {
+          houseId: parseInt(this.thouseid),
+          tidiness: parseInt(vti),
+          cleanliness: parseInt(vcl),
+          privacy: parseInt(vpr),
+          friendliness: parseInt(vfr),
+        };
+        console.log(rateInfoT);
+
+        await axios
+          .post(
+            api_url + "/api/evaluations/tenant/" + this.ttenantid,
+            rateInfoT
+          )
+          .then(() => {
+            console.log("sucess!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+        this.tbuttonText = "Already Submited";
+      }
     },
-    data(){
-        return{
-            checkRates:"tenant"
-        }
+    async submitRL() {
+      if (this.tbuttonText !== "Already Submited") {
+        var vclan = document
+          .getElementById("cl2")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vpay = document
+          .getElementById("pa")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var vcar = document
+          .getElementById("ca")
+          .outerHTML.split("value=")[1]
+          .split('"')[1];
+        var rateInfoL = {
+          houseId: parseInt(this.thouseid),
+          cleanliness: parseInt(vclan),
+          payment: parseInt(vpay),
+          care: parseInt(vcar),
+        };
+        console.log(rateInfoL);
+
+        await axios
+          .post(
+            api_url + "/api/evaluations/landlord/" + this.ttenantid,
+            rateInfoL
+          )
+          .then(() => {
+            console.log("sucess!");
+          })
+          .catch((e) => {
+            alert(e);
+          });
+        this.tbuttonText = "Already Submited";
+      }
     },
-    methods:{
-        changeRatings() {
-      var radios = document.getElementsByName("rates");
-      if (radios[0].checked) this.checkRates = "tenant";
-      else if (radios[1].checked) this.checkRates = "landlord";
-    },
-    }
+  },
 };
 </script>
 
 <style scoped>
 .rates {
-  padding: 1% 5% 1% 5%;
+  padding: 2% 2% 4% 2%;
 }
 .stars {
   margin: 3% auto;

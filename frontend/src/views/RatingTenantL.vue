@@ -96,7 +96,7 @@ export default {
 
   data() {
     return {
-      checkRates: "tenant",
+      checkRates: "landlord",
     };
   },
 

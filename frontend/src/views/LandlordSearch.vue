@@ -198,7 +198,7 @@ export default {
                 imgName1: `${api_url}/api/houses/photos/${response.data[entry].photos[0]}`,
                 link1: `/landlord/house/${response.data[entry].id}`,
                 imgName2: `${api_url}/api/landlords/${response.data[entry].landlord.id}/avatar`,
-                text2: response.data[entry].description.substring(0,30) + "..."
+                text2: response.data[entry].description.substring(0,40) + "..."
               });
           }
         }
