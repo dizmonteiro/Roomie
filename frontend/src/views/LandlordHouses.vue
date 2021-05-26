@@ -10,7 +10,8 @@
       <smooth-scrollbar>
         <div>
           <div v-for="h in formData" :key="h.id">
-            <houses-entry v-if="toPrint[h.id]"
+            <houses-entry
+              v-if="toPrint[h.id]"
               :campo="teste"
               :houseSlides="h.housePhotos"
               :houseLocation="h.address"
@@ -53,7 +54,7 @@ export default {
           this.formData[j].updateLink =
             "/landlord/house/" + this.formData[j].id + "/update";
           this.formData[j].tiId = j;
-          this.toPrint[this.formData[j].id]=true;
+          this.toPrint[this.formData[j].id] = true;
           this.getTenantsInHouse(this.formData[j].id, j);
         }
       })
@@ -68,40 +69,12 @@ export default {
       formData: undefined,
       tenantInfo: [],
       wh: window.innerHeight,
-      landlordHouse1: {
-        photo: "https://randomuser.me/api/portraits/men/54.jpg",
-        name: "Hugo Manuel",
-      },
-      tenantsHouse1: [
-        {
-          name: "Jose Filipe",
-          photo: "https://randomuser.me/api/portraits/men/52.jpg",
-        },
-        {
-          name: "Antonio Ramalho",
-          photo: "https://randomuser.me/api/portraits/men/51.jpg",
-        },
-        {
-          name: "Marco Antunes",
-          photo: "https://randomuser.me/api/portraits/men/53.jpg",
-        },
-      ],
-      house1Slides: [
-        "https://picsum.photos/id/164/1080/720",
-        "https://picsum.photos/id/163/1080/720",
-        "https://picsum.photos/id/308/1080/720",
-        "https://picsum.photos/id/322/1080/720",
-        "https://picsum.photos/id/351/1080/720",
-        "https://picsum.photos/id/369/1080/720",
-        "https://picsum.photos/id/398/1080/720",
-      ],
     };
   },
   methods: {
-    removeHouse(h){
-        this.toPrint[h]=false;
-        this.teste--;
-        //TODO fazer o delete para a base de dados
+    async removeHouse(h) {
+      this.toPrint[h] = false;
+      this.teste--;
     },
     async getTenantsInHouse(hid, j) {
       await axios
@@ -110,13 +83,15 @@ export default {
         .then((res) => {
           this.tenantInfo[j] = [];
           for (var t = 0; t < res.data.length; t++)
-              this.tenantInfo[j].push({
-                photo: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
-                name: res.data[t].name,
-                id: res.data[t].id,
-              });
+            this.tenantInfo[j].push({
+              photo: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
+              name: res.data[t].name,
+              id: res.data[t].id,
+            });
           this.teste++;
-          console.log("J="+j+" Tenant Info "+JSON.stringify(this.tenantInfo));
+          console.log(
+            "J=" + j + " Tenant Info " + JSON.stringify(this.tenantInfo)
+          );
         })
         .catch((ex) => {
           console.log(ex);

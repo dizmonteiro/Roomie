@@ -36,7 +36,11 @@
                 />
               </figure>
               <label class="label center">{{ tenant.name }}</label>
-              <button id="rate" class="button is-green">Rate Tenant</button>
+              <div class="buttons is-centered">
+                <a class="button is-green" :href="`/landlord/rate/${tenant.id}/${houseId}`">
+                  Rate Tenant
+                </a>
+              </div>
               <button
                 :id="tenant.id"
                 class="button is-green"
@@ -55,9 +59,6 @@
             <a class="button is-green rightButtons" :href="update"
               >Update House</a
             >
-            <button class="button is-green rightButtons" @click="removeHouse">
-              Remove House
-            </button>
           </div>
         </div>
       </div>
@@ -87,10 +88,6 @@ export default {
   },
 
   methods: {
-    removeHouse() {
-      this.$emit("removeHouse", this.houseId);
-      console.log("removeHouse" + this.houseId);
-    },
     async noLonger(id) {
       if (document.getElementById(id).innerHTML !== "Already Left!") {
         var tenantInfo = {

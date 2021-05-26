@@ -37,7 +37,11 @@
             />
           </figure>
               <label class="label center">{{ tenant.name }}</label>
-              <button class="button is-green">Rate Roommate</button>
+              <div class="buttons is-centered">
+                <a class="button is-green" :href="`/tenant/rate/${tenant.id}/${houseId}`">
+                  Rate Roomate
+                </a>
+              </div>
             </div>
           </div>
           <label class="label date">From:{{ from }}</label>

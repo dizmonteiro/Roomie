@@ -9,7 +9,7 @@
     <div id="scroll-area">
       <smooth-scrollbar>
         <div>
-          <div v-for="h in formData" :key="(h.house.id, h.tenant.id)">
+          <div v-for="h in formData" :key="h.tenant.id">
             <application-entry
               :decision="h.decision"
               :houseId="h.house.id"
@@ -50,7 +50,6 @@ export default {
             id:this.formData[j].tenant.id,
             name:this.formData[j].tenant.name,
             phone:this.formData[j].tenant.phone,
-            avgRating:3.7,
             photo:`${api_url}/api/tenants/${this.formData[j].tenant.id}/avatar`
           }
           if (!this.formData[j].toBeAssessed)           

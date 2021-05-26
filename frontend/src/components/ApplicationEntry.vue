@@ -34,7 +34,7 @@
         <div
           class="column adjust-hero is-two-fifths-desktop is-full-mobile is-full-tablet has-text-centered"
         >
-          <check-rates class="sCheck" />
+          <check-rates :hid="houseId" :tid="tenant.id" class="sCheck" />
           <div class="columns" v-if="decision === 'toDecide'">
             <div class="column is-half has-text-centerd">
               <button class="button is-green ap" @click="accepted">
@@ -68,9 +68,6 @@
           <div class="sInfo">
             <label class="label tInfo"
               >{{ tenant.phone }} <i class="fas fa-phone"></i
-            ></label>
-            <label class="label tInfo"
-              >{{ tenant.avgRating }}/5 <i class="far fa-star"></i
             ></label>
             <a
               class="button is-green rez"
@@ -171,7 +168,7 @@ export default {
   margin: 0 auto;
 }
 .sInfo {
-  margin: 23% auto;
+  margin: 40% auto;
 }
 .sCheck {
   margin: 4% auto 1% auto;

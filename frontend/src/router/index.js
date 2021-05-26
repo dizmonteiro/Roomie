@@ -113,9 +113,9 @@ export default new Router({
     },
     {
       name: 'Landlord Rate Tenant',
-      path: '/landlord/tprofile/rate',
-      component: () => import('@/views/RatingTenantL'),
-      beforeEnter: ifAuthenticatedLandlord
+      path: '/landlord/rate/:id/:id2',
+      component: () => import('@/views/RatingTenant'),
+      beforeEnter: ifAuthenticated
     },
     {
       name: 'Landlord Add House',
@@ -180,9 +180,9 @@ export default new Router({
     },
     {
       name: 'Tenant Rate Tenant',
-      path: '/tenant/tprofile/rate',
-      component: () => import('@/views/RatingTenantT'),
-      beforeEnter: ifAuthenticatedTenant
+      path: '/tenant/rate/:id/:id2',
+      component: () => import('@/views/RatingTenant'),
+      beforeEnter: ifAuthenticated
     },
     {
       name: 'Tenant Rent History',

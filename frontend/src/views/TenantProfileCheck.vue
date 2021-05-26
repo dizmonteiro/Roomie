@@ -127,7 +127,7 @@
               </div>
             </div>
           </div>
-          <check-rates />
+          <check-rates :tid="id"/>
         </div>
       </div>
     </div>

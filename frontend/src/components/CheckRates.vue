@@ -6,7 +6,7 @@
           <label class="label radio">
             <input
               type="radio"
-              name="rates"
+              :name="'rates'+tid+'_'+hid"
               value="tenant"
               @click="changeRatings"
               checked
@@ -18,7 +18,7 @@
           <label class="label radio">
             <input
               type="radio"
-              name="rates"
+              :name="'rates'+tid+'_'+hid"
               value="landlord"
               @click="changeRatings"
             />
@@ -39,9 +39,11 @@
         </figure>
 
         <StarRating
+          :feature="'tidiness'"
           class="stars"
-          id="stars0"
-          :initialValue="4"
+          :tid="tid"
+          :id="tidiness"
+          :initialValue="tidiness"
           :editable="false"
         />
       </div>
@@ -55,9 +57,11 @@
           <label class="label">Cleanliness</label>
         </figure>
         <StarRating
+          :feature="'cleanliness'"
           class="stars"
-          id="stars1"
-          :initialValue="1"
+          :tid="tid"
+          id="cleanlinessT"
+          :initialValue="cleanlinessT"
           :editable="false"
         />
       </div>
@@ -72,8 +76,10 @@
         </figure>
         <StarRating
           class="stars"
-          id="stars2"
-          :initialValue="3"
+          :tid="tid"
+          id="privacy"
+          :feature="'privacy'"
+          :initialValue="privacy"
           :editable="false"
         />
       </div>
@@ -88,8 +94,10 @@
         </figure>
         <StarRating
           class="stars"
-          id="stars3"
-          :initialValue="2"
+          :tid="tid"
+          id="friendly"
+          :feature="'friendly'"
+          :initialValue="friendly"
           :editable="false"
         />
       </div>
@@ -106,8 +114,10 @@
         </figure>
         <StarRating
           class="stars"
-          id="sl1"
-          :initialValue="1"
+          :tid="tid"
+          :feature="'cleanliness'"
+          id="cleanlinessL"
+          :initialValue="cleanlinessL"
           :editable="false"
         />
       </div>
@@ -122,8 +132,10 @@
         </figure>
         <StarRating
           class="stars"
-          id="sl2"
-          :initialValue="3"
+          :tid="tid"
+          :feature="'payment'"
+          id="payment"
+          :initialValue="payment"
           :editable="false"
         />
       </div>
@@ -138,8 +150,10 @@
         </figure>
         <StarRating
           class="stars"
-          id="sl3"
-          :initialValue="2"
+          :tid="tid"
+          :feature="'care'"
+          id="care"
+          :initialValue="care"
           :editable="false"
         />
       </div>
@@ -150,21 +164,29 @@
 <script>
 import StarRating from "@/components/StarRating";
 export default {
-    components:{
-        StarRating
-    },
-    data(){
-        return{
-            checkRates:"tenant"
-        }
-    },
-    methods:{
-        changeRatings() {
-      var radios = document.getElementsByName("rates");
+  components: {
+    StarRating,
+  },
+  props: ["tid","hid"],
+  data() {
+    return {
+      cleanlinessL: undefined,
+      cleanlinessT: undefined,
+      payment: undefined,
+      care: undefined,
+      tidiness: undefined,
+      privacy: undefined,
+      friendly: undefined,
+      checkRates: "tenant",
+    };
+  },
+  methods: {
+    changeRatings() {
+      var radios = document.getElementsByName("rates"+this.tid+"_"+this.hid);
       if (radios[0].checked) this.checkRates = "tenant";
       else if (radios[1].checked) this.checkRates = "landlord";
     },
-    }
+  },
 };
 </script>
 

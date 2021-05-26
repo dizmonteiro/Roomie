@@ -86,8 +86,11 @@ public class UserSecurity {
 			
 			RentHistory evaluatorRH = RentHistoryDAO.getRentHistoryByORMID(house, evaluator);
 			RentHistory evaluatedRH = RentHistoryDAO.getRentHistoryByORMID(house, evaluated);
-			return evaluatorRH != null && evaluatedRH != null && evaluatorRH.getTenantId() != evaluatedRH.getTenantId() && evaluatorRH.getHouseId() == evaluatedRH.getHouseId()
-					&& this.intersect(evaluatorRH.getbDate(), evaluatorRH.geteDate(), evaluatedRH.getbDate(), evaluatedRH.geteDate());
+			
+			return evaluatorRH != null && evaluatedRH != null && evaluatorRH.getTenant().getId() != evaluatedRH
+					.getTenant().getId() && evaluatorRH.getHouse().getId() == evaluatedRH.getHouse().getId() && this
+					.intersect(evaluatorRH.getbDate(), evaluatorRH.geteDate(), evaluatedRH.getbDate(), evaluatedRH
+							.geteDate());
 			
 		} catch (PersistentException | ResourceNotFoundException e) {
 			return false;
