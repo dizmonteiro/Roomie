@@ -5,7 +5,7 @@
         <div
           class="column adjust-hero-s has-text-centered is-one-fifth-desktop is-full-mobile is-full-tablet"
         >
-          <div class="box sBox">
+          <a class="box sBox">
             <agile class="sCarousel" :dots="false" :slidesToShow="1">
               <div class="slide" v-for="slide in houseSlides" :key="slide">
                 <img :src="slide" :alt="slide" />
@@ -17,9 +17,9 @@
                 <i class="fas fa-arrow-right"></i>
               </template>
             </agile>
-            <label class="label">{{ houseName }}</label>
+            <label class="label">{{ houseName.substring(0,25)+"..." }}</label>
             <label class="label">{{ houseLocation }}</label>
-          </div>
+          </a>
         </div>
         <div
           class="column adjust-hero-s is-one-fifth-desktop is-full-mobile is-full-tablet form has-text-centered"

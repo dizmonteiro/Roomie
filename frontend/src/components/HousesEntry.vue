@@ -18,7 +18,7 @@
                 <i class="fas fa-arrow-right"></i>
               </template>
             </agile>
-            <label class="label">{{ houseName }}</label>
+            <label class="label">{{ houseName.substring(0,25)+"..." }}</label>
             <label class="label">{{ houseLocation }}</label>
           </div>
         </div>

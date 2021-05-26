@@ -142,7 +142,7 @@
           <div
             class="column adjust-hero is-one-quarter-desktop is-full-mobile is-full-tablet has-text-centered"
           >
-            <SideMenuEditable link="/landlord/houses" title="Houses">
+            <SideMenuEditable link="/landlord/houses" title="Houses" :showMore="true">
               <div v-for="house in houseData" :key="house.i">
                 <br />
                 <SideMenuEntry

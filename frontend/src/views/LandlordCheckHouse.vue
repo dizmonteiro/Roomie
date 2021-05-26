@@ -82,7 +82,14 @@
               </div>
 
               <div class="column is-half-mobile is-half-tablet is-half-desktop">
-                <div class="box custom-height">
+                <div class="box">
+                  <div class="content has-text-centered">
+                    <h3 class="title">
+                      {{formData.title}}
+                    </h3>
+                  </div>
+                </div>
+                <div class="box">
                   <p class="title has-text-centered is-one-third">
                     Description
                   </p>
@@ -124,7 +131,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="title is-4 ll">Other Tenants:</div>
+                  <div v-if="tenantInfo.length!==0" class="title is-4 ll">Tenants:</div>
                   <ZDMCarousel :id="teste" :cards="tenantInfo" />
                 </div>
               </div>
@@ -237,6 +244,7 @@ export default {
 </script>
 
 <style scoped>
+
 .cp {
   width: 70%;
 }

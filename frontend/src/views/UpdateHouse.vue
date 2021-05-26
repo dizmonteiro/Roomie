@@ -12,7 +12,7 @@
                                 name="title"
                                 label="House Title"
                                 type="text"
-                                validation="required|max:50,length|min:5,length"
+                                validation="required|max:250,length|min:5,length"
                             />
                             <FormulateInput
                                 name="address"

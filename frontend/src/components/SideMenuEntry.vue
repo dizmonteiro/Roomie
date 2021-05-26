@@ -9,7 +9,7 @@
       <div
         class="column is-half-desktop is-full-mobile is-full-tablet has-text-center"
       >
-        <label :name="args[0].k1">{{ args[0].v1 }}</label>
+        <label :name="args[0].k1">{{ args[0].v1.substring(0,15)+"..."}}</label>
         <label :name="args[0].k2">{{ args[0].v2 }}</label>
         <label :name="args[0].k3">{{ args[0].v3 }}</label>
         <a class="button is-green vm" value="view-more" :href="link">
