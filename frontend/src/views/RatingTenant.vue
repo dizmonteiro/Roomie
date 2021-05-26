@@ -13,7 +13,7 @@
         >
           <div class="box">
             <div v-if="type === 'tenant'">
-              <div class="title is-1">Roomate</div>
+              <div class="title is-1">Roommate</div>
             </div>
 
             <div v-else-if="type === 'landlord'">
