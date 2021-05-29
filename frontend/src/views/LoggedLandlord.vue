@@ -27,7 +27,7 @@
                   </div>
 
                   <div class="buttons is-centered">
-                    <a class="button is-green vm" href="/">
+                    <a class="button is-green vm" href="/landlord/applications">
                        Check Applications
                     </a>
                   </div>

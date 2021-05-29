@@ -390,7 +390,7 @@ export default {
 
 <style scoped>
 .modal-content {
-  width: 25vw;
+  width: 22vw;
 }
 
 strong {
