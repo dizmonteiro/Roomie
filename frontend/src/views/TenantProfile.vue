@@ -413,9 +413,14 @@ export default {
 
 
 <style scoped>
+.modal-content {
+  width: 22vw;
+}
+
 strong {
   color: white;
 }
+
 .avatar {
   width: 20vw;
   height: 20vw;
@@ -423,16 +428,20 @@ strong {
   display: block;
   margin: 15% auto 8% auto;
 }
+
 label {
   display: block;
 }
+
 .gender {
   margin: auto 22%;
 }
+
 .adjust-gender {
   width: 55%;
   margin: 0 auto;
 }
+
 .gender-label {
   text-align: center;
   margin: 0 auto 10% auto;
@@ -443,9 +452,11 @@ label {
   width: 90%;
   margin: 3% auto;
 }
+
 .bs {
   background-color: #2d6a4f;
 }
+
 star-rating {
   background-color: red;
 }

@@ -13,12 +13,14 @@
               <template slot="prevButton">
                 <i class="fas fa-arrow-left"></i>
               </template>
-              <template slot="nextButton">
-                <i class="fas fa-arrow-right"></i>
-              </template>
+                <template slot="nextButton" >
+                  <i class="fas fa-arrow-right"></i>
+                </template>
             </agile>
-            <label class="label">{{ houseName.substring(0,25)+"..." }}</label>
-            <label class="label">{{ houseLocation }}</label>
+            <a :href="'/landlord/house/' + houseId">
+              <label class="label">{{ houseName.substring(0,25)+"..." }}</label>
+              <label class="label">{{ houseLocation }}</label>
+            </a>
           </a>
         </div>
         <div
