@@ -13,12 +13,14 @@
               <template slot="prevButton">
                 <i class="fas fa-arrow-left"></i>
               </template>
-                <template slot="nextButton" >
-                  <i class="fas fa-arrow-right"></i>
-                </template>
+              <template slot="nextButton">
+                <i class="fas fa-arrow-right"></i>
+              </template>
             </agile>
             <a :href="'/landlord/house/' + houseId">
-              <label class="label">{{ houseName.substring(0,25)+"..." }}</label>
+              <label class="label">{{
+                houseName.substring(0, 25) + "..."
+              }}</label>
               <label class="label">{{ houseLocation }}</label>
             </a>
           </a>
@@ -39,12 +41,12 @@
           <check-rates :hid="houseId" :tid="tenant.id" class="sCheck" />
           <div class="columns" v-if="decision === 'toDecide'">
             <div class="column is-half has-text-centerd">
-              <button class="button is-green ap" @click="accepted">
+              <button class="button is-green ap" @click="doAccept">
                 Accept Application
               </button>
             </div>
             <div class="column is-half has-text-centerd">
-              <button class="button is-green ap" @click="rejected">
+              <button class="button is-green ap" @click="doReject">
                 Reject Application
               </button>
             </div>
@@ -52,14 +54,12 @@
           <button
             v-if="decision === 'accepted'"
             class="button is-green ap"
-            @click="accepted"
           >
             Application Accepted
           </button>
           <button
             v-if="decision === 'rejected'"
             class="button is-green ap"
-            @click="rejected"
           >
             Application Rejected
           </button>
@@ -79,6 +79,26 @@
           </div>
         </div>
       </div>
+    </div>
+    <div id="confirmation" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box has-text-centered">
+          <h1 class="title">Are you sure?</h1>
+          <button class="button d is-green" @click="decide()">
+            Confirm
+          </button>
+          <button class="button d is-green" @click="closeModal()">
+            Close
+          </button>
+        </div>
+      </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        value="close-modal"
+        @click="closeModal()"
+      ></button>
     </div>
   </div>
 </template>
@@ -100,11 +120,30 @@ export default {
   ],
   components: { agile: VueAgile, CheckRates },
   data() {
-    return {};
+    return {
+      dec:false,
+    };
   },
   methods: {
     checkProfile() {
       this.$router.push("/landlord/tprofile");
+    },
+    async decide(){
+      if (this.dec)
+      this.accepted()
+      else this.rejected()
+      document.getElementById("confirmation").classList.remove("is-active");
+    },
+    async closeModal(){
+      document.getElementById("confirmation").classList.remove("is-active");
+    },
+    async doAccept(){
+      this.dec = true
+      document.getElementById("confirmation").classList.add("is-active");
+    },
+    async doReject(){
+      this.dec=false
+      document.getElementById("confirmation").classList.add("is-active");
     },
     async accepted() {
       if (this.decision === "toDecide") {
@@ -160,6 +199,9 @@ export default {
   right: 0;
   width: 100%;
   height: 100%;
+}
+.d{
+  margin: 0 3%;
 }
 .ap {
   width: 100%;

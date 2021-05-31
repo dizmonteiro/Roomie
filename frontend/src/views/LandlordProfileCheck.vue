@@ -133,7 +133,7 @@
               <br />
               <SideMenuEntry
                 :imgSource="house.img"
-                  :link="'/landlord/house/' + house.id"
+                  :link="'/'+type+'/house/' + house.id"
                   :args="[
                     {
                       k1: 'house_name',
