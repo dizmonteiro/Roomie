@@ -133,6 +133,9 @@ export default {
       this.accepted()
       else this.rejected()
       document.getElementById("confirmation").classList.remove("is-active");
+      if (this.dec)
+      alert("Application has been accepted!")
+      else alert("Application has been rejected!")
     },
     async closeModal(){
       document.getElementById("confirmation").classList.remove("is-active");
