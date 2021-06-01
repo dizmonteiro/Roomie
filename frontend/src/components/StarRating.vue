@@ -23,7 +23,7 @@ export default {
             case "cleanliness":
               this.iv = res.data.cleanliness;
               break;
-            case "friendly":
+            case "friendliness":
               this.iv = res.data.friendliness;
               break;
             case "payment":
