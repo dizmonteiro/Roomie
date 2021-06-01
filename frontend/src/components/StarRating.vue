@@ -23,9 +23,6 @@ export default {
             case "cleanliness":
               this.iv = res.data.cleanliness;
               break;
-            case "friendliness":
-              this.iv = res.data.friendliness;
-              break;
             case "payment":
               this.iv = res.data.payment;
               break;
@@ -37,6 +34,9 @@ export default {
               break;
             case "privacy":
               this.iv = res.data.privacy;
+              break;
+            case "friendliness":
+              this.iv = res.data.friendliness;
               break;
           }
           for (; i < this.iv; i++) {

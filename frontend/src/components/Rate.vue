@@ -15,9 +15,11 @@
           <StarRating
             class="stars"
             :toSubmit="true"
-            id="ti"
+            id="tidiness"
+            :tid="this.ttenantid"
             :initialValue="0"
             :editable="true"
+            feature="tidiness"
           />
         </div>
         <div class="block">
@@ -28,9 +30,11 @@
           <StarRating
             class="stars"
             :toSubmit="true"
-            id="cl1"
+            id="cleanliness"
+            :tid="this.ttenantid"
             :initialValue="0"
             :editable="true"
+            feature="cleanliness"
           />
         </div>
       </div>
@@ -45,9 +49,11 @@
           <StarRating
             class="stars"
             :toSubmit="true"
-            id="pr"
+            id="privacy"
+            :tid="this.ttenantid"
             :initialValue="0"
             :editable="true"
+            feature="privacy"
           />
         </div>
         <div class="block">
@@ -58,9 +64,11 @@
           <StarRating
             class="stars"
             :toSubmit="true"
-            id="fr"
+            id="friendliness"
+            :tid="this.ttenantid"
             :initialValue="0"
             :editable="true"
+            feature="friendliness"
           />
         </div>
       </div>
@@ -78,9 +86,11 @@
           <StarRating
             class="stars"
             :toSubmit="true"
-            id="pa"
+            id="payment"
+            :tid="this.ttenantid"
             :initialValue="0"
             :editable="true"
+            feature="payment"
           />
         </div>
         <div class="block">
@@ -91,9 +101,11 @@
           <StarRating
             class="stars"
             :toSubmit="true"
-            id="cl2"
+            id="cleanliness"
+            :tid="this.ttenantid"
             :initialValue="0"
             :editable="true"
+            feature="cleanliness"
           />
         </div>
       </div>
@@ -102,15 +114,17 @@
       >
         <div class="block">
           <figure class="image feature">
-            <img src="@/assets/svg/tidiness.png" />
+            <img src="@/assets/svg/care.png" />
             <label class="label">Care</label>
           </figure>
           <StarRating
             class="stars"
             :toSubmit="true"
-            id="ca"
+            id="care"
+            :tid="this.ttenantid"
             :initialValue="0"
             :editable="true"
+            feature="care"
           />
         </div>
       </div>
@@ -154,25 +168,26 @@ export default {
       tbuttonText: this.rbuttonText,
       ttenantid: this.tenantid,
       thouseid: this.houseid,
+      dec: false,
     };
   },
   methods: {
     async submitRT() {
       if (this.tbuttonText !== "Already Submited") {
         var vti = document
-          .getElementById("ti")
+          .getElementById("tidiness")
           .outerHTML.split("value=")[1]
           .split('"')[1];
         var vcl = document
-          .getElementById("cl1")
+          .getElementById("cleanliness")
           .outerHTML.split("value=")[1]
           .split('"')[1];
         var vpr = document
-          .getElementById("pr")
+          .getElementById("privacy")
           .outerHTML.split("value=")[1]
           .split('"')[1];
         var vfr = document
-          .getElementById("fr")
+          .getElementById("friendliness")
           .outerHTML.split("value=")[1]
           .split('"')[1];
         var rateInfoT = {
@@ -201,15 +216,15 @@ export default {
     async submitRL() {
       if (this.tbuttonText !== "Already Submited") {
         var vclan = document
-          .getElementById("cl2")
+          .getElementById("cleanliness")
           .outerHTML.split("value=")[1]
           .split('"')[1];
         var vpay = document
-          .getElementById("pa")
+          .getElementById("payment")
           .outerHTML.split("value=")[1]
           .split('"')[1];
         var vcar = document
-          .getElementById("ca")
+          .getElementById("care")
           .outerHTML.split("value=")[1]
           .split('"')[1];
         var rateInfoL = {

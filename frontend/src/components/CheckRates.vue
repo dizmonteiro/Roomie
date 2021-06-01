@@ -38,10 +38,10 @@
         <StarRating
           class="stars"
           :toSubmit="false"
-          :id="tid"
+          :tid="this.tid"
           :initialValue="0"
           :editable="false"
-          :feature="tidiness"
+          feature="tidiness"
         />
       </div>
       <div
@@ -54,10 +54,10 @@
         <StarRating
           class="stars"
           :toSubmit="false"
-          :id="tid"
+          :tid="this.tid"
           :initialValue="0"
           :editable="false"
-          :feature="cleanliness"
+          feature="cleanliness"
         />
       </div>
       <div
@@ -70,10 +70,10 @@
         <StarRating
           class="stars"
           :toSubmit="false"
-          :id="tid"
+          :tid="this.tid"
           :initialValue="0"
           :editable="false"
-          :feature="privacy"
+          feature="privacy"
         />
       </div>
       <div
@@ -86,10 +86,10 @@
         <StarRating
           class="stars"
           :toSubmit="false"
-          :id="tid"
+          :tid="this.tid"
           :initialValue="0"
           :editable="false"
-          :feature="friendliness"
+          feature="friendliness"
         />
       </div>
     </div>
@@ -104,10 +104,10 @@
         <StarRating
           class="stars"
           :toSubmit="false"
-          :id="tid"
+          :tid="this.tid"
           :initialValue="0"
           :editable="false"
-          :feature="cleanliness"
+          feature="cleanliness"
         />
       </div>
       <div
@@ -120,10 +120,10 @@
         <StarRating
           class="stars"
           :toSubmit="false"
-          :id="tid"
+          :tid="this.tid"
           :initialValue="0"
           :editable="false"
-          :feature="payment"
+          feature="payment"
         />
       </div>
       <div
@@ -136,10 +136,10 @@
         <StarRating
           class="stars"
           :toSubmit="false"
-          :id="tid"
+          :tid="this.tid"
           :initialValue="0"
           :editable="false"
-          :feature="care"
+          feature="care"
         />
       </div>
     </div>
