@@ -6,21 +6,54 @@
         <h1 class="title is-1">Applications</h1>
       </div>
     </div>
-    <div id="scroll-area">
-      <smooth-scrollbar>
-        <div>
-          <div v-for="h in formData" :key="h.tenant.id">
-            <application-entry
-              :decision="h.decision"
-              :houseId="h.house.id"
-              :houseSlides="h.housePhotos"
-              :houseLocation="h.house.address"
-              :houseName="h.house.title"
-              :tenant="h.tenantInfo"
-            />
-          </div>
+    <div v-for="h in formData" :key="h.tenant.id + '-' + h.house.id">
+      <application-entry
+        :id="aux"
+        :decision="h.decision"
+        :houseId="h.house.id"
+        :houseSlides="h.housePhotos"
+        :houseLocation="h.house.address"
+        :houseName="h.house.title"
+        :tenant="h.tenantInfo"
+        @accepted="accepted"
+        @rejected="rejected"
+      />
+    </div>
+    <div id="accept" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box has-text-centered">
+          <h1 class="title">Are you sure you want to accept?</h1>
+          <button class="button d is-green" @click="acceptAxios">
+            Confirm
+          </button>
+          <button class="button d is-green" @click="closeModal">Close</button>
         </div>
-      </smooth-scrollbar>
+      </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        value="close-modal"
+        @click="closeModal"
+      ></button>
+    </div>
+    <div id="reject" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box has-text-centered">
+          <h1 class="title">Are you sure you want to reject?</h1>
+          <button class="button d is-green" @click="rejectAxios">
+            Confirm
+          </button>
+          <button class="button d is-green" @click="closeModalR">Close</button>
+        </div>
+      </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        value="close-modal"
+        @click="closeModal"
+      ></button>
     </div>
   </div>
 </template>
@@ -33,6 +66,52 @@ import { url as api_url } from "@/assets/scripts/api";
 import store from "@/store";
 
 export default {
+  methods: {
+    accepted(tid, hid) {
+      this.currentTid = tid;
+      this.currentHid = hid;
+      console.log(tid + "-" + hid);
+      document.getElementById("accept").classList.add("is-active");
+    },
+    rejected(tid, hid) {
+      this.currentTid = tid;
+      this.currentHid = hid;
+      console.log(tid + "-" + hid);
+      document.getElementById("reject").classList.add("is-active");
+    },
+    closeModal() {
+      document.getElementById("accept").classList.remove("is-active");
+    },
+    acceptAxios() {
+      document.getElementById("accept").classList.remove("is-active");
+      var tenantInfo = {
+        tenantId: this.currentTid,
+        accept: true,
+      };
+      axios
+        .put(api_url + "/api/applications/" + this.currentHid, tenantInfo)
+        .then(() => {this.aux++;alert("sucessfully accepted!")})
+        .catch((e) => {
+          alert(e);
+        });
+    },
+    closeModalR() {
+      document.getElementById("reject").classList.remove("is-active");
+    },
+    rejectAxios() {
+      document.getElementById("reject").classList.remove("is-active");
+      var tenantInfo = {
+        tenantId: this.currentTid,
+        accept: false,
+      };
+      axios
+        .put(api_url + "/api/applications/" + this.currentHid, tenantInfo)
+        .then(() => {this.aux--;alert("sucessfully rejected!")})
+        .catch((e) => {
+          alert(e);
+        });
+    },
+  },
   components: { LandlordNavbar, ApplicationEntry },
   created() {
     axios
@@ -46,18 +125,18 @@ export default {
               `${api_url}/api/houses/photos/${this.formData[j].house.photos[i]}`
             );
           this.formData[j].housePhotos = slides;
-          this.formData[j].tenantInfo={
-            id:this.formData[j].tenant.id,
-            name:this.formData[j].tenant.name,
-            phone:this.formData[j].tenant.phone,
-            photo:`${api_url}/api/tenants/${this.formData[j].tenant.id}/avatar`
-          }
-          if (!this.formData[j].toBeAssessed)           
-            this.formData[j].decision="toDecide"
+          this.formData[j].tenantInfo = {
+            id: this.formData[j].tenant.id,
+            name: this.formData[j].tenant.name,
+            phone: this.formData[j].tenant.phone,
+            photo: `${api_url}/api/tenants/${this.formData[j].tenant.id}/avatar`,
+          };
+          if (!this.formData[j].toBeAssessed)
+            this.formData[j].decision = "toDecide";
           else if (this.formData[j].accepted)
-            this.formData[j].decision="accepted"
-            else this.formData[j].decision="rejected"
-          console.log(this.formData[j].decision)
+            this.formData[j].decision = "accepted";
+          else this.formData[j].decision = "rejected";
+          console.log(this.formData[j].decision);
         }
         for (var x = 0; x < this.formData.length; x++) {
           console.log(this.formData[x]);
@@ -69,6 +148,9 @@ export default {
   },
   data() {
     return {
+      aux:0,
+      currentTid: undefined,
+      currentHid: undefined,
       formData: undefined,
       wh: window.innerHeight,
       landlordHouse1: {
@@ -113,6 +195,10 @@ export default {
 </script>
 
 <style scoped>
+.d {
+  margin: 3% 3%;
+  box-sizing: border-box;
+}
 .title {
   margin: 3% auto 0 auto;
 }

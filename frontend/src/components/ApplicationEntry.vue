@@ -39,28 +39,22 @@
           class="column adjust-hero is-two-fifths-desktop is-full-mobile is-full-tablet has-text-centered"
         >
           <check-rates :hid="houseId" :tid="tenant.id" class="sCheck" />
-          <div class="columns" v-if="decision === 'toDecide'">
+          <div class="columns" v-if="nDecision === 'toDecide'">
             <div class="column is-half has-text-centerd">
-              <button class="button is-green ap" @click="doAccept">
+              <button class="button is-green ap" @click="accepted">
                 Accept Application
               </button>
             </div>
             <div class="column is-half has-text-centerd">
-              <button class="button is-green ap" @click="doReject">
+              <button class="button is-green ap" @click="rejected">
                 Reject Application
               </button>
             </div>
           </div>
-          <button
-            v-if="decision === 'accepted'"
-            class="button is-green ap"
-          >
+          <button v-if="nDecision === 'accepted'" class="button is-green ap">
             Application Accepted
           </button>
-          <button
-            v-if="decision === 'rejected'"
-            class="button is-green ap"
-          >
+          <button v-if="nDecision === 'rejected'" class="button is-green ap">
             Application Rejected
           </button>
         </div>
@@ -80,24 +74,38 @@
         </div>
       </div>
     </div>
-    <div id="confirmation" class="modal">
+    <div :id="'confirmA_' + tenant.id + '_' + houseId" class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
         <div class="box has-text-centered">
-          <h1 class="title">Are you sure?</h1>
-          <button class="button d is-green" @click="decide()">
+          <h1 class="title">Are you sure you want to accept?</h1>
+          <button class="button d is-green" @click="accepted">
             Confirm
           </button>
-          <button class="button d is-green" @click="closeModal()">
-            Close
-          </button>
+          <button class="button d is-green" @click="closeModal">Close</button>
         </div>
       </div>
       <button
         class="modal-close is-large"
         aria-label="close"
         value="close-modal"
-        @click="closeModal()"
+        @click="closeModal"
+      ></button>
+    </div>
+    <div :id="'confirmR_' + tenant.id + '_' + houseId" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box has-text-centered">
+          <h1 class="title">Are you sure you want to reject?</h1>
+          <button class="button d is-green" @click="rejected">Confirm</button>
+          <button class="button d is-green" @click="closeModal">Close</button>
+        </div>
+      </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        value="close-modal"
+        @click="closeModal"
       ></button>
     </div>
   </div>
@@ -106,8 +114,6 @@
 <script>
 import { VueAgile } from "vue-agile";
 import CheckRates from "./CheckRates.vue";
-import axios from "axios";
-import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   props: [
@@ -121,64 +127,46 @@ export default {
   components: { agile: VueAgile, CheckRates },
   data() {
     return {
-      dec:false,
+      nDecision: this.decision,
+      dec: false,
     };
   },
   methods: {
     checkProfile() {
       this.$router.push("/landlord/tprofile");
     },
-    async decide(){
-      if (this.dec)
-      this.accepted()
-      else this.rejected()
+    decide() {
+      console.log(this.dec);
+      console.log(this.decision);
+      if (this.dec) this.accepted();
+      else this.rejected();
       document.getElementById("confirmation").classList.remove("is-active");
-      if (this.dec)
-      alert("Application has been accepted!")
-      else alert("Application has been rejected!")
+      if (this.dec) alert("Application has been accepted!");
+      else alert("Application has been rejected!");
     },
-    async closeModal(){
-      document.getElementById("confirmation").classList.remove("is-active");
+    closeModal() {
+      var s = "confirmA_" + this.tenant.id + "_" + this.houseId;
+      var sr = "confirmR_" + this.tenant.id + "_" + this.houseId;
+      if (!document.getElementById(s).classList.remove("is-active"))
+        document.getElementById(sr).classList.remove("is-active");
     },
-    async doAccept(){
-      this.dec = true
-      document.getElementById("confirmation").classList.add("is-active");
+    async doAccept() {
+      this.dec = true;
+      var s = "confirmA_" + this.tenant.id + "_" + this.houseId;
+      console.log("first something");
+      document.getElementById(s).classList.add("is-active");
     },
-    async doReject(){
-      this.dec=false
-      document.getElementById("confirmation").classList.add("is-active");
+    doReject() {
+      var s = "confirmR_" + this.tenant.id + "_" + this.houseId;
+      this.dec = false;
+      document.getElementById(s).classList.add("is-active");
     },
-    async accepted() {
-      if (this.decision === "toDecide") {
-        var tenantInfo = {
-          tenantId: this.tenant.id,
-          accept: true,
-        };
-        await axios
-          .put(api_url + "/api/applications/" + this.houseId, tenantInfo)
-          .then(() => {
-            this.decision = "accepted";
-          })
-          .catch((e) => {
-            alert(e);
-          });
-      }
+    accepted() {
+      this.$emit("accepted",this.tenant.id,this.houseId)
+      
     },
-    async rejected() {
-      if (this.decision === "toDecide") {
-        var tenantInfo = {
-          tenantId: this.tenant.id,
-          accept: false,
-        };
-        await axios
-          .put(api_url + "/api/applications/" + this.houseId, tenantInfo)
-          .then(() => {
-            this.decision = "rejected";
-          })
-          .catch((e) => {
-            alert(e);
-          });
-      }
+    rejected() {
+     this.$emit("rejected",this.tenant.id,this.houseId)
     },
   },
 };
@@ -203,7 +191,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-.d{
+.d {
   margin: 0 3%;
 }
 .ap {

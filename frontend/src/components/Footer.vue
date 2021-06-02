@@ -27,5 +27,6 @@ strong{
       background-color: #2D6A4f;
       color:white;
       margin-top:5%;
+    margin-top: 3%;
 }
 </style>

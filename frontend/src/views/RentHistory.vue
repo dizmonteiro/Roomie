@@ -65,7 +65,12 @@ export default {
               id: this.formData[j].house.landlord.id,
             });
           this.formData[j].tiId = j;
-          this.getTenantsInHouse(this.formData[j].house.id, j);
+          this.getTenantsInHouse(
+            this.formData[j].house.id,
+            j,
+            this.formData[j].bDate.split("T")[0],
+            this.formData[j].eDate
+          );
           console.log(this.formData[j]);
         }
       })
@@ -74,19 +79,23 @@ export default {
       });
   },
   methods: {
-    async getTenantsInHouse(hid, j) {
+    async getTenantsInHouse(hid, j,bDate,eDate) {
+      var req
+      if (eDate==null)
+        req=api_url + "/api/houses/" + hid + "/tenants"
+      else req=api_url + "/api/houses/" + hid + "/tenants?bDate="+bDate+"&eDate="+eDate  
       axios
-      //TODO por intervalo de tempo
-        .get(api_url + "/api/houses/" + hid + "/tenants")
+        //TODO por intervalo de tempo
+        .get(req)
         .then((res) => {
           this.tenantInfo[j] = [];
           for (var t = 0; t < res.data.length; t++)
-          if (res.data[t].id !== store.getters.getId)
-            this.tenantInfo[j].push({
-              photo: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
-              name: res.data[t].name,
-              id: res.data[t].id,
-            });
+            if (res.data[t].id !== store.getters.getId)
+              this.tenantInfo[j].push({
+                photo: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
+                name: res.data[t].name,
+                id: res.data[t].id,
+              });
           this.teste++;
           console.log(this.tenantInfo);
         })
