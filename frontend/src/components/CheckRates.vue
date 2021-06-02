@@ -101,7 +101,7 @@
           <img src="@/assets/svg/cleanliness.png" />
           <label class="label">Cleanliness</label>
         </figure>
-        <StarRating
+        <StarRatingL
           class="stars"
           :toSubmit="false"
           :tid="this.tid"
@@ -117,7 +117,7 @@
           <img src="@/assets/svg/payment.png" />
           <label class="label">Payment</label>
         </figure>
-        <StarRating
+        <StarRatingL
           class="stars"
           :toSubmit="false"
           :tid="this.tid"
@@ -133,7 +133,7 @@
           <img src="@/assets/svg/care.png" />
           <label class="label">Care</label>
         </figure>
-        <StarRating
+        <StarRatingL
           class="stars"
           :toSubmit="false"
           :tid="this.tid"
@@ -148,9 +148,11 @@
 
 <script>
 import StarRating from "@/components/StarRating";
+import StarRatingL from "@/components/StarRatingL";
 export default {
   components: {
     StarRating,
+    StarRatingL,
   },
   props: ["tid", "hid"],
   data() {
