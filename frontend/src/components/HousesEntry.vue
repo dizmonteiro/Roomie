@@ -26,7 +26,7 @@
           class="column adjust-hero-s is-three-fifths-desktop is-full-mobile is-full-tablet form has-text-centered"
         >
           <label class="label">Tenants living in this house:</label>
-          <div class="otherTenants">
+          <div v-if="tenants.length!=0" class="otherTenants">
             <div class="sTenant" v-for="tenant in tenants" :key="houseId+'_'+tenant.id">
               <figure class="image avatar">
                 <img
@@ -50,6 +50,7 @@
               </button>
             </div>
           </div>
+          <label v-if="tenants.length==0" class="label">There are no tenants</label>
         </div>
         <div
           class="column adjust-hero is-one-fifth-desktop is-full-mobile is-full-tablet has-text-centered"

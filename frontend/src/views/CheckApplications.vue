@@ -90,7 +90,7 @@ export default {
       };
       axios
         .put(api_url + "/api/applications/" + this.currentHid, tenantInfo)
-        .then(() => {this.aux++;alert("sucessfully accepted!")})
+        .then(() => {this.aux++;alert("sucessfully accepted!"); window.location.reload();})
         .catch((e) => {
           alert(e);
         });
@@ -106,7 +106,7 @@ export default {
       };
       axios
         .put(api_url + "/api/applications/" + this.currentHid, tenantInfo)
-        .then(() => {this.aux--;alert("sucessfully rejected!")})
+        .then(() => {this.aux--;alert("sucessfully rejected!");window.location.reload();})
         .catch((e) => {
           alert(e);
         });
