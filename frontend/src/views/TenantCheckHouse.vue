@@ -82,7 +82,14 @@
               </div>
 
               <div class="column is-half-mobile is-half-tablet is-half-desktop">
-                <div class="box custom-height">
+                <div class="box">
+                  <div class="content has-text-centered">
+                    <h3 class="title">
+                      {{formData.title}}
+                    </h3>
+                  </div>
+                </div>
+                <div class="box">
                   <p class="title has-text-centered is-one-third">
                     Description
                   </p>
@@ -102,6 +109,22 @@
                     </a>
                   </div>
                 </div>
+              </div>
+
+              <div id="confirmation" class="modal">
+                <div class="modal-background"></div>
+                  <div class="modal-content">
+                    <div class="box has-text-centered">
+                      <h1 class="title">Application submitted!</h1>
+                      <button class="button is-primary green" @click="closeModal()">Fechar</button>
+                    </div>
+                  </div>
+                <button
+                  class="modal-close is-large"
+                  aria-label="close"
+                  value="close-modal"
+                  @click="closeModal()"
+                ></button>
               </div>
 
               <div
@@ -134,7 +157,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="title is-4 ll">Other Tenants:</div>
+                  <div v-if="tenantInfo.length!==0" class="title is-4 ll">Tenants:</div>
                   <ZDMCarousel :id="teste" :cards="tenantInfo" />
                 </div>
               </div>
@@ -176,6 +199,9 @@ export default {
           console.log(ex);
         });
     },
+    closeModal() {
+      document.getElementById("confirmation").classList.remove("is-active");
+    },
     async apply() {
       if (this.buttonText !== "Already Applied") {
         var sendApplication = {
@@ -187,6 +213,7 @@ export default {
           .post(api_url + "/api/applications/", sendApplication)
           .then(() => {
             console.log("done");
+            document.getElementById("confirmation").classList.add("is-active");
           })
           .catch((e) => {
             alert(e);
@@ -361,5 +388,15 @@ export default {
   margin: 2% auto;
   width: 100%;
   height: 20vh;
+}
+
+.green {
+  background-color: #2d6a4f;
+  border-color: #2d6a4f !important;
+}
+
+.green:hover {
+  background-color: #2d6a4f;
+  border-color: #2d6a4f !important;
 }
 </style>

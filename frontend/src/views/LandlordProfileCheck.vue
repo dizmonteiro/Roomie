@@ -133,16 +133,17 @@
               <br />
               <SideMenuEntry
                 :imgSource="house.img"
-                :args="[
-                  {
-                    k1: 'house_name',
-                    v1: house.title,
-                    k2: 'house_location',
-                    v2: house.address,
-                    k3: 'house_slot',
-                    v3: house.slots,
-                  },
-                ]"
+                  :link="'/'+type+'/house/' + house.id"
+                  :args="[
+                    {
+                      k1: 'house_name',
+                      v1: house.title,
+                      k2: 'house_location',
+                      v2: house.address,
+                      k3: 'house_slot',
+                      v3: house.slots,
+                    },
+                  ]"
               />
             </div>
             <br />

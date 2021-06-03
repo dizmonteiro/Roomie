@@ -18,7 +18,7 @@
                 <i class="fas fa-arrow-right"></i>
               </template>
             </agile>
-            <label class="label">{{ houseName }}</label>
+            <label class="label">{{ houseName.substring(0,25)+"..." }}</label>
             <label class="label">{{ houseLocation }}</label>
           </div>
         </div>
@@ -27,7 +27,7 @@
         >
           <label class="label">Tenants living in this house:</label>
           <div class="otherTenants">
-            <div class="sTenant" v-for="tenant in tenants" :key="tenant.id">
+            <div class="sTenant" v-for="tenant in tenants" :key="houseId+'_'+tenant.id">
               <figure class="image avatar">
                 <img
                   class="is-rounded"
@@ -42,9 +42,9 @@
                 </a>
               </div>
               <button
-                :id="tenant.id"
+                :id="tenant.id+'_'+houseId"
                 class="button is-green"
-                @click="noLonger(tenant.id)"
+                @click="noLonger(tenant.id,houseId)"
               >
                 Remove Tenant
               </button>
@@ -88,8 +88,8 @@ export default {
   },
 
   methods: {
-    async noLonger(id) {
-      if (document.getElementById(id).innerHTML !== "Already Left!") {
+    async noLonger(id,hid) {
+      if (document.getElementById(id+'_'+hid).innerHTML !== "Already Left!") {
         var tenantInfo = {
           tenantId: id,
         };
@@ -102,7 +102,7 @@ export default {
           .catch((e) => {
             alert(e);
           });
-        document.getElementById(id).innerHTML = "Already Left!";
+        document.getElementById(id+'_'+hid).innerHTML = "Already Left!";
       }
     },
   },

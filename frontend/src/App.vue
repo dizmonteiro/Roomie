@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view class="something"/>
     <Footer />
   </div>
 </template>
@@ -33,7 +33,9 @@ export default {
   @import './assets/styles/bulma.css';
   @import './assets/styles/custom.css';
   @import './assets/styles/snow.min.css';
-
+  .something{
+    margin-bottom: 5%;
+  }
   #app {
     min-height: 93vh;
   }

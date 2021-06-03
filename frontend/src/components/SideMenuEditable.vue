@@ -5,7 +5,7 @@
     </label>
     <div class="mtop">
       <slot></slot>
-      <a class="button is-green pad" value="more" :href="link">
+      <a v-if="showMore" class="button is-green pad" value="more" :href="link">
         <strong>More</strong>
       </a>
     </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  props: ["title","link"],
+  props: ["title","link","showMore"],
   data() {
     return {};
   },

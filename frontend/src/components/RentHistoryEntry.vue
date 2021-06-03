@@ -25,7 +25,8 @@
         <div
           class="column adjust-hero-s is-three-fifths-desktop is-full-mobile is-full-tablet form has-text-centered"
         >
-          <label class="label">You were here with:</label>
+          <label v-if="to!=' Still living here'" class="label">You were here with:</label>
+          <label v-if="to==' Still living here'" class="label">You are here with:</label>
           <div class="otherTenants">
             <div class="sTenant" v-for="tenant in tenants" :key="tenant.id">
               <figure class="image avatar2">

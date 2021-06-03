@@ -21,29 +21,24 @@
                 <i class="fas fa-arrow-right"></i>
               </template>
             </agile>
-            <label class="label">{{ application.houseName }}</label>
+            <label class="label">{{
+              application.houseName.substring(0, 20) + "..."
+            }}</label>
             <label class="label">{{ application.houseLocation }}</label>
           </div>
         </div>
         <div
-          class="column adjust-hero-s is-three-fifths-desktop is-full-mobile is-full-tablet form has-text-centered"
+          class="column adjust-hero-s is-four-fifths-desktop is-full-mobile is-full-tablet form has-text-centered"
         >
           <div class="middle">
-                          <label class="label applied">Applied in: {{ application.date }}</label>
             <h1 class="title is-2 status">Status: {{ application.status }}</h1>
-
+            <a
+              class="button is-green ap"
+              :href="'/tenant/house/' + application.id"
+            >
+              Check House
+            </a>
           </div>
-        </div>
-        <div
-          class="column adjust-hero is-one-fifth-desktop is-full-mobile is-full-tablet has-text-centered"
-        >
-        <div class="buttons">
-          <a class="button is-green ap" href="/tenant"> Check House </a>
-          <button class="button is-green ap" @click="cancel">
-            Cancel Application
-          </button>
-        </div>
-
         </div>
       </div>
     </div>
@@ -68,22 +63,21 @@ export default {
 </script>
 
 <style scoped>
-.middle{
-    margin: 8% auto;
+.middle {
+  margin: 8% auto;
 }
-.applied{
-    margin:10% auto 5% auto;
+.applied {
+  margin: 10% auto 5% auto;
 }
-.status{
-   border-color:#2d6a4f;
-   border-style: solid;
+.status {
+  border-color: #2d6a4f;
+  border-style: solid;
 }
 .ap {
-  width: 100%;
-  margin: 5% auto;
+  width: 50%;
 }
-.buttons{
-    margin:30% auto 0 auto;
+.buttons {
+  margin: 4% auto 0 auto;
 }
 .sBox {
   margin: 6% auto;

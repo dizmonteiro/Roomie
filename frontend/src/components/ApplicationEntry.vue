@@ -5,7 +5,7 @@
         <div
           class="column adjust-hero-s has-text-centered is-one-fifth-desktop is-full-mobile is-full-tablet"
         >
-          <div class="box sBox">
+          <a class="box sBox">
             <agile class="sCarousel" :dots="false" :slidesToShow="1">
               <div class="slide" v-for="slide in houseSlides" :key="slide">
                 <img :src="slide" :alt="slide" />
@@ -17,9 +17,13 @@
                 <i class="fas fa-arrow-right"></i>
               </template>
             </agile>
-            <label class="label">{{ houseName }}</label>
-            <label class="label">{{ houseLocation }}</label>
-          </div>
+            <a :href="'/landlord/house/' + houseId">
+              <label class="label">{{
+                houseName.substring(0, 25) + "..."
+              }}</label>
+              <label class="label">{{ houseLocation }}</label>
+            </a>
+          </a>
         </div>
         <div
           class="column adjust-hero-s is-one-fifth-desktop is-full-mobile is-full-tablet form has-text-centered"
@@ -35,7 +39,7 @@
           class="column adjust-hero is-two-fifths-desktop is-full-mobile is-full-tablet has-text-centered"
         >
           <check-rates :hid="houseId" :tid="tenant.id" class="sCheck" />
-          <div class="columns" v-if="decision === 'toDecide'">
+          <div class="columns" v-if="nDecision === 'toDecide'">
             <div class="column is-half has-text-centerd">
               <button class="button is-green ap" @click="accepted">
                 Accept Application
@@ -47,18 +51,10 @@
               </button>
             </div>
           </div>
-          <button
-            v-if="decision === 'accepted'"
-            class="button is-green ap"
-            @click="accepted"
-          >
+          <button v-if="nDecision === 'accepted'" class="button is-green ap">
             Application Accepted
           </button>
-          <button
-            v-if="decision === 'rejected'"
-            class="button is-green ap"
-            @click="rejected"
-          >
+          <button v-if="nDecision === 'rejected'" class="button is-green ap">
             Application Rejected
           </button>
         </div>
@@ -78,14 +74,46 @@
         </div>
       </div>
     </div>
+    <div :id="'confirmA_' + tenant.id + '_' + houseId" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box has-text-centered">
+          <h1 class="title">Are you sure you want to accept?</h1>
+          <button class="button d is-green" @click="accepted">
+            Confirm
+          </button>
+          <button class="button d is-green" @click="closeModal">Close</button>
+        </div>
+      </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        value="close-modal"
+        @click="closeModal"
+      ></button>
+    </div>
+    <div :id="'confirmR_' + tenant.id + '_' + houseId" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box has-text-centered">
+          <h1 class="title">Are you sure you want to reject?</h1>
+          <button class="button d is-green" @click="rejected">Confirm</button>
+          <button class="button d is-green" @click="closeModal">Close</button>
+        </div>
+      </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        value="close-modal"
+        @click="closeModal"
+      ></button>
+    </div>
   </div>
 </template>
 
 <script>
 import { VueAgile } from "vue-agile";
 import CheckRates from "./CheckRates.vue";
-import axios from "axios";
-import { url as api_url } from "@/assets/scripts/api";
 
 export default {
   props: [
@@ -98,43 +126,47 @@ export default {
   ],
   components: { agile: VueAgile, CheckRates },
   data() {
-    return {};
+    return {
+      nDecision: this.decision,
+      dec: false,
+    };
   },
   methods: {
     checkProfile() {
       this.$router.push("/landlord/tprofile");
     },
-    async accepted() {
-      if (this.decision === "toDecide") {
-        var tenantInfo = {
-          tenantId: this.tenant.id,
-          accept: true,
-        };
-        await axios
-          .put(api_url + "/api/applications/" + this.houseId, tenantInfo)
-          .then(() => {
-            this.decision = "accepted";
-          })
-          .catch((e) => {
-            alert(e);
-          });
-      }
+    decide() {
+      console.log(this.dec);
+      console.log(this.decision);
+      if (this.dec) this.accepted();
+      else this.rejected();
+      document.getElementById("confirmation").classList.remove("is-active");
+      if (this.dec) alert("Application has been accepted!");
+      else alert("Application has been rejected!");
     },
-    async rejected() {
-      if (this.decision === "toDecide") {
-        var tenantInfo = {
-          tenantId: this.tenant.id,
-          accept: false,
-        };
-        await axios
-          .put(api_url + "/api/applications/" + this.houseId, tenantInfo)
-          .then(() => {
-            this.decision = "rejected";
-          })
-          .catch((e) => {
-            alert(e);
-          });
-      }
+    closeModal() {
+      var s = "confirmA_" + this.tenant.id + "_" + this.houseId;
+      var sr = "confirmR_" + this.tenant.id + "_" + this.houseId;
+      if (!document.getElementById(s).classList.remove("is-active"))
+        document.getElementById(sr).classList.remove("is-active");
+    },
+    async doAccept() {
+      this.dec = true;
+      var s = "confirmA_" + this.tenant.id + "_" + this.houseId;
+      console.log("first something");
+      document.getElementById(s).classList.add("is-active");
+    },
+    doReject() {
+      var s = "confirmR_" + this.tenant.id + "_" + this.houseId;
+      this.dec = false;
+      document.getElementById(s).classList.add("is-active");
+    },
+    accepted() {
+      this.$emit("accepted",this.tenant.id,this.houseId)
+      
+    },
+    rejected() {
+     this.$emit("rejected",this.tenant.id,this.houseId)
     },
   },
 };
@@ -158,6 +190,9 @@ export default {
   right: 0;
   width: 100%;
   height: 100%;
+}
+.d {
+  margin: 0 3%;
 }
 .ap {
   width: 100%;
