@@ -275,8 +275,8 @@ export default {
 }
 .imgSlide {
   margin: 0 auto;
-  width: auto;
-  height: 33vh;
+  width: 80vh;
+  height: 50vh;
 }
 .avatar {
   width: 5vmax;
