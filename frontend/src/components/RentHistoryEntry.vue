@@ -27,7 +27,7 @@
         >
           <label v-if="to!=' Still living here'" class="label">You were here with:</label>
           <label v-if="to==' Still living here'" class="label">You are here with:</label>
-          <div class="otherTenants">
+          <div v-if="tenants.length!=0" class="otherTenants">
             <div class="sTenant" v-for="tenant in tenants" :key="tenant.id">
               <figure class="image avatar2">
             <img
@@ -45,8 +45,9 @@
               </div>
             </div>
           </div>
+          <label v-if="tenants.length==0" class="label">There are no roommates</label>
           <label class="label date">From:{{ from }}</label>
-          <label class="label date">To:{{ to }}</label>
+          <label class="label date">To: {{ to }}</label>
         </div>
         <div
           class="column adjust-hero is-one-fifth-desktop is-full-mobile is-full-tablet has-text-centered"
