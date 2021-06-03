@@ -281,8 +281,8 @@ export default {
   margin: 3% auto;
 }
 .feature {
-  width: 35%;
-  height: 35%;
+  width: 45%;
+  height: 45%;
   margin: 0 auto;
 }
 .form {

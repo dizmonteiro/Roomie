@@ -16,7 +16,7 @@
           <div class="block">
             <div class="columns is-centered is-mobile is-tablet is-desktop">
               <div
-                class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
+                class="column is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop"
               >
                 <div class="box custom-height-info">
                   <p class="title has-text-centered is-one-third">Main Info</p>
@@ -102,7 +102,7 @@
               </div>
 
               <div
-                class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
+                class="column is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop"
               >
                 <div class="box mb custom-height-info has-text-centered">
                   <div class="card llcard has-text-centered">
@@ -336,7 +336,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 0 10%;
+  margin: 0% 40%;
   width: 100%;
   height: 100%;
 }

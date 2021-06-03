@@ -26,7 +26,7 @@
               </figure>
             </div>
 
-            <div class="title is-3">{{ formData.name }}</div>
+            <div class="title is-4">{{ formData.name }}</div>
           </div>
         </div>
         <div class="column is-7-desktop is-7-mobile is-7-tablet">
@@ -102,15 +102,17 @@ export default {
 }
 
 .avatar {
-  width: 20vw;
-  height: 20vw;
+  max-height: 100%;
+  min-height: 20vw;
+  max-width: 100%;
+  min-height: 20vw;
   position: relative;
   display: block;
-  margin: 5% auto 8% auto;
+  margin: 2% auto auto auto;
 }
 
 #profile-pic {
-  position: absolute;
+  position: relative;
   object-fit: cover;
   object-position: center;
   top: 0;

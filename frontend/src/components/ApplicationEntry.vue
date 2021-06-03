@@ -190,7 +190,7 @@ export default {
   height: 15vmax;
   position: relative;
   display: block;
-  margin: 11% auto 8% auto;
+  margin: 4% auto auto 4%;
 }
 #profile-pic {
   position: absolute;
@@ -200,8 +200,8 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
 }
 .d{
   margin: 0 3%;

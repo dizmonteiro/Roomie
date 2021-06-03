@@ -16,7 +16,7 @@
           <div class="block">
             <div class="columns is-centered is-mobile is-tablet is-desktop">
               <div
-                class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
+                class="column is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop"
               >
                 <div class="box custom-height-info">
                   <p class="title has-text-centered is-one-third">Main Info</p>
@@ -85,7 +85,7 @@
                 <div class="box">
                   <div class="content has-text-centered">
                     <h3 class="title">
-                      {{formData.title}}
+                      {{ formData.title }}
                     </h3>
                   </div>
                 </div>
@@ -113,12 +113,17 @@
 
               <div id="confirmation" class="modal">
                 <div class="modal-background"></div>
-                  <div class="modal-content">
-                    <div class="box has-text-centered">
-                      <h1 class="title">Application submitted!</h1>
-                      <button class="button is-primary green" @click="closeModal()">Fechar</button>
-                    </div>
+                <div class="modal-content">
+                  <div class="box has-text-centered">
+                    <h1 class="title">Application submitted!</h1>
+                    <button
+                      class="button is-primary green"
+                      @click="closeModal()"
+                    >
+                      Fechar
+                    </button>
                   </div>
+                </div>
                 <button
                   class="modal-close is-large"
                   aria-label="close"
@@ -128,7 +133,7 @@
               </div>
 
               <div
-                class="column is-one-fourth-mobile is-one-fourth-tablet is-one-fourth-desktop"
+                class="column is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop"
               >
                 <div class="box mb custom-height-info has-text-centered">
                   <div class="card llcard has-text-centered">
@@ -137,27 +142,33 @@
                       class="columns is-centered is-mobile is-tablet is-desktop"
                     >
                       <div class="column is-one-quarter">
-                        <figure class="image avatar">
-                          <img
-                            id="profile-pic"
-                            class="is-rounded"
-                            :src="llPic"
-                          />
-                        </figure>
+                        <div class="block">
+                          <figure class="image avatar">
+                            <img
+                              id="profile-pic"
+                              class="is-rounded"
+                              :src="llPic"
+                            />
+                          </figure>
+                        </div>
                       </div>
                       <div class="column is-three-quarters has-text-centered">
-                        <div class="label lname">
-                          {{ llName }}
+                        <div class="block">
+                          <div class="label lname">
+                            {{ llName }}
+                          </div>
+                          <a
+                            class="button is-green"
+                            :href="'/tenant/llprofile/' + llId"
+                            >View Profile</a
+                          >
                         </div>
-                        <a
-                          class="button is-green"
-                          :href="'/tenant/llprofile/' + llId"
-                          >View Profile</a
-                        >
                       </div>
                     </div>
                   </div>
-                  <div v-if="tenantInfo.length!==0" class="title is-4 ll">Tenants:</div>
+                  <div v-if="tenantInfo.length !== 0" class="title is-4 ll">
+                    Tenants:
+                  </div>
                   <ZDMCarousel :id="teste" :cards="tenantInfo" />
                 </div>
               </div>
@@ -191,7 +202,7 @@ export default {
               ppic: `${api_url}/api/tenants/${res.data[t].id}/avatar`,
               name: res.data[t].name,
               id: res.data[t].id,
-              link: "/tenant/tprofile/"+res.data[t].id
+              link: "/tenant/tprofile/" + res.data[t].id,
             });
           this.teste++;
         })
@@ -349,7 +360,7 @@ export default {
 
 .vm {
   width: 25%;
-  min-width: 70px;
+  min-width: 200px;
 }
 
 .bordera {
@@ -379,7 +390,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 0 10%;
+  margin: 0% 40%;
   width: 100%;
   height: 100%;
 }
