@@ -39,7 +39,7 @@ public class RentHistoryService {
 			rentHistories = RentHistoryDAO.queryRentHistory("house=" + house + " and edate is null", null);
 		} else if (bDate != null && eDate != null) {
 			rentHistories = RentHistoryDAO
-					.queryRentHistory("house=" + house + " and bdate >= '" + bDate + "' and edate <= '" + eDate + "'", null);
+					.queryRentHistory("house=" + house + " and bdate >= '" + bDate + "' and edate <= '" + eDate + "' or edate is null and bdate <= '"+eDate+"'", null);
 		}
 		
 		List<Tenant> tenants = new ArrayList<>();
