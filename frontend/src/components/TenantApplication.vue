@@ -49,7 +49,7 @@
             >
               Check House
             </a>
-            <a class="button is-green ap" @click="openModal">
+            <a v-if="application.status =='Waiting for landlord response'" class="button is-green ap" @click="openModal">
               Remove Application
             </a>
           </div>
