@@ -59,6 +59,7 @@ export default {
           else if (res.data[i].accepted) status = "Landlord already accepted!";
           else status = "Landlord rejected your application";
           var application = {
+            tenantId: store.getters.getId,
             housePhotos: photos,
             houseName: res.data[i].house.title,
             houseLocation: res.data[i].house.address,
