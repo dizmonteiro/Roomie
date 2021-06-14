@@ -6,6 +6,23 @@ fake = Faker()
 
 BASE_URL = "http://localhost:8083/api"
 
+cities = [
+    "Braga",
+    "Viseu",
+    "Porto",
+    "Lisboa",
+    "Guimarães",
+    "Leiria",
+    "Coimbra",
+    "Santarém",
+    "Guarda",
+    "Aveiro",
+    "Faro",
+    "Portimão",
+    "Beja",
+    "Évora",
+]
+
 
 def register_landlord():
     profile = fake.simple_profile()
@@ -74,7 +91,7 @@ def post_house(token):
         "maxPrice": 300,
         "description": fake.text(max_nb_chars=500).replace("\n", " "),
         "features": "feat1,feat2,feat3,feat4",
-        "address": "Av Test B1 2E, Viseu",
+        "address": "Av Test B1 2E, " + random.choice(cities),
     }
 
     files = []
