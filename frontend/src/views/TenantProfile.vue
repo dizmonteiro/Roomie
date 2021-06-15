@@ -162,6 +162,7 @@
               link="/tenant/rhistory"
               class="toMargin"
               title="My Rent History"
+              :showMore="true"
             >
               <div v-for="rh in rentHistory" :key="rh.id">
                 <br />
